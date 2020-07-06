@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Lib\**" />
+    <EmbeddedResource Remove="Lib\**" />
+    <None Remove="Lib\**" />
+    <Page Remove="Lib\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="CommonServiceLocator">
+      <HintPath>..\Lib\CommonServiceLocator.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Prism">
+      <HintPath>..\Lib\Prism.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Prism.Unity.Wpf">
+      <HintPath>..\Lib\Prism.Unity.Wpf.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Prism.Wpf">
+      <HintPath>..\Lib\Prism.Wpf.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>..\Lib\System.Windows.Interactivity.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.Abstractions">
+      <HintPath>..\Lib\Unity.Abstractions.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.Container">
+      <HintPath>..\Lib\Unity.Container.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+</Project>
