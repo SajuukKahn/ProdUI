@@ -1,10 +1,8 @@
 ﻿using Prism.Ioc;
 using Prism.Modularity;
-using Prism.Regions;
 using Prism.Unity;
 using ProdUI.Views;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace ProdUI
 {
@@ -23,14 +21,8 @@ namespace ProdUI
             
         }
 
-        protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
-        {
-        //    base.ConfigureRegionAdapterMappings(regionAdapterMappings);
-        //    regionAdapterMappings.RegisterMapping(typeof(StackPanel), Container.Resolve<StackPanelRegionAdapter>());
-        }
-
         protected override IModuleCatalog CreateModuleCatalog()
-        { 
+        {
             return new DirectoryModuleCatalog() { ModulePath = @".\Modules" };
         }
 

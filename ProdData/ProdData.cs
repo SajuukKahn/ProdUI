@@ -18,14 +18,13 @@ namespace ProdData
 
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            IRegion region = _regionManager.Regions["MessageListRegion"];
+            IRegion region = _regionManager.Regions["ProdDataRegion"];
             var view = containerProvider.Resolve<Views.ProdDataView>();
             region.Add(view);
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            throw new NotImplementedException();
         }
     }
 }

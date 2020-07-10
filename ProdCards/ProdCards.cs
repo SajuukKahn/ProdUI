@@ -15,8 +15,8 @@ namespace ProdCards
         
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            IRegion region = _regionManager.Regions["MessageInputRegion"];
-            var view = containerProvider.Resolve<Views.ProdCardsView>();
+            IRegion region = _regionManager.Regions["ProdCardRegion"];
+            var view = containerProvider.Resolve<ProdCardsView>();
             region.Add(view);
         }
 

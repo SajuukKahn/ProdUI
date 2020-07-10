@@ -4,6 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <StartupObject></StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,37 +15,266 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Themes\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="CommonServiceLocator">
       <HintPath>..\Lib\CommonServiceLocator.dll</HintPath>
-      <Private>false</Private>
+      <Private>true</Private>
     </Reference>
     <Reference Include="Prism">
       <HintPath>..\Lib\Prism.dll</HintPath>
-      <Private>false</Private>
+      <Private>true</Private>
     </Reference>
     <Reference Include="Prism.Unity.Wpf">
       <HintPath>..\Lib\Prism.Unity.Wpf.dll</HintPath>
-      <Private>false</Private>
+      <Private>true</Private>
     </Reference>
     <Reference Include="Prism.Wpf">
       <HintPath>..\Lib\Prism.Wpf.dll</HintPath>
-      <Private>false</Private>
+      <Private>true</Private>
     </Reference>
     <Reference Include="System.Windows.Interactivity">
       <HintPath>..\Lib\System.Windows.Interactivity.dll</HintPath>
-      <Private>false</Private>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Documents.SpreadsheetStreaming">
+      <HintPath>..\Lib\Telerik.Documents.SpreadsheetStreaming.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Pivot.Core">
+      <HintPath>..\Lib\Telerik.Pivot.Core.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Pivot.DataProviders.Adomd">
+      <HintPath>..\Lib\Telerik.Pivot.DataProviders.Adomd.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Pivot.DataProviders.Queryable">
+      <HintPath>..\Lib\Telerik.Pivot.DataProviders.Queryable.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Pivot.DataProviders.Xmla">
+      <HintPath>..\Lib\Telerik.Pivot.DataProviders.Xmla.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Cloud">
+      <HintPath>..\Lib\Telerik.Windows.Cloud.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Cloud.Controls">
+      <HintPath>..\Lib\Telerik.Windows.Cloud.Controls.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls">
+      <HintPath>..\Lib\Telerik.Windows.Controls.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Chart">
+      <HintPath>..\Lib\Telerik.Windows.Controls.Chart.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Chart.Direct2D">
+      <HintPath>..\Lib\Telerik.Windows.Controls.Chart.Direct2D.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.ConversationalUI">
+      <HintPath>..\Lib\Telerik.Windows.Controls.ConversationalUI.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Data">
+      <HintPath>..\Lib\Telerik.Windows.Controls.Data.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.DataVisualization">
+      <HintPath>..\Lib\Telerik.Windows.Controls.DataVisualization.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Diagrams">
+      <HintPath>..\Lib\Telerik.Windows.Controls.Diagrams.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Diagrams.Extensions">
+      <HintPath>..\Lib\Telerik.Windows.Controls.Diagrams.Extensions.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Diagrams.Ribbon">
+      <HintPath>..\Lib\Telerik.Windows.Controls.Diagrams.Ribbon.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Docking">
+      <HintPath>..\Lib\Telerik.Windows.Controls.Docking.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Expressions">
+      <HintPath>..\Lib\Telerik.Windows.Controls.Expressions.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.FileDialogs">
+      <HintPath>..\Lib\Telerik.Windows.Controls.FileDialogs.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.FixedDocumentViewers">
+      <HintPath>..\Lib\Telerik.Windows.Controls.FixedDocumentViewers.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.FixedDocumentViewersUI">
+      <HintPath>..\Lib\Telerik.Windows.Controls.FixedDocumentViewersUI.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GanttView">
+      <HintPath>..\Lib\Telerik.Windows.Controls.GanttView.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView">
+      <HintPath>..\Lib\Telerik.Windows.Controls.GridView.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView.Export">
+      <HintPath>..\Lib\Telerik.Windows.Controls.GridView.Export.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView.SpreadsheetStreamingExport">
+      <HintPath>..\Lib\Telerik.Windows.Controls.GridView.SpreadsheetStreamingExport.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.ImageEditor">
+      <HintPath>..\Lib\Telerik.Windows.Controls.ImageEditor.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input">
+      <HintPath>..\Lib\Telerik.Windows.Controls.Input.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Media">
+      <HintPath>..\Lib\Telerik.Windows.Controls.Media.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation">
+      <HintPath>..\Lib\Telerik.Windows.Controls.Navigation.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Pivot">
+      <HintPath>..\Lib\Telerik.Windows.Controls.Pivot.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.PivotFieldList">
+      <HintPath>..\Lib\Telerik.Windows.Controls.PivotFieldList.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.RibbonView">
+      <HintPath>..\Lib\Telerik.Windows.Controls.RibbonView.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.RichTextBox">
+      <HintPath>..\Lib\Telerik.Windows.Controls.RichTextBox.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.ScheduleView">
+      <HintPath>..\Lib\Telerik.Windows.Controls.ScheduleView.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Spreadsheet">
+      <HintPath>..\Lib\Telerik.Windows.Controls.Spreadsheet.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.SpreadsheetUI">
+      <HintPath>..\Lib\Telerik.Windows.Controls.SpreadsheetUI.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.SyntaxEditor">
+      <HintPath>..\Lib\Telerik.Windows.Controls.SyntaxEditor.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.VirtualGrid">
+      <HintPath>..\Lib\Telerik.Windows.Controls.VirtualGrid.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data">
+      <HintPath>..\Lib\Telerik.Windows.Data.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Diagrams.Core">
+      <HintPath>..\Lib\Telerik.Windows.Diagrams.Core.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents">
+      <HintPath>..\Lib\Telerik.Windows.Documents.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Core">
+      <HintPath>..\Lib\Telerik.Windows.Documents.Core.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Fixed">
+      <HintPath>..\Lib\Telerik.Windows.Documents.Fixed.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Flow">
+      <HintPath>..\Lib\Telerik.Windows.Documents.Flow.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Flow.FormatProviders.Pdf">
+      <HintPath>..\Lib\Telerik.Windows.Documents.Flow.FormatProviders.Pdf.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Proofing">
+      <HintPath>..\Lib\Telerik.Windows.Documents.Proofing.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Proofing.DataGrid">
+      <HintPath>..\Lib\Telerik.Windows.Documents.Proofing.DataGrid.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Proofing.RadGridView">
+      <HintPath>..\Lib\Telerik.Windows.Documents.Proofing.RadGridView.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet">
+      <HintPath>..\Lib\Telerik.Windows.Documents.Spreadsheet.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml">
+      <HintPath>..\Lib\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf">
+      <HintPath>..\Lib\Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.MediaFoundation">
+      <HintPath>..\Lib\Telerik.Windows.MediaFoundation.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.PersistenceFramework">
+      <HintPath>..\Lib\Telerik.Windows.PersistenceFramework.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Scheduling.Core">
+      <HintPath>..\Lib\Telerik.Windows.Scheduling.Core.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.SyntaxEditor.Core">
+      <HintPath>..\Lib\Telerik.Windows.SyntaxEditor.Core.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Zip">
+      <HintPath>..\Lib\Telerik.Windows.Zip.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Zip.Extensions">
+      <HintPath>..\Lib\Telerik.Windows.Zip.Extensions.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="Unity.Abstractions">
       <HintPath>..\Lib\Unity.Abstractions.dll</HintPath>
-      <Private>false</Private>
+      <Private>true</Private>
     </Reference>
     <Reference Include="Unity.Container">
       <HintPath>..\Lib\Unity.Container.dll</HintPath>
-      <Private>false</Private>
+      <Private>true</Private>
     </Reference>
   </ItemGroup>
 

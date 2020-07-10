@@ -13,24 +13,10 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
 
-            <ContentControl Grid.Column ="0"
-                            prism:RegionManager.RegionName="ProdDataRegion" />
-
-            <ContentControl Grid.Column ="1"
-                            prism:RegionManager.RegionName="ProdImageRegion" />
-
-
-        </Grid>
-        
+        <ContentControl prism:RegionManager.RegionName="ProdDataRegion" />
         <ContentControl Grid.Row ="1" 
-                        prism:RegionManager.RegionName="ProdCardsRegion" />
+                        prism:RegionManager.RegionName="ProdCardRegion" />
     </Grid>
     
 </Window>

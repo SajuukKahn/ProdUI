@@ -4,6 +4,13 @@
              xmlns:local="clr-namespace:ProdUI"
              xmlns:prism="http://prismlibrary.com/">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Themes/System.Windows.xaml"/>
+                <ResourceDictionary Source="/Themes/Telerik.Windows.Controls.xaml"/>
+                <ResourceDictionary Source="/Themes/Telerik.Windows.Controls.GridView.xaml"/>
+                <ResourceDictionary Source="/Themes/Telerik.Windows.Controls.Media.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </prism:PrismApplication>

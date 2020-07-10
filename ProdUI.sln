@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProdData", "ProdData\ProdDa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProdCards", "ProdCards\ProdCards.csproj", "{0B0390D3-F793-4F10-ACB0-1B0520911DD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProdImage", "ProdImage\ProdImage.csproj", "{20FA9EF2-5EB9-42AD-AC30-7A90B9EB620D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProdTestGenerator", "ProdTestGenerator\ProdTestGenerator.csproj", "{9E8F027E-FE99-47D7-BAA3-B1CAED0C7A6E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{0B0390D3-F793-4F10-ACB0-1B0520911DD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B0390D3-F793-4F10-ACB0-1B0520911DD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B0390D3-F793-4F10-ACB0-1B0520911DD9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{20FA9EF2-5EB9-42AD-AC30-7A90B9EB620D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{20FA9EF2-5EB9-42AD-AC30-7A90B9EB620D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{20FA9EF2-5EB9-42AD-AC30-7A90B9EB620D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{20FA9EF2-5EB9-42AD-AC30-7A90B9EB620D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E8F027E-FE99-47D7-BAA3-B1CAED0C7A6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E8F027E-FE99-47D7-BAA3-B1CAED0C7A6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E8F027E-FE99-47D7-BAA3-B1CAED0C7A6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E8F027E-FE99-47D7-BAA3-B1CAED0C7A6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
