@@ -1,24 +1,23 @@
 ﻿using Prism.Mvvm;
 using System;
 using System.Diagnostics;
-using System.Text;
 using System.Windows.Threading;
 
 namespace ProdData.Models
 {
-    public class ProdDataTimer : BindableBase
+    public class Timer : BindableBase
     {
-        private DispatcherTimer _timer;
+        private DispatcherTimer _dispatcherTimer;
         private readonly Stopwatch _stopwatch = new Stopwatch();
         private TimeSpan _timeDifference;
 
-        public ProdDataTimer()
+        public Timer()
         {
             System.Windows.Application.Current.Dispatcher.Invoke(() =>
             {
-                _timer = new DispatcherTimer();
-                _timer.Tick += Timer_Tick;
-                _timer.Interval = new TimeSpan(0, 0, 0, 0, 10);
+                _dispatcherTimer = new DispatcherTimer();
+                _dispatcherTimer.Tick += Timer_Tick;
+                _dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
             }, DispatcherPriority.Normal);
         }
 
@@ -53,7 +52,7 @@ namespace ProdData.Models
                     System.Windows.Application.Current.Dispatcher.Invoke(() =>
                     {
                         _stopwatch.Start();
-                        _timer.Start();
+                        _dispatcherTimer.Start();
                     }, DispatcherPriority.Normal);
                 }
                 else if (_startTime.HasValue && value == null)

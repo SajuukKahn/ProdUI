@@ -19,7 +19,7 @@ namespace ProdData.ViewModels
         public DelegateCommand CancelButton { get; set; }
 
         public ProdDataViewModel()
-        {
+        { 
             PlayButton = new DelegateCommand(PlayPressed).ObservesCanExecute(() => PlayAvailable);
             PauseButton = new DelegateCommand(PausePressed).ObservesCanExecute(() => PauseAvailable);
             ConfirmButton = new DelegateCommand(ConfirmProgramChange);
@@ -29,22 +29,8 @@ namespace ProdData.ViewModels
             ProgramSelectionConfirmationRaised = true;
         }
 
-        private ProdDataTimer _cycleTime = new ProdDataTimer();
-        public ProdDataTimer CycleTime
-        {
-            get
-            {
-                return _cycleTime;
-            }
-            set
-            {
-                SetProperty(ref _cycleTime, value);
-                RaisePropertyChanged(nameof(CycleTime));
-            }
-        }
-
-        private ObservableCollection<ProdDataProgramModel> _productionPrograms = new ObservableCollection<ProdDataProgramModel>();
-        public ObservableCollection<ProdDataProgramModel> ProductionPrograms
+        private ObservableCollection<ProgramModel> _productionPrograms = new ObservableCollection<ProgramModel>();
+        public ObservableCollection<ProgramModel> ProductionPrograms
         {
             get
             {
@@ -53,10 +39,48 @@ namespace ProdData.ViewModels
             set
             {
                 SetProperty(ref _productionPrograms, value);
-                RaisePropertyChanged(nameof(ProductionPrograms));
             }
         }
 
+        private ObservableCollection<ProgramModel> _productionProgramList = new ObservableCollection<ProgramModel>();
+        public ObservableCollection<ProgramModel> ProductionProgramList
+        {
+            get
+            {
+                return _productionProgramList;
+            }
+            set
+            {
+                SetProperty(ref _productionProgramList, value);
+            }
+        }
+
+        private ObservableCollection<CardModel> _productionCardCollection = new ObservableCollection<CardModel>();
+        public ObservableCollection<CardModel> ProductionCardCollection
+        {
+            get
+            {
+                return _productionCardCollection;
+            }
+            set
+            {
+                SetProperty(ref _productionCardCollection, value);
+            }
+        }
+
+
+        private Timer _cycleTime = new Timer();
+        public Timer CycleTime
+        {
+            get
+            {
+                return _cycleTime;
+            }
+            set
+            {
+                SetProperty(ref _cycleTime, value);
+            }
+        }
 
         private ImageSource _processDisplay;
         public ImageSource ProcessDisplay
@@ -68,7 +92,6 @@ namespace ProdData.ViewModels
             set
             {
                 SetProperty(ref _processDisplay, value);
-                RaisePropertyChanged(nameof(ProcessDisplay));
             }
         }
 
@@ -82,53 +105,8 @@ namespace ProdData.ViewModels
             set
             {
                 SetProperty(ref _cycleCount, value);
-                RaisePropertyChanged(nameof(CycleCount));
             }
         }
-
-
-        private long _programStep;
-        public long ProgramStep
-        {
-            get
-            {
-                return _programStep;
-            }
-            set
-            {
-                SetProperty(ref _programStep, value);
-                RaisePropertyChanged(nameof(ProgramStep));
-            }
-        }
-
-
-        private long _programSize;
-        public long ProgramSize
-        {
-            get
-            {
-                return _programSize;
-            }
-            set
-            {
-                SetProperty(ref _programSize, value);
-                RaisePropertyChanged(nameof(ProgramSize));
-            }
-        }
-
-        //private MediaElement _processImage;
-        //public MediaElement ProcessImage
-        //{
-        //    get
-        //    {
-        //        return _processImage;
-        //    }
-        //    set
-        //    {
-        //        SetProperty(ref _processImage, value);
-        //        RaisePropertyChanged(nameof(ProcessImage));
-        //    }
-        //}
 
         private bool _programSelectionConfirmationRaised;
         public bool ProgramSelectionConfirmationRaised
@@ -140,7 +118,6 @@ namespace ProdData.ViewModels
             set
             {
                 SetProperty(ref _programSelectionConfirmationRaised, value);
-                RaisePropertyChanged(nameof(ProgramSelectionConfirmationRaised));
             }
         }
 
@@ -154,7 +131,6 @@ namespace ProdData.ViewModels
             set
             {
                 SetProperty(ref _playBackRunning, value);
-                RaisePropertyChanged(nameof(PlayBackRunning));
             }
         }
 
@@ -168,7 +144,6 @@ namespace ProdData.ViewModels
             set
             {
                 SetProperty(ref _allowProgramChange, value);
-                RaisePropertyChanged(nameof(AllowProgramChange));
             }
         }
 
@@ -182,7 +157,6 @@ namespace ProdData.ViewModels
             set
             {
                 SetProperty(ref _playAvailable, value);
-                RaisePropertyChanged(nameof(PlayAvailable));
             }
         }
 
@@ -196,7 +170,6 @@ namespace ProdData.ViewModels
             set
             {
                 SetProperty(ref _pauseAvailable, value);
-                RaisePropertyChanged(nameof(PauseAvailable));
             }
         }
         private int _newProgramSelection = -1;
@@ -228,7 +201,6 @@ namespace ProdData.ViewModels
             {
                 _oldProgramName = _programName;
                 SetProperty(ref _programName, value);
-                RaisePropertyChanged(nameof(ProgramName));
             }
         }
 
@@ -236,8 +208,7 @@ namespace ProdData.ViewModels
         {
             if (CycleTime.ElapsedTime.Equals(null))
             {
-                _currentProgram = newProgramSelectionValue;
-                RaisePropertyChanged(nameof(CurrentProgram));
+                SetProperty(ref _currentProgram, newProgramSelectionValue);
                 LoadProductionDeck();
                 _newProgramSelection = -1;
                 return;
@@ -285,6 +256,8 @@ namespace ProdData.ViewModels
                 AllowProgramChange = false;
                 PlayAvailable = false;
                 PauseAvailable = true;
+                ProgramStep = _retainedProgramStep;
+                SubStep = _retainedSubStep;
                 CycleTime.Start();
             }
             PlayBackRunning = true;
@@ -298,5 +271,91 @@ namespace ProdData.ViewModels
             PlayAvailable = true;
             PauseAvailable = false;
         }
+
+
+        private int _retainedProgramStep;
+        private int _programStep;
+        public int ProgramStep
+        {
+            get
+            {
+                return _programStep;
+            }
+            set
+            {
+                SetProperty(ref _programStep, value, RetainStep);
+            }
+        }
+
+        private void RetainStep()
+        {
+            if(PlayBackRunning)
+            { 
+                _retainedProgramStep = _programStep;
+            }
+            SubStep = 0;
+        }
+
+        private int _retainedSubStep;
+        private int _subStep;
+        public int SubStep
+        {
+            get
+            {
+                return _subStep;
+            }
+            set
+            {
+                SetProperty(ref _subStep, value, RetainSubStep);
+            }
+        }
+
+        private void RetainSubStep()
+        {
+            if (PlayBackRunning)
+            {
+                _retainedSubStep = _subStep;
+            }
+        }
+
+        public void Next(bool stepPassed = true, bool stepComplete = true)
+        {
+            if(SubStep < _productionCardCollection[ProgramStep].CardSubSteps.Count)
+            {
+
+            }
+            else if (ProgramStep < _productionCardCollection.Count)
+            {
+                // need to add in some stuff here... changing the "status" of the card, for instance
+                _productionCardCollection[ProgramStep].StepStatus = CardStepStatus.Completed;
+                _productionCardCollection[ProgramStep].StepComplete = true;
+                _productionCardCollection[ProgramStep].StepPassed = stepPassed;
+                _productionCardCollection[ProgramStep].StepComplete = stepComplete;
+                _productionCardCollection[ProgramStep].IsActiveStep = false;
+                ProgramStep++;
+                _productionCardCollection[ProgramStep].IsActiveStep = true;
+                _productionCardCollection[ProgramStep].StepStatus = CardStepStatus.Running;
+            }
+            else
+            {
+                //Deck is completed - what do
+            }
+        }
+
+        // Events
+        //  Outgoing
+        //   Program completed//   Program completed - restart?
+        //   Program selected / changed - comes from somewhere else
+        //   Paused / pausing AC - card timer needs to pause
+        //   Error reached
+        //   Card Timer paused
+        //   Start program
+        //   Pause program
+        //
+        //  Incoming
+        //   Display Image change
+        //   Start program
+        //   Pause program
+
     }
 }

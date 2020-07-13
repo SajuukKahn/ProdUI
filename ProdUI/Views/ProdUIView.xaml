@@ -6,17 +6,10 @@
         xmlns:local="clr-namespace:ProdUI.Views"
         xmlns:prism="http://prismlibrary.com/"
         mc:Ignorable="d"
-        Title="ProdUIShell" Height="450" Width="800">
+        Title="ProdUIShell" Height="550" Width="800">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-
         <ContentControl prism:RegionManager.RegionName="ProdDataRegion" />
-        <ContentControl Grid.Row ="1" 
-                        prism:RegionManager.RegionName="ProdCardRegion" />
     </Grid>
     
 </Window>

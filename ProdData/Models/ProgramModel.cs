@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ProdData.Models
 {
-    public class ProdDataProgramModel
+    public class ProgramModel
     {
         private string _programName;
         public string ProgramName
@@ -45,7 +45,7 @@ namespace ProdData.Models
             }
         }
 
-        public ProdDataProgramModel(string programName, string productRelationship, string programCreator)
+        public ProgramModel(string programName, string productRelationship, string programCreator)
         {
             _programName = programName;
             _productRelationship = productRelationship;
