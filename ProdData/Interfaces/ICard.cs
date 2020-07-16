@@ -1,14 +1,14 @@
-﻿using ProdCards.Models;
+﻿using ProdData.Models;
 using System.Collections.Generic;
 using System.Windows.Media;
 
-namespace ProdCards.Interfaces
+namespace ProdData.Interfaces
 {
-    interface IProdCard
+    interface ICard
     {
         public string StepTitle { get; set; }
-        public List<ProdCardSubStepModel> CardSubSteps { get; set; }
-        public ProdCardStepStatus StepStatus { get; set; }
+        public List<CardSubStep> CardSubSteps { get; set; }
+        public StepStatus StepStatus { get; set; }
         public ImageSource StepImage { get; set; }
         public bool StepComplete { get; set; }
         public bool IsActiveStep { get; set; }

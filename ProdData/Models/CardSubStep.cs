@@ -1,8 +1,8 @@
 ﻿namespace ProdData.Models
 {
-    public class CardSubStepModel
+    public class CardSubStep
     {
-        public CardSubStepModel(string subStepName, string[] subStepData)
+        public CardSubStep(string subStepName, string[] subStepData)
         {
             SubStepName = subStepName;
             SubStepData = subStepData;

@@ -1,13 +1,12 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using ProdData.Models;
-using System;
-using System.Collections.Generic;
+using ProdData.Events;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media;
+using Prism.Events;
+using System;
+using System.Windows.Media.Imaging;
 
 namespace ProdData.ViewModels
 {
@@ -17,54 +16,66 @@ namespace ProdData.ViewModels
         public DelegateCommand PauseButton { get; set; }
         public DelegateCommand ConfirmButton { get; set; }
         public DelegateCommand CancelButton { get; set; }
+        public DelegateCommand InitiateProgramListRequest { get; set; }
 
-        public ProdDataViewModel()
-        { 
+        private IEventAggregator _eventAggregator;
+        public ProdDataViewModel(IEventAggregator eventAggregator)
+        {
+            _eventAggregator = eventAggregator;
             PlayButton = new DelegateCommand(PlayPressed).ObservesCanExecute(() => PlayAvailable);
             PauseButton = new DelegateCommand(PausePressed).ObservesCanExecute(() => PauseAvailable);
+            InitiateProgramListRequest = new DelegateCommand(RequestPrograms);
             ConfirmButton = new DelegateCommand(ConfirmProgramChange);
             CancelButton = new DelegateCommand(CancelProgramChange);
-            PlayAvailable = true;
-            PauseAvailable = false;
-            ProgramSelectionConfirmationRaised = true;
+            _eventAggregator.GetEvent<ProgramNamesResponse>().Subscribe(SetProgramList);
+            _eventAggregator.GetEvent<ProgramDataResponse>().Subscribe(SetCardData);
         }
 
-        private ObservableCollection<ProgramModel> _productionPrograms = new ObservableCollection<ProgramModel>();
-        public ObservableCollection<ProgramModel> ProductionPrograms
+        private void RequestPrograms()
+        {
+            _eventAggregator.GetEvent<ProgramNamesRequest>().Publish();
+        }
+
+        private void RequestCards()
+        {
+            _eventAggregator.GetEvent<ProgramDataRequest>().Publish();
+        }
+
+        private void SetCardData(ObservableCollection<Card> publishedCardCollection)
+        {
+            _cardCollection.Clear();
+            CardCollection = publishedCardCollection;
+        }
+
+        private void SetProgramList(ObservableCollection<ProgramID> publishedProgramList)
+        {
+            _programList.Clear();
+            ProgramList = publishedProgramList;
+        }
+
+        private ObservableCollection<ProgramID> _programList = new ObservableCollection<ProgramID>();
+        public ObservableCollection<ProgramID> ProgramList
         {
             get
             {
-                return _productionPrograms;
+                return _programList;
             }
             set
             {
-                SetProperty(ref _productionPrograms, value);
+                SetProperty(ref _programList, value);
             }
         }
 
-        private ObservableCollection<ProgramModel> _productionProgramList = new ObservableCollection<ProgramModel>();
-        public ObservableCollection<ProgramModel> ProductionProgramList
+        private ObservableCollection<Card> _cardCollection = new ObservableCollection<Card>();
+        public ObservableCollection<Card> CardCollection
         {
             get
             {
-                return _productionProgramList;
+                return _cardCollection;
             }
             set
             {
-                SetProperty(ref _productionProgramList, value);
-            }
-        }
-
-        private ObservableCollection<CardModel> _productionCardCollection = new ObservableCollection<CardModel>();
-        public ObservableCollection<CardModel> ProductionCardCollection
-        {
-            get
-            {
-                return _productionCardCollection;
-            }
-            set
-            {
-                SetProperty(ref _productionCardCollection, value);
+                SetProperty(ref _cardCollection, value);
             }
         }
 
@@ -82,8 +93,8 @@ namespace ProdData.ViewModels
             }
         }
 
-        private ImageSource _processDisplay;
-        public ImageSource ProcessDisplay
+        private BitmapImage? _processDisplay;
+        public BitmapImage? ProcessDisplay
         {
             get
             {
@@ -189,26 +200,28 @@ namespace ProdData.ViewModels
             }
         }
 
-        private string _oldProgramName;
-        private string _programName;
-        public string ProgramName
+        private ProgramID _oldSelectedProgramData;
+        private ProgramID _selectedProgramData;
+        public ProgramID SelectedProgramData
         {
             get
             {
-                return _programName;
+                return _selectedProgramData;
             }
             set
             {
-                _oldProgramName = _programName;
-                SetProperty(ref _programName, value);
+                _oldSelectedProgramData = _selectedProgramData;
+                SetProperty(ref _selectedProgramData, value);
             }
         }
 
+
         private void VerifyChange(int newProgramSelectionValue)
         {
-            if (CycleTime.ElapsedTime.Equals(null))
+            if (CycleTime?.ElapsedTime == null)
             {
                 SetProperty(ref _currentProgram, newProgramSelectionValue);
+                ProcessDisplay = _programList[_currentProgram].ProductImage;
                 LoadProductionDeck();
                 _newProgramSelection = -1;
                 return;
@@ -237,7 +250,7 @@ namespace ProdData.ViewModels
             AllowProgramChange = true;
             CurrentProgram = _currentProgram;
             PlayAvailable = true;
-            ProgramName = _oldProgramName;
+            SelectedProgramData = _oldSelectedProgramData;
             ProgramSelectionConfirmationRaised = false;
         }
 
@@ -267,6 +280,7 @@ namespace ProdData.ViewModels
         {
             PlayBackRunning = false;
             AllowProgramChange = true;
+            RequestCards();
             CycleTime.Reset();
             PlayAvailable = true;
             PauseAvailable = false;
@@ -320,21 +334,21 @@ namespace ProdData.ViewModels
 
         public void Next(bool stepPassed = true, bool stepComplete = true)
         {
-            if(SubStep < _productionCardCollection[ProgramStep].CardSubSteps.Count)
+            if(SubStep < _cardCollection[ProgramStep].CardSubSteps.Count)
             {
 
             }
-            else if (ProgramStep < _productionCardCollection.Count)
+            else if (ProgramStep < _cardCollection.Count)
             {
                 // need to add in some stuff here... changing the "status" of the card, for instance
-                _productionCardCollection[ProgramStep].StepStatus = CardStepStatus.Completed;
-                _productionCardCollection[ProgramStep].StepComplete = true;
-                _productionCardCollection[ProgramStep].StepPassed = stepPassed;
-                _productionCardCollection[ProgramStep].StepComplete = stepComplete;
-                _productionCardCollection[ProgramStep].IsActiveStep = false;
+                _cardCollection[ProgramStep].StepStatus = StepStatus.Completed;
+                _cardCollection[ProgramStep].StepComplete = true;
+                _cardCollection[ProgramStep].StepPassed = stepPassed;
+                _cardCollection[ProgramStep].StepComplete = stepComplete;
+                _cardCollection[ProgramStep].IsActiveStep = false;
                 ProgramStep++;
-                _productionCardCollection[ProgramStep].IsActiveStep = true;
-                _productionCardCollection[ProgramStep].StepStatus = CardStepStatus.Running;
+                _cardCollection[ProgramStep].IsActiveStep = true;
+                _cardCollection[ProgramStep].StepStatus = StepStatus.Running;
             }
             else
             {

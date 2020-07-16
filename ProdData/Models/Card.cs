@@ -5,9 +5,9 @@ using System.Windows.Media;
 
 namespace ProdData.Models
 {
-    public class CardModel : BindableBase, IProdCard
+    public class Card : BindableBase, ICard
     {
-        public CardModel(ImageSource imageSource = null,
+        public Card(ImageSource imageSource = null,
                                     bool isActiveStep = false,
                                     bool stepComplete = false,
                                     string stepTitle = "No Data")
@@ -16,11 +16,11 @@ namespace ProdData.Models
             IsActiveStep = isActiveStep;
             StepComplete = stepComplete;
             StepTitle = stepTitle;
-            StepStatus = CardStepStatus.Waiting;
+            StepStatus = StepStatus.Waiting;
         }
 
-        private List<CardSubStepModel> _cardSubSteps = new List<CardSubStepModel>();
-        public List<CardSubStepModel> CardSubSteps
+        private List<CardSubStep> _cardSubSteps = new List<CardSubStep>();
+        public List<CardSubStep> CardSubSteps
         {
             get
             {
@@ -45,8 +45,8 @@ namespace ProdData.Models
             }
         }
 
-        private CardStepStatus _stepStatus;
-        public CardStepStatus StepStatus
+        private StepStatus _stepStatus;
+        public StepStatus StepStatus
         {
             get
             {

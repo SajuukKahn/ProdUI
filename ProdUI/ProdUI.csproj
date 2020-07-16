@@ -9,16 +9,15 @@
 
   <ItemGroup>
     <Compile Remove="Lib\**" />
+    <Compile Remove="ViewModels\**" />
     <EmbeddedResource Remove="Lib\**" />
+    <EmbeddedResource Remove="ViewModels\**" />
     <None Remove="Lib\**" />
+    <None Remove="ViewModels\**" />
     <Page Remove="Lib\**" />
+    <Page Remove="ViewModels\**" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Themes\" />
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
-
+  
   <ItemGroup>
     <Reference Include="CommonServiceLocator">
       <HintPath>..\Lib\CommonServiceLocator.dll</HintPath>

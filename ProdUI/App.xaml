@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="/Themes/Telerik.Windows.Controls.xaml"/>
                 <ResourceDictionary Source="/Themes/Telerik.Windows.Controls.GridView.xaml"/>
                 <ResourceDictionary Source="/Themes/Telerik.Windows.Controls.Media.xaml"/>
+                <ResourceDictionary Source="/Themes/Telerik.Windows.Controls.Navigation.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
