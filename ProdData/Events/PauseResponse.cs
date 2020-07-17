@@ -2,7 +2,7 @@
 
 namespace ProdData.Events
 {
-    public class ProgramNamesRequest : PubSubEvent
+    public class PauseResponse : PubSubEvent
     {
     }
 }

@@ -18,13 +18,11 @@ namespace ProdUI
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-
         }
 
         protected override IModuleCatalog CreateModuleCatalog()
         {
             return new DirectoryModuleCatalog() { ModulePath = @".\Modules" };
         }
-
     }
 }

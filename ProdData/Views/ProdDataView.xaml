@@ -1,164 +1,145 @@
 ﻿<UserControl x:Class="ProdData.Views.ProdDataView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ProdData.Views"
-             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:prism="http://prismlibrary.com/"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
              prism:ViewModelLocator.AutoWireViewModel="True"
              Background="LightGray"
              mc:Ignorable="d">
 
     <UserControl.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Telerik.Windows.Controls.Navigation;component/Themes/Material.xaml"/>
-                <ResourceDictionary Source="/Telerik.Windows.Controls;component/Themes/FontResources.xaml"/>
 
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Telerik.Windows.Controls;component/Themes/FontResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <telerik:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-            <telerik:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter"/>
+            <telerik:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <telerik:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" />
+            <telerik:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
 
             <DataTemplate x:Key="customItemTemplate">
-                <Border CornerRadius="5"
-                            x:Name="CardBorder"
-                            MaxWidth="324"
-                            FocusVisualStyle="{x:Null}"
-                            BorderThickness="3"
-                            UseLayoutRounding="True">
+                <Border x:Name="CardBorder"
+                        MaxWidth="324"
+                        BorderThickness="3"
+                        CornerRadius="5"
+                        FocusVisualStyle="{x:Null}"
+                        UseLayoutRounding="True">
 
                     <Border.BorderBrush>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                             <LinearGradientBrush.RelativeTransform>
                                 <TransformGroup>
-                                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
-                                    <SkewTransform CenterY="0.5" CenterX="0.5"/>
-                                    <RotateTransform CenterY="0.5" CenterX="0.5"/>
-                                    <TranslateTransform/>
+                                    <ScaleTransform CenterX="0.5" CenterY="0.5" />
+                                    <SkewTransform CenterX="0.5" CenterY="0.5" />
+                                    <RotateTransform CenterX="0.5" CenterY="0.5" />
+                                    <TranslateTransform />
                                 </TransformGroup>
                             </LinearGradientBrush.RelativeTransform>
-                            <GradientStop x:Name="BorderBrushGradientStop1" Color="#FF666666"/>
-                            <GradientStop x:Name="BorderBrushGradientStop2" Color="#FF444444" Offset="1"/>
+                            <GradientStop x:Name="BorderBrushGradientStop1" Color="#FF666666" />
+                            <GradientStop x:Name="BorderBrushGradientStop2" Offset="1" Color="#FF444444" />
                         </LinearGradientBrush>
                     </Border.BorderBrush>
 
                     <Border.Background>
-                        <LinearGradientBrush EndPoint="0.5,2" StartPoint="3,0">
-                            <GradientStop Color="#999" Offset="0.7"/>
-                            <GradientStop Color="#fff" Offset="1.1"/>
+                        <LinearGradientBrush StartPoint="3,0" EndPoint="0.5,2">
+                            <GradientStop Offset="0.7" Color="#999" />
+                            <GradientStop Offset="1.1" Color="#fff" />
                         </LinearGradientBrush>
                     </Border.Background>
 
-                    <Grid x:Name="CardDataDockPanel"
-                                        Margin="3"
-                                        HorizontalAlignment="Stretch">
+                    <Grid x:Name="CardDataDockPanel" Margin="3" HorizontalAlignment="Stretch">
 
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
 
                         <Grid Grid.Row="0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
                             </Grid.ColumnDefinitions>
 
                             <StackPanel x:Name="CardDataStackPanel"
-                                                VerticalAlignment="Top"
-                                                HorizontalAlignment="Left"
-                                                UseLayoutRounding="True">
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        UseLayoutRounding="True">
 
-                                <TextBlock Text="{Binding StepTitle}"
-                                                    x:Name="StepTitle"
-                                                    ClipToBounds="True"
-                                                    UseLayoutRounding="True"
-                                                    TextTrimming="CharacterEllipsis">
+                                <TextBlock x:Name="StepTitle"
+                                           ClipToBounds="True"
+                                           Text="{Binding Path=StepTitle}"
+                                           TextTrimming="CharacterEllipsis"
+                                           UseLayoutRounding="True">
                                     <TextBlock.LayoutTransform>
                                         <TransformGroup>
-                                            <RotateTransform Angle="90"
-                                                                    CenterX="0.5"
-                                                                    CenterY="0.5"/>
+                                            <RotateTransform Angle="90" CenterX="0.5" CenterY="0.5" />
                                         </TransformGroup>
                                     </TextBlock.LayoutTransform>
                                 </TextBlock>
 
-                                <TextBlock Text="{Binding StepStatus}"
-                                                x:Name="StepStatus"
-                                                UseLayoutRounding="True"/>
+                                <TextBlock x:Name="StepStatus" Text="{Binding Path=StepStatus}" UseLayoutRounding="True" />
 
-                                <StackPanel Orientation="Horizontal"
-                                                x:Name="SubStepCounterPanel">
-                                    <TextBlock Text="{Binding ElementName=CardSubStepListView, Path=SelectedIndex}"
-                                                        x:Name="StepCounter"
-                                                        UseLayoutRounding="True"/>
-                                    <TextBlock Text=" / "/>
-                                    <TextBlock Text="{Binding ElementName=CardSubStepListView, Path=AlternationCount}"/>
+                                <StackPanel x:Name="SubStepCounterPanel" Orientation="Horizontal">
+                                    <TextBlock x:Name="StepCounter" Text="{Binding ElementName=CardSubStepListView, Path=SelectedIndex}" UseLayoutRounding="True" />
+                                    <TextBlock Text=" / " />
+                                    <TextBlock Text="{Binding ElementName=CardSubStepListView, Path=AlternationCount}" />
                                 </StackPanel>
 
-                                <TextBlock Text="CARD TIMEEE"
-                                                x:Name="StepActiveTime"
-                                                UseLayoutRounding="True"/>
-
+                                <TextBlock x:Name="StepActiveTime" Text="CARD TIMEEE" UseLayoutRounding="True" />
                             </StackPanel>
 
-                            <Viewbox Stretch="Uniform"
-                                                Grid.Column="1"
-                                                HorizontalAlignment="Right"
-                                                VerticalAlignment="Top"
-                                                StretchDirection="DownOnly">
-                                <Image Source="{Binding StepImage}"
-                                                x:Name="StepImage"
-                                                Visibility="Collapsed"
-                                                Stretch="Uniform"
-                                                Width="0"
-                                                UseLayoutRounding="True"
-                                                Margin="0,3,3,0"/>
+                            <Viewbox Grid.Column="1"
+                                     HorizontalAlignment="Right"
+                                     VerticalAlignment="Top"
+                                     Stretch="Uniform"
+                                     StretchDirection="DownOnly">
+                                <Image x:Name="StepImage"
+                                       Width="0"
+                                       Margin="0,3,3,0"
+                                       Source="{Binding Path=StepImage}"
+                                       Stretch="Uniform"
+                                       UseLayoutRounding="True"
+                                       Visibility="Collapsed" />
                             </Viewbox>
                         </Grid>
 
-
-                        <Viewbox Stretch="Uniform"
-                                            StretchDirection="DownOnly"
-                                            Grid.Row="1">
+                        <Viewbox Grid.Row="1" Stretch="Uniform" StretchDirection="DownOnly">
                             <ListBox x:Name="CardSubStepListView"
-                                            ItemsSource="{Binding CardSubSteps}"
-                                            MaxWidth="300"
-                                            SelectedIndex="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.CurrentSubStepIndex, Mode=TwoWay}"
-                                            SelectionMode="Single"
-                                            Visibility="{Binding IsActiveStep, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                            AlternationCount="{Binding CardSubSteps.Count}">
+                                     MaxWidth="300"
+                                     AlternationCount="{Binding Path=CardSubSteps.Count}"
+                                     ItemsSource="{Binding Path=CardSubSteps}"
+                                     SelectedIndex="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.SubStep, Mode=TwoWay}"
+                                     SelectionMode="Single"
+                                     Visibility="{Binding Path=IsActiveStep, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                                 <ListBox.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <VirtualizingStackPanel IsItemsHost="True"
-                                                                        UseLayoutRounding="True"
-                                                                        SnapsToDevicePixels="True"/>
+                                        <VirtualizingStackPanel IsItemsHost="True" SnapsToDevicePixels="True" UseLayoutRounding="True" />
                                     </ItemsPanelTemplate>
                                 </ListBox.ItemsPanel>
 
                                 <ListBox.ItemContainerStyle>
                                     <Style TargetType="{x:Type ListBoxItem}">
+                                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                                                     <ContentPresenter FocusVisualStyle="{x:Null}">
                                                         <ContentPresenter.Content>
-                                                            <Border Background="Transparent"
-                                                                        HorizontalAlignment="Stretch">
+                                                            <Border HorizontalAlignment="Stretch" Background="Transparent">
 
                                                                 <Grid>
                                                                     <Grid.ColumnDefinitions>
-                                                                        <ColumnDefinition Width="auto"/>
-                                                                        <ColumnDefinition Width="auto"/>
+                                                                        <ColumnDefinition Width="auto" />
+                                                                        <ColumnDefinition Width="auto" />
                                                                     </Grid.ColumnDefinitions>
 
-                                                                    <Label Content="{Binding SubStepName}"
-                                                                                    Grid.Column="0"/>
-                                                                    <Label Content="{Binding FullSubStepData}"
-                                                                                    Grid.Column="1"/>
+                                                                    <Label Grid.Column="0" Content="{Binding Path=SubStepName}" />
+                                                                    <Label Grid.Column="1" Content="{Binding Path=FullSubStepData}" />
                                                                 </Grid>
                                                             </Border>
                                                         </ContentPresenter.Content>
@@ -166,95 +147,91 @@
                                                 </ControlTemplate>
                                             </Setter.Value>
                                         </Setter>
-                                        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
                                     </Style>
                                 </ListBox.ItemContainerStyle>
 
                                 <ListBox.Template>
                                     <ControlTemplate TargetType="{x:Type ListBox}">
                                         <Grid VerticalAlignment="Bottom">
-                                            <ItemsPresenter/>
+                                            <ItemsPresenter />
                                         </Grid>
                                     </ControlTemplate>
                                 </ListBox.Template>
-
                             </ListBox>
-
                         </Viewbox>
-
                     </Grid>
                 </Border>
 
                 <DataTemplate.Triggers>
                     <MultiDataTrigger>
                         <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding IsActiveStep}" Value="False"/>
-                            <Condition Binding="{Binding StepComplete}" Value="False"/>
+                            <Condition Binding="{Binding Path=IsActiveStep}" Value="False" />
+                            <Condition Binding="{Binding Path=StepComplete}" Value="False" />
                         </MultiDataTrigger.Conditions>
                         <MultiDataTrigger.Setters>
-                            <Setter TargetName="StepStatus" Property="Visibility" Value="Collapsed"/>
-                            <Setter TargetName="StepActiveTime" Property="Visibility" Value="Collapsed"/>
-                            <Setter TargetName="SubStepCounterPanel" Property="Visibility" Value="Collapsed"/>
-                            <Setter TargetName="StepImage" Property="Visibility" Value="Collapsed"/>
-                            <Setter TargetName="StepImage" Property="Height" Value="0"/>
-                            <Setter TargetName="StepImage" Property="Width" Value="0"/>
-                            <Setter TargetName="CardDataDockPanel" Property="HorizontalAlignment" Value="Right"/>
+                            <Setter TargetName="StepStatus" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="StepActiveTime" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="SubStepCounterPanel" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="StepImage" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="StepImage" Property="Height" Value="0" />
+                            <Setter TargetName="StepImage" Property="Width" Value="0" />
+                            <Setter TargetName="CardDataDockPanel" Property="HorizontalAlignment" Value="Right" />
                         </MultiDataTrigger.Setters>
                     </MultiDataTrigger>
 
                     <MultiDataTrigger>
                         <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding IsActiveStep}" Value="False"/>
-                            <Condition Binding="{Binding StepComplete}" Value="True"/>
+                            <Condition Binding="{Binding Path=IsActiveStep}" Value="False" />
+                            <Condition Binding="{Binding Path=StepComplete}" Value="True" />
                         </MultiDataTrigger.Conditions>
                         <MultiDataTrigger.Setters>
-                            <Setter TargetName="StepStatus" Property="Visibility" Value="Collapsed"/>
-                            <Setter TargetName="StepActiveTime" Property="Visibility" Value="Collapsed"/>
-                            <Setter TargetName="SubStepCounterPanel" Property="Visibility" Value="Collapsed"/>
-                            <Setter TargetName="StepImage" Property="Visibility" Value="Collapsed"/>
-                            <Setter TargetName="StepImage" Property="Height" Value="0"/>
-                            <Setter TargetName="StepImage" Property="Width" Value="0"/>
+                            <Setter TargetName="StepStatus" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="StepActiveTime" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="SubStepCounterPanel" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="StepImage" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="StepImage" Property="Height" Value="0" />
+                            <Setter TargetName="StepImage" Property="Width" Value="0" />
                             <Setter TargetName="CardDataDockPanel" Property="HorizontalAlignment" Value="Left" />
                         </MultiDataTrigger.Setters>
                     </MultiDataTrigger>
 
                     <MultiDataTrigger>
                         <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding IsActiveStep}" Value="True"/>
-                            <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.PlayBackRunning}" Value="True"/>
+                            <Condition Binding="{Binding Path=IsActiveStep}" Value="True" />
+                            <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.PlayBackRunning}" Value="True" />
                         </MultiDataTrigger.Conditions>
 
                         <MultiDataTrigger.Setters>
                             <Setter TargetName="StepTitle" Property="LayoutTransform">
                                 <Setter.Value>
-                                    <RotateTransform Angle="0"/>
+                                    <RotateTransform Angle="0" />
                                 </Setter.Value>
                             </Setter>
-                            <Setter TargetName="StepImage" Property="Visibility" Value="Visible"/>
-                            <Setter TargetName="StepImage" Property="Width" Value="{Binding ElementName=CardDataStackPanel, Path=ActualHeight}"/>
+                            <Setter TargetName="StepImage" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="StepImage" Property="Width" Value="{Binding ElementName=CardDataStackPanel, Path=ActualHeight}" />
                         </MultiDataTrigger.Setters>
                     </MultiDataTrigger>
 
                     <MultiDataTrigger>
                         <MultiDataTrigger.Conditions>
-                            <Condition Binding="{Binding IsActiveStep}" Value="True"/>
-                            <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.PlayBackRunning}" Value="False"/>
+                            <Condition Binding="{Binding Path=IsActiveStep}" Value="True" />
+                            <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.PlayBackRunning}" Value="False" />
                         </MultiDataTrigger.Conditions>
 
                         <MultiDataTrigger.EnterActions>
                             <BeginStoryboard>
                                 <Storyboard>
-                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="CardBorder" Storyboard.TargetProperty="(Border.BorderBrush).(Brush.RelativeTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" RepeatBehavior="Forever">
-                                        <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
-                                        <EasingDoubleKeyFrame KeyTime="00:00:02" Value="359"/>
+                                    <DoubleAnimationUsingKeyFrames RepeatBehavior="Forever" Storyboard.TargetName="CardBorder" Storyboard.TargetProperty="(Border.BorderBrush).(Brush.RelativeTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                                        <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                                        <EasingDoubleKeyFrame KeyTime="00:00:02" Value="359" />
                                     </DoubleAnimationUsingKeyFrames>
                                     <ColorAnimationUsingKeyFrames Storyboard.TargetName="CardBorder" Storyboard.TargetProperty="(Border.BorderBrush).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
-                                        <EasingColorKeyFrame KeyTime="00:00:00" Value="#FF444444"/>
-                                        <EasingColorKeyFrame KeyTime="00:00:00.5" Value="#FFD61010"/>
+                                        <EasingColorKeyFrame KeyTime="00:00:00" Value="#FF444444" />
+                                        <EasingColorKeyFrame KeyTime="00:00:00.5" Value="#FFD61010" />
                                     </ColorAnimationUsingKeyFrames>
                                     <ColorAnimationUsingKeyFrames Storyboard.TargetName="CardBorder" Storyboard.TargetProperty="(Border.BorderBrush).(GradientBrush.GradientStops)[0].(GradientStop.Color)">
-                                        <EasingColorKeyFrame KeyTime="00:00:00" Value="#FF666666"/>
-                                        <EasingColorKeyFrame KeyTime="00:00:00.5" Value="#FF7C1919"/>
+                                        <EasingColorKeyFrame KeyTime="00:00:00" Value="#FF666666" />
+                                        <EasingColorKeyFrame KeyTime="00:00:00.5" Value="#FF7C1919" />
                                     </ColorAnimationUsingKeyFrames>
                                 </Storyboard>
                             </BeginStoryboard>
@@ -264,15 +241,15 @@
                             <BeginStoryboard>
                                 <Storyboard>
                                     <DoubleAnimationUsingKeyFrames Storyboard.TargetName="CardBorder" Storyboard.TargetProperty="(Border.BorderBrush).(Brush.RelativeTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
-                                        <EasingDoubleKeyFrame KeyTime="00:00:00.25" Value="0"/>
+                                        <EasingDoubleKeyFrame KeyTime="00:00:00.25" Value="0" />
                                     </DoubleAnimationUsingKeyFrames>
                                     <ColorAnimationUsingKeyFrames Storyboard.TargetName="CardBorder" Storyboard.TargetProperty="(Border.BorderBrush).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
-                                        <EasingColorKeyFrame KeyTime="00:00:00" Value="#FFD61010"/>
-                                        <EasingColorKeyFrame KeyTime="00:00:00.25" Value="#FF444444"/>
+                                        <EasingColorKeyFrame KeyTime="00:00:00" Value="#FFD61010" />
+                                        <EasingColorKeyFrame KeyTime="00:00:00.25" Value="#FF444444" />
                                     </ColorAnimationUsingKeyFrames>
                                     <ColorAnimationUsingKeyFrames Storyboard.TargetName="CardBorder" Storyboard.TargetProperty="(Border.BorderBrush).(GradientBrush.GradientStops)[0].(GradientStop.Color)">
-                                        <EasingColorKeyFrame KeyTime="00:00:00" Value="#FF7C1919"/>
-                                        <EasingColorKeyFrame KeyTime="00:00:00.25" Value="#FF666666"/>
+                                        <EasingColorKeyFrame KeyTime="00:00:00" Value="#FF7C1919" />
+                                        <EasingColorKeyFrame KeyTime="00:00:00.25" Value="#FF666666" />
                                     </ColorAnimationUsingKeyFrames>
                                 </Storyboard>
                             </BeginStoryboard>
@@ -281,159 +258,141 @@
                         <MultiDataTrigger.Setters>
                             <Setter TargetName="StepTitle" Property="LayoutTransform">
                                 <Setter.Value>
-                                    <RotateTransform Angle="0"/>
+                                    <RotateTransform Angle="0" />
                                 </Setter.Value>
                             </Setter>
-                            <Setter TargetName="StepImage" Property="Visibility" Value="Visible"/>
-                            <Setter TargetName="StepImage" Property="Width" Value="{Binding ElementName=CardDataStackPanel, Path=ActualHeight}"/>
+                            <Setter TargetName="StepImage" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="StepImage" Property="Width" Value="{Binding ElementName=CardDataStackPanel, Path=ActualHeight}" />
                         </MultiDataTrigger.Setters>
                     </MultiDataTrigger>
                 </DataTemplate.Triggers>
             </DataTemplate>
-
         </ResourceDictionary>
     </UserControl.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <DockPanel LastChildFill="True">
                 <StackPanel>
-                    <Border BorderBrush="#333"
-                            BorderThickness="2"
-                            Margin="2"
+                    <Border Margin="2"
                             Padding="3"
+                            BorderBrush="#333"
+                            BorderThickness="2"
                             DockPanel.Dock="Left">
 
-                        <UniformGrid VerticalAlignment="Center"
-                                     HorizontalAlignment="Center"
-                                     Columns="2">
-                            <telerik:Label Content="Selected Program: "/>
-                            <telerik:RadMultiColumnComboBox VerticalAlignment="Center"
-                                                            HorizontalAlignment="Left"
+                        <UniformGrid HorizontalAlignment="Center" VerticalAlignment="Center" Columns="2">
+                            <telerik:Label Content="Selected Program: " />
+                            <telerik:RadMultiColumnComboBox HorizontalAlignment="Left"
+                                                            VerticalAlignment="Center"
+                                                            telerik:DropDownButtonExtensions.FocusContentOnOpen="True"
+                                                            telerik:DropDownExtensions.HandleMouseWheelWhenOpen="True"
+                                                            CloseDropDownAfterSelectionInput="True"
                                                             DisplayMemberPath="ProgramName"
-                                                            DropDownMinWidth="600"
                                                             DropDownMaxWidth="1000"
+                                                            DropDownMinWidth="600"
+                                                            IsEnabled="{Binding Path=AllowProgramChange}"
                                                             KeepDropDownOpen="True"
-                                                            SelectionMode="Single"
                                                             NullText="Select A Program"
+                                                            OpenDropDownOnInput="True"
                                                             OverridesDefaultStyle="True"
                                                             SearchMode="MatchAnyTerm"
-                                                            SelectedIndex="{Binding CurrentProgram}"
-                                                            SelectedItem="{Binding SelectedProgramData}"
-                                                            OpenDropDownOnInput="True"
-                                                            telerik:DropDownExtensions.HandleMouseWheelWhenOpen="True"
-                                                            telerik:DropDownButtonExtensions.FocusContentOnOpen="True"
-                                                            CloseDropDownAfterSelectionInput="True">
+                                                            SelectedIndex="{Binding Path=CurrentProgram}"
+                                                            SelectedItem="{Binding Path=SelectedProgramData}"
+                                                            SelectionBoxesVisibility="Collapsed"
+                                                            SelectionMode="Single">
 
                                 <telerik:EventToCommandBehavior.EventBindings>
-                                    <telerik:EventBinding EventName="Loaded" Command="{Binding InitiateProgramListRequest}"/>
+                                    <telerik:EventBinding Command="{Binding Path=InitiateProgramListRequest}" EventName="Loaded" />
                                 </telerik:EventToCommandBehavior.EventBindings>
 
                                 <telerik:RadMultiColumnComboBox.ItemsSourceProvider>
-                                    <telerik:GridViewItemsSourceProvider ItemsSource="{Binding ProgramList}"
+                                    <telerik:GridViewItemsSourceProvider AlternationCount="1"
                                                                          AutoGenerateColumns="False"
-                                                                         ShowColumnFooters="False"
-                                                                         AlternationCount="1">
+                                                                         ItemsSource="{Binding Path=ProgramList}"
+                                                                         ShowColumnFooters="False">
                                         <telerik:GridViewItemsSourceProvider.Columns>
-                                            <telerik:GridViewImageColumn DataMemberBinding="{Binding ProductImage}" ImageStretch="Uniform" MaxWidth="66">
+                                            <telerik:GridViewImageColumn MaxWidth="66" DataMemberBinding="{Binding Path=ProductImage}" ImageStretch="Uniform">
                                                 <telerik:GridViewImageColumn.Header>
                                                     <StackPanel Margin="5,0,0,0">
-                                                        <Image Source="{telerik:RadGlyph Glyph={StaticResource GlyphImage}}"/>
+                                                        <Image Source="{telerik:RadGlyph Glyph={StaticResource GlyphImage}}" />
                                                     </StackPanel>
                                                 </telerik:GridViewImageColumn.Header>
                                             </telerik:GridViewImageColumn>
-                                            <telerik:GridViewDataColumn DataMemberBinding="{Binding ProductRelationShip}" Header="Product"/>
-                                            <telerik:GridViewDataColumn DataMemberBinding="{Binding ProgramName}" Header="Program Name"/>
-                                            <telerik:GridViewDataColumn DataMemberBinding="{Binding ProgramCreator}" Header="Creator"/>
+                                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=ProductRelationShip}" Header="Product" />
+                                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=ProgramName}" Header="Program Name" />
+                                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=ProgramCreator}" Header="Creator" />
                                         </telerik:GridViewItemsSourceProvider.Columns>
                                     </telerik:GridViewItemsSourceProvider>
                                 </telerik:RadMultiColumnComboBox.ItemsSourceProvider>
-
                             </telerik:RadMultiColumnComboBox>
 
-                            <telerik:Label Content="Cycle Count:"/>
-                            <telerik:Label Content="{Binding CycleCount}"/>
+                            <telerik:Label Content="Cycle Count:" />
+                            <telerik:Label Content="{Binding Path=CycleCount}" />
 
-                            <telerik:Label Content="Program Step:"/>
+                            <telerik:Label Content="Program Step:" />
                             <StackPanel Orientation="Horizontal">
-                                <telerik:Label Content="{Binding ProgramStep}"/>
-                                <telerik:Label Content=" / "/>
-                                <telerik:Label Content="{Binding CardCollection.Count}"/>
+                                <telerik:Label Content="{Binding Path=CurrentCard.Ordinal}" />
+                                <telerik:Label Content=" / " />
+                                <telerik:Label Content="{Binding Path=CardCollection.Count}" />
                             </StackPanel>
 
-                            <telerik:Label Content="Cycle Time:"/>
-                            <telerik:Label Content="{Binding CycleTime.ElapsedTime}"/>
-
+                            <telerik:Label Content="Cycle Time:" />
+                            <telerik:Label Content="{Binding Path=CycleTime.ElapsedTime}" />
                         </UniformGrid>
                     </Border>
 
-                    <StackPanel Orientation="Horizontal" 
-                                HorizontalAlignment="Center"
-                                Visibility="{Binding ProgramSelectionConfirmationRaised, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Visibility="{Binding ProgramSelectionConfirmationRaised, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
                         <telerik:RadPathButton x:Name="PlayButton"
-                                               Command="{Binding PlayButton}"
-                                               PathGeometry="{telerik:RadGlyph Type=None, Glyph={StaticResource GlyphPlay}, Size=24}"
-                                               Visibility="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
                                                Width="65"
-                                               Height="65"/>
+                                               Height="65"
+                                               Command="{Binding Path=PlayButton}"
+                                               PathGeometry="{telerik:RadGlyph Type=None, Glyph={StaticResource GlyphPlay}, Size=24}"
+                                               Visibility="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
                         <telerik:RadPathButton x:Name="PauseButton"
-                                               Command="{Binding PauseButton}"
-                                               PathGeometry="{telerik:RadGlyph Type=Path, Glyph={StaticResource GlyphPause}, Size=24}"
-                                               Visibility="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
                                                Width="65"
-                                               Height="65"/>
+                                               Height="65"
+                                               Command="{Binding Path=PauseButton}"
+                                               PathGeometry="{telerik:RadGlyph Type=Path, Glyph={StaticResource GlyphPause}, Size=24}"
+                                               Visibility="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
                     </StackPanel>
 
-
-                    <Grid Visibility="{Binding ProgramSelectionConfirmationRaised,Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Grid Visibility="{Binding Path=ProgramSelectionConfirmationRaised, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
 
                         <StackPanel>
-                            <telerik:Label x:Name="WarningLabel"
-                                           Content="Confirm Program Change" 
-                                           HorizontalAlignment="Center"/>
-                            <telerik:Label Content="Terminate current program?"
-                                           HorizontalAlignment="Center"/>
+                            <telerik:Label x:Name="WarningLabel" HorizontalAlignment="Center" Content="Confirm Program Change" />
+                            <telerik:Label HorizontalAlignment="Center" Content="Terminate current program?" />
 
+                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
 
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-
-                                <telerik:RadButton x:Name="CancelButton"
-                                                       Margin="3"
-                                                       Command="{Binding CancelButton}">
+                                <telerik:RadButton x:Name="CancelButton" Margin="3" Command="{Binding Path=CancelButton}">
                                     <StackPanel Orientation="Horizontal">
-                                        <telerik:Label Content="Cancel"/>
-                                        <telerik:RadGlyph Glyph="{StaticResource GlyphClose}"/>
+                                        <telerik:Label Content="Cancel" />
+                                        <telerik:RadGlyph Glyph="{StaticResource GlyphClose}" />
                                     </StackPanel>
-
                                 </telerik:RadButton>
 
-
-                                <telerik:RadButton x:Name="ConfirmButton"
-                                                       Margin="3"
-                                                       Command="{Binding ConfirmButton}">
+                                <telerik:RadButton x:Name="ConfirmButton" Margin="3" Command="{Binding Path=ConfirmButton}">
                                     <StackPanel Orientation="Horizontal">
-                                        <telerik:Label Content="Confirm"/>
-                                        <telerik:RadGlyph Glyph="{StaticResource GlyphCheck}"/>
+                                        <telerik:Label Content="Confirm" />
+                                        <telerik:RadGlyph Glyph="{StaticResource GlyphCheck}" />
                                     </StackPanel>
-
                                 </telerik:RadButton>
                             </StackPanel>
                         </StackPanel>
-
                     </Grid>
                 </StackPanel>
 
@@ -441,22 +400,22 @@
                          DockPanel.Dock="Left"
                          Stretch="Uniform"
                          StretchDirection="DownOnly">
-                    <Image Source="{Binding ProcessDisplay}"
-                           Margin="5"/>
+                    <Image Margin="5" Source="{Binding Path=ProcessDisplay}" />
                 </Viewbox>
             </DockPanel>
         </Grid>
 
-
         <telerik:RadCarousel Grid.Row="1"
-                             Background="Black"
-                             Foreground="Beige"
-                             ItemsSource="{Binding CardCollection}"
-                             ItemTemplate="{StaticResource customItemTemplate}"
-                             AutoGenerateDataPresenters="False"
-                             HorizontalScrollBarVisibility="Hidden" 
-                             VerticalScrollBarVisibility="Hidden" 
                              HorizontalAlignment="Stretch"
-                             VerticalAlignment="Stretch"/>
-        </Grid>
+                             VerticalAlignment="Stretch"
+                             AutoGenerateDataPresenters="False"
+                             Background="Transparent"
+                             CanUserSelect="{Binding Path=PlayBackRunning, Converter={StaticResource InvertedBooleanConverter}}"
+                             Foreground="Transparent"
+                             HorizontalScrollBarVisibility="Hidden"
+                             ItemTemplate="{StaticResource customItemTemplate}"
+                             ItemsSource="{Binding Path=CardCollection}"
+                             SelectedItem="{Binding Path=CurrentCard}"
+                             VerticalScrollBarVisibility="Hidden" />
+    </Grid>
 </UserControl>

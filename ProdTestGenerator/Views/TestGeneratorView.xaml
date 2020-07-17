@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="ProdTestGenerator.Views.TestGeneratorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ProdTestGenerator.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             Width="300"
+             Height="200"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Telerik.Windows.Controls;component/Themes/FontResources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <UniformGrid>
+
+        <telerik:RadButton Margin="3" Command="{Binding Path=StartButton}">
+            <StackPanel Orientation="Horizontal">
+                <telerik:Label Content="Start Program" />
+                <telerik:RadGlyph Glyph="{StaticResource GlyphPlay}" />
+            </StackPanel>
+        </telerik:RadButton>
+
+        <telerik:RadButton Margin="3" Command="{Binding Path=PauseButton}">
+            <StackPanel Orientation="Horizontal">
+                <telerik:Label Content="Pause Program" />
+                <telerik:RadGlyph Glyph="{StaticResource GlyphPause}" />
+            </StackPanel>
+        </telerik:RadButton>
+
+        <telerik:RadButton Margin="3" Command="{Binding Path=ChangeProgram}">
+            <StackPanel Orientation="Horizontal">
+                <telerik:Label Content="Change Program" />
+                <telerik:RadGlyph Glyph="{StaticResource GlyphReset}" />
+            </StackPanel>
+        </telerik:RadButton>
+
+        <telerik:RadButton Margin="3" Command="{Binding Path=ChangeProcessImage}">
+            <StackPanel Orientation="Horizontal">
+                <telerik:Label Content="Change Process Image" />
+                <telerik:RadGlyph Glyph="{StaticResource GlyphImageEdit}" />
+            </StackPanel>
+        </telerik:RadButton>
+
+        <telerik:RadButton Margin="3" Command="{Binding Path=ThrowError}">
+            <StackPanel Orientation="Horizontal">
+                <telerik:Label Content="Throw an Error" />
+                <telerik:RadGlyph Glyph="{StaticResource GlyphWarning}" />
+            </StackPanel>
+        </telerik:RadButton>
+
+    </UniformGrid>
+</UserControl>

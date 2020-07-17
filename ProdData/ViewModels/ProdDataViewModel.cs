@@ -1,10 +1,9 @@
 ﻿using Prism.Commands;
-using Prism.Mvvm;
-using ProdData.Models;
-using ProdData.Events;
-using System.Collections.ObjectModel;
-using System.Windows.Media;
 using Prism.Events;
+using Prism.Mvvm;
+using ProdData.Events;
+using ProdData.Extensions;
+using ProdData.Models;
 using System;
 using System.Windows.Media.Imaging;
 
@@ -12,13 +11,26 @@ namespace ProdData.ViewModels
 {
     public class ProdDataViewModel : BindableBase
     {
-        public DelegateCommand PlayButton { get; set; }
-        public DelegateCommand PauseButton { get; set; }
-        public DelegateCommand ConfirmButton { get; set; }
-        public DelegateCommand CancelButton { get; set; }
-        public DelegateCommand InitiateProgramListRequest { get; set; }
+        private bool _allowProgramChange = true;
 
+        private IndexedObservableCollection<Card> _cardCollection = new IndexedObservableCollection<Card>();
+        private Card _currentCard;
+        private long _cycleCount;
+        private Timer _cycleTime = new Timer();
         private IEventAggregator _eventAggregator;
+
+        private ProgramID _oldSelectedProgramData;
+        private bool _pauseAvailable;
+        private bool _playAvailable;
+        private bool _playBackRunning;
+        private BitmapImage? _processDisplay;
+        private IndexedObservableCollection<ProgramID> _programList = new IndexedObservableCollection<ProgramID>();
+        private bool _programSelectionConfirmationRaised;
+        private Card _retainedCard;
+        private int _retainedSubStep;
+        private ProgramID _selectedProgramData;
+        private int _subStep;
+
         public ProdDataViewModel(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
@@ -27,125 +39,18 @@ namespace ProdData.ViewModels
             InitiateProgramListRequest = new DelegateCommand(RequestPrograms);
             ConfirmButton = new DelegateCommand(ConfirmProgramChange);
             CancelButton = new DelegateCommand(CancelProgramChange);
-            _eventAggregator.GetEvent<ProgramNamesResponse>().Subscribe(SetProgramList);
-            _eventAggregator.GetEvent<ProgramDataResponse>().Subscribe(SetCardData);
+            _eventAggregator.GetEvent<ProgramNamesResponse>().Subscribe(HandleProgramNamesResponse);
+            _eventAggregator.GetEvent<ProgramDataResponse>().Subscribe(HandleProgramDataResponse);
+            _eventAggregator.GetEvent<StartRequest>().Subscribe(FulfillStartRequest);
+            _eventAggregator.GetEvent<StartResponse>().Subscribe(HandleStartResponse);
+            _eventAggregator.GetEvent<PauseRequest>().Subscribe(FulfillPauseRequest);
+            _eventAggregator.GetEvent<PauseResponse>().Subscribe(HandlePauseResponse);
+            _eventAggregator.GetEvent<ProcessDisplayChangeRequest>().Subscribe(FulfillProcessDisplayChangeRequest);
+            _eventAggregator.GetEvent<ProcessDisplayChangeResponse>().Subscribe(HandleProcessDisplayChangeResponse);
+            _eventAggregator.GetEvent<RaiseError>().Subscribe(HandleError);
+            _eventAggregator.GetEvent<AdvanceStep>().Subscribe(Next);
         }
 
-        private void RequestPrograms()
-        {
-            _eventAggregator.GetEvent<ProgramNamesRequest>().Publish();
-        }
-
-        private void RequestCards()
-        {
-            _eventAggregator.GetEvent<ProgramDataRequest>().Publish();
-        }
-
-        private void SetCardData(ObservableCollection<Card> publishedCardCollection)
-        {
-            _cardCollection.Clear();
-            CardCollection = publishedCardCollection;
-        }
-
-        private void SetProgramList(ObservableCollection<ProgramID> publishedProgramList)
-        {
-            _programList.Clear();
-            ProgramList = publishedProgramList;
-        }
-
-        private ObservableCollection<ProgramID> _programList = new ObservableCollection<ProgramID>();
-        public ObservableCollection<ProgramID> ProgramList
-        {
-            get
-            {
-                return _programList;
-            }
-            set
-            {
-                SetProperty(ref _programList, value);
-            }
-        }
-
-        private ObservableCollection<Card> _cardCollection = new ObservableCollection<Card>();
-        public ObservableCollection<Card> CardCollection
-        {
-            get
-            {
-                return _cardCollection;
-            }
-            set
-            {
-                SetProperty(ref _cardCollection, value);
-            }
-        }
-
-
-        private Timer _cycleTime = new Timer();
-        public Timer CycleTime
-        {
-            get
-            {
-                return _cycleTime;
-            }
-            set
-            {
-                SetProperty(ref _cycleTime, value);
-            }
-        }
-
-        private BitmapImage? _processDisplay;
-        public BitmapImage? ProcessDisplay
-        {
-            get
-            {
-                return _processDisplay;
-            }
-            set
-            {
-                SetProperty(ref _processDisplay, value);
-            }
-        }
-
-        private long _cycleCount;
-        public long CycleCount
-        {
-            get
-            {
-                return _cycleCount;
-            }
-            set
-            {
-                SetProperty(ref _cycleCount, value);
-            }
-        }
-
-        private bool _programSelectionConfirmationRaised;
-        public bool ProgramSelectionConfirmationRaised
-        {
-            get
-            {
-                return _programSelectionConfirmationRaised;
-            }
-            set
-            {
-                SetProperty(ref _programSelectionConfirmationRaised, value);
-            }
-        }
-
-        private bool _playBackRunning;
-        public bool PlayBackRunning
-        {
-            get
-            {
-                return _playBackRunning;
-            }
-            set
-            {
-                SetProperty(ref _playBackRunning, value);
-            }
-        }
-
-        private bool _allowProgramChange = true;
         public bool AllowProgramChange
         {
             get
@@ -158,7 +63,74 @@ namespace ProdData.ViewModels
             }
         }
 
-        private bool _playAvailable;
+        public DelegateCommand CancelButton { get; set; }
+
+        public IndexedObservableCollection<Card> CardCollection
+        {
+            get
+            {
+                return _cardCollection;
+            }
+            set
+            {
+                SetProperty(ref _cardCollection, value);
+            }
+        }
+
+        public DelegateCommand ConfirmButton { get; set; }
+
+        public Card CurrentCard
+        {
+            get
+            {
+                return _currentCard;
+            }
+            set
+            {
+                SetProperty(ref _currentCard, value, RetainStep);
+            }
+        }
+
+        public long CycleCount
+        {
+            get
+            {
+                return _cycleCount;
+            }
+            set
+            {
+                SetProperty(ref _cycleCount, value);
+            }
+        }
+
+        public Timer CycleTime
+        {
+            get
+            {
+                return _cycleTime;
+            }
+            set
+            {
+                SetProperty(ref _cycleTime, value);
+            }
+        }
+
+        public DelegateCommand InitiateProgramListRequest { get; set; }
+
+        public bool PauseAvailable
+        {
+            get
+            {
+                return _pauseAvailable;
+            }
+            set
+            {
+                SetProperty(ref _pauseAvailable, value);
+            }
+        }
+
+        public DelegateCommand PauseButton { get; set; }
+
         public bool PlayAvailable
         {
             get
@@ -171,37 +143,56 @@ namespace ProdData.ViewModels
             }
         }
 
-        private bool _pauseAvailable;
-        public bool PauseAvailable
+        public bool PlayBackRunning
         {
             get
             {
-                return _pauseAvailable;
+                return _playBackRunning;
             }
             set
             {
-                SetProperty(ref _pauseAvailable, value);
-            }
-        }
-        private int _newProgramSelection = -1;
-        private int _currentProgram = -1;
-        public int CurrentProgram
-        {
-            get
-            {
-                return _currentProgram;
-            }
-            set
-            {
-                if (_currentProgram != value)
-                {
-                    VerifyChange(value);
-                }
+                SetProperty(ref _playBackRunning, value);
             }
         }
 
-        private ProgramID _oldSelectedProgramData;
-        private ProgramID _selectedProgramData;
+        public DelegateCommand PlayButton { get; set; }
+
+        public BitmapImage? ProcessDisplay
+        {
+            get
+            {
+                return _processDisplay;
+            }
+            set
+            {
+                SetProperty(ref _processDisplay, value);
+            }
+        }
+
+        public IndexedObservableCollection<ProgramID> ProgramList
+        {
+            get
+            {
+                return _programList;
+            }
+            set
+            {
+                SetProperty(ref _programList, value);
+            }
+        }
+
+        public bool ProgramSelectionConfirmationRaised
+        {
+            get
+            {
+                return _programSelectionConfirmationRaised;
+            }
+            set
+            {
+                SetProperty(ref _programSelectionConfirmationRaised, value);
+            }
+        }
+
         public ProgramID SelectedProgramData
         {
             get
@@ -211,47 +202,108 @@ namespace ProdData.ViewModels
             set
             {
                 _oldSelectedProgramData = _selectedProgramData;
-                SetProperty(ref _selectedProgramData, value);
+                SetProperty(ref _selectedProgramData, value, VerifyChange);
             }
         }
 
-
-        private void VerifyChange(int newProgramSelectionValue)
+        public int SubStep
         {
-            if (CycleTime?.ElapsedTime == null)
+            get
             {
-                SetProperty(ref _currentProgram, newProgramSelectionValue);
-                ProcessDisplay = _programList[_currentProgram].ProductImage;
-                LoadProductionDeck();
-                _newProgramSelection = -1;
-                return;
+                return _subStep;
             }
-
-            PauseAvailable = false;
-            PlayAvailable = false;
-            AllowProgramChange = false;
-            ProgramSelectionConfirmationRaised = true;
-            _newProgramSelection = newProgramSelectionValue;
+            set
+            {
+                SetProperty(ref _subStep, value, RetainSubStep);
+            }
         }
 
-        private void ConfirmProgramChange()
+        public void LoadProductionDeck()
         {
-            _currentProgram = _newProgramSelection;
-            RaisePropertyChanged(nameof(CurrentProgram));
-            LoadProductionDeck();
+            PlayBackRunning = false;
+            AllowProgramChange = true;
+            RequestCards();
+            CycleTime.Reset();
             PlayAvailable = true;
-            ProgramSelectionConfirmationRaised = false;
-            _newProgramSelection = -1;
+            PauseAvailable = false;
+        }
+
+        public void Next()
+        {
+            if (SubStep < _cardCollection[CurrentCard.Ordinal]?.CardSubSteps.Count)
+            {
+            }
+            else if (CurrentCard.Ordinal < _cardCollection?.Count)
+            {
+                // need to add in some stuff here... changing the "status" of the card, for instance
+                _cardCollection[CurrentCard.Ordinal].StepStatus = StepStatus.Completed;
+                _cardCollection[CurrentCard.Ordinal].StepComplete = true;
+                _cardCollection[CurrentCard.Ordinal].StepPassed = true;
+                _cardCollection[CurrentCard.Ordinal].StepComplete = true;
+                _cardCollection[CurrentCard.Ordinal].IsActiveStep = false;
+                CurrentCard = _cardCollection[CurrentCard.Ordinal + 1];
+                _cardCollection[CurrentCard.Ordinal].IsActiveStep = true;
+                _cardCollection[CurrentCard.Ordinal].StepStatus = StepStatus.Running;
+            }
+            else
+            {
+                //Deck is completed - what do
+            }
         }
 
         private void CancelProgramChange()
         {
-            _newProgramSelection = -1;
             AllowProgramChange = true;
-            CurrentProgram = _currentProgram;
             PlayAvailable = true;
             SelectedProgramData = _oldSelectedProgramData;
             ProgramSelectionConfirmationRaised = false;
+        }
+
+        private void ConfirmProgramChange()
+        {
+            LoadProductionDeck();
+            PlayAvailable = true;
+            ProgramSelectionConfirmationRaised = false;
+        }
+
+        private void FulfillPauseRequest()
+        {
+        }
+
+        private void FulfillProcessDisplayChangeRequest()
+        {
+        }
+
+        private void FulfillStartRequest()
+        {
+        }
+
+        private void HandleError()
+        {
+        }
+
+        private void HandlePauseResponse()
+        {
+        }
+
+        private void HandleProcessDisplayChangeResponse()
+        {
+        }
+
+        private void HandleProgramDataResponse(IndexedObservableCollection<Card> publishedCardCollection)
+        {
+            _cardCollection.Clear();
+            CardCollection = publishedCardCollection;
+        }
+
+        private void HandleProgramNamesResponse(IndexedObservableCollection<ProgramID> publishedProgramList)
+        {
+            _programList.Clear();
+            ProgramList = publishedProgramList;
+        }
+
+        private void HandleStartResponse()
+        {
         }
 
         private void PausePressed()
@@ -269,59 +321,30 @@ namespace ProdData.ViewModels
                 AllowProgramChange = false;
                 PlayAvailable = false;
                 PauseAvailable = true;
-                ProgramStep = _retainedProgramStep;
+                CurrentCard = _retainedCard;
                 SubStep = _retainedSubStep;
                 CycleTime.Start();
             }
             PlayBackRunning = true;
         }
 
-        public void LoadProductionDeck()
+        private void RequestCards()
         {
-            PlayBackRunning = false;
-            AllowProgramChange = true;
-            RequestCards();
-            CycleTime.Reset();
-            PlayAvailable = true;
-            PauseAvailable = false;
+            _eventAggregator.GetEvent<ProgramDataRequest>().Publish();
         }
 
-
-        private int _retainedProgramStep;
-        private int _programStep;
-        public int ProgramStep
+        private void RequestPrograms()
         {
-            get
-            {
-                return _programStep;
-            }
-            set
-            {
-                SetProperty(ref _programStep, value, RetainStep);
-            }
+            _eventAggregator.GetEvent<ProgramNamesRequest>().Publish();
         }
 
         private void RetainStep()
         {
-            if(PlayBackRunning)
-            { 
-                _retainedProgramStep = _programStep;
+            if (PlayBackRunning)
+            {
+                _retainedCard = CurrentCard;
             }
             SubStep = 0;
-        }
-
-        private int _retainedSubStep;
-        private int _subStep;
-        public int SubStep
-        {
-            get
-            {
-                return _subStep;
-            }
-            set
-            {
-                SetProperty(ref _subStep, value, RetainSubStep);
-            }
         }
 
         private void RetainSubStep()
@@ -332,44 +355,34 @@ namespace ProdData.ViewModels
             }
         }
 
-        public void Next(bool stepPassed = true, bool stepComplete = true)
+        private void VerifyChange()
         {
-            if(SubStep < _cardCollection[ProgramStep].CardSubSteps.Count)
+            if (CycleTime?.ElapsedTime == null)
             {
-
+                ProcessDisplay = _programList[SelectedProgramData.Ordinal].ProductImage;
+                LoadProductionDeck();
+                return;
             }
-            else if (ProgramStep < _cardCollection.Count)
-            {
-                // need to add in some stuff here... changing the "status" of the card, for instance
-                _cardCollection[ProgramStep].StepStatus = StepStatus.Completed;
-                _cardCollection[ProgramStep].StepComplete = true;
-                _cardCollection[ProgramStep].StepPassed = stepPassed;
-                _cardCollection[ProgramStep].StepComplete = stepComplete;
-                _cardCollection[ProgramStep].IsActiveStep = false;
-                ProgramStep++;
-                _cardCollection[ProgramStep].IsActiveStep = true;
-                _cardCollection[ProgramStep].StepStatus = StepStatus.Running;
-            }
-            else
-            {
-                //Deck is completed - what do
-            }
+            PauseAvailable = false;
+            PlayAvailable = false;
+            AllowProgramChange = false;
+            ProgramSelectionConfirmationRaised = true;
         }
 
         // Events
-        //  Outgoing
-        //   Program completed//   Program completed - restart?
-        //   Program selected / changed - comes from somewhere else
-        //   Paused / pausing AC - card timer needs to pause
-        //   Error reached
-        //   Card Timer paused
-        //   Start program
-        //   Pause program
-        //
-        //  Incoming
-        //   Display Image change
-        //   Start program
-        //   Pause program
+        //   ProgramDataRequest
+        //   ProgramDataResponse
+        //   ProgramNamesRequest
+        //   ProgramNamesResponse
+        //   StartRequest
+        //   StartResponse
+        //   PauseRequest
+        //   PauseResponse
+        //   ProcessDisplayChangeRequest
+        //   ProcessDisplayChangeResponse
+        //   RaiseError
+        //   AdvanceStep
 
+        // when play is hit, we need to go back to the 'current' card and the 'current' sub-step and then raise the 'play' event and then start the timer
     }
 }

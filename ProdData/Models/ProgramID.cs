@@ -1,21 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Media;
+﻿using ProdData.Interfaces;
 using System.Windows.Media.Imaging;
 
 namespace ProdData.Models
 {
-    public class ProgramID
+    public class ProgramID : IIndexAware
     {
-        public BitmapImage? ProductImage { get; set; }
-
-        public string ProgramName { get; set; }
-
-        public string ProductRelationship { get; set; }
-
-        public string ProgramCreator { get; set; }
-
         public ProgramID(BitmapImage? productImage, string programName, string productRelationship, string programCreator)
         {
             ProductImage = productImage;
@@ -23,5 +12,12 @@ namespace ProdData.Models
             ProductRelationship = productRelationship;
             ProgramCreator = programCreator;
         }
+
+        public BitmapImage? ProductImage { get; set; }
+
+        public string ProductRelationship { get; set; }
+        public string ProgramCreator { get; set; }
+        public string ProgramName { get; set; }
+        public int Ordinal { get; set; }
     }
 }

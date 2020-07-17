@@ -1,44 +1,35 @@
 ﻿using Prism.Events;
-using Prism.Ioc;
-using Prism.Modularity;
 using ProdData.Events;
+using ProdData.Extensions;
 using ProdData.Models;
-using ProdData.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace ProdTestGenerator
 {
-    public class TestGenerator : IModule
+    public class TestGeneratorSingleton
     {
-        public TestGenerator(IEventAggregator eventAggregator)
+        private IEventAggregator _eventAggregator;
+        private CancellationTokenSource _programCancellationTokenSource;
+        private CancellationToken _programCancelToken;
+        private bool _programIsInProgress;
+
+        private bool _programPaused;
+
+        public TestGeneratorSingleton(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
+            _eventAggregator.GetEvent<StartRequest>().Subscribe(RequestStartReceived);
+            _eventAggregator.GetEvent<PauseRequest>().Subscribe(RequestPauseReceived);
+            _eventAggregator.GetEvent<ProcessDisplayChangeResponse>().Subscribe(RequestProcessDisplayChangeResponseReceived);
             _eventAggregator.GetEvent<ProgramNamesRequest>().Subscribe(RequestProgramNamesReceived);
-            _eventAggregator.GetEvent<ProgramDataRequest>().Subscribe(RequestProgramDataRecieved);
+            _eventAggregator.GetEvent<ProgramDataRequest>().Subscribe(RequestProgramDataReceived);
         }
 
-        private void RequestProgramDataRecieved()
-        {
-            _eventAggregator.GetEvent<ProgramDataResponse>().Publish(GenerateRandom(new ObservableCollection<Card>()));
-        }
-
-        private void RequestProgramNamesReceived()
-        {
-            _eventAggregator.GetEvent<ProgramNamesResponse>().Publish(GenerateRandom(new ObservableCollection<ProgramID>()));
-        }
-
-        private string[] RandomCoordinates()
-        {
-            return new string[] { new Random().Next(-20000, 200000).ToString(), new Random().Next(-20000, 200000).ToString(), new Random().Next(-9000, 100000).ToString() };
-        }
-
-        public ObservableCollection<Card> GenerateRandom(ObservableCollection<Card> cardDeck)
+        public IndexedObservableCollection<Card> GenerateRandom(IndexedObservableCollection<Card> cardDeck)
         {
             string[] TitleArray =
             {
@@ -111,7 +102,7 @@ namespace ProdTestGenerator
             return cardDeck;
         }
 
-        public ObservableCollection<ProgramID> GenerateRandom(ObservableCollection<ProgramID> productionPrograms)
+        public IndexedObservableCollection<ProgramID> GenerateRandom(IndexedObservableCollection<ProgramID> productionPrograms)
         {
             int randsize = new Random().Next(15, 215);
 
@@ -134,8 +125,8 @@ namespace ProdTestGenerator
             for (int i = 0; i < randsize; i++)
             {
                 string progname = ((char)new Random().Next(65, 90)).ToString() + ((char)new Random().Next(65, 90)).ToString() + new Random().Next(1, 102).ToString() + " Rev_" + (char)new Random().Next(65, 90);
-               
-                BitmapImage? image =  new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\PCB" + new Random().Next(1, 9).ToString() + ".bmp", UriKind.RelativeOrAbsolute));
+
+                BitmapImage? image = new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\PCB" + new Random().Next(1, 9).ToString() + ".bmp", UriKind.RelativeOrAbsolute));
 
                 productionPrograms.Add(new ProgramID(image, progname, relations[new Random().Next(relations.Length)], makernames[new Random().Next(makernames.Length)]));
             }
@@ -143,41 +134,62 @@ namespace ProdTestGenerator
             return productionPrograms;
         }
 
-        #region MechanicalTurk
-
-        private CancellationTokenSource _randomProgramCancellationTokenSource;
-        private CancellationToken _randomProgramCancelToken;
-
-        private bool _programPaused;
-        private IEventAggregator _eventAggregator;
-
-        private void LoadRandomProgram(bool reUseProgram = false)
+        private string[] RandomCoordinates()
         {
-            if (!reUseProgram)
+            return new string[] { new Random().Next(-20000, 200000).ToString(), new Random().Next(-20000, 200000).ToString(), new Random().Next(-9000, 100000).ToString() };
+        }
+
+        private void RequestPauseReceived()
+        {
+            _programPaused = true;
+        }
+
+        private void RequestProcessDisplayChangeResponseReceived()
+        {
+        }
+
+        private void RequestProgramDataReceived()
+        {
+            _eventAggregator.GetEvent<ProgramDataResponse>().Publish(GenerateRandom(new IndexedObservableCollection<Card>()));
+        }
+
+        private void RequestProgramNamesReceived()
+        {
+            _eventAggregator.GetEvent<ProgramNamesResponse>().Publish(GenerateRandom(new IndexedObservableCollection<ProgramID>()));
+        }
+
+        private void RequestStartReceived()
+        {
+            _programPaused = false;
+            if (_programIsInProgress == false)
             {
-                //ProcessDisplay = new BitmapImage(new Uri("/TestImages/PCB" + new Random().Next(1, 9).ToString() + ".bmp", UriKind.Relative));
-                //cardDeck.Clear();
-                //ProductionCards = GenerateRandom(_productionCardCollection);
+                RunProg();
             }
-            if (_randomProgramCancellationTokenSource == null)
+        }
+
+        private void RunProg()
+        {
+            if (_programCancellationTokenSource == null)
             {
-                _randomProgramCancellationTokenSource = new CancellationTokenSource();
-                _randomProgramCancelToken = _randomProgramCancellationTokenSource.Token;
+                _programCancellationTokenSource = new CancellationTokenSource();
+                _programCancelToken = _programCancellationTokenSource.Token;
             }
             else
             {
-                _randomProgramCancellationTokenSource.Cancel();
-                _randomProgramCancellationTokenSource.Dispose();
-                _randomProgramCancellationTokenSource = new CancellationTokenSource();
-                _randomProgramCancelToken = _randomProgramCancellationTokenSource.Token;
+                _programCancellationTokenSource.Cancel();
+                _programCancellationTokenSource.Dispose();
+                _programCancellationTokenSource = new CancellationTokenSource();
+                _programCancelToken = _programCancellationTokenSource.Token;
             }
 
             var task = Task.Run(async () =>
             {
+                _programIsInProgress = true;
                 while (true)
                 {
-                    if (_randomProgramCancelToken.IsCancellationRequested)
+                    if (_programCancelToken.IsCancellationRequested)
                     {
+                        _programIsInProgress = false;
                         return;
                     }
 
@@ -186,24 +198,11 @@ namespace ProdTestGenerator
                         await Task.Delay((TimeSpan.FromSeconds(new Random().Next(1, 5) + new Random().NextDouble())));
                         if (!_programPaused)
                         {
-                            //Next()
+                            _eventAggregator.GetEvent<AdvanceStep>().Publish();
                         }
                     }
                 }
-            }, _randomProgramCancelToken);
+            }, _programCancelToken);
         }
-
-        public void RegisterTypes(IContainerRegistry containerRegistry)
-        {
-            containerRegistry.RegisterSingleton<TestGenerator>();
-        }
-
-        public void OnInitialized(IContainerProvider containerProvider)
-        {
-            containerProvider.Resolve<TestGenerator>();
-        }
-
-        #endregion
-
     }
 }

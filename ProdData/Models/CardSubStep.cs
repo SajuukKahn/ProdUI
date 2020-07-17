@@ -2,23 +2,14 @@
 {
     public class CardSubStep
     {
+        private string[] _subStepData;
+
+        private string _subStepName;
+
         public CardSubStep(string subStepName, string[] subStepData)
         {
             SubStepName = subStepName;
             SubStepData = subStepData;
-        }
-
-        private string _subStepName;
-        public string SubStepName
-        {
-            get
-            {
-                return _subStepName;
-            }
-            set
-            {
-                _subStepName = value;
-            }
         }
 
         public string FullSubStepData
@@ -29,7 +20,6 @@
             }
         }
 
-        private string[] _subStepData;
         public string[] SubStepData
         {
             get
@@ -40,7 +30,18 @@
             {
                 _subStepData = value;
             }
+        }
 
+        public string SubStepName
+        {
+            get
+            {
+                return _subStepName;
+            }
+            set
+            {
+                _subStepName = value;
+            }
         }
     }
 }

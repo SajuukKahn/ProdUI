@@ -1,16 +1,13 @@
 ﻿using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
-using System;
-using System.Collections.Generic;
-using System.Net.WebSockets;
-using System.Text;
 
 namespace ProdData
 {
     public class ProdData : IModule
     {
         private readonly IRegionManager _regionManager;
+
         public ProdData(IRegionManager regionManager)
         {
             _regionManager = regionManager;

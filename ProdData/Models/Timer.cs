@@ -7,8 +7,14 @@ namespace ProdData.Models
 {
     public class Timer : BindableBase
     {
-        private DispatcherTimer _dispatcherTimer;
         private readonly Stopwatch _stopwatch = new Stopwatch();
+
+        private DispatcherTimer _dispatcherTimer;
+
+        private string _elapsedTime;
+
+        private DateTime? _startTime;
+
         private TimeSpan _timeDifference;
 
         public Timer()
@@ -21,28 +27,25 @@ namespace ProdData.Models
             }, DispatcherPriority.Normal);
         }
 
-        public void Reset()
+        public string ElapsedTime
         {
-            _stopwatch.Reset();
-            _timeDifference = new TimeSpan(0);
-            ElapsedTime = new TimeSpan(0).ToString("hh\\:mm\\:ss\\.ff");
+            get
+            {
+                return _elapsedTime;
+            }
+            set
+            {
+                _elapsedTime = value;
+                RaisePropertyChanged(nameof(ElapsedTime));
+            }
         }
 
-        public void Pause()
-        {
-            _stopwatch.Stop();
-        }
-
-        public void Start()
-        {
-            _stopwatch.Start();
-            StartTime = DateTime.Now;
-        }
-
-        private DateTime? _startTime;
         public DateTime? StartTime
         {
-            get { return _startTime; }
+            get
+            {
+                return _startTime;
+            }
             set
             {
                 if (!_startTime.HasValue)
@@ -69,21 +72,25 @@ namespace ProdData.Models
             }
         }
 
-        private string _elapsedTime;
-        public string ElapsedTime
+        public void Pause()
         {
-            get
-            {
-                return _elapsedTime;
-            }
-            set
-            {
-                _elapsedTime = value;
-                RaisePropertyChanged(nameof(ElapsedTime));
-            }
+            _stopwatch.Stop();
         }
 
-        void Timer_Tick(object sender, EventArgs e)
+        public void Reset()
+        {
+            _stopwatch.Reset();
+            _timeDifference = new TimeSpan(0);
+            ElapsedTime = new TimeSpan(0).ToString("hh\\:mm\\:ss\\.ff");
+        }
+
+        public void Start()
+        {
+            _stopwatch.Start();
+            StartTime = DateTime.Now;
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
         {
             if (_stopwatch.IsRunning)
             {

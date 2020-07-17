@@ -1,5 +1,5 @@
-﻿using ProdData.Interfaces;
-using Prism.Mvvm;
+﻿using Prism.Mvvm;
+using ProdData.Interfaces;
 using System.Collections.Generic;
 using System.Windows.Media;
 
@@ -7,10 +7,25 @@ namespace ProdData.Models
 {
     public class Card : BindableBase, ICard
     {
-        public Card(ImageSource imageSource = null,
-                                    bool isActiveStep = false,
-                                    bool stepComplete = false,
-                                    string stepTitle = "No Data")
+        private bool _breakOnError;
+
+        private List<CardSubStep> _cardSubSteps = new List<CardSubStep>();
+
+        private Timer _cardTime = new Timer();
+
+        private bool _isActiveStep;
+
+        private bool _stepComplete;
+
+        private ImageSource _stepImage;
+
+        private bool _stepPassed;
+
+        private StepStatus _stepStatus;
+
+        private string _stepTitle;
+
+        public Card(ImageSource? imageSource = null, bool isActiveStep = false, bool stepComplete = false, string stepTitle = "No Data")
         {
             StepImage = imageSource;
             IsActiveStep = isActiveStep;
@@ -19,7 +34,18 @@ namespace ProdData.Models
             StepStatus = StepStatus.Waiting;
         }
 
-        private List<CardSubStep> _cardSubSteps = new List<CardSubStep>();
+        public bool BreakOnError
+        {
+            get
+            {
+                return _breakOnError;
+            }
+            set
+            {
+                SetProperty(ref _breakOnError, value);
+            }
+        }
+
         public List<CardSubStep> CardSubSteps
         {
             get
@@ -31,8 +57,7 @@ namespace ProdData.Models
                 SetProperty(ref _cardSubSteps, value);
             }
         }
-        
-        private Timer _cardTime = new Timer();
+
         public Timer CardTime
         {
             get
@@ -45,7 +70,54 @@ namespace ProdData.Models
             }
         }
 
-        private StepStatus _stepStatus;
+        public bool IsActiveStep
+        {
+            get
+            {
+                return _isActiveStep;
+            }
+            set
+            {
+                SetProperty(ref _isActiveStep, value);
+            }
+        }
+
+        public bool StepComplete
+        {
+            get
+            {
+                return _stepComplete;
+            }
+            set
+            {
+                SetProperty(ref _stepComplete, value);
+            }
+        }
+
+        public ImageSource? StepImage
+        {
+            get
+            {
+                return _stepImage;
+            }
+            set
+            {
+                SetProperty(ref _stepImage, value);
+            }
+        }
+
+        public bool StepPassed
+        {
+            get
+            {
+                return _stepPassed;
+            }
+            set
+            {
+                SetProperty(ref _stepPassed, value);
+            }
+        }
+
         public StepStatus StepStatus
         {
             get
@@ -58,7 +130,6 @@ namespace ProdData.Models
             }
         }
 
-        private string _stepTitle;
         public string StepTitle
         {
             get
@@ -71,68 +142,16 @@ namespace ProdData.Models
             }
         }
 
-        private ImageSource _stepImage;
-        public ImageSource StepImage
+        private int _childIndex;
+        public int Ordinal 
         {
             get
             {
-                return _stepImage;
+                return _childIndex;
             }
             set
             {
-                SetProperty(ref _stepImage , value);
-            }
-        }
-
-        private bool _stepComplete;
-        public bool StepComplete
-        {
-            get
-            {
-                return _stepComplete;
-            }
-            set
-            {
-                SetProperty(ref _stepComplete , value);
-            }
-        }
-
-        private bool _isActiveStep;
-        public bool IsActiveStep
-        {
-            get
-            {
-                return _isActiveStep;
-            }
-            set
-            {
-                SetProperty(ref _isActiveStep , value);
-            }
-        }
-
-        private bool _stepPassed;
-        public bool StepPassed
-        {
-            get
-            {
-                return _stepPassed;
-            }
-            set
-            {
-                SetProperty(ref _stepPassed , value);
-            }
-        }
-
-        private bool _breakOnError;
-        public bool BreakOnError
-        {
-            get
-            {
-                return _breakOnError;
-            }
-            set
-            {
-                SetProperty(ref _breakOnError , value);
+                SetProperty(ref _childIndex, value);
             }
         }
     }

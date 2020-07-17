@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ProdUI
+﻿namespace ProdUI
 {
-    class Notes
+    internal class Notes
     {
         /*
 
@@ -19,6 +15,12 @@ namespace ProdUI
         RadNavigationView (hamburger menu) could be useful?
 
         RadPersistenceFramework - allows saving and restoring UI - probably going to need this eventually
+
+        https://github.com/PrismLibrary/Prism/pull/1682
+
+        https://stackoverflow.com/questions/55865623/navigate-to-new-window-in-prism-wpf
+
+        https://stackoverflow.com/questions/34125982/prism-pop-up-new-window-in-wpf
 
         */
     }

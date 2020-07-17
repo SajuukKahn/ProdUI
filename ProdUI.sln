@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProdUI", "ProdUI\ProdUI.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProdData", "ProdData\ProdData.csproj", "{60BCA4A1-C45A-41BB-A258-FCDC66D31DB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProdTestGenerator", "ProdTestGenerator\ProdTestGenerator.csproj", "{B43081F5-A965-4EA3-9973-707CA2E7EEB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProdTestGenerator", "ProdTestGenerator\ProdTestGenerator.csproj", "{B43081F5-A965-4EA3-9973-707CA2E7EEB0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
