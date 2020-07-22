@@ -21,9 +21,12 @@
             <telerik:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" />
             <telerik:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
 
+
+
             <DataTemplate x:Key="customItemTemplate">
                 <Border x:Name="CardBorder"
-                        MaxWidth="324"
+                        Width="300"
+                        Height="140"
                         BorderThickness="3"
                         CornerRadius="5"
                         FocusVisualStyle="{x:Null}"
@@ -51,7 +54,9 @@
                         </LinearGradientBrush>
                     </Border.Background>
 
-                    <Grid x:Name="CardDataDockPanel" Margin="3" HorizontalAlignment="Stretch">
+                    <Grid x:Name="CardDataDockPanel"
+                          Margin="3"
+                          HorizontalAlignment="Stretch">
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto" />
@@ -76,20 +81,26 @@
                                            UseLayoutRounding="True">
                                     <TextBlock.LayoutTransform>
                                         <TransformGroup>
-                                            <RotateTransform Angle="90" CenterX="0.5" CenterY="0.5" />
+                                            <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5" />
                                         </TransformGroup>
                                     </TextBlock.LayoutTransform>
                                 </TextBlock>
 
-                                <TextBlock x:Name="StepStatus" Text="{Binding Path=StepStatus}" UseLayoutRounding="True" />
+                                <TextBlock x:Name="StepStatus"
+                                           Text="{Binding Path=StepStatus}"
+                                           UseLayoutRounding="True" />
 
                                 <StackPanel x:Name="SubStepCounterPanel" Orientation="Horizontal">
-                                    <TextBlock x:Name="StepCounter" Text="{Binding ElementName=CardSubStepListView, Path=SelectedIndex}" UseLayoutRounding="True" />
+                                    <TextBlock x:Name="StepCounter"
+                                               Text="{Binding ElementName=CardSubStepListView, Path=SelectedIndex}"
+                                               UseLayoutRounding="True" />
                                     <TextBlock Text=" / " />
                                     <TextBlock Text="{Binding ElementName=CardSubStepListView, Path=AlternationCount}" />
                                 </StackPanel>
 
-                                <TextBlock x:Name="StepActiveTime" Text="CARD TIMEEE" UseLayoutRounding="True" />
+                                <TextBlock x:Name="StepActiveTime"
+                                           Text="CARD TIMEEE"
+                                           UseLayoutRounding="True" />
                             </StackPanel>
 
                             <Viewbox Grid.Column="1"
@@ -107,7 +118,9 @@
                             </Viewbox>
                         </Grid>
 
-                        <Viewbox Grid.Row="1" Stretch="Uniform" StretchDirection="DownOnly">
+                        <Viewbox Grid.Row="1"
+                                 Stretch="Uniform"
+                                 StretchDirection="DownOnly">
                             <ListBox x:Name="CardSubStepListView"
                                      MaxWidth="300"
                                      AlternationCount="{Binding Path=CardSubSteps.Count}"
@@ -118,7 +131,9 @@
 
                                 <ListBox.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <VirtualizingStackPanel IsItemsHost="True" SnapsToDevicePixels="True" UseLayoutRounding="True" />
+                                        <VirtualizingStackPanel IsItemsHost="True"
+                                                                SnapsToDevicePixels="True"
+                                                                UseLayoutRounding="True" />
                                     </ItemsPanelTemplate>
                                 </ListBox.ItemsPanel>
 
@@ -162,7 +177,7 @@
                     </Grid>
                 </Border>
 
-                <DataTemplate.Triggers>
+                <!--<DataTemplate.Triggers>
                     <MultiDataTrigger>
                         <MultiDataTrigger.Conditions>
                             <Condition Binding="{Binding Path=IsActiveStep}" Value="False" />
@@ -221,7 +236,9 @@
                         <MultiDataTrigger.EnterActions>
                             <BeginStoryboard>
                                 <Storyboard>
-                                    <DoubleAnimationUsingKeyFrames RepeatBehavior="Forever" Storyboard.TargetName="CardBorder" Storyboard.TargetProperty="(Border.BorderBrush).(Brush.RelativeTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                                    <DoubleAnimationUsingKeyFrames RepeatBehavior="Forever"
+                                                                   Storyboard.TargetName="CardBorder"
+                                                                   Storyboard.TargetProperty="(Border.BorderBrush).(Brush.RelativeTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
                                         <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0" />
                                         <EasingDoubleKeyFrame KeyTime="00:00:02" Value="359" />
                                     </DoubleAnimationUsingKeyFrames>
@@ -265,7 +282,7 @@
                             <Setter TargetName="StepImage" Property="Width" Value="{Binding ElementName=CardDataStackPanel, Path=ActualHeight}" />
                         </MultiDataTrigger.Setters>
                     </MultiDataTrigger>
-                </DataTemplate.Triggers>
+                </DataTemplate.Triggers>-->
             </DataTemplate>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -275,137 +292,149 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
 
-            <DockPanel LastChildFill="True">
-                <StackPanel>
-                    <Border Margin="2"
-                            Padding="3"
-                            BorderBrush="#333"
-                            BorderThickness="2"
-                            DockPanel.Dock="Left">
+        <DockPanel LastChildFill="True">
+            <StackPanel>
+                <Border Margin="2"
+                        Padding="3"
+                        BorderBrush="#333"
+                        BorderThickness="2"
+                        DockPanel.Dock="Left">
 
-                        <UniformGrid HorizontalAlignment="Center" VerticalAlignment="Center" Columns="2">
-                            <telerik:Label Content="Selected Program: " />
-                            <telerik:RadMultiColumnComboBox HorizontalAlignment="Left"
-                                                            VerticalAlignment="Center"
-                                                            telerik:DropDownButtonExtensions.FocusContentOnOpen="True"
-                                                            telerik:DropDownExtensions.HandleMouseWheelWhenOpen="True"
-                                                            CloseDropDownAfterSelectionInput="True"
-                                                            DisplayMemberPath="ProgramName"
-                                                            DropDownMaxWidth="1000"
-                                                            DropDownMinWidth="600"
-                                                            IsEnabled="{Binding Path=AllowProgramChange}"
-                                                            KeepDropDownOpen="True"
-                                                            NullText="Select A Program"
-                                                            OpenDropDownOnInput="True"
-                                                            OverridesDefaultStyle="True"
-                                                            SearchMode="MatchAnyTerm"
-                                                            SelectedIndex="{Binding Path=CurrentProgram}"
-                                                            SelectedItem="{Binding Path=SelectedProgramData}"
-                                                            SelectionBoxesVisibility="Collapsed"
-                                                            SelectionMode="Single">
+                    <UniformGrid HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 Columns="2">
+                        <telerik:Label Content="Selected Program: " />
+                        <telerik:RadMultiColumnComboBox MinWidth="150"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Center"
+                                                        telerik:DropDownButtonExtensions.FocusContentOnOpen="True"
+                                                        telerik:DropDownExtensions.HandleMouseWheelWhenOpen="True"
+                                                        CloseDropDownAfterSelectionInput="True"
+                                                        DisplayMemberPath="ProgramName"
+                                                        DropDownMaxWidth="1000"
+                                                        DropDownMinWidth="600"
+                                                        IsEnabled="{Binding Path=AllowProgramChange}"
+                                                        KeepDropDownOpen="True"
+                                                        NullText="Select A Program"
+                                                        OpenDropDownOnInput="True"
+                                                        OverridesDefaultStyle="True"
+                                                        SearchMode="MatchAnyTerm"
+                                                        SelectedIndex="{Binding Path=CurrentProgram}"
+                                                        SelectedItem="{Binding Path=SelectedProgramData}"
+                                                        SelectionBoxesVisibility="Collapsed"
+                                                        SelectionMode="Single">
 
-                                <telerik:EventToCommandBehavior.EventBindings>
-                                    <telerik:EventBinding Command="{Binding Path=InitiateProgramListRequest}" EventName="Loaded" />
-                                </telerik:EventToCommandBehavior.EventBindings>
+                            <telerik:EventToCommandBehavior.EventBindings>
+                                <telerik:EventBinding Command="{Binding Path=InitiateProgramListRequest}" EventName="Loaded" />
+                            </telerik:EventToCommandBehavior.EventBindings>
 
-                                <telerik:RadMultiColumnComboBox.ItemsSourceProvider>
-                                    <telerik:GridViewItemsSourceProvider AlternationCount="1"
-                                                                         AutoGenerateColumns="False"
-                                                                         ItemsSource="{Binding Path=ProgramList}"
-                                                                         ShowColumnFooters="False">
-                                        <telerik:GridViewItemsSourceProvider.Columns>
-                                            <telerik:GridViewImageColumn MaxWidth="66" DataMemberBinding="{Binding Path=ProductImage}" ImageStretch="Uniform">
-                                                <telerik:GridViewImageColumn.Header>
-                                                    <StackPanel Margin="5,0,0,0">
-                                                        <Image Source="{telerik:RadGlyph Glyph={StaticResource GlyphImage}}" />
-                                                    </StackPanel>
-                                                </telerik:GridViewImageColumn.Header>
-                                            </telerik:GridViewImageColumn>
-                                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=ProductRelationShip}" Header="Product" />
-                                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=ProgramName}" Header="Program Name" />
-                                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=ProgramCreator}" Header="Creator" />
-                                        </telerik:GridViewItemsSourceProvider.Columns>
-                                    </telerik:GridViewItemsSourceProvider>
-                                </telerik:RadMultiColumnComboBox.ItemsSourceProvider>
-                            </telerik:RadMultiColumnComboBox>
+                            <telerik:RadMultiColumnComboBox.ItemsSourceProvider>
+                                <telerik:GridViewItemsSourceProvider AlternationCount="1"
+                                                                     AutoGenerateColumns="False"
+                                                                     ItemsSource="{Binding Path=ProgramList}"
+                                                                     ShowColumnFooters="False">
+                                    <telerik:GridViewItemsSourceProvider.Columns>
+                                        <telerik:GridViewImageColumn MaxWidth="66"
+                                                                     DataMemberBinding="{Binding Path=ProductImage}"
+                                                                     ImageStretch="Uniform">
+                                            <telerik:GridViewImageColumn.Header>
+                                                <StackPanel Margin="5,0,0,0">
+                                                    <Image Source="{telerik:RadGlyph Glyph={StaticResource GlyphImage}}" />
+                                                </StackPanel>
+                                            </telerik:GridViewImageColumn.Header>
+                                        </telerik:GridViewImageColumn>
+                                        <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=ProductRelationShip}" Header="Product" />
+                                        <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=ProgramName}" Header="Program Name" />
+                                        <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=ProgramCreator}" Header="Creator" />
+                                    </telerik:GridViewItemsSourceProvider.Columns>
+                                </telerik:GridViewItemsSourceProvider>
+                            </telerik:RadMultiColumnComboBox.ItemsSourceProvider>
+                        </telerik:RadMultiColumnComboBox>
 
-                            <telerik:Label Content="Cycle Count:" />
-                            <telerik:Label Content="{Binding Path=CycleCount}" />
+                        <telerik:Label Content="Cycle Count:" />
+                        <telerik:Label Content="{Binding Path=CycleCount}" />
 
-                            <telerik:Label Content="Program Step:" />
-                            <StackPanel Orientation="Horizontal">
-                                <telerik:Label Content="{Binding Path=CurrentCard.Ordinal}" />
-                                <telerik:Label Content=" / " />
-                                <telerik:Label Content="{Binding Path=CardCollection.Count}" />
-                            </StackPanel>
-
-                            <telerik:Label Content="Cycle Time:" />
-                            <telerik:Label Content="{Binding Path=CycleTime.ElapsedTime}" />
-                        </UniformGrid>
-                    </Border>
-
-                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Visibility="{Binding ProgramSelectionConfirmationRaised, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
-                        <telerik:RadPathButton x:Name="PlayButton"
-                                               Width="65"
-                                               Height="65"
-                                               Command="{Binding Path=PlayButton}"
-                                               PathGeometry="{telerik:RadGlyph Type=None, Glyph={StaticResource GlyphPlay}, Size=24}"
-                                               Visibility="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
-
-                        <telerik:RadPathButton x:Name="PauseButton"
-                                               Width="65"
-                                               Height="65"
-                                               Command="{Binding Path=PauseButton}"
-                                               PathGeometry="{telerik:RadGlyph Type=Path, Glyph={StaticResource GlyphPause}, Size=24}"
-                                               Visibility="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                    </StackPanel>
-
-                    <Grid Visibility="{Binding Path=ProgramSelectionConfirmationRaised, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-
-                        <StackPanel>
-                            <telerik:Label x:Name="WarningLabel" HorizontalAlignment="Center" Content="Confirm Program Change" />
-                            <telerik:Label HorizontalAlignment="Center" Content="Terminate current program?" />
-
-                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-
-                                <telerik:RadButton x:Name="CancelButton" Margin="3" Command="{Binding Path=CancelButton}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <telerik:Label Content="Cancel" />
-                                        <telerik:RadGlyph Glyph="{StaticResource GlyphClose}" />
-                                    </StackPanel>
-                                </telerik:RadButton>
-
-                                <telerik:RadButton x:Name="ConfirmButton" Margin="3" Command="{Binding Path=ConfirmButton}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <telerik:Label Content="Confirm" />
-                                        <telerik:RadGlyph Glyph="{StaticResource GlyphCheck}" />
-                                    </StackPanel>
-                                </telerik:RadButton>
-                            </StackPanel>
+                        <telerik:Label Content="Program Step:" />
+                        <StackPanel Orientation="Horizontal">
+                            <telerik:Label Content="{Binding Path=CurrentCardIndex}" />
+                            <telerik:Label Content=" / " />
+                            <telerik:Label Content="{Binding Path=CardCollection.Count}" />
                         </StackPanel>
-                    </Grid>
+
+                        <telerik:Label Content="Cycle Time:" />
+                        <telerik:Label Content="{Binding Path=CycleTime.ElapsedTime}" />
+                    </UniformGrid>
+                </Border>
+
+                <StackPanel HorizontalAlignment="Center"
+                            Orientation="Horizontal"
+                            Visibility="{Binding ProgramSelectionConfirmationRaised, Converter={StaticResource InvertedBooleanToVisibilityConverter}}">
+                    <telerik:RadPathButton x:Name="PlayButton"
+                                           Width="65"
+                                           Height="65"
+                                           Command="{Binding Path=PlayButton}"
+                                           PathGeometry="{telerik:RadGlyph Type=None,
+                                                                           Glyph={StaticResource GlyphPlay},
+                                                                           Size=24}"
+                                           Visibility="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                    <telerik:RadPathButton x:Name="PauseButton"
+                                           Width="65"
+                                           Height="65"
+                                           Command="{Binding Path=PauseButton}"
+                                           PathGeometry="{telerik:RadGlyph Type=Path,
+                                                                           Glyph={StaticResource GlyphPause},
+                                                                           Size=24}"
+                                           Visibility="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 </StackPanel>
 
-                <Viewbox Grid.Column="1"
-                         DockPanel.Dock="Left"
-                         Stretch="Uniform"
-                         StretchDirection="DownOnly">
-                    <Image Margin="5" Source="{Binding Path=ProcessDisplay}" />
-                </Viewbox>
-            </DockPanel>
-        </Grid>
+                <Grid Visibility="{Binding Path=ProgramSelectionConfirmationRaised, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
 
-        <telerik:RadCarousel Grid.Row="1"
+                    <StackPanel>
+                        <telerik:Label x:Name="WarningLabel"
+                                       HorizontalAlignment="Center"
+                                       Content="Confirm Program Change" />
+                        <telerik:Label HorizontalAlignment="Center" Content="Terminate current program?" />
+
+                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+
+                            <telerik:RadButton x:Name="CancelButton"
+                                               Margin="3"
+                                               Command="{Binding Path=CancelButton}">
+                                <StackPanel Orientation="Horizontal">
+                                    <telerik:Label Content="Cancel" />
+                                    <telerik:RadGlyph Glyph="{StaticResource GlyphClose}" />
+                                </StackPanel>
+                            </telerik:RadButton>
+
+                            <telerik:RadButton x:Name="ConfirmButton"
+                                               Margin="3"
+                                               Command="{Binding Path=ConfirmButton}">
+                                <StackPanel Orientation="Horizontal">
+                                    <telerik:Label Content="Confirm" />
+                                    <telerik:RadGlyph Glyph="{StaticResource GlyphCheck}" />
+                                </StackPanel>
+                            </telerik:RadButton>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+
+            <Viewbox Grid.Column="1"
+                     HorizontalAlignment="Center"
+                     DockPanel.Dock="Left"
+                     Stretch="Uniform"
+                     StretchDirection="DownOnly">
+                <Image Margin="5" Source="{Binding Path=ProcessDisplay}" />
+            </Viewbox>
+        </DockPanel>
+
+        <!--<telerik:RadCarousel Grid.Row="1"
                              HorizontalAlignment="Stretch"
                              VerticalAlignment="Stretch"
                              AutoGenerateDataPresenters="False"
@@ -416,6 +445,7 @@
                              ItemTemplate="{StaticResource customItemTemplate}"
                              ItemsSource="{Binding Path=CardCollection}"
                              SelectedItem="{Binding Path=CurrentCard}"
-                             VerticalScrollBarVisibility="Hidden" />
+                             VerticalScrollBarVisibility="Hidden" />-->
+
     </Grid>
 </UserControl>

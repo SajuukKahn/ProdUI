@@ -1,9 +1,9 @@
 ﻿using Prism.Events;
 using ProdData.Events;
-using ProdData.Extensions;
 using ProdData.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
@@ -29,7 +29,7 @@ namespace ProdTestGenerator
             _eventAggregator.GetEvent<ProgramDataRequest>().Subscribe(RequestProgramDataReceived);
         }
 
-        public IndexedObservableCollection<Card> GenerateRandom(IndexedObservableCollection<Card> cardDeck)
+        public ObservableCollection<Card> GenerateRandom(ObservableCollection<Card> cardDeck)
         {
             string[] TitleArray =
             {
@@ -102,7 +102,7 @@ namespace ProdTestGenerator
             return cardDeck;
         }
 
-        public IndexedObservableCollection<ProgramID> GenerateRandom(IndexedObservableCollection<ProgramID> productionPrograms)
+        public ObservableCollection<ProgramID> GenerateRandom(ObservableCollection<ProgramID> productionPrograms)
         {
             int randsize = new Random().Next(15, 215);
 
@@ -150,12 +150,12 @@ namespace ProdTestGenerator
 
         private void RequestProgramDataReceived()
         {
-            _eventAggregator.GetEvent<ProgramDataResponse>().Publish(GenerateRandom(new IndexedObservableCollection<Card>()));
+            _eventAggregator.GetEvent<ProgramDataResponse>().Publish(GenerateRandom(new ObservableCollection<Card>()));
         }
 
         private void RequestProgramNamesReceived()
         {
-            _eventAggregator.GetEvent<ProgramNamesResponse>().Publish(GenerateRandom(new IndexedObservableCollection<ProgramID>()));
+            _eventAggregator.GetEvent<ProgramNamesResponse>().Publish(GenerateRandom(new ObservableCollection<ProgramID>()));
         }
 
         private void RequestStartReceived()

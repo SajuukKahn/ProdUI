@@ -1,10 +1,10 @@
 ﻿using Prism.Events;
-using ProdData.Extensions;
 using ProdData.Models;
+using System.Collections.ObjectModel;
 
 namespace ProdData.Events
 {
-    public class ProgramNamesResponse : PubSubEvent<IndexedObservableCollection<ProgramID>>
+    public class ProgramNamesResponse : PubSubEvent<ObservableCollection<ProgramID>>
     {
     }
 }

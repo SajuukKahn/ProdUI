@@ -8,6 +8,9 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Themes/System.Windows.xaml" />
                 <ResourceDictionary Source="/Themes/Telerik.Windows.Controls.xaml" />
+                <ResourceDictionary Source="/Themes/Telerik.Windows.Controls.Data.xaml" />
+                <ResourceDictionary Source="/Themes/Telerik.Windows.Controls.DataVisualization.xaml" />
+                <ResourceDictionary Source="/Themes/Telerik.Windows.Controls.Docking.xaml" />
                 <ResourceDictionary Source="/Themes/Telerik.Windows.Controls.GridView.xaml" />
                 <ResourceDictionary Source="/Themes/Telerik.Windows.Controls.Media.xaml" />
                 <ResourceDictionary Source="/Themes/Telerik.Windows.Controls.Navigation.xaml" />

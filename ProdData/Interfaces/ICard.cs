@@ -4,7 +4,7 @@ using System.Windows.Media;
 
 namespace ProdData.Interfaces
 {
-    internal interface ICard : IIndexAware
+    internal interface ICard
     {
         public bool BreakOnError { get; set; }
         public List<CardSubStep> CardSubSteps { get; set; }

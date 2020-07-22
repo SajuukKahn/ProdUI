@@ -2,9 +2,8 @@
 using Prism.Events;
 using Prism.Mvvm;
 using ProdData.Events;
-using ProdData.Extensions;
 using ProdData.Models;
-using System;
+using System.Collections.ObjectModel;
 using System.Windows.Media.Imaging;
 
 namespace ProdData.ViewModels
@@ -13,18 +12,18 @@ namespace ProdData.ViewModels
     {
         private bool _allowProgramChange = true;
 
-        private IndexedObservableCollection<Card> _cardCollection = new IndexedObservableCollection<Card>();
+        private ObservableCollection<Card> _cardCollection = new ObservableCollection<Card>();
         private Card _currentCard;
+        private int _currentCardIndex;
         private long _cycleCount;
         private Timer _cycleTime = new Timer();
         private IEventAggregator _eventAggregator;
-
         private ProgramID _oldSelectedProgramData;
         private bool _pauseAvailable;
         private bool _playAvailable;
         private bool _playBackRunning;
         private BitmapImage? _processDisplay;
-        private IndexedObservableCollection<ProgramID> _programList = new IndexedObservableCollection<ProgramID>();
+        private ObservableCollection<ProgramID> _programList = new ObservableCollection<ProgramID>();
         private bool _programSelectionConfirmationRaised;
         private Card _retainedCard;
         private int _retainedSubStep;
@@ -51,6 +50,19 @@ namespace ProdData.ViewModels
             _eventAggregator.GetEvent<AdvanceStep>().Subscribe(Next);
         }
 
+
+        public int CurrentCardIndex
+        {
+            get
+            {
+                return _currentCardIndex;
+            }
+            set
+            {
+                SetProperty(ref _currentCardIndex, value);
+            }
+        }
+
         public bool AllowProgramChange
         {
             get
@@ -65,7 +77,7 @@ namespace ProdData.ViewModels
 
         public DelegateCommand CancelButton { get; set; }
 
-        public IndexedObservableCollection<Card> CardCollection
+        public ObservableCollection<Card> CardCollection
         {
             get
             {
@@ -169,7 +181,7 @@ namespace ProdData.ViewModels
             }
         }
 
-        public IndexedObservableCollection<ProgramID> ProgramList
+        public ObservableCollection<ProgramID> ProgramList
         {
             get
             {
@@ -230,20 +242,20 @@ namespace ProdData.ViewModels
 
         public void Next()
         {
-            if (SubStep < _cardCollection[CurrentCard.Ordinal]?.CardSubSteps.Count)
+            if (SubStep < _cardCollection[_currentCardIndex]?.CardSubSteps.Count)
             {
             }
-            else if (CurrentCard.Ordinal < _cardCollection?.Count)
+            else if (_currentCardIndex < _cardCollection?.Count)
             {
                 // need to add in some stuff here... changing the "status" of the card, for instance
-                _cardCollection[CurrentCard.Ordinal].StepStatus = StepStatus.Completed;
-                _cardCollection[CurrentCard.Ordinal].StepComplete = true;
-                _cardCollection[CurrentCard.Ordinal].StepPassed = true;
-                _cardCollection[CurrentCard.Ordinal].StepComplete = true;
-                _cardCollection[CurrentCard.Ordinal].IsActiveStep = false;
-                CurrentCard = _cardCollection[CurrentCard.Ordinal + 1];
-                _cardCollection[CurrentCard.Ordinal].IsActiveStep = true;
-                _cardCollection[CurrentCard.Ordinal].StepStatus = StepStatus.Running;
+                _cardCollection[_currentCardIndex].StepStatus = StepStatus.Completed;
+                _cardCollection[_currentCardIndex].StepComplete = true;
+                _cardCollection[_currentCardIndex].StepPassed = true;
+                _cardCollection[_currentCardIndex].StepComplete = true;
+                _cardCollection[_currentCardIndex].IsActiveStep = false;
+                CurrentCard = _cardCollection[_currentCardIndex + 1];
+                _cardCollection[_currentCardIndex].IsActiveStep = true;
+                _cardCollection[_currentCardIndex].StepStatus = StepStatus.Running;
             }
             else
             {
@@ -290,13 +302,13 @@ namespace ProdData.ViewModels
         {
         }
 
-        private void HandleProgramDataResponse(IndexedObservableCollection<Card> publishedCardCollection)
+        private void HandleProgramDataResponse(ObservableCollection<Card> publishedCardCollection)
         {
             _cardCollection.Clear();
             CardCollection = publishedCardCollection;
         }
 
-        private void HandleProgramNamesResponse(IndexedObservableCollection<ProgramID> publishedProgramList)
+        private void HandleProgramNamesResponse(ObservableCollection<ProgramID> publishedProgramList)
         {
             _programList.Clear();
             ProgramList = publishedProgramList;
@@ -342,6 +354,7 @@ namespace ProdData.ViewModels
         {
             if (PlayBackRunning)
             {
+                CurrentCardIndex = _cardCollection.IndexOf(CurrentCard);
                 _retainedCard = CurrentCard;
             }
             SubStep = 0;
@@ -359,7 +372,7 @@ namespace ProdData.ViewModels
         {
             if (CycleTime?.ElapsedTime == null)
             {
-                ProcessDisplay = _programList[SelectedProgramData.Ordinal].ProductImage;
+                ProcessDisplay = _programList[_programList.IndexOf(SelectedProgramData)].ProductImage;
                 LoadProductionDeck();
                 return;
             }

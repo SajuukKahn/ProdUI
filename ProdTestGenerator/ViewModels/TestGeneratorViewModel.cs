@@ -1,7 +1,9 @@
 ﻿using Prism.Commands;
 using Prism.Events;
-using ProdData.Events;
 using Prism.Mvvm;
+using Prism.Services.Dialogs;
+using ProdData.Events;
+using System;
 
 namespace ProdTestGenerator.ViewModels
 {

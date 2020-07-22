@@ -1,7 +1,6 @@
 ﻿using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
-using ProdTestGenerator.ViewModels;
 using ProdTestGenerator.Views;
 
 namespace ProdTestGenerator
@@ -14,6 +13,7 @@ namespace ProdTestGenerator
         {
             _regionManager = regionManager;
         }
+
         public void OnInitialized(IContainerProvider containerProvider)
         {
             containerProvider.Resolve<TestGeneratorSingleton>();

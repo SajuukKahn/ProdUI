@@ -141,18 +141,5 @@ namespace ProdData.Models
                 SetProperty(ref _stepTitle, value);
             }
         }
-
-        private int _childIndex;
-        public int Ordinal 
-        {
-            get
-            {
-                return _childIndex;
-            }
-            set
-            {
-                SetProperty(ref _childIndex, value);
-            }
-        }
     }
 }

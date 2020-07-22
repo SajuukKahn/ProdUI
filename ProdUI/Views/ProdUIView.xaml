@@ -12,7 +12,17 @@
         mc:Ignorable="d">
 
     <Grid>
-        <ContentControl prism:RegionManager.RegionName="ProdDataRegion" />
-        <ContentControl prism:RegionManager.RegionName="TestRegion" />
+        <telerik:RadDocking>
+            <telerik:RadSplitContainer>
+                <telerik:RadPaneGroup>
+                    <telerik:RadPane CanFloat="True" Header="Test Controls">
+                        <ContentControl prism:RegionManager.RegionName="TestRegion" />
+                    </telerik:RadPane>
+                </telerik:RadPaneGroup>
+            </telerik:RadSplitContainer>
+        </telerik:RadDocking>
+        <Border BorderBrush="Black" BorderThickness="1">
+            <ContentControl prism:RegionManager.RegionName="ProdDataRegion" />
+        </Border>
     </Grid>
 </Window>

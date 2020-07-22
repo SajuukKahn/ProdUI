@@ -3,7 +3,7 @@ using System.Windows.Media.Imaging;
 
 namespace ProdData.Models
 {
-    public class ProgramID : IIndexAware
+    public class ProgramID
     {
         public ProgramID(BitmapImage? productImage, string programName, string productRelationship, string programCreator)
         {
@@ -18,6 +18,5 @@ namespace ProdData.Models
         public string ProductRelationship { get; set; }
         public string ProgramCreator { get; set; }
         public string ProgramName { get; set; }
-        public int Ordinal { get; set; }
     }
 }
