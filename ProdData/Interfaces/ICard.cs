@@ -11,7 +11,6 @@ namespace ProdData.Interfaces
         public bool IsActiveStep { get; set; }
         public bool StepComplete { get; set; }
         public ImageSource StepImage { get; set; }
-        public bool StepPassed { get; set; }
         public StepStatus StepStatus { get; set; }
         public string StepTitle { get; set; }
     }

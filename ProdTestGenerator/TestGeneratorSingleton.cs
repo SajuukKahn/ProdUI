@@ -4,6 +4,8 @@ using ProdData.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
@@ -12,6 +14,7 @@ namespace ProdTestGenerator
 {
     public class TestGeneratorSingleton
     {
+        private bool _debugEnabled = true;
         private IEventAggregator _eventAggregator;
         private CancellationTokenSource _programCancellationTokenSource;
         private CancellationToken _programCancelToken;
@@ -22,15 +25,16 @@ namespace ProdTestGenerator
         public TestGeneratorSingleton(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
-            _eventAggregator.GetEvent<StartRequest>().Subscribe(RequestStartReceived);
-            _eventAggregator.GetEvent<PauseRequest>().Subscribe(RequestPauseReceived);
-            _eventAggregator.GetEvent<ProcessDisplayChangeResponse>().Subscribe(RequestProcessDisplayChangeResponseReceived);
+            _eventAggregator.GetEvent<StartRequest>().Subscribe(FulfillStartRequest);
+            _eventAggregator.GetEvent<PauseRequest>().Subscribe(FulfillPauseRequest);
+            _eventAggregator.GetEvent<ProcessDisplayChangeRequest>().Subscribe(FulfillProcessDisplayChangeRequest);
             _eventAggregator.GetEvent<ProgramNamesRequest>().Subscribe(RequestProgramNamesReceived);
             _eventAggregator.GetEvent<ProgramDataRequest>().Subscribe(RequestProgramDataReceived);
         }
 
         public ObservableCollection<Card> GenerateRandom(ObservableCollection<Card> cardDeck)
         {
+            DebugLogCaller();
             string[] TitleArray =
             {
                     "PolyLine 3D",
@@ -104,6 +108,7 @@ namespace ProdTestGenerator
 
         public ObservableCollection<ProgramID> GenerateRandom(ObservableCollection<ProgramID> productionPrograms)
         {
+            DebugLogCaller();
             int randsize = new Random().Next(15, 215);
 
             string[] makernames =
@@ -134,32 +139,41 @@ namespace ProdTestGenerator
             return productionPrograms;
         }
 
-        private string[] RandomCoordinates()
+        private void DebugLogCaller([CallerMemberName] string caller = null)
         {
-            return new string[] { new Random().Next(-20000, 200000).ToString(), new Random().Next(-20000, 200000).ToString(), new Random().Next(-9000, 100000).ToString() };
+            if (!_debugEnabled)
+            {
+                return;
+            }
+            Debug.WriteLine(this.ToString() + "\t|\t" + caller);
         }
 
-        private void RequestPauseReceived()
+        private void FulfillPauseRequest()
         {
+            DebugLogCaller();
             _programPaused = true;
         }
 
-        private void RequestProcessDisplayChangeResponseReceived()
+        private void FulfillProcessDisplayChangeRequest()
         {
+            DebugLogCaller();
+            GenerateProcessDisplayChangeResponse();
         }
 
-        private void RequestProgramDataReceived()
+        private void GenerateProcessDisplayChangeResponse()
         {
-            _eventAggregator.GetEvent<ProgramDataResponse>().Publish(GenerateRandom(new ObservableCollection<Card>()));
+            DebugLogCaller();
+            _eventAggregator.GetEvent<ProcessDisplayChangeResponse>().Publish(ChooseRandomImage());
         }
 
-        private void RequestProgramNamesReceived()
+        private BitmapImage ChooseRandomImage()
         {
-            _eventAggregator.GetEvent<ProgramNamesResponse>().Publish(GenerateRandom(new ObservableCollection<ProgramID>()));
+            return new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\PCB5.bmp", UriKind.Relative));
         }
 
-        private void RequestStartReceived()
+        private void FulfillStartRequest()
         {
+            DebugLogCaller();
             _programPaused = false;
             if (_programIsInProgress == false)
             {
@@ -167,8 +181,26 @@ namespace ProdTestGenerator
             }
         }
 
+        private string[] RandomCoordinates()
+        {
+            return new string[] { new Random().Next(-20000, 200000).ToString(), new Random().Next(-20000, 200000).ToString(), new Random().Next(-9000, 100000).ToString() };
+        }
+
+        private void RequestProgramDataReceived()
+        {
+            DebugLogCaller();
+            _eventAggregator.GetEvent<ProgramDataResponse>().Publish(GenerateRandom(new ObservableCollection<Card>()));
+        }
+
+        private void RequestProgramNamesReceived()
+        {
+            DebugLogCaller();
+            _eventAggregator.GetEvent<ProgramNamesResponse>().Publish(GenerateRandom(new ObservableCollection<ProgramID>()));
+        }
+
         private void RunProg()
         {
+            DebugLogCaller();
             if (_programCancellationTokenSource == null)
             {
                 _programCancellationTokenSource = new CancellationTokenSource();
@@ -184,6 +216,7 @@ namespace ProdTestGenerator
 
             var task = Task.Run(async () =>
             {
+                bool pauseRequestResponded = false;
                 _programIsInProgress = true;
                 while (true)
                 {
@@ -193,11 +226,18 @@ namespace ProdTestGenerator
                         return;
                     }
 
+                    if (_programPaused && !pauseRequestResponded)
+                    {
+                        _eventAggregator.GetEvent<ProgramPaused>().Publish();
+                        pauseRequestResponded = true;
+                    }
+
                     if (!_programPaused)
                     {
                         await Task.Delay((TimeSpan.FromSeconds(new Random().Next(1, 5) + new Random().NextDouble())));
                         if (!_programPaused)
                         {
+                            pauseRequestResponded = false;
                             _eventAggregator.GetEvent<AdvanceStep>().Publish();
                         }
                     }

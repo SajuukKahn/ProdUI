@@ -12,17 +12,15 @@
         mc:Ignorable="d">
 
     <Grid>
-        <telerik:RadDocking>
-            <telerik:RadSplitContainer>
-                <telerik:RadPaneGroup>
-                    <telerik:RadPane CanFloat="True" Header="Test Controls">
-                        <ContentControl prism:RegionManager.RegionName="TestRegion" />
-                    </telerik:RadPane>
-                </telerik:RadPaneGroup>
-            </telerik:RadSplitContainer>
-        </telerik:RadDocking>
-        <Border BorderBrush="Black" BorderThickness="1">
-            <ContentControl prism:RegionManager.RegionName="ProdDataRegion" />
-        </Border>
+        <Popup AllowsTransparency="True"
+               Focusable="True"
+               IsOpen="True"
+               Placement="Left"
+               PopupAnimation="Scroll"
+               StaysOpen="True">
+            <ContentControl prism:RegionManager.RegionName="TestRegion" />
+        </Popup>
+
+        <ContentControl prism:RegionManager.RegionName="ProdDataRegion" />
     </Grid>
 </Window>

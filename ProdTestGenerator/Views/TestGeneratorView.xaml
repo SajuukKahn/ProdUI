@@ -6,8 +6,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:prism="http://prismlibrary.com/"
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
-             Width="auto"
-             Height="auto"
+             Width="400"
+             Height="300"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d">
 
@@ -20,7 +20,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <UniformGrid>
+    <UniformGrid Columns="2">
 
         <telerik:RadButton Margin="3" Command="{Binding Path=StartButton}">
             <StackPanel Orientation="Horizontal">
@@ -45,7 +45,7 @@
 
         <telerik:RadButton Margin="3" Command="{Binding Path=ChangeProcessImage}">
             <StackPanel Orientation="Horizontal">
-                <telerik:Label Content="Change Process Image" />
+                <telerik:Label Content="Change Image" />
                 <telerik:RadGlyph Glyph="{StaticResource GlyphImageEdit}" />
             </StackPanel>
         </telerik:RadButton>

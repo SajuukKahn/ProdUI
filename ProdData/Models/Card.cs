@@ -19,8 +19,6 @@ namespace ProdData.Models
 
         private ImageSource _stepImage;
 
-        private bool _stepPassed;
-
         private StepStatus _stepStatus;
 
         private string _stepTitle;
@@ -103,18 +101,6 @@ namespace ProdData.Models
             set
             {
                 SetProperty(ref _stepImage, value);
-            }
-        }
-
-        public bool StepPassed
-        {
-            get
-            {
-                return _stepPassed;
-            }
-            set
-            {
-                SetProperty(ref _stepPassed, value);
             }
         }
 

@@ -3,6 +3,7 @@ using Prism.Modularity;
 using Prism.Unity;
 using ProdUI.Views;
 using System.Windows;
+using Telerik.Windows.Controls;
 
 namespace ProdUI
 {
@@ -18,6 +19,9 @@ namespace ProdUI
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            MaterialPalette.Palette.FontSizeS = 10;
+            MaterialPalette.Palette.FontSize = 12;
+            MaterialPalette.Palette.FontSizeL = 16;
         }
 
         protected override IModuleCatalog CreateModuleCatalog()

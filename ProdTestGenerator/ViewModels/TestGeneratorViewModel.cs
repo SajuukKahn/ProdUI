@@ -4,6 +4,9 @@ using Prism.Mvvm;
 using Prism.Services.Dialogs;
 using ProdData.Events;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace ProdTestGenerator.ViewModels
 {
@@ -22,6 +25,17 @@ namespace ProdTestGenerator.ViewModels
             ThrowError = new DelegateCommand(ThrowErrorPressed);
         }
 
+        private bool _debugEnabled = true;
+
+        private void DebugLogCaller([CallerMemberName] string caller = null)
+        {
+            if (!_debugEnabled)
+            {
+                return;
+            }
+            Debug.WriteLine(this.ToString() + "\t|\t" + caller);
+        }
+
         public DelegateCommand ChangeProcessImage { get; set; }
 
         public DelegateCommand ChangeProgram { get; set; }
@@ -38,26 +52,31 @@ namespace ProdTestGenerator.ViewModels
 
         private void ChangeProcessImagePressed()
         {
+            DebugLogCaller();
             _eventAggregator.GetEvent<ProcessDisplayChangeRequest>().Publish();
         }
 
         private void ChangeProgramPressed()
         {
+            DebugLogCaller();
             _eventAggregator.GetEvent<ProgramDataRequest>().Publish();
         }
 
         private void PauseButtonPressed()
         {
+            DebugLogCaller();
             _eventAggregator.GetEvent<PauseRequest>().Publish();
         }
 
         private void StartButtonPressed()
         {
+            DebugLogCaller();
             _eventAggregator.GetEvent<StartRequest>().Publish();
         }
 
         private void ThrowErrorPressed()
         {
+            DebugLogCaller();
             _eventAggregator.GetEvent<RaiseError>().Publish();
         }
     }
