@@ -9,7 +9,7 @@ namespace ProdData.Models
     {
         private readonly Stopwatch _stopwatch = new Stopwatch();
 
-        private DispatcherTimer _dispatcherTimer;
+        private DispatcherTimer _dispatcherTimer = new DispatcherTimer();
 
         private string _elapsedTime;
 
@@ -21,7 +21,6 @@ namespace ProdData.Models
         {
             System.Windows.Application.Current.Dispatcher.Invoke(() =>
             {
-                _dispatcherTimer = new DispatcherTimer();
                 _dispatcherTimer.Tick += Timer_Tick;
                 _dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
             }, DispatcherPriority.Normal);

@@ -6,8 +6,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:prism="http://prismlibrary.com/"
              xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
-             Width="400"
-             Height="300"
+             Width="320"
+             Height="180"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d">
 
@@ -52,7 +52,7 @@
 
         <telerik:RadButton Margin="3" Command="{Binding Path=ThrowError}">
             <StackPanel Orientation="Horizontal">
-                <telerik:Label Content="Throw an Error" />
+                <telerik:Label Content="Throw Error" />
                 <telerik:RadGlyph Glyph="{StaticResource GlyphWarning}" />
             </StackPanel>
         </telerik:RadButton>

@@ -3,7 +3,7 @@ using ProdData.Models;
 
 namespace ProdData.Events
 {
-    public class ProgramDataRequest : PubSubEvent<ProgramData>
+    public class ProgramSelectRequest : PubSubEvent<ProgramData?>
     {
     }
 }

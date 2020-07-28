@@ -27,7 +27,7 @@ namespace ProdTestGenerator
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<StartRequest>().Subscribe(FulfillStartRequest);
             _eventAggregator.GetEvent<PauseRequest>().Subscribe(FulfillPauseRequest);
-            _eventAggregator.GetEvent<ProcessDisplayChangeRequest>().Subscribe(FulfillProcessDisplayChangeRequest);
+            _eventAggregator.GetEvent<ProductImageChangeRequest>().Subscribe(FulfillProcessDisplayChangeRequest);
             _eventAggregator.GetEvent<ProgramNamesRequest>().Subscribe(RequestProgramNamesReceived);
             _eventAggregator.GetEvent<ProgramDataRequest>().Subscribe(RequestProgramDataReceived);
         }
@@ -47,7 +47,7 @@ namespace ProdTestGenerator
                     "Part Presense Check"
             };
 
-            BitmapImage? image;//= new BitmapImage(new Uri("/TestImages/PCB" + new Random().Next(1, 9).ToString() + ".bmp", UriKind.Relative));
+            BitmapImage image;//= new BitmapImage(new Uri("/TestImages/PCB" + new Random().Next(1, 9).ToString() + ".bmp", UriKind.Relative));
             image = new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\PCB5.bmp", UriKind.Relative));
 
             List<CardSubStep> fidList = new List<CardSubStep>
@@ -77,7 +77,7 @@ namespace ProdTestGenerator
             };
             cardDeck.Add(secondCardModel);
 
-            randSize = new Random().Next(15, 200);
+            randSize = new Random().Next(15, 75);
             for (int i = 0; i < randSize; i++)
             {
                 string stepTitle = TitleArray[new Random().Next(TitleArray.Length)];
@@ -106,7 +106,7 @@ namespace ProdTestGenerator
             return cardDeck;
         }
 
-        public ObservableCollection<ProgramID> GenerateRandom(ObservableCollection<ProgramID> productionPrograms)
+        public ObservableCollection<ProgramData> GenerateRandom(ObservableCollection<ProgramData> productionPrograms)
         {
             DebugLogCaller();
             int randsize = new Random().Next(15, 215);
@@ -133,7 +133,7 @@ namespace ProdTestGenerator
 
                 BitmapImage? image = new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\PCB" + new Random().Next(1, 9).ToString() + ".bmp", UriKind.RelativeOrAbsolute));
 
-                productionPrograms.Add(new ProgramID(image, progname, relations[new Random().Next(relations.Length)], makernames[new Random().Next(makernames.Length)]));
+                productionPrograms.Add(new ProgramData(image, progname, relations[new Random().Next(relations.Length)], makernames[new Random().Next(makernames.Length)]));
             }
 
             return productionPrograms;
@@ -163,12 +163,14 @@ namespace ProdTestGenerator
         private void GenerateProcessDisplayChangeResponse()
         {
             DebugLogCaller();
-            _eventAggregator.GetEvent<ProcessDisplayChangeResponse>().Publish(ChooseRandomImage());
+            BitmapImage image = ChooseRandomImage();
+            _eventAggregator.GetEvent<ProductImageChangeResponse>().Publish(image);
         }
 
         private BitmapImage ChooseRandomImage()
         {
-            return new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\PCB5.bmp", UriKind.Relative));
+            BitmapImage? image = new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\PCB" + new Random().Next(1, 9).ToString() + ".bmp", UriKind.RelativeOrAbsolute));
+            return image;
         }
 
         private void FulfillStartRequest()
@@ -186,7 +188,7 @@ namespace ProdTestGenerator
             return new string[] { new Random().Next(-20000, 200000).ToString(), new Random().Next(-20000, 200000).ToString(), new Random().Next(-9000, 100000).ToString() };
         }
 
-        private void RequestProgramDataReceived()
+        private void RequestProgramDataReceived(ProgramData programData)
         {
             DebugLogCaller();
             _eventAggregator.GetEvent<ProgramDataResponse>().Publish(GenerateRandom(new ObservableCollection<Card>()));
@@ -195,7 +197,7 @@ namespace ProdTestGenerator
         private void RequestProgramNamesReceived()
         {
             DebugLogCaller();
-            _eventAggregator.GetEvent<ProgramNamesResponse>().Publish(GenerateRandom(new ObservableCollection<ProgramID>()));
+            _eventAggregator.GetEvent<ProgramNamesResponse>().Publish(GenerateRandom(new ObservableCollection<ProgramData>()));
         }
 
         private void RunProg()

@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace ProdData.Events
 {
-    public class ProgramNamesResponse : PubSubEvent<ObservableCollection<ProgramID>>
+    public class ProgramNamesResponse : PubSubEvent<ObservableCollection<ProgramData>>
     {
     }
 }

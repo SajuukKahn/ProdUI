@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="/Themes/Telerik.Windows.Controls.DataVisualization.xaml" />
                 <ResourceDictionary Source="/Themes/Telerik.Windows.Controls.Docking.xaml" />
                 <ResourceDictionary Source="/Themes/Telerik.Windows.Controls.GridView.xaml" />
+                <ResourceDictionary Source="/Themes/Telerik.Windows.Controls.Input.xaml" />
                 <ResourceDictionary Source="/Themes/Telerik.Windows.Controls.Media.xaml" />
                 <ResourceDictionary Source="/Themes/Telerik.Windows.Controls.Navigation.xaml" />
             </ResourceDictionary.MergedDictionaries>

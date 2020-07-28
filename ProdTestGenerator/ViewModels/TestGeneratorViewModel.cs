@@ -1,12 +1,8 @@
 ﻿using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
-using Prism.Services.Dialogs;
 using ProdData.Events;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
+using ProdData.Models;
 
 namespace ProdTestGenerator.ViewModels
 {
@@ -18,22 +14,11 @@ namespace ProdTestGenerator.ViewModels
         {
             _eventAggregator = eventAggregator;
 
-            StartButton = new DelegateCommand(StartButtonPressed);
-            PauseButton = new DelegateCommand(PauseButtonPressed);
-            ChangeProgram = new DelegateCommand(ChangeProgramPressed);
-            ChangeProcessImage = new DelegateCommand(ChangeProcessImagePressed);
-            ThrowError = new DelegateCommand(ThrowErrorPressed);
-        }
-
-        private bool _debugEnabled = true;
-
-        private void DebugLogCaller([CallerMemberName] string caller = null)
-        {
-            if (!_debugEnabled)
-            {
-                return;
-            }
-            Debug.WriteLine(this.ToString() + "\t|\t" + caller);
+            StartButton = new DelegateCommand(() => _eventAggregator.GetEvent<StartRequest>().Publish());
+            PauseButton = new DelegateCommand(() => _eventAggregator.GetEvent<PauseRequest>().Publish());
+            ChangeProgram = new DelegateCommand(() => _eventAggregator.GetEvent<ProgramDataRequest>().Publish(new ProgramData(null, null, null, null)));
+            ChangeProcessImage = new DelegateCommand(() => _eventAggregator.GetEvent<ProductImageChangeRequest>().Publish());
+            ThrowError = new DelegateCommand(() => _eventAggregator.GetEvent<RaiseError>().Publish());
         }
 
         public DelegateCommand ChangeProcessImage { get; set; }
@@ -49,35 +34,5 @@ namespace ProdTestGenerator.ViewModels
         public DelegateCommand StartButton { get; set; }
 
         public DelegateCommand ThrowError { get; set; }
-
-        private void ChangeProcessImagePressed()
-        {
-            DebugLogCaller();
-            _eventAggregator.GetEvent<ProcessDisplayChangeRequest>().Publish();
-        }
-
-        private void ChangeProgramPressed()
-        {
-            DebugLogCaller();
-            _eventAggregator.GetEvent<ProgramDataRequest>().Publish();
-        }
-
-        private void PauseButtonPressed()
-        {
-            DebugLogCaller();
-            _eventAggregator.GetEvent<PauseRequest>().Publish();
-        }
-
-        private void StartButtonPressed()
-        {
-            DebugLogCaller();
-            _eventAggregator.GetEvent<StartRequest>().Publish();
-        }
-
-        private void ThrowErrorPressed()
-        {
-            DebugLogCaller();
-            _eventAggregator.GetEvent<RaiseError>().Publish();
-        }
     }
 }

@@ -7,12 +7,16 @@
         xmlns:prism="http://prismlibrary.com/"
         xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
         Title="ProdUIShell"
-        Width="800"
-        Height="550"
+        Width="987"
+        Height="610"
         mc:Ignorable="d">
 
     <Grid>
-        <Popup AllowsTransparency="True"
+        <ContentControl prism:RegionManager.RegionName="ProdDataRegion" />
+
+        <ContentControl Panel.ZIndex="999" prism:RegionManager.RegionName="ProgramSelectRegion" />
+
+        <Popup AllowsTransparency="False"
                Focusable="True"
                IsOpen="True"
                Placement="Left"
@@ -21,6 +25,5 @@
             <ContentControl prism:RegionManager.RegionName="TestRegion" />
         </Popup>
 
-        <ContentControl prism:RegionManager.RegionName="ProdDataRegion" />
     </Grid>
 </Window>

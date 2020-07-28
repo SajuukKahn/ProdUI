@@ -16,8 +16,12 @@ namespace ProdData
         public void OnInitialized(IContainerProvider containerProvider)
         {
             IRegion region = _regionManager.Regions["ProdDataRegion"];
-            var view = containerProvider.Resolve<Views.ProdDataView>();
-            region.Add(view);
+            var view1 = containerProvider.Resolve<Views.ProdDataView>();
+            region.Add(view1);
+
+            region = _regionManager.Regions["ProgramSelectRegion"];
+            var view2 = containerProvider.Resolve<Views.ProgramSelectView>();
+            region.Add(view2);
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)

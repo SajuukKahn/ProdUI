@@ -2,7 +2,7 @@
 
 namespace ProdData.Events
 {
-    public class ProcessDisplayChangeRequest : PubSubEvent
+    public class ProductImageChangeRequest : PubSubEvent
     {
     }
 }

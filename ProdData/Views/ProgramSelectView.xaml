@@ -1,0 +1,198 @@
+﻿<UserControl x:Class="ProdData.Views.ProgramSelectView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ex="clr-namespace:ProdData.Extensions"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:ProdData.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             Background="#88000000"
+             Visibility="{Binding ProgramRequestOpen, Converter={StaticResource BooleanToVisibilityConverter}}"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Telerik.Windows.Controls;component/Themes/FontResources.xaml" />
+                <ResourceDictionary Source="/ProdUI;component/Themes/Telerik.Windows.Controls.GridView.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <telerik:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+            <Style BasedOn="{StaticResource DetailsPresenterStyle}" TargetType="telerik:DetailsPresenter">
+                <Setter Property="Padding" Value="0" />
+            </Style>
+            <Style BasedOn="{StaticResource GridViewRowStyle}" TargetType="telerik:GridViewRow">
+                <Setter Property="DetailsVisibility" Value="Visible" />
+            </Style>
+
+            <Style BasedOn="{StaticResource GridViewGroupPanelStyle}" TargetType="{x:Type telerik:GridViewGroupPanel}">
+                <Setter Property="MinHeight" Value="25" />
+            </Style>
+
+
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid x:Name="ProgramSelectContentGrid">
+
+        <DockPanel LastChildFill="True">
+
+            <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
+                <Button x:Name="CancelButton"
+                        Margin="3"
+                        Command="{Binding Path=CancelButton}"
+                        DockPanel.Dock="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <telerik:Label Content="Cancel" />
+                        <telerik:RadGlyph Glyph="{StaticResource GlyphClose}" />
+                    </StackPanel>
+                </Button>
+                <Button x:Name="ConfirmButton"
+                        Margin="3"
+                        Command="{Binding Path=ConfirmButton}"
+                        DockPanel.Dock="Right">
+                    <StackPanel Orientation="Horizontal">
+                        <telerik:Label Content="Confirm" />
+                        <telerik:RadGlyph Glyph="{StaticResource GlyphCheck}" />
+                    </StackPanel>
+                </Button>
+
+            </DockPanel>
+
+            <telerik:RadGridView AreRowDetailsFrozen="True"
+                                 AutoGenerateColumns="False"
+                                 BusyIndicatorContent="Loading Programs..."
+                                 BusyIndicatorIsIndeterminate="True"
+                                 CanUserDeleteRows="False"
+                                 CanUserInsertRows="False"
+                                 CanUserResizeRows="False"
+                                 DockPanel.Dock="Top"
+                                 EditTriggers="None"
+                                 EnableRowVirtualization="True"
+                                 GroupRenderMode="Flat"
+                                 IsBusy="{Binding RequestAwaiting}"
+                                 IsSynchronizedWithCurrentItem="False"
+                                 ItemsSource="{Binding ProgramList}"
+                                 RowDetailsVisibilityMode="VisibleWhenSelected"
+                                 RowIndicatorVisibility="Collapsed"
+                                 SelectionMode="Single"
+                                 SelectionUnit="FullRow"
+                                 ValidationType="None">
+
+                <!--<i:Interaction.Behaviors>
+                    <Interactions:EventTriggerBehavior EventName="Loaded" SourceObject="">
+                    </Interactions:EventTriggerBehavior>
+                </i:Interaction.Behaviors>-->
+
+                <telerik:EventToCommandBehavior.EventBindings>
+                    <telerik:EventBinding Command="{Binding Path=InitiateProgramListRequest}" EventName="Loaded" />
+                </telerik:EventToCommandBehavior.EventBindings>
+
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewImageColumn MaxWidth="85"
+                                                 DataMemberBinding="{Binding Path=ProductImage}"
+                                                 ImageHeight="45"
+                                                 ImageStretch="Uniform">
+                        <telerik:GridViewImageColumn.Header>
+                            <StackPanel Margin="8,0,0,0">
+                                <Image Source="{telerik:RadGlyph Glyph={StaticResource GlyphImage}}" />
+                            </StackPanel>
+                        </telerik:GridViewImageColumn.Header>
+                        <telerik:GridViewImageColumn.CellTemplate>
+                            <DataTemplate>
+                                <telerik:GridViewToggleButton x:Name="GridViewDetailsExpandStatus" />
+                            </DataTemplate>
+                        </telerik:GridViewImageColumn.CellTemplate>
+                    </telerik:GridViewImageColumn>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=ProductRelationship}" Header="Product" />
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=ProgramName}" Header="Program Name" />
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=ProgramCreator}" Header="Creator" />
+                </telerik:RadGridView.Columns>
+
+                <telerik:RadGridView.RowDetailsTemplate>
+                    <DataTemplate>
+                        <telerik:RadExpander IsExpanded="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type telerik:GridViewRow}}, Path=IsSelected}">
+                            <telerik:AnimationManager.AnimationSelector>
+
+                                <telerik:AnimationSelector>
+                                    <telerik:ExpanderExpandCollapseAnimation AnimationName="Expand"
+                                                                             Direction="In"
+                                                                             SpeedRatio="2"
+                                                                             TargetElementName="Content" />
+                                    <telerik:ExpanderExpandCollapseAnimation AnimationName="Collapse"
+                                                                             Direction="Out"
+                                                                             SpeedRatio="2"
+                                                                             TargetElementName="Content" />
+                                </telerik:AnimationSelector>
+                            </telerik:AnimationManager.AnimationSelector>
+
+                            <telerik:RadExpander.HeaderButtonStyle>
+                                <Style TargetType="telerik:RadToggleButton">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </Style>
+
+                            </telerik:RadExpander.HeaderButtonStyle>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="4*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="200" />
+                                </Grid.RowDefinitions>
+                                <UniformGrid x:Name="ProductDetailGrid"
+                                             Grid.Column="1"
+                                             Columns="2">
+                                    <StackPanel Orientation="Horizontal">
+                                        <telerik:Label Content="Product" />
+                                        <telerik:Label>:</telerik:Label>
+                                        <telerik:Label Content="{Binding Path=ProductRelationship}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <telerik:Label Content="Program Name" />
+                                        <telerik:Label>:</telerik:Label>
+                                        <telerik:Label Content="{Binding Path=ProgramName}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <telerik:Label Content="Program Creator" />
+                                        <telerik:Label>:</telerik:Label>
+                                        <telerik:Label Content="{Binding Path=ProgramCreator}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <telerik:Label Content="Average Run Time" />
+                                        <telerik:Label>:</telerik:Label>
+                                        <telerik:Label Content="N/A" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <telerik:Label Content="Last Edited:" />
+                                        <telerik:Label>:</telerik:Label>
+                                        <telerik:Label Content="May 11, 2020 | 11:24:35 AM EST" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <telerik:Label Content="Total Program Cycles:" />
+                                        <telerik:Label>:</telerik:Label>
+                                        <telerik:Label Content="444" />
+                                    </StackPanel>
+                                </UniformGrid>
+
+                                <Image Grid.Column="0"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Source="{Binding Path=ProductImage}"
+                                       Stretch="Uniform" />
+
+                            </Grid>
+                        </telerik:RadExpander>
+                    </DataTemplate>
+                </telerik:RadGridView.RowDetailsTemplate>
+
+
+
+            </telerik:RadGridView>
+        </DockPanel>
+    </Grid>
+</UserControl>
