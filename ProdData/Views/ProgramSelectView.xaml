@@ -37,7 +37,6 @@
                 <Setter Property="MinHeight" Value="25" />
             </Style>
 
-
             <Style TargetType="{x:Type ListView}">
                 <Setter Property="BorderThickness" Value="0" />
                 <Setter Property="Background" Value="Transparent" />
@@ -92,33 +91,42 @@
 
                 </DockPanel>
 
-                <telerik:RadGridView AreRowDetailsFrozen="True"
+                <telerik:RadGridView ex:GridViewHeaderMenu.IsEnabled="True"
+                                     AreRowDetailsFrozen="True"
                                      AutoGenerateColumns="False"
                                      BusyIndicatorContent="Loading Programs..."
                                      BusyIndicatorIsIndeterminate="True"
                                      CanUserDeleteRows="False"
                                      CanUserInsertRows="False"
                                      CanUserResizeRows="False"
-                                     ColumnsSelectionButtonVisibility="Collapsed"
+                                     ColumnsSelectionButtonVisibility="Visible"
                                      DockPanel.Dock="Top"
                                      EditTriggers="None"
+                                     GroupRenderMode="Flat"
                                      IsBusy="{Binding RequestAwaiting}"
+                                     IsSearchingDeferred="True"
                                      IsSynchronizedWithCurrentItem="True"
                                      ItemsSource="{Binding ProgramList}"
                                      RowDetailsVisibilityMode="VisibleWhenSelected"
                                      RowIndicatorVisibility="Collapsed"
+                                     SearchMode="MatchAnyTerm"
+                                     SearchPanelCloseButtonVisibility="Collapsed"
                                      SelectedItem="{Binding SelectedProgramData}"
                                      SelectionMode="Single"
                                      SelectionUnit="FullRow"
                                      ShowSearchPanel="True"
                                      ValidationType="None">
+                    <telerik:RadGridView.SortDescriptors>
+                        <telerik:SortDescriptor Member="IsFavorite" SortDirection="Descending" />
+                    </telerik:RadGridView.SortDescriptors>
 
                     <telerik:RadGridView.Columns>
                         <telerik:GridViewImageColumn MaxWidth="57"
                                                      DataMemberBinding="{Binding Path=ProductImage}"
                                                      ImageHeight="35"
                                                      ImageStretch="Uniform"
-                                                     IsResizable="False">
+                                                     IsResizable="False"
+                                                     Tag="Product Image">
                             <telerik:GridViewImageColumn.Header>
                                 <StackPanel Margin="8,0,0,0">
                                     <Image Source="{telerik:RadGlyph Glyph={StaticResource GlyphImage}}" />
@@ -130,9 +138,12 @@
                                 </DataTemplate>
                             </telerik:GridViewImageColumn.CellTemplate>
                         </telerik:GridViewImageColumn>
+
+
                         <telerik:GridViewDataColumn Width="55"
                                                     DataMemberBinding="{Binding Path=Barcode}"
-                                                    IsResizable="False">
+                                                    IsResizable="False"
+                                                    Tag="Barcode">
                             <telerik:GridViewDataColumn.Header>
                                 <Grid Margin="5,0,0,0">
                                     <Image Width="21"
@@ -178,15 +189,54 @@
                                 </DataTemplate>
                             </telerik:GridViewDataColumn.CellTemplate>
                         </telerik:GridViewDataColumn>
+
+                        <telerik:GridViewCheckBoxColumn Width="65"
+                                                        AutoSelectOnEdit="True"
+                                                        DataMemberBinding="{Binding Path=IsFavorite}"
+                                                        EditTriggers="CurrentCellClick"
+                                                        IsFilterable="False"
+                                                        Tag="Favorite">
+                            <telerik:GridViewCheckBoxColumn.Header>
+                                <Image Source="{telerik:RadGlyph Glyph={StaticResource GlyphHeart}}" />
+                            </telerik:GridViewCheckBoxColumn.Header>
+
+                            <!--<telerik:GridViewCheckBoxColumn.CellStyle>
+                                <Style TargetType="telerik:GridViewCell">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate>
+                                                <telerik:RadPathButton Content="asdf" PathGeometry="{telerik:RadGlyph Glyph={StaticResource GlyphHeart}}">
+                                                    <telerik:RadPathButton.Style>
+                                                        <Style TargetType="telerik:RadPathButton">
+                                                            <Setter Property="Foreground" Value="Gray" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Path=IsFavorite}" Value="True">
+                                                                    <Setter Property="Foreground" Value="Red" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </telerik:RadPathButton.Style>
+                                                </telerik:RadPathButton>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </telerik:GridViewCheckBoxColumn.CellStyle>-->
+
+
+
+                        </telerik:GridViewCheckBoxColumn>
+
                         <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=ProductName}" Header="Product" />
                         <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=ProgramName}" Header="Program Name" />
                         <telerik:GridViewDataColumn DataMemberBinding="{Binding Path=ProgramCreator}" Header="Creator" />
-                        <!--<telerik:GridViewDataColumn DataFormatString="{}{0:yyyy/MM/dd hh:mm:ss tt K}"
+                        <telerik:GridViewDataColumn DataFormatString="{}{0:yyyy/MM/dd hh:mm:ss tt K}"
                                                     DataMemberBinding="{Binding Path=CreatedDate}"
                                                     Header="Created" />
                         <telerik:GridViewDataColumn DataFormatString="{}{0:yyyy/MM/dd hh:mm:ss tt K}"
                                                     DataMemberBinding="{Binding Path=LastEditDate}"
-                                                    Header="Edited" />-->
+                                                    Header="Edited" />
+
                         <telerik:GridViewDataColumn MaxWidth="250"
                                                     DataMemberBinding="{Binding Path=ToolsUsed}"
                                                     Header="Tools Used"

@@ -19,7 +19,7 @@ namespace ProdData.Models
         public string[] ToolsUsed { get; set; }
         public bool UserCanStartPlayback { get; set; }
         public bool AutoStartPlayback { get; set; }
-
+        public bool IsFavorite { get; set; }
 
         public void UpdateAverageCycleTime(TimeSpan newestCycleTime)
         {

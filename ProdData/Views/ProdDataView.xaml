@@ -290,7 +290,7 @@
                                                     <telerik:RadCarouselPanel CanHorizontallyScroll="False"
                                                                               CanVerticallyScroll="False"
                                                                               FlowDirection="LeftToRight"
-                                                                              IsPathVisible="True"
+                                                                              IsPathVisible="False"
                                                                               ItemsPerPage="3">
                                                         <telerik:RadCarouselPanel.Path>
 

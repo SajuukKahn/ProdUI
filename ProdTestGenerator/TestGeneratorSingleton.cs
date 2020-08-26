@@ -193,7 +193,8 @@ namespace ProdTestGenerator
                     ProgramCreator = makernames[new Random().Next(makernames.Length)],
                     ToolsUsed = GenerateRandomTools(),
                     UserCanStartPlayback = new Random().Next(4).Equals(1),
-                    AutoStartPlayback = false
+                    AutoStartPlayback = false,
+                    IsFavorite = new Random().Next(7).Equals(1)
                 });
             }
             productionPrograms.Add(new ProgramData()
