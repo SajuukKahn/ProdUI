@@ -3,16 +3,14 @@ using Prism.Events;
 using Prism.Mvvm;
 using ProdData.Events;
 using ProdData.Models;
-using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
 using System.Windows.Media.Imaging;
 
 namespace ProdData.ViewModels
 {
     public class ProdDataViewModel : BindableBase
     {
+        private readonly IEventAggregator _eventAggregator;
         private bool _allowProgramChange = true;
 
         private ObservableCollection<Card> _cardCollection = new ObservableCollection<Card>();
@@ -20,16 +18,11 @@ namespace ProdData.ViewModels
         private int _currentCardIndex;
         private long _cycleCount;
         private Timer _cycleTime = new Timer();
-        private bool _debugEnabled = true;
-        private IEventAggregator _eventAggregator;
         private bool _pauseAvailable;
         private bool _playAvailable;
         private bool _playBackRunning;
         private BitmapImage? _productImage;
-        private Card _retainedCard;
-        private int _retainedSubStep;
         private ProgramData _selectedProgramData;
-        private int _subStep;
 
         public ProdDataViewModel(IEventAggregator eventAggregator)
         {
@@ -38,25 +31,21 @@ namespace ProdData.ViewModels
             PauseButton = new DelegateCommand(PausePressed).ObservesCanExecute(() => PauseAvailable);
             OpenProgramSelect = new DelegateCommand(RequestProgramSelect).ObservesCanExecute(() => AllowProgramChange);
             _eventAggregator.GetEvent<ProgramDataResponse>().Subscribe(HandleProgramDataResponse);
-            _eventAggregator.GetEvent<StartRequest>().Subscribe(FulfillStartRequest);
-            _eventAggregator.GetEvent<ProgramPaused>().Subscribe(PauseCardTimer);
-            _eventAggregator.GetEvent<PauseRequest>().Subscribe(FulfillPauseRequest);
+            _eventAggregator.GetEvent<StartRequest>().Subscribe(HandleStartRequest);
+            _eventAggregator.GetEvent<ProgramPaused>().Subscribe(HandlePauseConfirmation);
+            _eventAggregator.GetEvent<PauseRequest>().Subscribe(HandlePauseRequest);
+            _eventAggregator.GetEvent<ProgramDataSaveResponse>().Subscribe(HandleProgramDataSaveResponse);
             _eventAggregator.GetEvent<ProgramSelectResponse>().Subscribe(HandleProgramSelectResponse);
             _eventAggregator.GetEvent<ProductImageChangeResponse>().Subscribe(HandleProductImageChangeResponse);
-            _eventAggregator.GetEvent<RaiseError>().Subscribe(HandleError);
-            _eventAggregator.GetEvent<AdvanceStep>().Subscribe(Next);
+            _eventAggregator.GetEvent<RaiseError>().Subscribe(HandleRaiseError);
+            _eventAggregator.GetEvent<AdvanceStep>().Subscribe(HandleAdvanceStep);
+            _eventAggregator.GetEvent<ProgramHaltRequest>().Subscribe(HandleProgramHaltRequest);
+            _eventAggregator.GetEvent<ModalResponse>().Subscribe(HandleModalAbortRequest, ThreadOption.BackgroundThread, false, modalData => modalData.Equals(ModalResponseData.Abort));
+            _eventAggregator.GetEvent<ModalResponse>().Subscribe(HandleModalContinueRequest, ThreadOption.BackgroundThread, false, modalData => modalData.Equals(ModalResponseData.Continue));
+            _eventAggregator.GetEvent<ModalResponse>().Subscribe(HandleModalRetryRequest, ThreadOption.BackgroundThread, false, modalData => modalData.Equals(ModalResponseData.Retry));
+            _eventAggregator.GetEvent<ModalResponse>().Subscribe(HandleModalCustomRequest, ThreadOption.BackgroundThread, false, modalData => modalData.Equals(ModalResponseData.Custom));
+
             AllowProgramChange = true;
-        }
-
-        private void RequestProgramSelect()
-        {
-            _eventAggregator.GetEvent<ProgramSelectRequest>().Publish(SelectedProgramData);
-        }
-
-        private void HandleProgramSelectResponse(ProgramData programData)
-        {
-            SelectedProgramData = programData;
-            
         }
 
         public bool AllowProgramChange
@@ -71,9 +60,6 @@ namespace ProdData.ViewModels
             }
         }
 
-        public DelegateCommand OpenProgramSelect { get; set; }
-
-
         public ObservableCollection<Card> CardCollection
         {
             get
@@ -86,7 +72,6 @@ namespace ProdData.ViewModels
             }
         }
 
-
         public Card CurrentCard
         {
             get
@@ -95,7 +80,7 @@ namespace ProdData.ViewModels
             }
             set
             {
-                SetProperty(ref _currentCard, value, RetainStep);
+                SetProperty(ref _currentCard, value);
             }
         }
 
@@ -107,7 +92,7 @@ namespace ProdData.ViewModels
             }
             set
             {
-                SetProperty(ref _currentCardIndex, value);
+                SetProperty(ref _currentCardIndex, value, SetCurrentCard);
             }
         }
 
@@ -135,6 +120,7 @@ namespace ProdData.ViewModels
             }
         }
 
+        public DelegateCommand OpenProgramSelect { get; set; }
 
         public bool PauseAvailable
         {
@@ -200,181 +186,211 @@ namespace ProdData.ViewModels
             }
         }
 
-        private void UpdateProductImage()
+        public void HandleAdvanceStep()
         {
-            ProductImage = SelectedProgramData?.ProductImage;
-        }
-
-        public int SubStep
-        {
-            get
+            if (IterateSubStep())
             {
-                return _subStep;
             }
-            set
+            else if (CurrentCardIndex < _cardCollection?.Count - 1)
             {
-                SetProperty(ref _subStep, value, RetainSubStep);
-            }
-        }
-
-        private void PlaybackStart()
-        {
-            DebugLogCaller();
-            PlayAvailable = false;
-            PauseAvailable = true;
-            StartCardTimer();
-            CurrentCard = _retainedCard;
-            SubStep = _retainedSubStep;
-            CycleTime.Start();
-            PlayBackRunning = true;
-            AllowProgramChange = false;
-        }
-
-        private void PlaybackStop()
-        {
-            DebugLogCaller();
-            PlayBackRunning = false;
-            AllowProgramChange = true;
-            CycleTime.Reset();
-            PlayAvailable = true;
-            PauseAvailable = false;
-        }
-
-        public void LoadProductionDeck()
-        {
-            DebugLogCaller();
-            RequestCards();
-            _retainedCard = CurrentCard;
-            _retainedSubStep = SubStep;
-        }
-
-        public void Next()
-        {
-            DebugLogCaller();
-            if (SubStep < CurrentCard.CardSubSteps?.Count)
-            {
-                SubStep++;
-            }
-            else if (_currentCardIndex < _cardCollection?.Count)
-            {
-                SubStep = 0;
-
-                CurrentCard.StepStatus = StepStatus.Completed;
-                CurrentCard.StepComplete = true;
-                CurrentCard.IsActiveStep = false;
-                PauseCardTimer();
-                CurrentCard = _cardCollection[_cardCollection.IndexOf(CurrentCard) + 1];
-                CurrentCard.IsActiveStep = true;
-                CurrentCard.StepStatus = StepStatus.Running;
-                StartCardTimer();
+                CurrentCardIndex++;
+                StartCard();
             }
             else
             {
-                SubStep = 0;
-                _eventAggregator.GetEvent<PauseRequest>().Publish();
-
-                foreach (var Card in _cardCollection)
-                {
-                    Card.StepStatus = StepStatus.Waiting;
-                    Card.StepComplete = false;
-                    Card.IsActiveStep = false;
-                }
-                CurrentCard = _cardCollection[0];
+                CompleteCycle();
             }
         }
 
-        private void DebugLogCaller([CallerMemberName] string caller = null)
+        public bool IterateSubStep()
         {
-            if (!_debugEnabled)
+            if (_cardCollection[CurrentCardIndex].CardStepIndex < _cardCollection[CurrentCardIndex].CardSubSteps.Count - 1)
             {
-                return;
+                _cardCollection[CurrentCardIndex].CardStepIndex++;
+                return true;
             }
-            Debug.WriteLine(this.ToString() + "\t|\t" + caller);
+            _cardCollection[CurrentCardIndex].StepStatus = StepStatus.Completed;
+            _cardCollection[CurrentCardIndex].StepComplete = true;
+            _cardCollection[CurrentCardIndex].IsActiveStep = false;
+            _cardCollection[CurrentCardIndex].CardTime.Pause();
+            return false;
         }
 
-        private void FulfillPauseRequest()
+        public void PauseCard()
         {
-            DebugLogCaller();
+            _cardCollection[CurrentCardIndex].StepStatus = StepStatus.Paused;
+            _cardCollection[CurrentCardIndex].CardTime.Pause();
+        }
+
+        public void RetryStep()
+        {
+            _cardCollection[CurrentCardIndex].CardStepIndex = 0;
+            _cardCollection[CurrentCardIndex].CardTime.Reset();
+            _cardCollection[CurrentCardIndex].CardTime.Start();
+        }
+
+        public void StartCard()
+        {
+            _cardCollection[CurrentCardIndex].IsActiveStep = true;
+            _cardCollection[CurrentCardIndex].StepStatus = StepStatus.Running;
+            _cardCollection[CurrentCardIndex].CardTime.Start();
+            if(_cardCollection[CurrentCardIndex].StepModalData?.IsError == false)
+            {
+                _eventAggregator.GetEvent<ModalEvent>().Publish(_cardCollection[CurrentCardIndex].StepModalData);
+            }
+        }
+
+        private void CompleteCycle()
+        {
+            _eventAggregator.GetEvent<PauseRequest>().Publish();
+            CycleTime.Pause();
+            SelectedProgramData.UpdateAverageCycleTime(CycleTime.TimeSpan);
+            CycleCount++;
+            SelectedProgramData.HistoricalCycles = CycleCount;
+            _eventAggregator.GetEvent<ProgramDataSaveRequest>().Publish(this);
+            if (_cardCollection[CurrentCardIndex].StepModalData?.IsError == false)
+            {
+                _eventAggregator.GetEvent<StartRequest>().Publish();
+            }
+        }
+
+        private void HandleModalAbortRequest(ModalResponseData obj)
+        {
+            _eventAggregator.GetEvent<PauseRequest>().Publish();
+            CycleTime.Pause();
+            _eventAggregator.GetEvent<ProgramDataSaveRequest>().Publish(this);
+        }
+
+        private void HandleModalContinueRequest(ModalResponseData obj)
+        {
+//            PlaybackStart();
+            IterateSubStep();
+        }
+
+        private void HandleModalCustomRequest(ModalResponseData obj)
+        {
+            // This would probably just raise another event somewhere else
+        }
+
+        private void HandleModalRetryRequest(ModalResponseData obj)
+        {
+            PlaybackStart();
+            RetryStep();
+        }
+
+        private void HandlePauseConfirmation()
+        {
+            PauseCard();
+        }
+
+        private void HandlePauseRequest()
+        {
             PlayBackRunning = false;
             PlayAvailable = true;
             PauseAvailable = false;
-        }
-
-        private void FulfillStartRequest()
-        {
-            if (PlayBackRunning == false)
-            {
-                PlaybackStart();
-            }
-        }
-
-        private void StartCardTimer()
-        {
-            CurrentCard.CardTime.Start();
-        }
-
-        private void HandleError()
-        {
-            PlaybackStop();
-            DebugLogCaller();
+            AllowProgramChange = true;
         }
 
         private void HandleProductImageChangeResponse(BitmapImage? image)
         {
-            DebugLogCaller();
             ProductImage = image;
         }
 
         private void HandleProgramDataResponse(ObservableCollection<Card> publishedCardCollection)
         {
-            DebugLogCaller();
-            _cardCollection.Clear();
             CardCollection = publishedCardCollection;
-            CurrentCard = _cardCollection?[0];
+            CurrentCardIndex = 0;
+            CycleCount = SelectedProgramData.HistoricalCycles;
+            PlayAvailable = SelectedProgramData.UserCanStartPlayback;
+            _cardCollection[CurrentCardIndex].IsActiveStep = true;
+            if (SelectedProgramData.AutoStartPlayback)
+            {
+                _eventAggregator.GetEvent<StartRequest>().Publish();
+            }
         }
 
-        private void PauseCardTimer()
+        private void HandleProgramDataSaveResponse()
         {
-            CurrentCard.CardTime.Pause();
+            CycleTime.Reset();
+
+            foreach (Card card in _cardCollection)
+            {
+                card.Initialize();
+            }
+            CurrentCardIndex = 0;
+        }
+
+        private void HandleProgramHaltRequest()
+        {
+            _eventAggregator.GetEvent<PauseRequest>().Publish();
+            CycleTime.Pause();
+        }
+
+        private void HandleProgramSelectResponse(ProgramData programData)
+        {
+            SelectedProgramData = programData;
+        }
+
+        private void HandleRaiseError()
+        {
+            _eventAggregator.GetEvent<PauseRequest>().Publish();
+            CycleTime.Pause();
+            if (_cardCollection[CurrentCardIndex].StepModalData == null)
+            {
+                _eventAggregator.GetEvent<ModalEvent>().Publish(new ModalData()
+                {
+                    CanAbort = true,
+                    IsError = true,
+                    Card = CurrentCard
+                });
+            }
+            else
+            {
+                _eventAggregator.GetEvent<ModalEvent>().Publish(_cardCollection[CurrentCardIndex].StepModalData);
+            }
+        }
+
+        private void HandleStartRequest()
+        {
+            if (PlayBackRunning == false && SelectedProgramData != null)
+            {
+                PlaybackStart();
+            }
         }
 
         private void PausePressed()
         {
-            DebugLogCaller();
             _eventAggregator.GetEvent<PauseRequest>().Publish();
+        }
+
+        private void PlaybackStart()
+        {
+            PlayAvailable = false;
+            PauseAvailable = true;
+            CycleTime.Start();
+            StartCard();
+            PlayBackRunning = true;
+            AllowProgramChange = false;
         }
 
         private void PlayPressed()
         {
-            DebugLogCaller();
             _eventAggregator.GetEvent<StartRequest>().Publish();
         }
 
-        private void RequestCards()
+        private void RequestProgramSelect()
         {
-            DebugLogCaller();
-            _eventAggregator.GetEvent<ProgramDataRequest>().Publish(SelectedProgramData);
+            _eventAggregator.GetEvent<ProgramSelectRequest>().Publish(SelectedProgramData);
         }
 
-        private void RetainStep()
+        private void SetCurrentCard()
         {
-            DebugLogCaller();
-            if (PlayBackRunning)
-            {
-                CurrentCardIndex = _cardCollection.IndexOf(CurrentCard);
-                _retainedCard = CurrentCard;
-            }
-            SubStep = 0;
+            CurrentCard = _cardCollection[CurrentCardIndex];
         }
 
-        private void RetainSubStep()
+        private void UpdateProductImage()
         {
-            DebugLogCaller();
-            if (PlayBackRunning)
-            {
-                _retainedSubStep = _subStep;
-            }
+            ProductImage = SelectedProgramData.ProductImage;
         }
-
     }
 }

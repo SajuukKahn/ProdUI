@@ -10,7 +10,7 @@ namespace ProdData.Models
         private readonly Stopwatch _stopwatch = new Stopwatch();
 
         private DispatcherTimer _dispatcherTimer = new DispatcherTimer();
-
+        private TimeSpan _timeSpan = new TimeSpan();
         private string _elapsedTime;
 
         private DateTime? _startTime;
@@ -34,8 +34,21 @@ namespace ProdData.Models
             }
             set
             {
-                _elapsedTime = value;
-                RaisePropertyChanged(nameof(ElapsedTime));
+                SetProperty(ref _elapsedTime, value);
+                //_elapsedTime = value;
+                //RaisePropertyChanged(nameof(ElapsedTime));
+            }
+        }
+
+        public TimeSpan TimeSpan
+        {
+            get
+            {
+                return _timeSpan;
+            }
+            set
+            {
+                SetProperty(ref _timeSpan, value);
             }
         }
 
@@ -93,8 +106,8 @@ namespace ProdData.Models
         {
             if (_stopwatch.IsRunning)
             {
-                TimeSpan total = _timeDifference + _stopwatch.Elapsed;
-                ElapsedTime = total.ToString("hh\\:mm\\:ss\\.ff");
+                _timeSpan = _timeDifference + _stopwatch.Elapsed;
+                ElapsedTime = _timeSpan.ToString("hh\\:mm\\:ss\\.ff");
                 //TimeElapsed = String.Format("{0:0} {1:00}:{2:00}:{3:00}.{4:00}", total.Days, total.Hours, total.Minutes, total.Seconds, total.Milliseconds);
             }
         }

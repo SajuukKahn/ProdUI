@@ -31,7 +31,9 @@
             <Grid.RenderTransform>
                 <TranslateTransform x:Name="xform" X="-25" />
             </Grid.RenderTransform>
-            <Border Margin="10,0,0,0" Background="{telerik1:MaterialResource ResourceKey=ValidationBrush}" UseLayoutRounding="True">
+            <Border Margin="10,0,0,0"
+                    Background="{telerik1:MaterialResource ResourceKey=ValidationBrush}"
+                    UseLayoutRounding="True">
                 <ContentPresenter Margin="16,10,16,10"
                                   Content="{Binding ErrorContent}"
                                   TextBlock.FontSize="{telerik1:MaterialResource ResourceKey=FontSize}"
@@ -229,14 +231,18 @@
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_FeedbackElement" Storyboard.TargetProperty="RenderTransform.ScaleX">
 
                                                 <!--  PART_MousePressedToNormalScaleXKeyFrame EasingDoubleKeyFrame used in code  -->
-                                                <EasingDoubleKeyFrame x:Name="PART_MousePressedToNormalScaleXKeyFrame" KeyTime="0:0:0.30" Value="1" />
+                                                <EasingDoubleKeyFrame x:Name="PART_MousePressedToNormalScaleXKeyFrame"
+                                                                      KeyTime="0:0:0.30"
+                                                                      Value="1" />
                                                 <EasingDoubleKeyFrame KeyTime="0:0:0.50" Value="1" />
                                                 <EasingDoubleKeyFrame KeyTime="0:0:0.50" Value="0" />
                                             </DoubleAnimationUsingKeyFrames>
                                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PART_FeedbackElement" Storyboard.TargetProperty="RenderTransform.ScaleY">
 
                                                 <!--  PART_MousePressedToNormalScaleYKeyFrame EasingDoubleKeyFrame used in code  -->
-                                                <EasingDoubleKeyFrame x:Name="PART_MousePressedToNormalScaleYKeyFrame" KeyTime="0:0:0.30" Value="1" />
+                                                <EasingDoubleKeyFrame x:Name="PART_MousePressedToNormalScaleYKeyFrame"
+                                                                      KeyTime="0:0:0.30"
+                                                                      Value="1" />
                                                 <EasingDoubleKeyFrame KeyTime="0:0:0.50" Value="1" />
                                                 <EasingDoubleKeyFrame KeyTime="0:0:0.50" Value="0" />
                                             </DoubleAnimationUsingKeyFrames>
@@ -254,23 +260,41 @@
                                 </VisualStateGroup.Transitions>
                                 <VisualState x:Name="Normal">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="PART_FeedbackElement" Storyboard.TargetProperty="RenderTransform.ScaleX" To="0" />
-                                        <DoubleAnimation Storyboard.TargetName="PART_FeedbackElement" Storyboard.TargetProperty="RenderTransform.ScaleY" To="0" />
-                                        <DoubleAnimation Storyboard.TargetName="PART_FeedbackElement" Storyboard.TargetProperty="Opacity" To="0" />
+                                        <DoubleAnimation Storyboard.TargetName="PART_FeedbackElement"
+                                                         Storyboard.TargetProperty="RenderTransform.ScaleX"
+                                                         To="0" />
+                                        <DoubleAnimation Storyboard.TargetName="PART_FeedbackElement"
+                                                         Storyboard.TargetProperty="RenderTransform.ScaleY"
+                                                         To="0" />
+                                        <DoubleAnimation Storyboard.TargetName="PART_FeedbackElement"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="MousePressed">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="PART_FeedbackElement" Storyboard.TargetProperty="RenderTransform.ScaleX" To="1" />
-                                        <DoubleAnimation Storyboard.TargetName="PART_FeedbackElement" Storyboard.TargetProperty="RenderTransform.ScaleY" To="1" />
-                                        <DoubleAnimation Storyboard.TargetName="PART_FeedbackElement" Storyboard.TargetProperty="Opacity" To="{StaticResource RippleOpacity}" />
+                                        <DoubleAnimation Storyboard.TargetName="PART_FeedbackElement"
+                                                         Storyboard.TargetProperty="RenderTransform.ScaleX"
+                                                         To="1" />
+                                        <DoubleAnimation Storyboard.TargetName="PART_FeedbackElement"
+                                                         Storyboard.TargetProperty="RenderTransform.ScaleY"
+                                                         To="1" />
+                                        <DoubleAnimation Storyboard.TargetName="PART_FeedbackElement"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="{StaticResource RippleOpacity}" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="MouseOut">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="PART_FeedbackElement" Storyboard.TargetProperty="RenderTransform.ScaleX" To="0" />
-                                        <DoubleAnimation Storyboard.TargetName="PART_FeedbackElement" Storyboard.TargetProperty="RenderTransform.ScaleY" To="0" />
-                                        <DoubleAnimation Storyboard.TargetName="PART_FeedbackElement" Storyboard.TargetProperty="Opacity" To="0" />
+                                        <DoubleAnimation Storyboard.TargetName="PART_FeedbackElement"
+                                                         Storyboard.TargetProperty="RenderTransform.ScaleX"
+                                                         To="0" />
+                                        <DoubleAnimation Storyboard.TargetName="PART_FeedbackElement"
+                                                         Storyboard.TargetProperty="RenderTransform.ScaleY"
+                                                         To="0" />
+                                        <DoubleAnimation Storyboard.TargetName="PART_FeedbackElement"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0" />
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -386,7 +410,9 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Grid>
-                        <mat:Shadow Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding mat:MaterialAssist.CornerRadius}" ShadowDepth="{TemplateBinding mat:MaterialAssist.ShadowDepth}" />
+                        <mat:Shadow Background="{TemplateBinding Background}"
+                                    CornerRadius="{TemplateBinding mat:MaterialAssist.CornerRadius}"
+                                    ShadowDepth="{TemplateBinding mat:MaterialAssist.ShadowDepth}" />
                         <Border x:Name="BorderVisual"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
@@ -520,7 +546,9 @@
             <Setter.Value>
                 <ControlTemplate TargetType="RepeatButton">
                     <Grid>
-                        <mat:Shadow Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding mat:MaterialAssist.CornerRadius}" ShadowDepth="{TemplateBinding mat:MaterialAssist.ShadowDepth}" />
+                        <mat:Shadow Background="{TemplateBinding Background}"
+                                    CornerRadius="{TemplateBinding mat:MaterialAssist.CornerRadius}"
+                                    ShadowDepth="{TemplateBinding mat:MaterialAssist.ShadowDepth}" />
                         <Border x:Name="BorderVisual"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
@@ -643,7 +671,9 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RadioButton">
-                    <Grid x:Name="templateRoot" Background="Transparent" UseLayoutRounding="True">
+                    <Grid x:Name="templateRoot"
+                          Background="Transparent"
+                          UseLayoutRounding="True">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
@@ -955,7 +985,9 @@
             <Run Text="{StaticResource GlyphArrow60Right}" />
         </TextBlock>
     </DataTemplate>
-    <Style x:Key="RepeatButtonLineBaseStyle" BasedOn="{StaticResource RepeatButtonStyle}" TargetType="RepeatButton">
+    <Style x:Key="RepeatButtonLineBaseStyle"
+           BasedOn="{StaticResource RepeatButtonStyle}"
+           TargetType="RepeatButton">
         <Setter Property="Background" Value="{telerik1:MaterialResource ResourceKey=AlternativeBrush}" />
         <Setter Property="BorderBrush" Value="{telerik1:MaterialResource ResourceKey=MainBrush}" />
         <Setter Property="BorderThickness" Value="0" />
@@ -978,13 +1010,19 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="RepeatButtonLineUpStyle" BasedOn="{StaticResource RepeatButtonLineBaseStyle}" TargetType="RepeatButton">
+    <Style x:Key="RepeatButtonLineUpStyle"
+           BasedOn="{StaticResource RepeatButtonLineBaseStyle}"
+           TargetType="RepeatButton">
         <Setter Property="ContentTemplate" Value="{StaticResource RepeatButtonLineUpTemplate}" />
     </Style>
-    <Style x:Key="RepeatButtonLineDownStyle" BasedOn="{StaticResource RepeatButtonLineBaseStyle}" TargetType="RepeatButton">
+    <Style x:Key="RepeatButtonLineDownStyle"
+           BasedOn="{StaticResource RepeatButtonLineBaseStyle}"
+           TargetType="RepeatButton">
         <Setter Property="ContentTemplate" Value="{StaticResource RepeatButtonLineDownTemplate}" />
     </Style>
-    <Style x:Key="RepeatButtonLineLeftStyle" BasedOn="{StaticResource RepeatButtonLineBaseStyle}" TargetType="RepeatButton">
+    <Style x:Key="RepeatButtonLineLeftStyle"
+           BasedOn="{StaticResource RepeatButtonLineBaseStyle}"
+           TargetType="RepeatButton">
         <Setter Property="ContentTemplate" Value="{StaticResource RepeatButtonLineLeftTemplate}" />
         <Style.Triggers>
             <Trigger Property="FlowDirection" Value="RightToLeft">
@@ -992,7 +1030,9 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="RepeatButtonLineRightStyle" BasedOn="{StaticResource RepeatButtonLineBaseStyle}" TargetType="RepeatButton">
+    <Style x:Key="RepeatButtonLineRightStyle"
+           BasedOn="{StaticResource RepeatButtonLineBaseStyle}"
+           TargetType="RepeatButton">
         <Setter Property="ContentTemplate" Value="{StaticResource RepeatButtonLineRightTemplate}" />
         <Style.Triggers>
             <Trigger Property="FlowDirection" Value="RightToLeft">
@@ -1063,10 +1103,14 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="ThumbHorizontalStyle" BasedOn="{StaticResource ThumbBaseStyle}" TargetType="Thumb">
+    <Style x:Key="ThumbHorizontalStyle"
+           BasedOn="{StaticResource ThumbBaseStyle}"
+           TargetType="Thumb">
         <Setter Property="Height" Value="13" />
     </Style>
-    <Style x:Key="ThumbVerticalStyle" BasedOn="{StaticResource ThumbBaseStyle}" TargetType="Thumb">
+    <Style x:Key="ThumbVerticalStyle"
+           BasedOn="{StaticResource ThumbBaseStyle}"
+           TargetType="Thumb">
         <Setter Property="Width" Value="13" />
     </Style>
     <Style x:Key="RepeatButtonBlankStyle" TargetType="RepeatButton">
@@ -1094,7 +1138,9 @@
                     BorderThickness="{TemplateBinding BorderThickness}"
                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
             <RepeatButton Command="{x:Static ScrollBar.LineLeftCommand}" Style="{StaticResource RepeatButtonLineLeftStyle}" />
-            <Track Name="PART_Track" Grid.Column="1" Orientation="Horizontal">
+            <Track Name="PART_Track"
+                   Grid.Column="1"
+                   Orientation="Horizontal">
                 <Track.Resources>
                     <sys:Double x:Key="{x:Static SystemParameters.HorizontalScrollBarButtonWidthKey}">17</sys:Double>
                 </Track.Resources>
@@ -1108,7 +1154,9 @@
                     <Thumb Style="{StaticResource ThumbHorizontalStyle}" />
                 </Track.Thumb>
             </Track>
-            <RepeatButton Grid.Column="2" Command="{x:Static ScrollBar.LineRightCommand}" Style="{StaticResource RepeatButtonLineRightStyle}" />
+            <RepeatButton Grid.Column="2"
+                          Command="{x:Static ScrollBar.LineRightCommand}"
+                          Style="{StaticResource RepeatButtonLineRightStyle}" />
         </Grid>
     </ControlTemplate>
     <ControlTemplate x:Key="ScrollBarVerticalControlTemplate" TargetType="{x:Type ScrollBar}">
@@ -1124,8 +1172,12 @@
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-            <RepeatButton Command="{x:Static ScrollBar.LineUpCommand}" Content="Up" Style="{StaticResource RepeatButtonLineUpStyle}" />
-            <Track Name="PART_Track" Grid.Row="1" IsDirectionReversed="True">
+            <RepeatButton Command="{x:Static ScrollBar.LineUpCommand}"
+                          Content="Up"
+                          Style="{StaticResource RepeatButtonLineUpStyle}" />
+            <Track Name="PART_Track"
+                   Grid.Row="1"
+                   IsDirectionReversed="True">
                 <Track.Resources>
                     <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarButtonHeightKey}">17</sys:Double>
                 </Track.Resources>
@@ -1139,7 +1191,9 @@
                     <Thumb Style="{StaticResource ThumbVerticalStyle}" />
                 </Track.Thumb>
             </Track>
-            <RepeatButton Grid.Row="2" Command="{x:Static ScrollBar.LineDownCommand}" Style="{StaticResource RepeatButtonLineDownStyle}" />
+            <RepeatButton Grid.Row="2"
+                          Command="{x:Static ScrollBar.LineDownCommand}"
+                          Style="{StaticResource RepeatButtonLineDownStyle}" />
         </Grid>
     </ControlTemplate>
     <Style x:Key="ScrollBarStyle" TargetType="{x:Type ScrollBar}">
@@ -1243,7 +1297,9 @@
                                     BorderThickness="{TemplateBinding BorderThickness}"
                                     ShadowDepth="{TemplateBinding mat:MaterialAssist.ShadowDepth}"
                                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                        <ContentPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        <ContentPresenter Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -1639,8 +1695,12 @@
             <Setter.Value>
                 <ControlTemplate TargetType="ListBox">
                     <Grid>
-                        <mat:Shadow Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding mat:MaterialAssist.CornerRadius}" ShadowDepth="{TemplateBinding mat:MaterialAssist.ShadowDepth}" />
-                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding mat:MaterialAssist.CornerRadius}">
+                        <mat:Shadow Background="{TemplateBinding Background}"
+                                    CornerRadius="{TemplateBinding mat:MaterialAssist.CornerRadius}"
+                                    ShadowDepth="{TemplateBinding mat:MaterialAssist.ShadowDepth}" />
+                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{TemplateBinding mat:MaterialAssist.CornerRadius}">
                             <ScrollViewer x:Name="ScrollViewer"
                                           Margin="0,8"
                                           Padding="{TemplateBinding Padding}"
@@ -1676,7 +1736,9 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type CheckBox}">
-                    <Grid x:Name="templateRoot" Background="Transparent" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                    <Grid x:Name="templateRoot"
+                          Background="Transparent"
+                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
@@ -1964,7 +2026,9 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Separator">
-                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" />
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -2053,7 +2117,9 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="GridSplitter">
-                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
                         <TextBlock x:Name="grip"
                                    Margin="{TemplateBinding Padding}"
                                    HorizontalAlignment="Center"

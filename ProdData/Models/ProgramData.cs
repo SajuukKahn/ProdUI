@@ -6,27 +6,29 @@ namespace ProdData.Models
 {
     public class ProgramData
     {
-        public ProgramData(BitmapImage? productImage, string programName, string productRelationship, string programCreator)
-        {
-            ProductImage = productImage;
-            ProgramName = programName;
-            ProductRelationship = productRelationship;
-            ProgramCreator = programCreator;
-        }
-
+        public TimeSpan AverageCycleTime { get; set; }
+        public Barcode Barcode { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public Size Dimensions { get; set; }
+        public long HistoricalCycles { get; set; }
+        public DateTime LastEditDate { get; set; }
         public BitmapImage? ProductImage { get; set; }
-
-        public string ProductRelationship { get; set; }
+        public string ProductName { get; set; }
         public string ProgramCreator { get; set; }
         public string ProgramName { get; set; }
-        public Rect Dimensions { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime LastEditDate { get; set; }
-        public long HistoricalCycles { get; set; }
-        public double AverageCycleTime { get; set; }
         public string[] ToolsUsed { get; set; }
-        public string[] Attributes { get; set; }
-        public bool IsFavorite { get; set; }
-        public bool IsShared { get; set; }
+        public bool UserCanStartPlayback { get; set; }
+        public bool AutoStartPlayback { get; set; }
+
+
+        public void UpdateAverageCycleTime(TimeSpan newestCycleTime)
+        {
+            AverageCycleTime = new TimeSpan().Add(AverageCycleTime.Add(newestCycleTime)).Divide(2);
+        }
+
+        public void UpdateLastEditeDate()
+        {
+            LastEditDate = DateTime.Now;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Prism.Mvvm;
 using ProdData.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Windows.Media;
 
@@ -9,11 +10,26 @@ namespace ProdData.Models
     {
         private bool _breakOnError;
 
+        private int _cardStepIndex;
         private List<CardSubStep> _cardSubSteps = new List<CardSubStep>();
 
-        private Timer _cardTime = new Timer();
+        private Timer _cardTime;
 
         private bool _isActiveStep;
+
+        private ModalData? _stepModalData;
+
+        public ModalData? StepModalData
+        {
+            get
+            {
+                return _stepModalData;
+            }
+            set
+            {
+                SetProperty(ref _stepModalData, value);
+            }
+        }
 
         private bool _stepComplete;
 
@@ -23,6 +39,15 @@ namespace ProdData.Models
 
         private string _stepTitle;
 
+        public void Initialize()
+        {
+            StepStatus = StepStatus.Waiting;
+            StepComplete = false;
+            IsActiveStep = false;
+            CardTime.Reset();
+            CardStepIndex = 0;
+        }
+
         public Card(ImageSource? imageSource = null, bool isActiveStep = false, bool stepComplete = false, string stepTitle = "No Data")
         {
             StepImage = imageSource;
@@ -30,6 +55,7 @@ namespace ProdData.Models
             StepComplete = stepComplete;
             StepTitle = stepTitle;
             StepStatus = StepStatus.Waiting;
+            CardTime = new Timer();
         }
 
         public bool BreakOnError
@@ -41,6 +67,18 @@ namespace ProdData.Models
             set
             {
                 SetProperty(ref _breakOnError, value);
+            }
+        }
+
+        public int CardStepIndex
+        {
+            get
+            {
+                return _cardStepIndex;
+            }
+            set
+            {
+                SetProperty(ref _cardStepIndex, value);
             }
         }
 
@@ -126,6 +164,31 @@ namespace ProdData.Models
             {
                 SetProperty(ref _stepTitle, value);
             }
+        }
+
+        public int SubStepCount
+        {
+            get
+            {
+                return CardSubSteps.Count;
+            }
+        }
+
+        public override string ToString()
+        {
+            string s = "";
+            s += StepTitle + ",";
+            s += CardTime.ElapsedTime + ",";
+            s += StepStatus + ",";
+
+            foreach (CardSubStep sub in CardSubSteps)
+            {
+                s += sub.SubStepName;
+                s += "(" + string.Join(' ', sub.SubStepData) + ")";
+                s += "  ";
+            }
+
+            return s;
         }
     }
 }

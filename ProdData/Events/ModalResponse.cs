@@ -3,7 +3,7 @@ using ProdData.Models;
 
 namespace ProdData.Events
 {
-    public class RaiseError : PubSubEvent
+    public class ModalResponse : PubSubEvent<ModalResponseData>
     {
     }
 }

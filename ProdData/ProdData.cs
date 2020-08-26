@@ -22,6 +22,10 @@ namespace ProdData
             region = _regionManager.Regions["ProgramSelectRegion"];
             var view2 = containerProvider.Resolve<Views.ProgramSelectView>();
             region.Add(view2);
+
+            region = _regionManager.Regions["ProdModalRegion"];
+            var view3 = containerProvider.Resolve<Views.ProdModalDialogView>();
+            region.Add(view3);
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)

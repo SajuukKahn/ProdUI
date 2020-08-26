@@ -13,12 +13,10 @@ namespace ProdData.ViewModels
     {
         private bool _canCancel;
         private bool _canConfirm;
-        private bool _debugEnabled = true;
-        private IEventAggregator _eventAggregator;
+        private readonly IEventAggregator _eventAggregator;
         private ProgramData? _oldSelectedProgramData;
         private ObservableCollection<ProgramData> _programList = new ObservableCollection<ProgramData>();
         private bool _programReqestOpen;
-
         private bool _requestAwaiting = true;
         private ProgramData _selectedProgramData;
 
@@ -109,40 +107,30 @@ namespace ProdData.ViewModels
 
         private void CancelProgramChange()
         {
-            DebugLogCaller();
+            
             CleanInstance();
         }
 
         private void CleanInstance()
         {
-            DebugLogCaller();
+            
             CanConfirm = false;
             CanCancel = false;
             ProgramRequestOpen = false;
             _oldSelectedProgramData = null;
-            SelectedProgramData = null;
         }
 
         private void ConfirmProgramChange()
         {
-            DebugLogCaller();
+            
             _eventAggregator.GetEvent<ProgramSelectResponse>().Publish(SelectedProgramData);
             _eventAggregator.GetEvent<ProgramDataRequest>().Publish(SelectedProgramData);
             CleanInstance();
         }
 
-        private void DebugLogCaller([CallerMemberName] string caller = null)
-        {
-            if (!_debugEnabled)
-            {
-                return;
-            }
-            Debug.WriteLine(this.ToString() + "\t|\t" + caller);
-        }
-
         private void HandleProgramNamesResponse(ObservableCollection<ProgramData> publishedProgramList)
         {
-            DebugLogCaller();
+            
             _programList.Clear();
             ProgramList = publishedProgramList;
             RequestAwaiting = false;
@@ -150,7 +138,7 @@ namespace ProdData.ViewModels
 
         private void HandleProgramSelectRequest(ProgramData oldProgramData)
         {
-            DebugLogCaller();
+            
             _oldSelectedProgramData = oldProgramData;
             if (_oldSelectedProgramData != null)
             {
@@ -162,7 +150,7 @@ namespace ProdData.ViewModels
 
         private void RequestPrograms()
         {
-            DebugLogCaller();
+            
             if (_programList.Count < 1)
             {
                 _eventAggregator.GetEvent<ProgramNamesRequest>().Publish();
@@ -172,11 +160,6 @@ namespace ProdData.ViewModels
         private void SetCanConfirm()
         {
             CanConfirm = true;
-        }
-
-        private void VerifyChange()
-        {
-            DebugLogCaller();
         }
     }
 }

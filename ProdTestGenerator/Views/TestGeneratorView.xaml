@@ -22,40 +22,47 @@
 
     <UniformGrid Columns="2">
 
-        <telerik:RadButton Margin="3" Command="{Binding Path=StartButton}">
+        <Button Margin="3" Command="{Binding Path=StartButton}">
             <StackPanel Orientation="Horizontal">
                 <telerik:Label Content="Start Program" />
                 <telerik:RadGlyph Glyph="{StaticResource GlyphPlay}" />
             </StackPanel>
-        </telerik:RadButton>
+        </Button>
 
-        <telerik:RadButton Margin="3" Command="{Binding Path=PauseButton}">
+        <Button Margin="3" Command="{Binding Path=PauseButton}">
             <StackPanel Orientation="Horizontal">
                 <telerik:Label Content="Pause Program" />
                 <telerik:RadGlyph Glyph="{StaticResource GlyphPause}" />
             </StackPanel>
-        </telerik:RadButton>
+        </Button>
 
-        <telerik:RadButton Margin="3" Command="{Binding Path=ChangeProgram}">
+        <Button Margin="3" Command="{Binding Path=ChangeProgram}">
             <StackPanel Orientation="Horizontal">
                 <telerik:Label Content="Change Program" />
                 <telerik:RadGlyph Glyph="{StaticResource GlyphReset}" />
             </StackPanel>
-        </telerik:RadButton>
+        </Button>
 
-        <telerik:RadButton Margin="3" Command="{Binding Path=ChangeProcessImage}">
+        <Button Margin="3" Command="{Binding Path=ChangeProcessImage}">
             <StackPanel Orientation="Horizontal">
                 <telerik:Label Content="Change Image" />
                 <telerik:RadGlyph Glyph="{StaticResource GlyphImageEdit}" />
             </StackPanel>
-        </telerik:RadButton>
+        </Button>
 
-        <telerik:RadButton Margin="3" Command="{Binding Path=ThrowError}">
+        <Button Margin="3" Command="{Binding Path=ThrowError}">
             <StackPanel Orientation="Horizontal">
-                <telerik:Label Content="Throw Error" />
+                <telerik:Label Content="Generic Error" />
                 <telerik:RadGlyph Glyph="{StaticResource GlyphWarning}" />
             </StackPanel>
-        </telerik:RadButton>
+        </Button>
+
+        <Button Margin="3" Command="{Binding Path=ThrowCardError}">
+            <StackPanel Orientation="Horizontal">
+                <telerik:Label Content="Throw Card Error" />
+                <telerik:RadGlyph Glyph="{StaticResource GlyphWarning}" />
+            </StackPanel>
+        </Button>
 
     </UniformGrid>
 </UserControl>
