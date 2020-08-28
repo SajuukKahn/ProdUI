@@ -3,10 +3,11 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWpf>true</UseWpf>
+	  <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ProdData\ProdData.csproj" />
+    <ProjectReference Include="..\ProductionCore\ProductionCore.csproj" />
   </ItemGroup>
 
   <ItemGroup>

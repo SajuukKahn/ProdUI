@@ -1,23 +1,24 @@
 ﻿using Prism.Events;
-using ProdData.Events;
-using ProdData.Models;
-using ProdData.ViewModels;
+using Prism.Ioc;
+using ProductionCore.Events;
+using ProductionCore.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using ProductionCore.Concrete;
 
 namespace ProdTestGenerator
 {
     public class TestGeneratorSingleton
     {
         private readonly IEventAggregator _eventAggregator;
+        //private readonly IContainerProvider _containerProvider;
 
         private readonly int _scaleDataSet = 1;
         private CancellationTokenSource _programCancellationTokenSource;
@@ -39,7 +40,7 @@ namespace ProdTestGenerator
             _eventAggregator.GetEvent<ProductImageChangeRequest>().Subscribe(FulfillProcessDisplayChangeRequest);
             _eventAggregator.GetEvent<ProgramNamesRequest>().Subscribe(RequestProgramNamesReceived);
             _eventAggregator.GetEvent<ProgramDataRequest>().Subscribe(RequestProgramDataReceived);
-            _eventAggregator.GetEvent<ProgramDataSaveRequest>().Subscribe(RequestProgramDataSaveReceived);
+            //_eventAggregator.GetEvent<ProgramDataSaveRequest>().Subscribe(RequestProgramDataSaveReceived);
             _eventAggregator.GetEvent<ModalEvent>().Subscribe((m) => ModalHandle(true));
             _eventAggregator.GetEvent<ModalResponse>().Subscribe((m) => ModalHandle(false));
         }
@@ -243,6 +244,7 @@ namespace ProdTestGenerator
 
         private Barcode GenerateBarcodeSometimes()
         {
+            //var barcode = _containerProvider.Resolve<IBarcode>();
             Barcode barcode = new Barcode();
             if (new Random().Next(0, 4) == 1)
             {
@@ -323,39 +325,40 @@ namespace ProdTestGenerator
             _eventAggregator.GetEvent<ProgramDataResponse>().Publish(GenerateRandom(programData));
         }
 
-        private void RequestProgramDataSaveReceived(ProdDataViewModel prodData)
-        {
-            string filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            string fileName = prodData.SelectedProgramData.ProgramName +
-                                "Run#" + prodData.SelectedProgramData.HistoricalCycles + "_Completed" +
-                                DateTime.Now.ToString("yyyy-MM-d--HH-mm-ss") + ".csv";
-            string outputPath = Path.Combine(filePath, fileName);
+        //private void RequestProgramDataSaveReceived()
+        //{
+        //    var prodData = _containerProvider.Resolve<IProdDataViewModel>(nameof(IProdDataViewModel));
+        //    string filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+        //    string fileName = prodData.SelectedProgramData.ProgramName +
+        //                        "Run#" + prodData.SelectedProgramData.HistoricalCycles + "_Completed" +
+        //                        DateTime.Now.ToString("yyyy-MM-d--HH-mm-ss") + ".csv";
+        //    string outputPath = Path.Combine(filePath, fileName);
 
-            TextWriter sw = new StreamWriter(outputPath);
+        //    TextWriter sw = new StreamWriter(outputPath);
 
-            sw.WriteLine(
-                nameof(prodData.SelectedProgramData.ProgramName) + "," +
-                nameof(prodData.SelectedProgramData.ProductName) + "," +
-                nameof(prodData.SelectedProgramData.ProgramCreator) + "," +
-                nameof(prodData.SelectedProgramData.AverageCycleTime) + "," +
-                nameof(prodData.SelectedProgramData.HistoricalCycles) + ",");
+        //    sw.WriteLine(
+        //        nameof(prodData.SelectedProgramData.ProgramName) + "," +
+        //        nameof(prodData.SelectedProgramData.ProductName) + "," +
+        //        nameof(prodData.SelectedProgramData.ProgramCreator) + "," +
+        //        nameof(prodData.SelectedProgramData.AverageCycleTime) + "," +
+        //        nameof(prodData.SelectedProgramData.HistoricalCycles) + ",");
 
-            sw.WriteLine(
-                prodData.SelectedProgramData.ProgramName + "," +
-                prodData.SelectedProgramData.ProductName + "," +
-                prodData.SelectedProgramData.ProgramCreator + "," +
-                prodData.SelectedProgramData.AverageCycleTime + "," +
-                prodData.SelectedProgramData.HistoricalCycles + ",");
+        //    sw.WriteLine(
+        //        prodData.SelectedProgramData.ProgramName + "," +
+        //        prodData.SelectedProgramData.ProductName + "," +
+        //        prodData.SelectedProgramData.ProgramCreator + "," +
+        //        prodData.SelectedProgramData.AverageCycleTime + "," +
+        //        prodData.SelectedProgramData.HistoricalCycles + ",");
 
-            sw.WriteLine("Title,Time,Status,Sub Steps");
+        //    sw.WriteLine("Title,Time,Status,Sub Steps");
 
-            foreach (Card card in prodData.CardCollection)
-            {
-                sw.WriteLine(card.ToString());
-            }
-            _eventAggregator.GetEvent<ProgramDataSaveResponse>().Publish();
-            sw.Close();
-        }
+        //    foreach (Card card in prodData.CardCollection)
+        //    {
+        //        sw.WriteLine(card.ToString());
+        //    }
+        //    _eventAggregator.GetEvent<ProgramDataSaveResponse>().Publish();
+        //    sw.Close();
+        //}
 
         private void RequestProgramNamesReceived()
         {

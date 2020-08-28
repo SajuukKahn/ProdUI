@@ -1,7 +1,7 @@
 ﻿using Prism.Events;
 using Prism.Mvvm;
-using ProdData.Events;
-using ProdData.Models;
+using ProductionCore.Events;
+using ProductionCore.Concrete;
 using System;
 using System.Windows.Media.Imaging;
 using Telerik.Windows.Controls;

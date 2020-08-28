@@ -1,6 +1,5 @@
-﻿using ProdData.Models;
+﻿using ProductionCore.Concrete;
 using System;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using Telerik.Windows.Controls;

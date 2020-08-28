@@ -1,6 +1,8 @@
 ﻿using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
+using ProdData.ViewModels;
+using ProductionCore.Interfaces;
 
 namespace ProdData
 {
@@ -12,6 +14,7 @@ namespace ProdData
         {
             _regionManager = regionManager;
         }
+
 
         public void OnInitialized(IContainerProvider containerProvider)
         {

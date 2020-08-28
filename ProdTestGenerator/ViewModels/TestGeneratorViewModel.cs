@@ -1,8 +1,8 @@
 ﻿using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
-using ProdData.Events;
-using ProdData.Models;
+using ProductionCore.Concrete;
+using ProductionCore.Events;
 using System;
 
 namespace ProdTestGenerator.ViewModels

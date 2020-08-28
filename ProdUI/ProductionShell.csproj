@@ -1,17 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
+    <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <StartupObject></StartupObject>
 	  <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy &quot;$(TargetDir)$(TargetName)*$(TargetExt)&quot; &quot;$(SolutionDir)$(SolutionName)\bin\Debug\netcoreapp3.1\Modules\&quot; /Y /S" />
-  </Target>
-
   <ItemGroup>
-    <ProjectReference Include="..\ProductionCore\ProductionCore.csproj" />
+    <Compile Remove="Lib\**" />
+    <Compile Remove="ViewModels\**" />
+    <EmbeddedResource Remove="Lib\**" />
+    <EmbeddedResource Remove="ViewModels\**" />
+    <None Remove="Lib\**" />
+    <None Remove="ViewModels\**" />
+    <Page Remove="Lib\**" />
+    <Page Remove="ViewModels\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,8 +41,20 @@
     <Reference Include="Telerik.Windows.Controls.Data">
       <HintPath>..\Lib\Telerik.Windows.Controls.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Telerik.Windows.Controls.DataVisualization">
+      <HintPath>..\Lib\Telerik.Windows.Controls.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Diagrams">
+      <HintPath>..\Lib\Telerik.Windows.Controls.Diagrams.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Diagrams.Extensions">
+      <HintPath>..\Lib\Telerik.Windows.Controls.Diagrams.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="Telerik.Windows.Controls.Docking">
       <HintPath>..\Lib\Telerik.Windows.Controls.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Expressions">
+      <HintPath>..\Lib\Telerik.Windows.Controls.Expressions.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Controls.GridView">
       <HintPath>..\Lib\Telerik.Windows.Controls.GridView.dll</HintPath>
@@ -72,10 +89,6 @@
     <Reference Include="Unity.Container">
       <HintPath>..\Lib\Unity.Container.dll</HintPath>
     </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

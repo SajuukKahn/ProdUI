@@ -16,7 +16,7 @@
 
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Telerik.Windows.Controls;component/Themes/FontResources.xaml" />
-                <ResourceDictionary Source="/ProdUI;component/Themes/Telerik.Windows.Controls.GridView.xaml" />
+                <ResourceDictionary Source="/ProductionShell;component/Themes/Telerik.Windows.Controls.GridView.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <telerik:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <telerik:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />

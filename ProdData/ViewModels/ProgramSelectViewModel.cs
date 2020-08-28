@@ -1,13 +1,13 @@
 ﻿using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
-using ProdData.Events;
-using ProdData.Models;
+using ProductionCore.Concrete;
+using ProductionCore.Events;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
-namespace ProdData.ViewModels
+namespace ProductionCore.ViewModels
 {
     internal class ProgramSelectViewModel : BindableBase
     {
@@ -16,7 +16,7 @@ namespace ProdData.ViewModels
         private readonly IEventAggregator _eventAggregator;
         private ProgramData? _oldSelectedProgramData;
         private ObservableCollection<ProgramData> _programList = new ObservableCollection<ProgramData>();
-        private bool _programReqestOpen;
+        private bool _programReqestOpen = false;
         private bool _requestAwaiting = true;
         private ProgramData _selectedProgramData;
 
