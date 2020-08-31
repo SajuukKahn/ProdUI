@@ -14,13 +14,14 @@ namespace ProdData.Converters
             {
                 string[] vs = (string[])value;
                 string delimiter = ", ";
-                if(parameter!=null && parameter.GetType() == typeof(string))
+                if(parameter != null && parameter.GetType() == typeof(string))
                 {
-                    delimiter = parameter.ToString();
+                    string s = (string)parameter ?? "";
+                    delimiter = s;
                 }
                 return string.Join(delimiter, vs);
             }
-            return null;
+            return "";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

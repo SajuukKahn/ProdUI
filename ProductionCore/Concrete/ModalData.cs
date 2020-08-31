@@ -13,7 +13,7 @@ namespace ProductionCore.Concrete
                          bool isError = true,
                          string? instructions = null,
                          BitmapImage? instructionImage = null,
-                         RadGlyph customButtonGlyph = null,
+                         RadGlyph? customButtonGlyph = null,
                          Card? card = null,
                          string? customButtonText = null)
         {
@@ -35,6 +35,6 @@ namespace ProductionCore.Concrete
         public RadGlyph? CustomButtonGlyph { get; set; }
         public string? CustomButtonText { get; set; }
         public BitmapImage? InstructionImage { get; set; }
-        public string Instructions { get; set; }
+        public string? Instructions { get; set; }
     }
 }

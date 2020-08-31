@@ -29,8 +29,6 @@ namespace ProdTestGenerator.ViewModels
 
         public DelegateCommand PauseButton { get; set; }
 
-        public DelegateCommand RunProgram { get; set; }
-
         public DelegateCommand StartButton { get; set; }
 
         public DelegateCommand ThrowError { get; set; }

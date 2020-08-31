@@ -24,18 +24,18 @@ namespace ProdData.Extensions
 
         private void PropChangedEventHandler(object s, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(RadCarousel.CurrentItem))
+            if (e.PropertyName == nameof(RadCarousel.CurrentItem) && !s.Equals(null))
             {
-                RadCarousel radCarousel = s as RadCarousel;
+                RadCarousel radCarousel = (RadCarousel)s;
                 Dispatcher.BeginInvoke(new Action(() => { radCarousel.FindCarouselPanel().BringDataItemIntoView(radCarousel.CurrentItem); }), DispatcherPriority.Render);
             }
         }
 
         private void SnapToCurrentItem(object s, DependencyPropertyChangedEventArgs e)
         {
-            if (e.NewValue.Equals(false))
+            if (e.NewValue.Equals(false) && !s.Equals(null))
             {
-                RadCarousel radCarousel = s as RadCarousel;
+                RadCarousel radCarousel = (RadCarousel)s;
                 Dispatcher.BeginInvoke(new Action(() => { radCarousel.FindCarouselPanel().BringDataItemIntoView(radCarousel.CurrentItem); }), DispatcherPriority.Render);
             }
         }

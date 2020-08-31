@@ -12,26 +12,25 @@ namespace ProductionCore.Concrete
         private int _cardStepIndex;
         private List<CardSubStep> _cardSubSteps = new List<CardSubStep>();
 
-        private Timer _cardTime;
+        private Timer _cardTime = new Timer();
 
         private bool _isActiveStep;
 
         private bool _stepComplete;
-        private ImageSource _stepImage;
+        private ImageSource? _stepImage;
         private ModalData? _stepModalData;
 
-        private StepStatus _stepStatus;
+        private StepStatus _stepStatus = StepStatus.Waiting;
 
-        private string _stepTitle;
+        private string? _stepTitle;
 
-        public Card(ImageSource? imageSource = null, bool isActiveStep = false, bool stepComplete = false, string stepTitle = "No Data")
+        public Card(ImageSource? imageSource = null, bool isActiveStep = false, bool stepComplete = false, string stepTitle = "No Data", StepStatus? stepStatus = null)
         {
             StepImage = imageSource;
             IsActiveStep = isActiveStep;
             StepComplete = stepComplete;
             StepTitle = stepTitle;
-            StepStatus = StepStatus.Waiting;
-            CardTime = new Timer();
+            StepStatus = stepStatus ?? StepStatus.Waiting;
         }
 
         public bool BreakOnError
@@ -142,7 +141,7 @@ namespace ProductionCore.Concrete
             }
         }
 
-        public string StepTitle
+        public string? StepTitle
         {
             get
             {

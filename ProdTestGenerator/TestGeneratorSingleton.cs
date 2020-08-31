@@ -21,7 +21,7 @@ namespace ProdTestGenerator
         //private readonly IContainerProvider _containerProvider;
 
         private readonly int _scaleDataSet = 1;
-        private CancellationTokenSource _programCancellationTokenSource;
+        private CancellationTokenSource? _programCancellationTokenSource;
 
         private CancellationToken _programCancelToken;
 
@@ -50,9 +50,9 @@ namespace ProdTestGenerator
             _modalRaised = tf;
          }
 
-        public ObservableCollection<Card> GenerateRandom(ProgramData programData)
+        public ObservableCollection<Card?> GenerateRandom(ProgramData? programData)
         {
-            ObservableCollection<Card> cardDeck = new ObservableCollection<Card>();
+            ObservableCollection<Card?> cardDeck = new ObservableCollection<Card?>();
             string[] TitleArray =
             {
                 "PolyLine 3D",
@@ -69,7 +69,7 @@ namespace ProdTestGenerator
 
             BitmapImage? image = new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\FID.bmp", UriKind.RelativeOrAbsolute));
 
-            if(programData.ProgramName == "Manual Placement Simulation")
+            if(programData?.ProgramName == "Manual Placement Simulation")
             {
                 List<CardSubStep> steplist = new List<CardSubStep>
             {
@@ -320,7 +320,7 @@ namespace ProdTestGenerator
             return new string[] { new Random().Next(-20000, 200000).ToString(), new Random().Next(-20000, 200000).ToString(), new Random().Next(-9000, 100000).ToString() };
         }
 
-        private void RequestProgramDataReceived(ProgramData programData)
+        private void RequestProgramDataReceived(ProgramData? programData)
         {
             _eventAggregator.GetEvent<ProgramDataResponse>().Publish(GenerateRandom(programData));
         }

@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
-namespace ProductionCore.ViewModels
+namespace ProdData.ViewModels
 {
     internal class ProgramSelectViewModel : BindableBase
     {
@@ -18,7 +18,7 @@ namespace ProductionCore.ViewModels
         private ObservableCollection<ProgramData> _programList = new ObservableCollection<ProgramData>();
         private bool _programReqestOpen = false;
         private bool _requestAwaiting = true;
-        private ProgramData _selectedProgramData;
+        private ProgramData? _selectedProgramData;
 
         public ProgramSelectViewModel(IEventAggregator eventAggregator)
         {
@@ -93,7 +93,7 @@ namespace ProductionCore.ViewModels
             }
         }
 
-        public ProgramData SelectedProgramData
+        public ProgramData? SelectedProgramData
         {
             get
             {
@@ -136,7 +136,7 @@ namespace ProductionCore.ViewModels
             RequestAwaiting = false;
         }
 
-        private void HandleProgramSelectRequest(ProgramData oldProgramData)
+        private void HandleProgramSelectRequest(ProgramData? oldProgramData)
         {
             
             _oldSelectedProgramData = oldProgramData;

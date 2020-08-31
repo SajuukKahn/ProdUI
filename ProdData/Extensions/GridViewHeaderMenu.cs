@@ -11,7 +11,7 @@ namespace ProdData.Extensions
 {
     public class GridViewHeaderMenu
     {
-        private readonly RadGridView grid = null;
+        private readonly RadGridView grid;
 
         public GridViewHeaderMenu(RadGridView grid)
         {
@@ -34,8 +34,7 @@ namespace ProdData.Extensions
 
         private static void OnIsEnabledPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
         {
-            RadGridView grid = dependencyObject as RadGridView;
-            if (grid != null)
+            if (dependencyObject is RadGridView grid)
             {
                 if ((bool)e.NewValue)
                 {
@@ -79,38 +78,48 @@ namespace ProdData.Extensions
                     item.Header = String.Format(@"Sort Ascending by ""{0}""", insertString);
                     menu.Items.Add(item);
 
-                    item = new RadMenuItem();
-                    item.Header = String.Format(@"Sort Descending by ""{0}""", insertString);
-                    menu.Items.Add(item);
+                    menu.Items.Add(new RadMenuItem
+                    {
+                        Header = String.Format(@"Sort Descending by ""{0}""", insertString)
+                    });
 
-                    item = new RadMenuItem();
-                    item.Header = String.Format(@"Clear Sorting by ""{0}""", insertString);
-                    menu.Items.Add(item);
+                    menu.Items.Add(new RadMenuItem
+                    {
+                        Header = String.Format(@"Clear Sorting by ""{0}""", insertString)
+                    });
 
-                    item = new RadMenuItem();
-                    item.Header = String.Format(@"Group by ""{0}""", insertString);
-                    menu.Items.Add(item);
+                    menu.Items.Add(new RadMenuItem 
+                    { 
+                        Header = String.Format(@"Group by ""{0}""", insertString)
+                    });
 
-                    item = new RadMenuItem();
-                    item.Header = String.Format(@"Ungroup ""{0}""", insertString);
-                    menu.Items.Add(item);
+                    menu.Items.Add(new RadMenuItem
+                    {
+                        Header = String.Format(@"Ungroup ""{0}""", insertString)
+                    });
 
                 }
 
-                item = new RadMenuItem();
-                item.Header = "Choose Columns:";
-                menu.Items.Add(item);
+                menu.Items.Add(new RadMenuItem
+                { 
+                    Header = "Choose Columns:"
+                });
+
                 // create menu items
                 foreach (GridViewColumn column in grid.Columns)
                 {
-                    RadMenuItem subMenu = new RadMenuItem();
-                    subMenu.Header = column.Tag ?? column.Header;
-                    subMenu.IsCheckable = true;
-                    subMenu.IsChecked = true;
+                    RadMenuItem subMenu = new RadMenuItem
+                    {
+                        Header = column.Tag ?? column.Header,
+                        IsCheckable = true,
+                        IsChecked = true
+                    };
 
-                    Binding isCheckedBinding = new Binding("IsVisible");
-                    isCheckedBinding.Mode = BindingMode.TwoWay;
-                    isCheckedBinding.Source = column;
+                    Binding isCheckedBinding = new Binding("IsVisible")
+                    {
+                        Mode = BindingMode.TwoWay,
+                        Source = column
+                    };
 
                     // bind IsChecked menu item property to IsVisible column property
                     subMenu.SetBinding(RadMenuItem.IsCheckedProperty, isCheckedBinding);
@@ -129,13 +138,22 @@ namespace ProdData.Extensions
             RadContextMenu menu = (RadContextMenu)sender;
 
             GridViewHeaderCell cell = menu.GetClickedElement<GridViewHeaderCell>();
-            RadMenuItem clickedItem = ((RadRoutedEventArgs)e).OriginalSource as RadMenuItem;
+            RadMenuItem? clickedItem = ((RadRoutedEventArgs)e).OriginalSource as RadMenuItem;
             GridViewColumn column = cell.Column;
 
-            if (clickedItem.Parent is RadMenuItem)
-                return;
+            string header = "";
 
-            string header = Convert.ToString(clickedItem.Header);
+            if (clickedItem != null)
+            {
+                if (clickedItem.Parent is RadMenuItem)
+                {
+                    return;
+                }
+                else
+                {
+                    header = (string)(clickedItem!.Header) ?? "";
+                }
+            }
 
             using (grid.DeferRefresh())
             {
@@ -143,16 +161,18 @@ namespace ProdData.Extensions
                                            where object.Equals(d.Column, column)
                                            select d).FirstOrDefault();
 
-                if (header.Contains("Sort Ascending"))
+                if (header!.Contains("Sort Ascending"))
                 {
                     if (sd != null)
                     {
                         grid.SortDescriptors.Remove(sd);
                     }
 
-                    ColumnSortDescriptor newDescriptor = new ColumnSortDescriptor();
-                    newDescriptor.Column = column;
-                    newDescriptor.SortDirection = ListSortDirection.Ascending;
+                    ColumnSortDescriptor newDescriptor = new ColumnSortDescriptor
+                    {
+                        Column = column,
+                        SortDirection = ListSortDirection.Ascending
+                    };
 
                     grid.SortDescriptors.Add(newDescriptor);
                 }
@@ -163,9 +183,11 @@ namespace ProdData.Extensions
                         grid.SortDescriptors.Remove(sd);
                     }
 
-                    ColumnSortDescriptor newDescriptor = new ColumnSortDescriptor();
-                    newDescriptor.Column = column;
-                    newDescriptor.SortDirection = ListSortDirection.Descending;
+                    ColumnSortDescriptor newDescriptor = new ColumnSortDescriptor
+                    {
+                        Column = column,
+                        SortDirection = ListSortDirection.Descending
+                    };
 
                     grid.SortDescriptors.Add(newDescriptor);
                 }
@@ -184,9 +206,11 @@ namespace ProdData.Extensions
 
                     if (gd == null)
                     {
-                        ColumnGroupDescriptor newDescriptor = new ColumnGroupDescriptor();
-                        newDescriptor.Column = column;
-                        newDescriptor.SortDirection = ListSortDirection.Ascending;
+                        ColumnGroupDescriptor newDescriptor = new ColumnGroupDescriptor
+                        {
+                            Column = column,
+                            SortDirection = ListSortDirection.Ascending
+                        };
                         grid.GroupDescriptors.Add(newDescriptor);
                     }
                 }

@@ -15,10 +15,10 @@ namespace ProdData.ViewModels
         private bool _canContinue;
         private bool _canCustom;
         private bool _canRetry;
-        private RadGlyph _customGlyph;
-        private string _customText;
+        private RadGlyph? _customGlyph;
+        private string? _customText;
         private BitmapImage? _imageSource;
-        private string _modalInstructions = "An error was thrown";
+        private string? _modalInstructions = "An error was thrown";
         private bool _modalOpenRequested;
 
         public ProdModalDialogViewModel(IEventAggregator eventAggregator)
@@ -79,7 +79,7 @@ namespace ProdData.ViewModels
             }
         }
 
-        public RadGlyph CustomGlyph
+        public RadGlyph? CustomGlyph
         {
             get
             {
@@ -91,7 +91,7 @@ namespace ProdData.ViewModels
             }
         }
 
-        public string CustomText
+        public string? CustomText
         {
             get
             {
@@ -123,7 +123,7 @@ namespace ProdData.ViewModels
             }
         }
 
-        public string ModalInstructions
+        public string? ModalInstructions
         {
             get
             {
@@ -162,7 +162,7 @@ namespace ProdData.ViewModels
             {
                 ModalInstructions = "The Step \"" + modalData.Card.StepTitle + "\" Failed at step #" + (modalData.Card.CardStepIndex + 1).ToString()
                     + Environment.NewLine + "Select an action below:";
-                ImageSource = (BitmapImage)modalData.Card.StepImage;
+                ImageSource = (BitmapImage)modalData.Card.StepImage! ?? null;
             }
             else
             {

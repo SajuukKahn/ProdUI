@@ -1,6 +1,5 @@
 ﻿using Prism.Commands;
 using Prism.Events;
-using Prism.Ioc;
 using Prism.Mvvm;
 using ProductionCore.Concrete;
 using ProductionCore.Events;
@@ -12,12 +11,11 @@ namespace ProdData.ViewModels
 {
     public class ProdDataViewModel : BindableBase, IProdDataViewModel
     {
-        private readonly IContainerProvider _containerProvider;
         private readonly IEventAggregator _eventAggregator;
         private bool _allowProgramChange = true;
 
-        private ObservableCollection<Card> _cardCollection = new ObservableCollection<Card>();
-        private Card _currentCard;
+        private ObservableCollection<Card?> _cardCollection = new ObservableCollection<Card?>();
+        private Card? _currentCard;
         private int _currentCardIndex;
         private long _cycleCount;
         private Timer _cycleTime = new Timer();
@@ -25,7 +23,7 @@ namespace ProdData.ViewModels
         private bool _playAvailable;
         private bool _playBackRunning;
         private BitmapImage? _productImage;
-        private ProgramData _selectedProgramData;
+        private ProgramData? _selectedProgramData;
 
         public ProdDataViewModel(IEventAggregator eventAggregator)
         {
@@ -33,7 +31,7 @@ namespace ProdData.ViewModels
             PlayButton = new DelegateCommand(PlayPressed).ObservesCanExecute(() => PlayAvailable);
             PauseButton = new DelegateCommand(PausePressed).ObservesCanExecute(() => PauseAvailable);
             OpenProgramSelect = new DelegateCommand(RequestProgramSelect).ObservesCanExecute(() => AllowProgramChange);
-            //_eventAggregator.GetEvent<ProgramDataResponse>().Subscribe(HandleProgramDataResponse);
+            _eventAggregator.GetEvent<ProgramDataResponse>().Subscribe(HandleProgramDataResponse);
             _eventAggregator.GetEvent<StartRequest>().Subscribe(HandleStartRequest);
             _eventAggregator.GetEvent<ProgramPaused>().Subscribe(HandlePauseConfirmation);
             _eventAggregator.GetEvent<PauseRequest>().Subscribe(HandlePauseRequest);
@@ -63,7 +61,7 @@ namespace ProdData.ViewModels
             }
         }
 
-        public ObservableCollection<Card> CardCollection
+        public ObservableCollection<Card?> CardCollection
         {
             get
             {
@@ -75,7 +73,7 @@ namespace ProdData.ViewModels
             }
         }
 
-        public Card CurrentCard
+        public Card? CurrentCard
         {
             get
             {
@@ -177,7 +175,7 @@ namespace ProdData.ViewModels
             }
         }
 
-        public ProgramData SelectedProgramData
+        public ProgramData? SelectedProgramData
         {
             get
             {
@@ -207,39 +205,39 @@ namespace ProdData.ViewModels
 
         public bool IterateSubStep()
         {
-            if (_cardCollection[CurrentCardIndex].CardStepIndex < _cardCollection[CurrentCardIndex].CardSubSteps.Count - 1)
+            if (_cardCollection[CurrentCardIndex]?.CardStepIndex < _cardCollection[CurrentCardIndex]?.CardSubSteps.Count - 1)
             {
-                _cardCollection[CurrentCardIndex].CardStepIndex++;
+                _cardCollection[CurrentCardIndex]!.CardStepIndex++;
                 return true;
             }
-            _cardCollection[CurrentCardIndex].StepStatus = StepStatus.Completed;
-            _cardCollection[CurrentCardIndex].StepComplete = true;
-            _cardCollection[CurrentCardIndex].IsActiveStep = false;
-            _cardCollection[CurrentCardIndex].CardTime.Pause();
+            _cardCollection[CurrentCardIndex]!.StepStatus = StepStatus.Completed;
+            _cardCollection[CurrentCardIndex]!.StepComplete = true;
+            _cardCollection[CurrentCardIndex]!.IsActiveStep = false;
+            _cardCollection[CurrentCardIndex]!.CardTime.Pause();
             return false;
         }
 
         public void PauseCard()
         {
-            _cardCollection[CurrentCardIndex].StepStatus = StepStatus.Paused;
-            _cardCollection[CurrentCardIndex].CardTime.Pause();
+            _cardCollection[CurrentCardIndex]!.StepStatus = StepStatus.Paused;
+            _cardCollection[CurrentCardIndex]!.CardTime.Pause();
         }
 
         public void RetryStep()
         {
-            _cardCollection[CurrentCardIndex].CardStepIndex = 0;
-            _cardCollection[CurrentCardIndex].CardTime.Reset();
-            _cardCollection[CurrentCardIndex].CardTime.Start();
+            _cardCollection[CurrentCardIndex]!.CardStepIndex = 0;
+            _cardCollection[CurrentCardIndex]!.CardTime.Reset();
+            _cardCollection[CurrentCardIndex]!.CardTime.Start();
         }
 
         public void StartCard()
         {
-            _cardCollection[CurrentCardIndex].IsActiveStep = true;
-            _cardCollection[CurrentCardIndex].StepStatus = StepStatus.Running;
-            _cardCollection[CurrentCardIndex].CardTime.Start();
-            if (_cardCollection[CurrentCardIndex].StepModalData?.IsError == false)
+            _cardCollection[CurrentCardIndex]!.IsActiveStep = true;
+            _cardCollection[CurrentCardIndex]!.StepStatus = StepStatus.Running;
+            _cardCollection[CurrentCardIndex]!.CardTime.Start();
+            if (_cardCollection[CurrentCardIndex]!.StepModalData?.IsError == false)
             {
-                _eventAggregator.GetEvent<ModalEvent>().Publish(_cardCollection[CurrentCardIndex].StepModalData);
+                _eventAggregator.GetEvent<ModalEvent>().Publish(_cardCollection[CurrentCardIndex]!.StepModalData!);
             }
         }
 
@@ -247,11 +245,11 @@ namespace ProdData.ViewModels
         {
             _eventAggregator.GetEvent<PauseRequest>().Publish();
             CycleTime.Pause();
-            SelectedProgramData.UpdateAverageCycleTime(CycleTime.TimeSpan);
+            SelectedProgramData!.UpdateAverageCycleTime(CycleTime.TimeSpan);
             CycleCount++;
-            SelectedProgramData.HistoricalCycles = CycleCount;
+            SelectedProgramData!.HistoricalCycles = CycleCount;
             _eventAggregator.GetEvent<ProgramDataSaveRequest>().Publish();
-            if (_cardCollection[CurrentCardIndex].StepModalData?.IsError == false)
+            if (_cardCollection[CurrentCardIndex]!.StepModalData?.IsError == false)
             {
                 _eventAggregator.GetEvent<StartRequest>().Publish();
             }
@@ -299,13 +297,13 @@ namespace ProdData.ViewModels
             ProductImage = image;
         }
 
-        private void HandleProgramDataResponse(ObservableCollection<Card> publishedCardCollection)
+        private void HandleProgramDataResponse(ObservableCollection<Card?> publishedCardCollection)
         {
             CardCollection = publishedCardCollection;
             CurrentCardIndex = 0;
-            CycleCount = SelectedProgramData.HistoricalCycles;
+            CycleCount = SelectedProgramData!.HistoricalCycles;
             PlayAvailable = SelectedProgramData.UserCanStartPlayback;
-            _cardCollection[CurrentCardIndex].IsActiveStep = true;
+            _cardCollection[CurrentCardIndex]!.IsActiveStep = true;
             if (SelectedProgramData.AutoStartPlayback)
             {
                 _eventAggregator.GetEvent<StartRequest>().Publish();
@@ -316,9 +314,9 @@ namespace ProdData.ViewModels
         {
             CycleTime.Reset();
 
-            foreach (Card card in _cardCollection)
+            foreach (Card? card in _cardCollection)
             {
-                card.Initialize();
+                card!.Initialize();
             }
             CurrentCardIndex = 0;
         }
@@ -329,16 +327,16 @@ namespace ProdData.ViewModels
             CycleTime.Pause();
         }
 
-        private void HandleProgramSelectResponse(ProgramData programData)
+        private void HandleProgramSelectResponse(ProgramData? programData)
         {
-            SelectedProgramData = programData;
+            SelectedProgramData = programData!;
         }
 
         private void HandleRaiseError()
         {
             _eventAggregator.GetEvent<PauseRequest>().Publish();
             CycleTime.Pause();
-            if (_cardCollection[CurrentCardIndex].StepModalData == null)
+            if (_cardCollection[CurrentCardIndex]!.StepModalData == null)
             {
                 _eventAggregator.GetEvent<ModalEvent>().Publish(new ModalData()
                 {
@@ -349,7 +347,7 @@ namespace ProdData.ViewModels
             }
             else
             {
-                _eventAggregator.GetEvent<ModalEvent>().Publish(_cardCollection[CurrentCardIndex].StepModalData);
+                _eventAggregator.GetEvent<ModalEvent>().Publish(_cardCollection[CurrentCardIndex]!.StepModalData!);
             }
         }
 
@@ -393,7 +391,7 @@ namespace ProdData.ViewModels
 
         private void UpdateProductImage()
         {
-            ProductImage = SelectedProgramData.ProductImage;
+            ProductImage = SelectedProgramData!.ProductImage;
         }
     }
 }

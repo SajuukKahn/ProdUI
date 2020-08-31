@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace ProductionCore.Events
 {
-    public class ProgramDataResponse : PubSubEvent<ObservableCollection<Card>>
+    public class ProgramDataResponse : PubSubEvent<ObservableCollection<Card?>>
     {
     }
 }

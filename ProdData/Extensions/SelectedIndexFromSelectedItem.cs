@@ -27,11 +27,14 @@ namespace ProdData.Extensions
         {
             int newLocation = (int)e.NewValue;
             int oldLocation = (int)e.OldValue;
-            RadCarousel radCarousel = d as RadCarousel;
-            Application.Current.Dispatcher.BeginInvoke(new Action(() => { radCarousel.SelectedItem = radCarousel.Items[newLocation]; }), DispatcherPriority.Render);
-            if (newLocation == 0)
+            if (!d.Equals(null))
             {
-                Application.Current.Dispatcher.BeginInvoke(new Action(() => { radCarousel.BringDataItemIntoView(radCarousel.SelectedItem); }), DispatcherPriority.Render);
+                RadCarousel radCarousel = (RadCarousel)d;
+                Application.Current.Dispatcher.BeginInvoke(new Action(() => { radCarousel!.SelectedItem = radCarousel.Items[newLocation]; }), DispatcherPriority.Render);
+                if (newLocation == 0)
+                {
+                    Application.Current.Dispatcher.BeginInvoke(new Action(() => { radCarousel!.BringDataItemIntoView(radCarousel.SelectedItem); }), DispatcherPriority.Render);
+                }
             }
         }
     }

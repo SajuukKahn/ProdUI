@@ -11,7 +11,7 @@ namespace ProductionCore.Concrete
 
         private DispatcherTimer _dispatcherTimer = new DispatcherTimer();
         private TimeSpan _timeSpan = new TimeSpan();
-        private string _elapsedTime;
+        private string? _elapsedTime;
 
         private DateTime? _startTime;
 
@@ -26,7 +26,7 @@ namespace ProductionCore.Concrete
             }, DispatcherPriority.Normal);
         }
 
-        public string ElapsedTime
+        public string? ElapsedTime
         {
             get
             {
@@ -63,7 +63,7 @@ namespace ProductionCore.Concrete
                 if (!_startTime.HasValue)
                 {
                     _startTime = value;
-                    _timeDifference = DateTime.Now.Subtract(StartTime.Value);
+                    _timeDifference = DateTime.Now.Subtract(_startTime!.Value);
                     System.Windows.Application.Current.Dispatcher.Invoke(() =>
                     {
                         _stopwatch.Start();
@@ -78,7 +78,7 @@ namespace ProductionCore.Concrete
                 else if (_startTime.HasValue && value != null)
                 {
                     _startTime = value;
-                    _timeDifference = DateTime.Now.Subtract(StartTime.Value);
+                    _timeDifference = DateTime.Now.Subtract(_startTime!.Value);
                 }
                 RaisePropertyChanged(nameof(StartTime));
             }
@@ -102,7 +102,7 @@ namespace ProductionCore.Concrete
             StartTime = DateTime.Now;
         }
 
-        private void Timer_Tick(object sender, EventArgs e)
+        private void Timer_Tick(object? sender, EventArgs e)
         {
             if (_stopwatch.IsRunning)
             {
