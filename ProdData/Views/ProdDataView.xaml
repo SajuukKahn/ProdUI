@@ -1,18 +1,19 @@
-﻿<UserControl x:Class="ProdData.Views.ProdDataView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
-             xmlns:conv="clr-namespace:ProdData.Converters"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:ex="clr-namespace:ProdData.Extensions"
-             xmlns:local="clr-namespace:ProdData.Views"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:prism="http://prismlibrary.com/"
-             xmlns:sys="clr-namespace:System;assembly=System.Runtime"
-             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
-             prism:ViewModelLocator.AutoWireViewModel="True"
-             Background="LightGray"
-             mc:Ignorable="d">
+﻿<UserControl
+    x:Class="ProdData.Views.ProdDataView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:conv="clr-namespace:ProdData.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ex="clr-namespace:ProdData.Extensions"
+    xmlns:local="clr-namespace:ProdData.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://prismlibrary.com/"
+    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    Background="LightGray"
+    mc:Ignorable="d">
 
     <UserControl.Resources>
         <ResourceDictionary>
@@ -26,12 +27,13 @@
             <telerik:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
             <conv:MultiValueConverterAddOneToIndex x:Key="MultiValueConverterAddOneToIndex" />
 
-            <Path x:Key="horizontalPath"
-                  Data="M 9,200 C9,200 450,200 450,200"
-                  Opacity="1"
-                  Stretch="Fill"
-                  Stroke="#FFB4B4B4"
-                  StrokeThickness="1" />
+            <Path
+                x:Key="horizontalPath"
+                Data="M 9,200 C9,200 450,200 450,200"
+                Opacity="1"
+                Stretch="Fill"
+                Stroke="#FFB4B4B4"
+                StrokeThickness="1" />
 
         </ResourceDictionary>
     </UserControl.Resources>
@@ -44,20 +46,23 @@
 
         <DockPanel LastChildFill="True">
             <StackPanel>
-                <Border Margin="2"
-                        Padding="3"
-                        BorderBrush="#333"
-                        BorderThickness="2"
-                        DockPanel.Dock="Left">
+                <Border
+                    Margin="2"
+                    Padding="3"
+                    BorderBrush="#333"
+                    BorderThickness="2"
+                    DockPanel.Dock="Left">
 
-                    <UniformGrid HorizontalAlignment="Center"
-                                 VerticalAlignment="Center"
-                                 Columns="2">
+                    <UniformGrid
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Columns="2">
                         <telerik:Label Content="Selected Program: " />
 
-                        <Button MaxWidth="140"
-                                Command="{Binding Path=OpenProgramSelect}"
-                                Content="{Binding Path=SelectedProgramData.ProgramName, FallbackValue=------------------------}" />
+                        <Button
+                            MaxWidth="140"
+                            Command="{Binding Path=OpenProgramSelect}"
+                            Content="{Binding Path=SelectedProgramData.ProgramName, FallbackValue=------------------------}" />
 
 
                         <telerik:Label Content="Cycle Count:" />
@@ -65,9 +70,10 @@
                         <telerik:Label Content="Program Step:" />
                         <StackPanel Orientation="Horizontal">
 
-                            <telerik:Label x:Name="CurrentIndexDisplay"
-                                           Uid="{Binding CurrentCardIndex}"
-                                           Tag="{Binding CardCollection.Count}">
+                            <telerik:Label
+                                x:Name="CurrentIndexDisplay"
+                                Uid="{Binding CurrentCardIndex}"
+                                Tag="{Binding CardCollection.Count}">
                                 <telerik:Label.Content>
                                     <MultiBinding Converter="{StaticResource MultiValueConverterAddOneToIndex}">
                                         <Binding ElementName="CurrentIndexDisplay" Path="Uid" />
@@ -86,46 +92,50 @@
                 </Border>
 
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                    <telerik:RadPathButton x:Name="PlayButton"
-                                           Width="65"
-                                           Height="65"
-                                           Command="{Binding Path=PlayButton}"
-                                           PathGeometry="{telerik:RadGlyph Type=None,
-                                                                           Glyph={StaticResource GlyphPlay},
-                                                                           Size=24}"
-                                           Visibility="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <telerik:RadPathButton
+                        x:Name="PlayButton"
+                        Width="65"
+                        Height="65"
+                        Command="{Binding Path=PlayButton}"
+                        PathGeometry="{telerik:RadGlyph Type=None,
+                                                        Glyph={StaticResource GlyphPlay},
+                                                        Size=24}"
+                        Visibility="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
-                    <telerik:RadPathButton x:Name="PauseButton"
-                                           Width="65"
-                                           Height="65"
-                                           Command="{Binding Path=PauseButton}"
-                                           PathGeometry="{telerik:RadGlyph Type=Path,
-                                                                           Glyph={StaticResource GlyphPause},
-                                                                           Size=24}"
-                                           Visibility="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <telerik:RadPathButton
+                        x:Name="PauseButton"
+                        Width="65"
+                        Height="65"
+                        Command="{Binding Path=PauseButton}"
+                        PathGeometry="{telerik:RadGlyph Type=Path,
+                                                        Glyph={StaticResource GlyphPause},
+                                                        Size=24}"
+                        Visibility="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 </StackPanel>
             </StackPanel>
 
-            <Viewbox Grid.Column="1"
-                     HorizontalAlignment="Center"
-                     DockPanel.Dock="Left"
-                     Stretch="Uniform"
-                     StretchDirection="DownOnly">
+            <Viewbox
+                Grid.Column="1"
+                HorizontalAlignment="Center"
+                DockPanel.Dock="Left"
+                Stretch="Uniform"
+                StretchDirection="DownOnly">
                 <Image Margin="5" Source="{Binding Path=ProductImage}" />
             </Viewbox>
         </DockPanel>
 
-        <telerik:RadCarousel x:Name="DataCarousel"
-                             Grid.Row="1"
-                             ex:SelectedIndexFromSelectedItem.SelectedIndex="{Binding Path=CurrentCardIndex}"
-                             AutoGenerateDataPresenters="False"
-                             CanUserSelect="{Binding Path=PlayBackRunning, Converter={StaticResource InvertedBooleanConverter}}"
-                             FlowDirection="RightToLeft"
-                             HorizontalScrollBarVisibility="Hidden"
-                             IsHitTestVisible="{Binding Path=PlayBackRunning, Converter={StaticResource InvertedBooleanConverter}}"
-                             ItemsSource="{Binding Path=CardCollection}"
-                             SelectedItem="{Binding Path=CurrentCard}"
-                             VerticalScrollBarVisibility="Hidden">
+        <telerik:RadCarousel
+            x:Name="DataCarousel"
+            Grid.Row="1"
+            ex:SelectedIndexFromSelectedItem.SelectedIndex="{Binding Path=CurrentCardIndex}"
+            AutoGenerateDataPresenters="False"
+            CanUserSelect="{Binding Path=PlayBackRunning, Converter={StaticResource InvertedBooleanConverter}}"
+            FlowDirection="RightToLeft"
+            HorizontalScrollBarVisibility="Hidden"
+            IsHitTestVisible="{Binding Path=PlayBackRunning, Converter={StaticResource InvertedBooleanConverter}}"
+            ItemsSource="{Binding Path=CardCollection}"
+            SelectedItem="{Binding Path=CurrentCard}"
+            VerticalScrollBarVisibility="Hidden">
 
             <behaviors:Interaction.Behaviors>
                 <ex:RadCarouselBehaviorExtensions />
@@ -133,15 +143,15 @@
 
             <telerik:RadCarousel.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <telerik:RadCarouselPanel AutoLoadItems="False"
-                                              IsContinuous="False"
-                                              IsOpacityEnabled="False"
-                                              IsScalingEnabled="True"
-                                              IsSelectedTopItem="True"
-                                              ItemsMovementAnimationDuration="00:00:00.5"
-                                              ItemsPerPage="13"
-                                              Path="{StaticResource horizontalPath}"
-                                              UseLayoutRounding="True">
+                    <telerik:RadCarouselPanel
+                        AutoLoadItems="False"
+                        IsContinuous="False"
+                        IsOpacityEnabled="False"
+                        IsScalingEnabled="True"
+                        ItemsMovementAnimationDuration="00:00:00.5"
+                        ItemsPerPage="13"
+                        Path="{StaticResource horizontalPath}"
+                        UseLayoutRounding="True">
 
                         <telerik:RadCarouselPanel.ScaleStops>
                             <telerik:PathStopCollection>
@@ -165,12 +175,13 @@
                         <Setter.Value>
 
                             <ControlTemplate TargetType="{x:Type telerik:CarouselItem}">
-                                <Border x:Name="CardBorder"
-                                        Width="300"
-                                        Height="200"
-                                        BorderThickness="3"
-                                        FocusVisualStyle="{x:Null}"
-                                        UseLayoutRounding="True">
+                                <Border
+                                    x:Name="CardBorder"
+                                    Width="300"
+                                    Height="200"
+                                    BorderThickness="3"
+                                    FocusVisualStyle="{x:Null}"
+                                    UseLayoutRounding="True">
 
                                     <Border.BorderBrush>
                                         <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
@@ -194,10 +205,11 @@
                                         </LinearGradientBrush>
                                     </Border.Background>
 
-                                    <Grid x:Name="CardDataDockPanel"
-                                          Margin="3"
-                                          HorizontalAlignment="Stretch"
-                                          VerticalAlignment="Stretch">
+                                    <Grid
+                                        x:Name="CardDataDockPanel"
+                                        Margin="3"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch">
 
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="auto" />
@@ -210,16 +222,18 @@
                                                 <ColumnDefinition />
                                             </Grid.ColumnDefinitions>
 
-                                            <StackPanel x:Name="CardDataStackPanel"
-                                                        HorizontalAlignment="Stretch"
-                                                        VerticalAlignment="Top"
-                                                        UseLayoutRounding="True">
+                                            <StackPanel
+                                                x:Name="CardDataStackPanel"
+                                                HorizontalAlignment="Stretch"
+                                                VerticalAlignment="Top"
+                                                UseLayoutRounding="True">
 
-                                                <TextBlock x:Name="StepTitle"
-                                                           ClipToBounds="True"
-                                                           Text="{Binding Path=StepTitle}"
-                                                           TextTrimming="CharacterEllipsis"
-                                                           UseLayoutRounding="True">
+                                                <TextBlock
+                                                    x:Name="StepTitle"
+                                                    ClipToBounds="True"
+                                                    Text="{Binding Path=StepTitle}"
+                                                    TextTrimming="CharacterEllipsis"
+                                                    UseLayoutRounding="True">
                                                     <TextBlock.LayoutTransform>
                                                         <TransformGroup>
                                                             <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5" />
@@ -227,16 +241,18 @@
                                                     </TextBlock.LayoutTransform>
                                                 </TextBlock>
 
-                                                <TextBlock x:Name="StepStatus"
-                                                           Text="{Binding Path=StepStatus}"
-                                                           UseLayoutRounding="True" />
+                                                <TextBlock
+                                                    x:Name="StepStatus"
+                                                    Text="{Binding Path=StepStatus}"
+                                                    UseLayoutRounding="True" />
 
                                                 <StackPanel x:Name="SubStepCounterPanel" Orientation="Horizontal">
 
 
-                                                    <TextBlock x:Name="CurrentSubIndexDisplay"
-                                                               Uid="{Binding CardStepIndex}"
-                                                               Tag="{Binding CardSubSteps.Count}">
+                                                    <TextBlock
+                                                        x:Name="CurrentSubIndexDisplay"
+                                                        Uid="{Binding CardStepIndex}"
+                                                        Tag="{Binding CardSubSteps.Count}">
                                                         <TextBlock.Text>
                                                             <MultiBinding Converter="{StaticResource MultiValueConverterAddOneToIndex}">
                                                                 <Binding ElementName="CurrentSubIndexDisplay" Path="Uid" />
@@ -250,55 +266,61 @@
                                                     <TextBlock Text="{Binding Path=CardSubSteps.Count}" />
                                                 </StackPanel>
 
-                                                <TextBlock x:Name="StepActiveTime"
-                                                           Text="{Binding Path=CardTime.ElapsedTime}"
-                                                           UseLayoutRounding="True" />
+                                                <TextBlock
+                                                    x:Name="StepActiveTime"
+                                                    Text="{Binding Path=CardTime.ElapsedTime}"
+                                                    UseLayoutRounding="True" />
                                             </StackPanel>
 
-                                            <Viewbox Grid.Column="1"
-                                                     HorizontalAlignment="Right"
-                                                     VerticalAlignment="Top"
-                                                     Stretch="Uniform"
-                                                     StretchDirection="DownOnly">
-                                                <Image x:Name="StepImage"
-                                                       Width="90"
-                                                       Margin="0,0,0,0"
-                                                       Source="{Binding Path=StepImage}"
-                                                       Stretch="Uniform"
-                                                       UseLayoutRounding="True" />
+                                            <Viewbox
+                                                Grid.Column="1"
+                                                HorizontalAlignment="Right"
+                                                VerticalAlignment="Top"
+                                                Stretch="Uniform"
+                                                StretchDirection="DownOnly">
+                                                <Image
+                                                    x:Name="StepImage"
+                                                    Width="90"
+                                                    Margin="0,0,0,0"
+                                                    Source="{Binding Path=StepImage}"
+                                                    Stretch="Uniform"
+                                                    UseLayoutRounding="True" />
                                             </Viewbox>
                                         </Grid>
 
 
-                                        <ListBox x:Name="CardSubStepListView"
-                                                 Grid.Row="1"
-                                                 MaxWidth="300"
-                                                 HorizontalAlignment="Left"
-                                                 VerticalAlignment="Top"
-                                                 HorizontalContentAlignment="Left"
-                                                 VerticalContentAlignment="Top"
-                                                 Background="Transparent"
-                                                 FlowDirection="LeftToRight"
-                                                 IsHitTestVisible="True"
-                                                 ItemsSource="{Binding Path=CardSubSteps}"
-                                                 ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                                                 ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                        <ListBox
+                                            x:Name="CardSubStepListView"
+                                            Grid.Row="1"
+                                            MaxWidth="300"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Top"
+                                            HorizontalContentAlignment="Left"
+                                            VerticalContentAlignment="Top"
+                                            Background="Transparent"
+                                            FlowDirection="LeftToRight"
+                                            IsHitTestVisible="True"
+                                            ItemsSource="{Binding Path=CardSubSteps}"
+                                            ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                                            ScrollViewer.VerticalScrollBarVisibility="Hidden">
 
 
                                             <ListBox.ItemsPanel>
                                                 <ItemsPanelTemplate>
-                                                    <telerik:RadCarouselPanel CanHorizontallyScroll="False"
-                                                                              CanVerticallyScroll="False"
-                                                                              FlowDirection="LeftToRight"
-                                                                              IsPathVisible="False"
-                                                                              ItemsPerPage="3">
+                                                    <telerik:RadCarouselPanel
+                                                        CanHorizontallyScroll="False"
+                                                        CanVerticallyScroll="False"
+                                                        FlowDirection="LeftToRight"
+                                                        IsPathVisible="False"
+                                                        ItemsPerPage="3">
                                                         <telerik:RadCarouselPanel.Path>
 
-                                                            <Path Data="M 10,50 V 0"
-                                                                  Opacity="1"
-                                                                  Stretch="Fill"
-                                                                  Stroke="#FFB4B4B4"
-                                                                  StrokeThickness="1" />
+                                                            <Path
+                                                                Data="M 10,50 V 0"
+                                                                Opacity="1"
+                                                                Stretch="Fill"
+                                                                Stroke="#FFB4B4B4"
+                                                                StrokeThickness="1" />
 
                                                         </telerik:RadCarouselPanel.Path>
                                                     </telerik:RadCarouselPanel>
@@ -380,9 +402,10 @@
                                         <MultiDataTrigger.EnterActions>
                                             <BeginStoryboard>
                                                 <Storyboard>
-                                                    <DoubleAnimationUsingKeyFrames RepeatBehavior="Forever"
-                                                                                   Storyboard.TargetName="CardBorder"
-                                                                                   Storyboard.TargetProperty="(Border.BorderBrush).(Brush.RelativeTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
+                                                    <DoubleAnimationUsingKeyFrames
+                                                        RepeatBehavior="Forever"
+                                                        Storyboard.TargetName="CardBorder"
+                                                        Storyboard.TargetProperty="(Border.BorderBrush).(Brush.RelativeTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)">
                                                         <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0" />
                                                         <EasingDoubleKeyFrame KeyTime="00:00:02" Value="359" />
                                                     </DoubleAnimationUsingKeyFrames>

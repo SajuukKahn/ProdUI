@@ -5,6 +5,7 @@ using ProductionCore.Concrete;
 using ProductionCore.Events;
 using ProductionCore.Interfaces;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Windows.Media.Imaging;
 
 namespace ProdData.ViewModels
@@ -93,7 +94,9 @@ namespace ProdData.ViewModels
             }
             set
             {
+                Debug.WriteLine(nameof(value) + " Set to: " + value.ToString());
                 SetProperty(ref _currentCardIndex, value, SetCurrentCard);
+                
             }
         }
 
