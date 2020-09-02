@@ -1,14 +1,15 @@
-﻿using System;
-using System.Windows;
+﻿using Prism.Mvvm;
+using ProductionCore.Interfaces;
+using System;
+using System.Drawing;
 using System.Windows.Media.Imaging;
 
-namespace ProductionCore.Concrete
+namespace ProdData.Models
 {
-    public class ProgramData
+    public class ProgramData : BindableBase, IProgramData
     {
         public bool AutoStartPlayback { get; set; }
         public TimeSpan AverageCycleTime { get; set; }
-        public Barcode? Barcode { get; set; }
         public DateTime CreatedDate { get; set; }
         public Size Dimensions { get; set; }
         public long HistoricalCycles { get; set; }
@@ -21,12 +22,30 @@ namespace ProductionCore.Concrete
         public string[]? ToolsUsed { get; set; }
         public bool UserCanStartPlayback { get; set; }
 
+        private IBarcode? _barcode;
+        public IBarcode? Barcode
+        {
+            get
+            {
+                return _barcode;
+            }
+            set
+            {
+                SetProperty(ref _barcode, value);
+            }
+        }
+
+        public ProgramData(IBarcode? barcode)
+        {
+            _barcode = barcode;
+        }
+
         public void UpdateAverageCycleTime(TimeSpan newestCycleTime)
         {
             AverageCycleTime = new TimeSpan().Add(AverageCycleTime.Add(newestCycleTime)).Divide(2);
         }
 
-        public void UpdateLastEditeDate()
+        public void UpdateLastEditDate()
         {
             LastEditDate = DateTime.Now;
         }

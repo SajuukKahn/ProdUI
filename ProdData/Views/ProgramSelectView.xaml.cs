@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+﻿using ProdData.ViewModels;
+using ProductionCore.Interfaces;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ProdData.Views
 {
@@ -18,9 +9,10 @@ namespace ProdData.Views
     /// </summary>
     public partial class ProgramSelectView : UserControl
     {
-        public ProgramSelectView()
+        public ProgramSelectView(IProgramSelectViewModel programSelectViewModel)
         {
             InitializeComponent();
+            DataContext = programSelectViewModel;
         }
     }
 }

@@ -16,7 +16,7 @@ namespace ProductionCore.Interfaces
         public bool PlayAvailable { get; set; }
         public bool PlayBackRunning { get; set; }
         public BitmapImage? ProductImage { get; set; }
-        public ProgramData? SelectedProgramData { get; set; }
+        public IProgramData? SelectedProgramData { get; set; }
 
         public void HandleAdvanceStep();
 

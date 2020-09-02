@@ -2,12 +2,18 @@
 using ProductionCore.Interfaces;
 using System.Windows.Media.Imaging;
 
-namespace ProductionCore.Concrete
+namespace ProdData.Models
 {
     public class Barcode : BindableBase, IBarcode
     {
         private string? _barcodeData;
         private BitmapImage? _barcodeImage;
+
+        public Barcode(string? barcodeData, BitmapImage? barcodeImage)
+        {
+            _barcodeData = barcodeData;
+            _barcodeImage = barcodeImage;
+        }
 
         public string? BarcodeData
         {

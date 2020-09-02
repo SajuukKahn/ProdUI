@@ -9,16 +9,19 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Media.Imaging;
 using ProductionCore.Concrete;
+using System.Drawing;
 
 namespace ProdTestGenerator
 {
     public class TestGeneratorSingleton
     {
         private readonly IEventAggregator _eventAggregator;
-        //private readonly IContainerProvider _containerProvider;
+
+        private readonly IProgramCollection _programCollection;
+        private readonly IProgramDataFactory _programDataFactory;
+        private readonly IBarcodeFactory _barcodeFactory;
 
         private readonly int _scaleDataSet = 1;
         private CancellationTokenSource? _programCancellationTokenSource;
@@ -32,9 +35,12 @@ namespace ProdTestGenerator
 
         private DateTime lastDate;
 
-        public TestGeneratorSingleton(IEventAggregator eventAggregator)
+        public TestGeneratorSingleton(IEventAggregator eventAggregator, IProgramCollection programCollection, IProgramDataFactory programDataFactory, IBarcodeFactory barcodeFactory)
         {
+            _programCollection = programCollection;
             _eventAggregator = eventAggregator;
+            _programDataFactory = programDataFactory;
+            _barcodeFactory = barcodeFactory;
             _eventAggregator.GetEvent<StartRequest>().Subscribe(FulfillStartRequest);
             _eventAggregator.GetEvent<PauseRequest>().Subscribe(FulfillPauseRequest);
             _eventAggregator.GetEvent<ProductImageChangeRequest>().Subscribe(FulfillProcessDisplayChangeRequest);
@@ -50,7 +56,7 @@ namespace ProdTestGenerator
             _modalRaised = tf;
          }
 
-        public ObservableCollection<Card?> GenerateRandom(ProgramData? programData)
+        public ObservableCollection<Card?> GenerateRandom(IProgramData? programData)
         {
             ObservableCollection<Card?> cardDeck = new ObservableCollection<Card?>();
             string[] TitleArray =
@@ -158,7 +164,7 @@ namespace ProdTestGenerator
             return cardDeck;
         }
 
-        public ObservableCollection<ProgramData> GenerateRandom(ObservableCollection<ProgramData> productionPrograms)
+        public void GenerateRandomProgramCollection()
         {
             int randsize = new Random().Next(7 * _scaleDataSet, 45 * _scaleDataSet);
 
@@ -180,41 +186,47 @@ namespace ProdTestGenerator
 
             for (int i = 0; i < randsize; i++)
             {
-                productionPrograms.Add(new ProgramData
+                var prog = _programDataFactory.Create();
+                prog.AverageCycleTime = GenerateRandomCycleTimeAverage();
+
+                if (new Random().Next(0, 5) == 1)
                 {
-                    AverageCycleTime = GenerateRandomCycleTimeAverage(),
-                    Barcode = GenerateBarcodeSometimes(),
-                    CreatedDate = GenerateRandomDateTime(),
-                    Dimensions = new Size(new Random().Next(750), new Random().Next(750)),
-                    HistoricalCycles = new Random().Next(0, 9999),
-                    LastEditDate = GenerateRandomDateTime(),
-                    ProductImage = new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\PCB" + new Random().Next(1, 9).ToString() + ".bmp", UriKind.RelativeOrAbsolute)),
-                    ProgramName = GenerateRandomString(26) + " Rev_" + (char)new Random().Next(65, 90),
-                    ProductName = relations[new Random().Next(relations.Length)],
-                    ProgramCreator = makernames[new Random().Next(makernames.Length)],
-                    ToolsUsed = GenerateRandomTools(),
-                    UserCanStartPlayback = new Random().Next(4).Equals(1),
-                    AutoStartPlayback = false,
-                    IsFavorite = new Random().Next(7).Equals(1)
-                });
+                    prog.Barcode = _barcodeFactory.Create(GenerateRandomString(128),
+                        new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\BAR" + new Random().Next(1, 4).ToString() + ".bmp", UriKind.RelativeOrAbsolute)));
+                }
+
+                prog.CreatedDate = GenerateRandomDateTime();
+                prog.Dimensions = new Size(new Random().Next(750), new Random().Next(750));
+                prog.HistoricalCycles = new Random().Next(0, 9999);
+                prog.LastEditDate = GenerateRandomDateTime();
+                prog.ProductImage = new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\PCB" + new Random().Next(1, 9).ToString() + ".bmp", UriKind.RelativeOrAbsolute));
+                prog.ProgramName = GenerateRandomString(26) + " Rev_" + (char)new Random().Next(65, 90);
+                prog.ProductName = relations[new Random().Next(relations.Length)];
+                prog.ProgramCreator = makernames[new Random().Next(makernames.Length)];
+                prog.ToolsUsed = GenerateRandomTools();
+                prog.UserCanStartPlayback = new Random().Next(4).Equals(1);
+                prog.AutoStartPlayback = false;
+                prog.IsFavorite = new Random().Next(7).Equals(1);
+                
+                _programCollection!.ProgramList?.Add(prog);
             }
-            productionPrograms.Add(new ProgramData()
-            {
-                AverageCycleTime = GenerateRandomCycleTimeAverage(),
-                Barcode = GenerateBarcodeSometimes(),
-                CreatedDate = GenerateRandomDateTime(),
-                Dimensions = new Size(new Random().Next(750), new Random().Next(750)),
-                HistoricalCycles = new Random().Next(0, 9999),
-                LastEditDate = GenerateRandomDateTime(),
-                ProductImage = new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\PCB" + new Random().Next(1, 9).ToString() + ".bmp", UriKind.RelativeOrAbsolute)),
-                ProgramName = "Manual Placement Simulation",
-                ProductName = relations[new Random().Next(relations.Length)],
-                ProgramCreator = makernames[new Random().Next(makernames.Length)],
-                ToolsUsed = GenerateRandomTools(),
-                UserCanStartPlayback = false,
-                AutoStartPlayback = true
-            });
-            return productionPrograms;
+
+            var specialProg = _programDataFactory.Create();
+
+            specialProg.AverageCycleTime = GenerateRandomCycleTimeAverage();
+            specialProg.CreatedDate = GenerateRandomDateTime();
+            specialProg.Dimensions = new Size(new Random().Next(750), new Random().Next(750));
+            specialProg.HistoricalCycles = new Random().Next(0, 9999);
+            specialProg.LastEditDate = GenerateRandomDateTime();
+            specialProg.ProductImage = new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\PCB" + new Random().Next(1, 9).ToString() + ".bmp", UriKind.RelativeOrAbsolute));
+            specialProg.ProgramName = "Manual Placement Simulation";
+            specialProg.ProductName = relations[new Random().Next(relations.Length)];
+            specialProg.ProgramCreator = makernames[new Random().Next(makernames.Length)];
+            specialProg.ToolsUsed = GenerateRandomTools();
+            specialProg.UserCanStartPlayback = false;
+            specialProg.AutoStartPlayback = true;
+
+            _programCollection!.ProgramList?.Add(specialProg);
         }
 
         private BitmapImage ChooseRandomImage()
@@ -240,18 +252,6 @@ namespace ProdTestGenerator
             {
                 RunProg();
             }
-        }
-
-        private Barcode GenerateBarcodeSometimes()
-        {
-            //var barcode = _containerProvider.Resolve<IBarcode>();
-            Barcode barcode = new Barcode();
-            if (new Random().Next(0, 4) == 1)
-            {
-                barcode.BarcodeData = GenerateRandomString(128);
-                barcode.BarcodeImage = new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\BAR" + new Random().Next(1, 4).ToString() + ".bmp", UriKind.RelativeOrAbsolute));
-            }
-            return barcode;
         }
 
         private void GenerateProcessDisplayChangeResponse()
@@ -320,7 +320,7 @@ namespace ProdTestGenerator
             return new string[] { new Random().Next(-20000, 200000).ToString(), new Random().Next(-20000, 200000).ToString(), new Random().Next(-9000, 100000).ToString() };
         }
 
-        private void RequestProgramDataReceived(ProgramData? programData)
+        private void RequestProgramDataReceived(IProgramData? programData)
         {
             _eventAggregator.GetEvent<ProgramDataResponse>().Publish(GenerateRandom(programData));
         }
@@ -362,7 +362,8 @@ namespace ProdTestGenerator
 
         private void RequestProgramNamesReceived()
         {
-            _eventAggregator.GetEvent<ProgramNamesResponse>().Publish(GenerateRandom(new ObservableCollection<ProgramData>()));
+            GenerateRandomProgramCollection();
+            _eventAggregator.GetEvent<ProgramNamesResponse>().Publish();
         }
 
         private bool _modalRaised;

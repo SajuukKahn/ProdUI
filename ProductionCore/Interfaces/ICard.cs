@@ -18,10 +18,10 @@ namespace ProductionCore.Interfaces
         public ImageSource? StepImage { get; set; }
         public ModalData? StepModalData { get; set; }
         public StepStatus StepStatus { get; set; }
-        public string StepTitle { get; set; }
-        public int SubStepCount { get; set; }
+        public string? StepTitle { get; set; }
+        public int SubStepCount { get; }
         public void Initialize();
-        public string ToString();
+        public string? ToString();
 
     }
 }

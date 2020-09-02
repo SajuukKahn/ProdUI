@@ -1,9 +1,10 @@
 ﻿using Prism.Events;
 using ProductionCore.Concrete;
+using ProductionCore.Interfaces;
 
 namespace ProductionCore.Events
 {
-    public class ProgramSelectResponse : PubSubEvent<ProgramData?>
+    public class ProgramSelectResponse : PubSubEvent<IProgramData?>
     {
     }
 }

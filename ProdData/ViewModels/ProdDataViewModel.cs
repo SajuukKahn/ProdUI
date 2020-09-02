@@ -24,10 +24,11 @@ namespace ProdData.ViewModels
         private bool _playAvailable;
         private bool _playBackRunning;
         private BitmapImage? _productImage;
-        private ProgramData? _selectedProgramData;
+        private IProgramData? _selectedProgramData;
 
-        public ProdDataViewModel(IEventAggregator eventAggregator)
+        public ProdDataViewModel(IEventAggregator eventAggregator, IProgramDataFactory programDataFactory)
         {
+            _selectedProgramData = programDataFactory.Create();
             _eventAggregator = eventAggregator;
             PlayButton = new DelegateCommand(PlayPressed).ObservesCanExecute(() => PlayAvailable);
             PauseButton = new DelegateCommand(PausePressed).ObservesCanExecute(() => PauseAvailable);
@@ -178,7 +179,7 @@ namespace ProdData.ViewModels
             }
         }
 
-        public ProgramData? SelectedProgramData
+        public IProgramData? SelectedProgramData
         {
             get
             {
@@ -330,7 +331,7 @@ namespace ProdData.ViewModels
             CycleTime.Pause();
         }
 
-        private void HandleProgramSelectResponse(ProgramData? programData)
+        private void HandleProgramSelectResponse(IProgramData? programData)
         {
             SelectedProgramData = programData!;
         }

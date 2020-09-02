@@ -5,7 +5,7 @@ using System.Windows.Media;
 
 namespace ProductionCore.Concrete
 {
-    public class Card : BindableBase
+    public class Card : BindableBase, ICard
     {
         private bool _breakOnError;
 

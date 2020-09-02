@@ -1,27 +1,25 @@
 ﻿using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
-using ProductionCore.Concrete;
 using ProductionCore.Events;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
+using ProductionCore.Interfaces;
 
 namespace ProdData.ViewModels
 {
-    internal class ProgramSelectViewModel : BindableBase
+    internal class ProgramSelectViewModel : BindableBase, IProgramSelectViewModel
     {
+        private readonly IEventAggregator _eventAggregator;
         private bool _canCancel;
         private bool _canConfirm;
-        private readonly IEventAggregator _eventAggregator;
-        private ProgramData? _oldSelectedProgramData;
-        private ObservableCollection<ProgramData> _programList = new ObservableCollection<ProgramData>();
+        private IProgramData? _oldSelectedProgramData;
+        private IProgramCollection? _programList;
         private bool _programReqestOpen = false;
         private bool _requestAwaiting = true;
-        private ProgramData? _selectedProgramData;
+        private IProgramData? _selectedProgramData;
 
-        public ProgramSelectViewModel(IEventAggregator eventAggregator)
+        public ProgramSelectViewModel(IEventAggregator eventAggregator, IProgramCollection? programCollection)
         {
+            _programList = programCollection;
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<ProgramNamesResponse>().Subscribe(HandleProgramNamesResponse);
             _eventAggregator.GetEvent<ProgramSelectRequest>().Subscribe(HandleProgramSelectRequest);
@@ -57,7 +55,7 @@ namespace ProdData.ViewModels
 
         public DelegateCommand ConfirmButton { get; set; }
 
-        public ObservableCollection<ProgramData> ProgramList
+        public IProgramCollection? ProgramList
         {
             get
             {
@@ -93,7 +91,7 @@ namespace ProdData.ViewModels
             }
         }
 
-        public ProgramData? SelectedProgramData
+        public IProgramData? SelectedProgramData
         {
             get
             {
@@ -107,13 +105,11 @@ namespace ProdData.ViewModels
 
         private void CancelProgramChange()
         {
-            
             CleanInstance();
         }
 
         private void CleanInstance()
         {
-            
             CanConfirm = false;
             CanCancel = false;
             ProgramRequestOpen = false;
@@ -122,23 +118,19 @@ namespace ProdData.ViewModels
 
         private void ConfirmProgramChange()
         {
-            
             _eventAggregator.GetEvent<ProgramSelectResponse>().Publish(SelectedProgramData);
             _eventAggregator.GetEvent<ProgramDataRequest>().Publish(SelectedProgramData);
             CleanInstance();
         }
 
-        private void HandleProgramNamesResponse(ObservableCollection<ProgramData> publishedProgramList)
+        private void HandleProgramNamesResponse()
         {
-            
-            _programList.Clear();
-            ProgramList = publishedProgramList;
             RequestAwaiting = false;
+            ProgramList = _programList;
         }
 
-        private void HandleProgramSelectRequest(ProgramData? oldProgramData)
+        private void HandleProgramSelectRequest(IProgramData? oldProgramData)
         {
-            
             _oldSelectedProgramData = oldProgramData;
             if (_oldSelectedProgramData != null)
             {
@@ -150,8 +142,7 @@ namespace ProdData.ViewModels
 
         private void RequestPrograms()
         {
-            
-            if (_programList.Count < 1)
+            if (_programList?.ProgramList == null || _programList?.ProgramList?.Count < 1)
             {
                 _eventAggregator.GetEvent<ProgramNamesRequest>().Publish();
             }
