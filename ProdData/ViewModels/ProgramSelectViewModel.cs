@@ -23,8 +23,8 @@ namespace ProdData.ViewModels
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<ProgramNamesResponse>().Subscribe(HandleProgramNamesResponse);
             _eventAggregator.GetEvent<ProgramSelectRequest>().Subscribe(HandleProgramSelectRequest);
-            ConfirmButton = new DelegateCommand(ConfirmProgramChange);
-            CancelButton = new DelegateCommand(CancelProgramChange);
+            ConfirmButton = new DelegateCommand(ConfirmProgramChange).ObservesCanExecute(() => CanConfirm);
+            CancelButton = new DelegateCommand(CancelProgramChange).ObservesCanExecute(() => CanCancel);
         }
 
         public bool CanCancel
@@ -127,6 +127,7 @@ namespace ProdData.ViewModels
         {
             RequestAwaiting = false;
             ProgramList = _programList;
+
         }
 
         private void HandleProgramSelectRequest(IProgramData? oldProgramData)

@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ProductionCore\ProductionCore.csproj" />
+    <ProjectReference Include="..\ProdUI\ProdUI.csproj" />
   </ItemGroup>
 
   <ItemGroup>
