@@ -22,6 +22,7 @@ namespace ProdTestGenerator
         private readonly IProgramCollection _programCollection;
         private readonly IProgramDataFactory _programDataFactory;
         private readonly IBarcodeFactory _barcodeFactory;
+        private IProdDataViewModel _prodDataViewModel;
 
         private readonly int _scaleDataSet = 1;
         private CancellationTokenSource? _programCancellationTokenSource;
@@ -35,8 +36,9 @@ namespace ProdTestGenerator
 
         private DateTime lastDate;
 
-        public TestGeneratorSingleton(IEventAggregator eventAggregator, IProgramCollection programCollection, IProgramDataFactory programDataFactory, IBarcodeFactory barcodeFactory)
+        public TestGeneratorSingleton(IEventAggregator eventAggregator, IProgramCollection programCollection, IProgramDataFactory programDataFactory, IBarcodeFactory barcodeFactory, IProdDataViewModel prodDataViewModel)
         {
+            _prodDataViewModel = prodDataViewModel;
             _programCollection = programCollection;
             _eventAggregator = eventAggregator;
             _programDataFactory = programDataFactory;
@@ -46,7 +48,7 @@ namespace ProdTestGenerator
             _eventAggregator.GetEvent<ProductImageChangeRequest>().Subscribe(FulfillProcessDisplayChangeRequest);
             _eventAggregator.GetEvent<ProgramNamesRequest>().Subscribe(RequestProgramNamesReceived);
             _eventAggregator.GetEvent<ProgramDataRequest>().Subscribe(RequestProgramDataReceived);
-            //_eventAggregator.GetEvent<ProgramDataSaveRequest>().Subscribe(RequestProgramDataSaveReceived);
+            _eventAggregator.GetEvent<ProgramDataSaveRequest>().Subscribe(RequestProgramDataSaveReceived);
             _eventAggregator.GetEvent<ModalEvent>().Subscribe((m) => ModalHandle(true));
             _eventAggregator.GetEvent<ModalResponse>().Subscribe((m) => ModalHandle(false));
         }
@@ -100,11 +102,11 @@ namespace ProdTestGenerator
                 cardDeck.Add(zerothCardModel);
             }
 
-            List<CardSubStep> fidList = new List<CardSubStep>
-            {
-                new CardSubStep("Fiducial A", RandomCoordinates()),
-                new CardSubStep("Fiducial B", RandomCoordinates())
-            };
+            List<CardSubStep> fidList = new List<CardSubStep>();
+
+            fidList.Add(new CardSubStep("Fiducial A", RandomCoordinates()));
+            fidList.Add(new CardSubStep("Fiducial B", RandomCoordinates()));
+
             Card firstCardModel = new Card()
             {
                 CardSubSteps = fidList,
@@ -325,40 +327,40 @@ namespace ProdTestGenerator
             _eventAggregator.GetEvent<ProgramDataResponse>().Publish(GenerateRandom(programData));
         }
 
-        //private void RequestProgramDataSaveReceived()
-        //{
-        //    var prodData = _containerProvider.Resolve<IProdDataViewModel>(nameof(IProdDataViewModel));
-        //    string filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-        //    string fileName = prodData.SelectedProgramData.ProgramName +
-        //                        "Run#" + prodData.SelectedProgramData.HistoricalCycles + "_Completed" +
-        //                        DateTime.Now.ToString("yyyy-MM-d--HH-mm-ss") + ".csv";
-        //    string outputPath = Path.Combine(filePath, fileName);
+        private void RequestProgramDataSaveReceived()
+        {
+            var prodData = _prodDataViewModel;
+            string filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string fileName = prodData.SelectedProgramData?.ProgramName +
+                                "Run#" + prodData.SelectedProgramData?.HistoricalCycles + "_Completed" +
+                                DateTime.Now.ToString("yyyy-MM-d--HH-mm-ss") + ".csv";
+            string outputPath = Path.Combine(filePath, fileName);
 
-        //    TextWriter sw = new StreamWriter(outputPath);
+            TextWriter sw = new StreamWriter(outputPath);
 
-        //    sw.WriteLine(
-        //        nameof(prodData.SelectedProgramData.ProgramName) + "," +
-        //        nameof(prodData.SelectedProgramData.ProductName) + "," +
-        //        nameof(prodData.SelectedProgramData.ProgramCreator) + "," +
-        //        nameof(prodData.SelectedProgramData.AverageCycleTime) + "," +
-        //        nameof(prodData.SelectedProgramData.HistoricalCycles) + ",");
+            sw.WriteLine(
+                nameof(prodData.SelectedProgramData.ProgramName) + "," +
+                nameof(prodData.SelectedProgramData.ProductName) + "," +
+                nameof(prodData.SelectedProgramData.ProgramCreator) + "," +
+                nameof(prodData.SelectedProgramData.AverageCycleTime) + "," +
+                nameof(prodData.SelectedProgramData.HistoricalCycles) + ",");
 
-        //    sw.WriteLine(
-        //        prodData.SelectedProgramData.ProgramName + "," +
-        //        prodData.SelectedProgramData.ProductName + "," +
-        //        prodData.SelectedProgramData.ProgramCreator + "," +
-        //        prodData.SelectedProgramData.AverageCycleTime + "," +
-        //        prodData.SelectedProgramData.HistoricalCycles + ",");
+            sw.WriteLine(
+                prodData.SelectedProgramData?.ProgramName + "," +
+                prodData.SelectedProgramData?.ProductName + "," +
+                prodData.SelectedProgramData?.ProgramCreator + "," +
+                prodData.SelectedProgramData?.AverageCycleTime + "," +
+                prodData.SelectedProgramData?.HistoricalCycles + ",");
 
-        //    sw.WriteLine("Title,Time,Status,Sub Steps");
+            sw.WriteLine("Title,Time,Status,Sub Steps");
 
-        //    foreach (Card card in prodData.CardCollection)
-        //    {
-        //        sw.WriteLine(card.ToString());
-        //    }
-        //    _eventAggregator.GetEvent<ProgramDataSaveResponse>().Publish();
-        //    sw.Close();
-        //}
+            foreach (Card? card in prodData.CardCollection)
+            {
+                sw.WriteLine(card?.ToString());
+            }
+            _eventAggregator.GetEvent<ProgramDataSaveResponse>().Publish();
+            sw.Close();
+        }
 
         private void RequestProgramNamesReceived()
         {

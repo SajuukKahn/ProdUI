@@ -26,10 +26,8 @@
             <telerik:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" />
             <telerik:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
             <conv:MultiValueConverterAddOneToIndex x:Key="MultiValueConverterAddOneToIndex" />
-            <conv:RelativeLocationConverter x:Key="RelativeLocationConverter" />
-
-
-
+            <conv:RelativePositionalFix x:Key="RelativePositionalFix" />
+            <sys:Int16 x:Key="Int16One">1</sys:Int16>
         </ResourceDictionary>
     </UserControl.Resources>
 
@@ -40,79 +38,78 @@
         </Grid.RowDefinitions>
 
         <DockPanel LastChildFill="True">
-            <Border
-                Margin="2"
-                Padding="3"
-                VerticalAlignment="Stretch"
-                BorderBrush="#333"
-                BorderThickness="2"
-                DockPanel.Dock="Left">
+            <StackPanel DockPanel.Dock="Left">
+                <Border
+                    Margin="2"
+                    Padding="3"
+                    VerticalAlignment="Top"
+                    BorderBrush="#333"
+                    BorderThickness="2">
 
-                <UniformGrid
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Stretch"
-                    Columns="2">
-                    <telerik:Label Content="Selected Program: " />
+                    <UniformGrid
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Stretch"
+                        Columns="2">
+                        <telerik:Label Content="Selected Program: " />
 
-                    <Button
-                        MaxWidth="140"
-                        Command="{Binding Path=OpenProgramSelect}"
-                        Content="{Binding Path=SelectedProgramData.ProgramName, FallbackValue=------------------------}" />
+                        <Button
+                            MaxWidth="140"
+                            Command="{Binding Path=OpenProgramSelect}"
+                            Content="{Binding Path=SelectedProgramData.ProgramName, FallbackValue=------------------------}" />
 
+                        <telerik:Label Content="Cycle Count:" />
+                        <telerik:Label Content="{Binding Path=CycleCount}" />
+                        <telerik:Label Content="Program Step:" />
+                        <StackPanel Orientation="Horizontal">
 
-                    <telerik:Label Content="Cycle Count:" />
-                    <telerik:Label Content="{Binding Path=CycleCount}" />
-                    <telerik:Label Content="Program Step:" />
-                    <StackPanel Orientation="Horizontal">
+                            <telerik:Label
+                                x:Name="CurrentIndexDisplay"
+                                Uid="{Binding CurrentCardIndex}"
+                                Tag="{Binding CardCollection.Count}">
+                                <telerik:Label.Content>
+                                    <MultiBinding Converter="{StaticResource MultiValueConverterAddOneToIndex}">
+                                        <Binding ElementName="CurrentIndexDisplay" Path="Uid" />
+                                        <Binding ElementName="CurrentIndexDisplay" Path="Tag" />
+                                    </MultiBinding>
+                                </telerik:Label.Content>
+                            </telerik:Label>
 
-                        <telerik:Label
-                            x:Name="CurrentIndexDisplay"
-                            Uid="{Binding CurrentCardIndex}"
-                            Tag="{Binding CardCollection.Count}">
-                            <telerik:Label.Content>
-                                <MultiBinding Converter="{StaticResource MultiValueConverterAddOneToIndex}">
-                                    <Binding ElementName="CurrentIndexDisplay" Path="Uid" />
-                                    <Binding ElementName="CurrentIndexDisplay" Path="Tag" />
-                                </MultiBinding>
-                            </telerik:Label.Content>
-                        </telerik:Label>
+                            <telerik:Label Content=" / " />
+                            <telerik:Label Content="{Binding Path=CardCollection.Count}" />
+                        </StackPanel>
 
-                        <telerik:Label Content=" / " />
-                        <telerik:Label Content="{Binding Path=CardCollection.Count}" />
-                    </StackPanel>
+                        <telerik:Label Content="Cycle Time:" />
+                        <telerik:Label Content="{Binding Path=CycleTime.ElapsedTime}" />
+                    </UniformGrid>
+                </Border>
 
-                    <telerik:Label Content="Cycle Time:" />
-                    <telerik:Label Content="{Binding Path=CycleTime.ElapsedTime}" />
-                </UniformGrid>
-            </Border>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <telerik:RadPathButton
+                        x:Name="PlayButton"
+                        Width="65"
+                        Height="65"
+                        Command="{Binding Path=PlayButton}"
+                        PathGeometry="{telerik:RadGlyph Type=None,
+                                                        Glyph={StaticResource GlyphPlay},
+                                                        Size=24}"
+                        Visibility="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
-            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                <telerik:RadPathButton
-                    x:Name="PlayButton"
-                    Width="65"
-                    Height="65"
-                    Command="{Binding Path=PlayButton}"
-                    PathGeometry="{telerik:RadGlyph Type=None,
-                                                    Glyph={StaticResource GlyphPlay},
-                                                    Size=24}"
-                    Visibility="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
-
-                <telerik:RadPathButton
-                    x:Name="PauseButton"
-                    Width="65"
-                    Height="65"
-                    Command="{Binding Path=PauseButton}"
-                    PathGeometry="{telerik:RadGlyph Type=Path,
-                                                    Glyph={StaticResource GlyphPause},
-                                                    Size=24}"
-                    Visibility="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <telerik:RadPathButton
+                        x:Name="PauseButton"
+                        Width="65"
+                        Height="65"
+                        Command="{Binding Path=PauseButton}"
+                        PathGeometry="{telerik:RadGlyph Type=Path,
+                                                        Glyph={StaticResource GlyphPause},
+                                                        Size=24}"
+                        Visibility="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                </StackPanel>
             </StackPanel>
-
-
+            
             <Viewbox
                 Grid.Column="1"
                 HorizontalAlignment="Center"
-                DockPanel.Dock="Left"
+                DockPanel.Dock="Right"
                 Stretch="Uniform"
                 StretchDirection="DownOnly">
                 <Image Margin="5" Source="{Binding Path=ProductImage}" />
@@ -146,49 +143,47 @@
                         IsSkewAngleXEnabled="True"
                         IsSkewAngleYEnabled="True"
                         ItemsMovementAnimationDuration="00:00:00.5"
-                        ItemsPerPage="21"
-                        PathPadding="0,10,0,10"
+                        ItemsPerPage="17"
+                        PathPadding="0,0,0,0"
                         UseLayoutRounding="True">
 
                         <telerik:RadCarouselPanel.Path>
                             <Path
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
-                                Data="M 0,500 C0,500 800,500 800,500 "
+                                Data="M 0,0 H 0,2"
                                 Stretch="Fill" />
                         </telerik:RadCarouselPanel.Path>
 
                         <telerik:RadCarouselPanel.ScaleStops>
                             <telerik:PathStopCollection>
-                                <telerik:PathStop PathFraction="0.1" Value="0.8" />
-                                <telerik:PathStop PathFraction="0.4" Value="0.8" />
-                                <telerik:PathStop PathFraction="0.5" Value="1" />
-                                <telerik:PathStop PathFraction="0.6" Value="0.8" />
-                                <telerik:PathStop PathFraction="0.9" Value="0.8" />
+                                <telerik:PathStop PathFraction="0.1" Value="0.9" />
+                                <telerik:PathStop PathFraction="0.49" Value="1" />
+                                <telerik:PathStop PathFraction="0.5" Value="1.2" />
+                                <telerik:PathStop PathFraction="0.51" Value="1" />
+                                <telerik:PathStop PathFraction="0.9" Value="0.9" />
                             </telerik:PathStopCollection>
                         </telerik:RadCarouselPanel.ScaleStops>
 
                         <telerik:RadCarouselPanel.SkewAngleXStops>
                             <telerik:PathStopCollection>
                                 <telerik:PathStop PathFraction="0.1" Value="0" />
-                                <telerik:PathStop PathFraction="0.4" Value="0" />
+                                <telerik:PathStop PathFraction="0.49" Value="0" />
                                 <telerik:PathStop PathFraction="0.5" Value="0" />
-                                <telerik:PathStop PathFraction="0.6" Value="0" />
+                                <telerik:PathStop PathFraction="0.51" Value="0" />
                                 <telerik:PathStop PathFraction="0.9" Value="0" />
                             </telerik:PathStopCollection>
                         </telerik:RadCarouselPanel.SkewAngleXStops>
 
-
                         <telerik:RadCarouselPanel.SkewAngleYStops>
                             <telerik:PathStopCollection>
-                                <telerik:PathStop PathFraction="0.1" Value="5" />
-                                <telerik:PathStop PathFraction="0.4" Value="-5" />
+                                <telerik:PathStop PathFraction="0.1" Value="-5" />
+                                <telerik:PathStop PathFraction="0.49" Value="-5" />
                                 <telerik:PathStop PathFraction="0.5" Value="0" />
-                                <telerik:PathStop PathFraction="0.6" Value="5" />
+                                <telerik:PathStop PathFraction="0.51" Value="-5" />
                                 <telerik:PathStop PathFraction="0.9" Value="-5" />
                             </telerik:PathStopCollection>
                         </telerik:RadCarouselPanel.SkewAngleYStops>
-
                     </telerik:RadCarouselPanel>
                 </ItemsPanelTemplate>
             </telerik:RadCarousel.ItemsPanel>
@@ -197,6 +192,7 @@
 
                 <Style TargetType="{x:Type telerik:CarouselItem}">
                     <Setter Property="Height" Value="Auto" />
+                    <Setter Property="Padding" Value="0,0,0,0" />
                     <Setter Property="Width" Value="Auto" />
                     <Setter Property="FlowDirection" Value="LeftToRight" />
                     <Setter Property="IsHitTestVisible" Value="True" />
@@ -276,7 +272,6 @@
 
                                                 <StackPanel x:Name="SubStepCounterPanel" Orientation="Horizontal">
 
-
                                                     <TextBlock
                                                         x:Name="CurrentSubIndexDisplay"
                                                         Uid="{Binding CardStepIndex}"
@@ -288,7 +283,6 @@
                                                             </MultiBinding>
                                                         </TextBlock.Text>
                                                     </TextBlock>
-
 
                                                     <TextBlock Text=" / " />
                                                     <TextBlock Text="{Binding Path=CardSubSteps.Count}" />
@@ -316,7 +310,6 @@
                                             </Viewbox>
                                         </Grid>
 
-
                                         <ListBox
                                             x:Name="CardSubStepListView"
                                             Grid.Row="1"
@@ -325,22 +318,30 @@
                                             VerticalAlignment="Top"
                                             HorizontalContentAlignment="Left"
                                             VerticalContentAlignment="Top"
+                                            ex:ListBoxExtenders.AutoScrollToCurrentItem="True"
                                             Background="Transparent"
                                             FlowDirection="LeftToRight"
                                             IsHitTestVisible="True"
+                                            IsSynchronizedWithCurrentItem="True"
                                             ItemsSource="{Binding Path=CardSubSteps}"
                                             ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                                            ScrollViewer.VerticalScrollBarVisibility="Hidden">
-
+                                            ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                            SelectedIndex="{Binding Path=CardStepIndex}"
+                                            SelectedItem="{Binding Path=CurrentSubStep}">
 
                                             <ListBox.ItemsPanel>
                                                 <ItemsPanelTemplate>
                                                     <telerik:RadCarouselPanel
+                                                        AutoLoadItems="True"
                                                         CanHorizontallyScroll="False"
-                                                        CanVerticallyScroll="False"
+                                                        CanVerticallyScroll="True"
                                                         FlowDirection="LeftToRight"
+                                                        IsContinuous="False"
+                                                        IsHitTestVisible="False"
                                                         IsPathVisible="False"
-                                                        ItemsPerPage="3">
+                                                        IsSelectedTopItem="True"
+                                                        ItemsMovementAnimationDuration="00:00:00.3"
+                                                        ItemsPerPage="1">
                                                         <telerik:RadCarouselPanel.Path>
 
                                                             <Path
@@ -349,8 +350,13 @@
                                                                 Stretch="Fill"
                                                                 Stroke="#FFB4B4B4"
                                                                 StrokeThickness="1" />
-
                                                         </telerik:RadCarouselPanel.Path>
+
+                                                        <telerik:RadCarouselPanel.Resources>
+                                                            <Style TargetType="Border">
+                                                                <Setter Property="Background" Value="Transparent" />
+                                                            </Style>
+                                                        </telerik:RadCarouselPanel.Resources>
                                                     </telerik:RadCarouselPanel>
                                                 </ItemsPanelTemplate>
                                             </ListBox.ItemsPanel>
@@ -371,7 +377,6 @@
                                                     </Border>
                                                 </ItemContainerTemplate>
                                             </ListBox.ItemTemplate>
-
                                         </ListBox>
                                     </Grid>
                                 </Border>
@@ -379,17 +384,7 @@
                                 <ControlTemplate.Triggers>
                                     <MultiDataTrigger>
                                         <MultiDataTrigger.Conditions>
-                                            <Condition>
-                                                <Condition.Binding>
-                                                    <MultiBinding Converter="{StaticResource RelativeLocationConverter}">
-                                                        <Binding ElementName="DataCarousel" Path="." />
-                                                        <Binding ElementName="CardBorder" Path="DataContext" />
-                                                    </MultiBinding>
-                                                </Condition.Binding>
-                                                <Condition.Value>0</Condition.Value>
-                                            </Condition>
-                                            <!--<Condition Binding="{Binding Path=IsActiveStep}" Value="False" />
-                                            <Condition Binding="{Binding Path=StepComplete}" Value="False" />-->
+                                            <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=RenderTransform.Value.OffsetX, Converter={StaticResource RelativePositionalFix}}" Value="Right" />
                                         </MultiDataTrigger.Conditions>
                                         <MultiDataTrigger.Setters>
                                             <Setter TargetName="StepStatus" Property="Visibility" Value="Collapsed" />
@@ -410,15 +405,7 @@
 
                                     <MultiDataTrigger>
                                         <MultiDataTrigger.Conditions>
-                                            <Condition>
-                                                <Condition.Binding>
-                                                    <MultiBinding Converter="{StaticResource RelativeLocationConverter}">
-                                                        <Binding ElementName="DataCarousel" Path="." />
-                                                        <Binding ElementName="CardBorder" Path="DataContext" />
-                                                    </MultiBinding>
-                                                </Condition.Binding>
-                                                <Condition.Value>1</Condition.Value>
-                                            </Condition>
+                                            <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=RenderTransform.Value.OffsetX, Converter={StaticResource RelativePositionalFix}}" Value="Left" />
                                         </MultiDataTrigger.Conditions>
                                         <MultiDataTrigger.Setters>
                                             <Setter TargetName="StepStatus" Property="Visibility" Value="Collapsed" />
@@ -439,15 +426,6 @@
 
                                     <MultiDataTrigger>
                                         <MultiDataTrigger.Conditions>
-                                            <Condition>
-                                                <Condition.Binding>
-                                                    <MultiBinding Converter="{StaticResource RelativeLocationConverter}">
-                                                        <Binding ElementName="DataCarousel" Path="." />
-                                                        <Binding ElementName="CardBorder" Path="DataContext" />
-                                                    </MultiBinding>
-                                                </Condition.Binding>
-                                                <Condition.Value>2</Condition.Value>
-                                            </Condition>
                                             <Condition Binding="{Binding Path=IsActiveStep}" Value="True" />
                                             <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.PlayBackRunning}" Value="False" />
                                         </MultiDataTrigger.Conditions>
@@ -492,14 +470,12 @@
                                             </BeginStoryboard>
                                         </MultiDataTrigger.ExitActions>
                                     </MultiDataTrigger>
-
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
                 </Style>
             </telerik:RadCarousel.Resources>
-
         </telerik:RadCarousel>
     </Grid>
 </UserControl>

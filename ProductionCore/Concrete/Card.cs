@@ -1,5 +1,6 @@
 ﻿using Prism.Mvvm;
 using ProductionCore.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Windows.Media;
 
@@ -19,6 +20,8 @@ namespace ProductionCore.Concrete
         private bool _stepComplete;
         private ImageSource? _stepImage;
         private ModalData? _stepModalData;
+
+        private CardSubStep? _currentSubStep;
 
         private StepStatus _stepStatus = StepStatus.Waiting;
 
@@ -45,6 +48,23 @@ namespace ProductionCore.Concrete
             }
         }
 
+        public CardSubStep? CurrentSubStep
+        {
+            get
+            {
+                return _currentSubStep;
+            }
+            set
+            {
+                SetProperty(ref _currentSubStep, value, SetCardStepIndex);
+            }
+        }
+
+        private void SetCardStepIndex()
+        {
+            CardStepIndex = _cardSubSteps.IndexOf(_currentSubStep ?? _cardSubSteps[0]);
+        }
+
         public int CardStepIndex
         {
             get
@@ -53,8 +73,13 @@ namespace ProductionCore.Concrete
             }
             set
             {
-                SetProperty(ref _cardStepIndex, value);
+                SetProperty(ref _cardStepIndex, value, SetCurrentSubstep);
             }
+        }
+
+        private void SetCurrentSubstep()
+        {
+            CurrentSubStep = _cardSubSteps[_cardStepIndex];
         }
 
         public List<CardSubStep> CardSubSteps
@@ -65,7 +90,7 @@ namespace ProductionCore.Concrete
             }
             set
             {
-                SetProperty(ref _cardSubSteps, value);
+                SetProperty(ref _cardSubSteps, value, SetCardStepIndex);
             }
         }
 
