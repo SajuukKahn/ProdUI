@@ -11,6 +11,8 @@ namespace ProdUI.Views
         public ProdUIView()
         {
             InitializeComponent();
+            //TODO I would like to work towards making the different views based on scaling / some part of a constructor
+            //  This seems like a lot of work, and I don't know a good way to handle it
         }
     }
 }

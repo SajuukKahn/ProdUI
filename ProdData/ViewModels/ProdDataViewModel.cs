@@ -26,6 +26,8 @@ namespace ProdData.ViewModels
         private BitmapImage? _productImage;
         private IProgramData? _selectedProgramData;
 
+        //TODO Is this ViewModel doing too much heavy lifting?  Is this whole class too complicated?
+
         public ProdDataViewModel(IEventAggregator eventAggregator, IProgramDataFactory programDataFactory)
         {
             _selectedProgramData = programDataFactory.Create();
@@ -191,6 +193,8 @@ namespace ProdData.ViewModels
             }
         }
 
+        //TODO I don't think this is a good way to handle going to the next card
+        // It should probably be a method contained in the target object?
         public void HandleAdvanceStep()
         {
             if (IterateSubStep())

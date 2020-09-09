@@ -36,6 +36,7 @@ namespace ProdTestGenerator
 
         private DateTime lastDate;
 
+        //TODO I think I would refactor this entire class to be a series of classes / services
         public TestGeneratorSingleton(IEventAggregator eventAggregator, IProgramCollection programCollection, IProgramDataFactory programDataFactory, IBarcodeFactory barcodeFactory, IProdDataViewModel prodDataViewModel)
         {
             _prodDataViewModel = prodDataViewModel;
@@ -385,6 +386,7 @@ namespace ProdTestGenerator
                 _programCancelToken = _programCancellationTokenSource.Token;
             }
 
+            //TODO This section controls playback - it's my fake process running
             var task = Task.Run(() =>
             {
                 
@@ -405,7 +407,6 @@ namespace ProdTestGenerator
 
                     if (!_programPaused)
                     {
-                        //Task.Delay(TimeSpan.FromSeconds(new Random().Next(2, 5) + new Random().NextDouble()));
                         Thread.Sleep(TimeSpan.FromSeconds(new Random().Next(2, 5) + new Random().NextDouble()));
                         if (!_programPaused && !_modalRaised)
                         {

@@ -31,7 +31,6 @@
             <telerik:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <telerik:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
             <Converters:ArrayToDelimitedStringConverter x:Key="ArrayToDeimitedStringConverter" />
-            <Converters:PercentileConverter x:Key="PercentileConverter" />
 
             <Style BasedOn="{StaticResource DetailsPresenterStyle}" TargetType="telerik:DetailsPresenter">
                 <Setter Property="Padding" Value="0" />

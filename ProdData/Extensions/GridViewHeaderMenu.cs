@@ -69,14 +69,14 @@ namespace ProdData.Extensions
             if (cell != null)
             {
                 menu.Items.Clear();
-                RadMenuItem item = new RadMenuItem();
 
                 if (cell.Column.CanFilter())
                 { 
                     string insertString = (string)(cell.Column.Tag ?? cell.Column.Header);
-
-                    item.Header = String.Format(@"Sort Ascending by ""{0}""", insertString);
-                    menu.Items.Add(item);
+                    menu.Items.Add(new RadMenuItem 
+                    { 
+                        Header = String.Format(@"Sort Ascending by ""{0}""", insertString)
+                    });                    
 
                     menu.Items.Add(new RadMenuItem
                     {
@@ -100,10 +100,9 @@ namespace ProdData.Extensions
 
                 }
 
-                menu.Items.Add(new RadMenuItem
-                { 
-                    Header = "Choose Columns:"
-                });
+                RadMenuItem item = new RadMenuItem();
+                item.Header = "Choose Columns:";
+                menu.Items.Add(item);
 
                 // create menu items
                 foreach (GridViewColumn column in grid.Columns)
@@ -123,9 +122,12 @@ namespace ProdData.Extensions
 
                     // bind IsChecked menu item property to IsVisible column property
                     subMenu.SetBinding(RadMenuItem.IsCheckedProperty, isCheckedBinding);
-
+                    
                     item.Items.Add(subMenu);
                 }
+
+                
+                
             }
             else
             {

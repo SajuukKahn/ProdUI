@@ -27,6 +27,7 @@ namespace ProductionCore.Concrete
 
         private string? _stepTitle;
 
+        //TODO I would abstract this class and all the inherited types within it, now that I understand how to do it effectively
         public Card(ImageSource? imageSource = null, bool isActiveStep = false, bool stepComplete = false, string stepTitle = "No Data", StepStatus? stepStatus = null)
         {
             StepImage = imageSource;

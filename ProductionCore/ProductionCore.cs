@@ -9,7 +9,7 @@ namespace ProductionCore
 {
     public class ProductionCore : IModule
     {
-
+        //TODO Does this need anything in it?  Everything works fine with this blank, but does it make sense to resolve types in here from interfaces?
         public void OnInitialized(IContainerProvider containerProvider)
         {
             
