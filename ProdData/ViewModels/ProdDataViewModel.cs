@@ -26,8 +26,6 @@ namespace ProdData.ViewModels
         private BitmapImage? _productImage;
         private IProgramData? _selectedProgramData;
 
-        //TODO Is this ViewModel doing too much heavy lifting?  Is this whole class too complicated?
-
         public ProdDataViewModel(IEventAggregator eventAggregator, IProgramDataFactory programDataFactory)
         {
             _selectedProgramData = programDataFactory.Create();

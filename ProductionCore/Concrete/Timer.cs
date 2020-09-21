@@ -16,8 +16,6 @@ namespace ProductionCore.Concrete
         private DateTime? _startTime;
 
         private TimeSpan _timeDifference;
-
-        //TODO I would rename this class to something else, but I can't land on a good descriptor
         public Timer()
         {
             System.Windows.Application.Current.Dispatcher.Invoke(() =>

@@ -11,7 +11,6 @@
 
         protected readonly string StatusReadout;
 
-        //TODO This class would go away using a service instead of the EventAggregator
         protected ModalResponseData(uint status, string statusReadout)
         {
             Status = status;

@@ -16,7 +16,6 @@
 
         protected readonly string StatusReadout;
 
-        //TODO This class is a replacement of an Enum type class... is this an acceptable way to accomplish named 'states' or would simply using a string be a more appropriate method?
         protected StepStatus(uint status, string statusReadout)
         {
             Status = status;

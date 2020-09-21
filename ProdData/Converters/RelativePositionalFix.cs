@@ -9,7 +9,6 @@ namespace ProdData.Converters
 {
     public class RelativePositionalFix : IValueConverter
     {
-        //TODO This is a fix I did to handle the right/left cards layout, but it's far from perfect
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null || (double)value == 0)
