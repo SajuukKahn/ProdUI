@@ -2,9 +2,10 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>   
     <UseWPF>true</UseWPF>
     <StartupObject></StartupObject>
+	  <CodeAnalysisRuleSet>../PVA.ruleset</CodeAnalysisRuleSet>
 	  <Nullable>enable</Nullable>
   </PropertyGroup>
 
@@ -19,7 +20,12 @@
     <Page Remove="ViewModels\**" />
   </ItemGroup>
 
-  <ItemGroup>
+	<ItemGroup>
+		<Analyzer Include="..\Lib\Analyzers\StyleCop.Analyzers.dll" />
+		<Analyzer Include="..\Lib\Analyzers\StyleCop.Analyzers.CodeFixes.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
     <Reference Include="CommonServiceLocator">
       <HintPath>..\Lib\CommonServiceLocator.dll</HintPath>
     </Reference>

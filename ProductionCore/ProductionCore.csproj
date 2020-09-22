@@ -3,10 +3,16 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+	  <CodeAnalysisRuleSet>../PVA.ruleset</CodeAnalysisRuleSet>
 	  <Nullable>enable</Nullable>
   </PropertyGroup>
+	
+	<ItemGroup>
+		<Analyzer Include="..\Lib\Analyzers\StyleCop.Analyzers.dll" />
+		<Analyzer Include="..\Lib\Analyzers\StyleCop.Analyzers.CodeFixes.dll" />
+	</ItemGroup>
 
-  <ItemGroup>
+	<ItemGroup>
     <Reference Include="CommonServiceLocator">
       <HintPath>..\Lib\CommonServiceLocator.dll</HintPath>
     </Reference>

@@ -1,10 +1,9 @@
-﻿using Prism.Services.Dialogs;
-using System.Windows;
-
-namespace ProdUI.Views
+﻿namespace ProdUI.Views
 {
+    using System.Windows;
+
     /// <summary>
-    /// Interaction logic for ProdUIShell.xaml
+    /// Interaction logic for ProdUIShell.xaml.
     /// </summary>
     public partial class ProdUIView : Window
     {

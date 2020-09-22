@@ -4,14 +4,21 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWpf>true</UseWpf>
 	  <Nullable>enable</Nullable>
+	  <CodeAnalysisRuleSet>../PVA.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ProductionCore\ProductionCore.csproj" />
     <ProjectReference Include="..\ProdUI\ProdUI.csproj" />
   </ItemGroup>
+	
+	<ItemGroup>
+		<Analyzer Include="..\Lib\Analyzers\StyleCop.Analyzers.dll" />
+		<Analyzer Include="..\Lib\Analyzers\StyleCop.Analyzers.CodeFixes.dll" />
+	</ItemGroup>
 
-  <ItemGroup>
+
+	<ItemGroup>
     <Reference Include="CommonServiceLocator">
       <HintPath>..\Lib\CommonServiceLocator.dll</HintPath>
     </Reference>

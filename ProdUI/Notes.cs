@@ -17,9 +17,8 @@
 
             + Interface all of the concrete classes and resolve within Unity container / factories in appropriate projects
             + Add more Interfaces to universalize properties within classes and Interfaces
-            + Eliminate the EventAggregator and all PubSubEvent inheriting classes and replace with services 
+            + Eliminate the EventAggregator and all PubSubEvent inheriting classes and replace with services
             + Add ability to spawn multiple process regions
-
         */
     }
 }

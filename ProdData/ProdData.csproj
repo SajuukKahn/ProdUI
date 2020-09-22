@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
 	  <Nullable>enable</Nullable>
+	  <CodeAnalysisRuleSet>../PVA.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
@@ -15,7 +16,12 @@
     <ProjectReference Include="..\ProdUI\ProdUI.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
+	<ItemGroup>
+		<Analyzer Include="..\Lib\Analyzers\StyleCop.Analyzers.dll" />
+		<Analyzer Include="..\Lib\Analyzers\StyleCop.Analyzers.CodeFixes.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
     <Reference Include="CommonServiceLocator">
       <HintPath>..\Lib\CommonServiceLocator.dll</HintPath>
     </Reference>
