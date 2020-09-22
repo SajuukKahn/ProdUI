@@ -1,15 +1,21 @@
-﻿using Microsoft.Xaml.Behaviors;
-using System;
-using System.ComponentModel;
-using System.Windows;
-using System.Windows.Input;
-using System.Windows.Threading;
-using Telerik.Windows.Controls;
-
-namespace ProdData.Extensions
+﻿namespace ProdData.Extensions
 {
+    using System;
+    using System.ComponentModel;
+    using System.Windows;
+    using System.Windows.Input;
+    using System.Windows.Threading;
+    using Microsoft.Xaml.Behaviors;
+    using Telerik.Windows.Controls;
+
+    /// <summary>
+    /// Defines the <see cref="RadCarouselBehaviorExtensions" />.
+    /// </summary>
     public class RadCarouselBehaviorExtensions : Behavior<RadCarousel>
     {
+        /// <summary>
+        /// The OnAttached.
+        /// </summary>
         protected override void OnAttached()
         {
             AssociatedObject.IsHitTestVisibleChanged += (s, e) => SnapToCurrentItem(s, e);
@@ -17,11 +23,21 @@ namespace ProdData.Extensions
             AssociatedObject.PreviewMouseWheel += (s, e) => CustomScrollWheelBehavior(s, e);
         }
 
+        /// <summary>
+        /// The CustomScrollWheelBehavior.
+        /// </summary>
+        /// <param name="s">The s<see cref="object"/>.</param>
+        /// <param name="e">The e<see cref="MouseWheelEventArgs"/>.</param>
         private void CustomScrollWheelBehavior(object s, MouseWheelEventArgs e)
         {
             e.Handled = true;
         }
 
+        /// <summary>
+        /// The PropChangedEventHandler.
+        /// </summary>
+        /// <param name="s">The s<see cref="object"/>.</param>
+        /// <param name="e">The e<see cref="PropertyChangedEventArgs"/>.</param>
         private void PropChangedEventHandler(object s, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(RadCarousel.CurrentItem) && !s.Equals(null))
@@ -31,6 +47,11 @@ namespace ProdData.Extensions
             }
         }
 
+        /// <summary>
+        /// The SnapToCurrentItem.
+        /// </summary>
+        /// <param name="s">The s<see cref="object"/>.</param>
+        /// <param name="e">The e<see cref="DependencyPropertyChangedEventArgs"/>.</param>
         private void SnapToCurrentItem(object s, DependencyPropertyChangedEventArgs e)
         {
             if (e.NewValue.Equals(false) && !s.Equals(null))
@@ -39,6 +60,5 @@ namespace ProdData.Extensions
                 Dispatcher.BeginInvoke(new Action(() => { radCarousel.FindCarouselPanel().BringDataItemIntoView(radCarousel.CurrentItem); }), DispatcherPriority.Render);
             }
         }
-
     }
 }

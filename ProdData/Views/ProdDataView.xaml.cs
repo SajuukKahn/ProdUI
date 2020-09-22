@@ -1,12 +1,15 @@
-﻿using System.Windows.Controls;
-
-namespace ProdData.Views
+﻿namespace ProdData.Views
 {
+    using System.Windows.Controls;
+
     /// <summary>
-    /// Interaction logic for ProdData.xaml
+    /// Interaction logic for ProdData.xaml.
     /// </summary>
     public partial class ProdDataView : UserControl
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProdDataView"/> class.
+        /// </summary>
         public ProdDataView()
         {
             InitializeComponent();

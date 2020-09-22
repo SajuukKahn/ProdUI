@@ -1,23 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-namespace ProdData.Views
+﻿namespace ProdData.Views
 {
+    using System.Windows.Controls;
+
     /// <summary>
-    /// Interaction logic for ProdModalDialog.xaml
+    /// Interaction logic for ProdModalDialog.xaml.
     /// </summary>
     public partial class ProdModalDialogView : UserControl
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProdModalDialogView"/> class.
+        /// </summary>
         public ProdModalDialogView()
         {
             InitializeComponent();
