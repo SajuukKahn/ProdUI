@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ProdUI</name>
+    </assembly>
+    <members>
+        <member name="T:ProdUI.App">
+            <summary>
+            Interaction logic for App.xaml.
+            </summary>
+            <summary>
+            App
+            </summary>
+        </member>
+        <member name="M:ProdUI.App.CreateShell">
+            <summary>
+            The CreateShell.
+            </summary>
+            <returns>The <see cref="T:System.Windows.Window"/>.</returns>
+        </member>
+        <member name="M:ProdUI.App.RegisterTypes(Prism.Ioc.IContainerRegistry)">
+            <summary>
+            The RegisterTypes.
+            </summary>
+            <param name="containerRegistry">The containerRegistry<see cref="T:Prism.Ioc.IContainerRegistry"/>.</param>
+        </member>
+        <member name="M:ProdUI.App.CreateModuleCatalog">
+            <summary>
+            The CreateModuleCatalog.
+            </summary>
+            <returns>The <see cref="T:Prism.Modularity.IModuleCatalog"/>.</returns>
+        </member>
+        <member name="M:ProdUI.App.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:ProdUI.App.Main">
+            <summary>
+            Application Entry Point.
+            </summary>
+        </member>
+        <member name="T:ProdUI.Notes">
+            <summary>
+            Defines the <see cref="T:ProdUI.Notes" />.
+            </summary>
+        </member>
+        <member name="T:ProdUI.Views.ProdUIView">
+            <summary>
+            Interaction logic for ProdUIShell.xaml.
+            </summary>
+            <summary>
+            ProdUIView
+            </summary>
+        </member>
+        <member name="M:ProdUI.Views.ProdUIView.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdUI.Views.ProdUIView"/> class.
+            </summary>
+        </member>
+        <member name="M:ProdUI.Views.ProdUIView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+    </members>
+</doc>

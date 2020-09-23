@@ -35,8 +35,8 @@
         /// <summary>
         /// The Create.
         /// </summary>
-        /// <param name="barcodeData">The barcodeData<see cref="string?"/>.</param>
-        /// <param name="barcodeImage">The barcodeImage<see cref="BitmapImage?"/>.</param>
+        /// <param name="barcodeData">The barcodeData<see cref="string"/>.</param>
+        /// <param name="barcodeImage">The barcodeImage<see cref="BitmapImage"/>.</param>
         /// <returns>The <see cref="IProgramData"/>.</returns>
         public IProgramData Create(string? barcodeData, BitmapImage? barcodeImage)
         {

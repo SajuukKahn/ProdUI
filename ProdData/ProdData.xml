@@ -1,0 +1,1170 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ProdData</name>
+    </assembly>
+    <members>
+        <member name="T:ProdData.Converters.ArrayToDelimitedStringConverter">
+            <summary>
+            Defines the <see cref="T:ProdData.Converters.ArrayToDelimitedStringConverter" />.
+            </summary>
+        </member>
+        <member name="M:ProdData.Converters.ArrayToDelimitedStringConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            The Convert.
+            </summary>
+            <param name="value">The value<see cref="T:System.Object"/>.</param>
+            <param name="targetType">The targetType<see cref="T:System.Type"/>.</param>
+            <param name="parameter">The parameter<see cref="T:System.Object"/>.</param>
+            <param name="culture">The culture<see cref="T:System.Globalization.CultureInfo"/>.</param>
+            <returns>The <see cref="T:System.Object"/>.</returns>
+        </member>
+        <member name="M:ProdData.Converters.ArrayToDelimitedStringConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            The ConvertBack.
+            </summary>
+            <param name="value">The value<see cref="T:System.Object"/>.</param>
+            <param name="targetType">The targetType<see cref="T:System.Type"/>.</param>
+            <param name="parameter">The parameter<see cref="T:System.Object"/>.</param>
+            <param name="culture">The culture<see cref="T:System.Globalization.CultureInfo"/>.</param>
+            <returns>The <see cref="T:System.Object"/>.</returns>
+        </member>
+        <member name="T:ProdData.Converters.MultiValueConverterAddOneToIndex">
+            <summary>
+            Defines the <see cref="T:ProdData.Converters.MultiValueConverterAddOneToIndex" />.
+            </summary>
+        </member>
+        <member name="M:ProdData.Converters.MultiValueConverterAddOneToIndex.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            The Convert.
+            </summary>
+            <param name="values">The values<see cref="T:System.Object"/>.</param>
+            <param name="targetType">The targetType<see cref="T:System.Type"/>.</param>
+            <param name="parameter">The parameter<see cref="T:System.Object"/>.</param>
+            <param name="culture">The culture<see cref="T:System.Globalization.CultureInfo"/>.</param>
+            <returns>The <see cref="T:System.Object"/>.</returns>
+        </member>
+        <member name="M:ProdData.Converters.MultiValueConverterAddOneToIndex.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            The ConvertBack.
+            </summary>
+            <param name="value">The value<see cref="T:System.Object"/>.</param>
+            <param name="targetTypes">The targetTypes<see cref="T:System.Type"/>.</param>
+            <param name="parameter">The parameter<see cref="T:System.Object"/>.</param>
+            <param name="culture">The culture<see cref="T:System.Globalization.CultureInfo"/>.</param>
+            <returns>The <see cref="T:System.Object"/>.</returns>
+        </member>
+        <member name="T:ProdData.Converters.RelativePositionalFix">
+            <summary>
+            Defines the <see cref="T:ProdData.Converters.RelativePositionalFix" />.
+            </summary>
+        </member>
+        <member name="M:ProdData.Converters.RelativePositionalFix.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            The Convert.
+            </summary>
+            <param name="value">The value<see cref="T:System.Object"/>.</param>
+            <param name="targetType">The targetType<see cref="T:System.Type"/>.</param>
+            <param name="parameter">The parameter<see cref="T:System.Object"/>.</param>
+            <param name="culture">The culture<see cref="T:System.Globalization.CultureInfo"/>.</param>
+            <returns>The <see cref="T:System.Object"/>.</returns>
+        </member>
+        <member name="M:ProdData.Converters.RelativePositionalFix.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            The ConvertBack.
+            </summary>
+            <param name="value">The value<see cref="T:System.Object"/>.</param>
+            <param name="targetType">The targetType<see cref="T:System.Type"/>.</param>
+            <param name="parameter">The parameter<see cref="T:System.Object"/>.</param>
+            <param name="culture">The culture<see cref="T:System.Globalization.CultureInfo"/>.</param>
+            <returns>The <see cref="T:System.Object"/>.</returns>
+        </member>
+        <member name="T:ProdData.Extensions.GridViewHeaderMenu">
+            <summary>
+            Defines the <see cref="T:ProdData.Extensions.GridViewHeaderMenu" />.
+            </summary>
+        </member>
+        <member name="F:ProdData.Extensions.GridViewHeaderMenu.IsEnabledProperty">
+            <summary>
+            Defines the IsEnabledProperty.
+            </summary>
+        </member>
+        <member name="F:ProdData.Extensions.GridViewHeaderMenu._grid">
+            <summary>
+            Defines the _grid.
+            </summary>
+        </member>
+        <member name="M:ProdData.Extensions.GridViewHeaderMenu.#ctor(Telerik.Windows.Controls.RadGridView)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdData.Extensions.GridViewHeaderMenu"/> class.
+            </summary>
+            <param name="grid">The grid<see cref="T:Telerik.Windows.Controls.RadGridView"/>.</param>
+        </member>
+        <member name="M:ProdData.Extensions.GridViewHeaderMenu.SetIsEnabled(System.Windows.DependencyObject,System.Boolean)">
+            <summary>
+            The SetIsEnabled.
+            </summary>
+            <param name="dependencyObject">The dependencyObject<see cref="T:System.Windows.DependencyObject"/>.</param>
+            <param name="enabled">The enabled<see cref="T:System.Boolean"/>.</param>
+        </member>
+        <member name="M:ProdData.Extensions.GridViewHeaderMenu.GetIsEnabled(System.Windows.DependencyObject)">
+            <summary>
+            The GetIsEnabled.
+            </summary>
+            <param name="dependencyObject">The dependencyObject<see cref="T:System.Windows.DependencyObject"/>.</param>
+            <returns>The <see cref="T:System.Boolean"/>.</returns>
+        </member>
+        <member name="M:ProdData.Extensions.GridViewHeaderMenu.OnMenuOpened(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            The OnMenuOpened.
+            </summary>
+            <param name="sender">The sender<see cref="T:System.Object"/>.</param>
+            <param name="e">The e<see cref="T:System.Windows.RoutedEventArgs"/>.</param>
+        </member>
+        <member name="M:ProdData.Extensions.GridViewHeaderMenu.OnMenuItemClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            The OnMenuItemClick.
+            </summary>
+            <param name="sender">The sender<see cref="T:System.Object"/>.</param>
+            <param name="e">The e<see cref="T:System.Windows.RoutedEventArgs"/>.</param>
+        </member>
+        <member name="M:ProdData.Extensions.GridViewHeaderMenu.OnIsEnabledPropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            The OnIsEnabledPropertyChanged.
+            </summary>
+            <param name="dependencyObject">The dependencyObject<see cref="T:System.Windows.DependencyObject"/>.</param>
+            <param name="e">The e<see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/>.</param>
+        </member>
+        <member name="M:ProdData.Extensions.GridViewHeaderMenu.Attach">
+            <summary>
+            The Attach.
+            </summary>
+        </member>
+        <member name="T:ProdData.Extensions.ListBoxExtenders">
+            <summary>
+            Defines the <see cref="T:ProdData.Extensions.ListBoxExtenders" />.
+            </summary>
+        </member>
+        <member name="F:ProdData.Extensions.ListBoxExtenders.AutoScrollToCurrentItemProperty">
+            <summary>
+            Defines the AutoScrollToCurrentItemProperty.
+            </summary>
+        </member>
+        <member name="M:ProdData.Extensions.ListBoxExtenders.GetAutoScrollToCurrentItem(System.Windows.DependencyObject)">
+            <summary>
+            The GetAutoScrollToCurrentItem.
+            </summary>
+            <param name="obj">The obj<see cref="T:System.Windows.DependencyObject"/>.</param>
+            <returns>The <see cref="T:System.Boolean"/>.</returns>
+        </member>
+        <member name="M:ProdData.Extensions.ListBoxExtenders.OnAutoScrollToCurrentItem(System.Windows.Controls.ListBox,System.Int32)">
+            <summary>
+            The OnAutoScrollToCurrentItem.
+            </summary>
+            <param name="listBox">The listBox<see cref="T:System.Windows.Controls.ListBox"/>.</param>
+            <param name="index">The index<see cref="T:System.Int32"/>.</param>
+        </member>
+        <member name="M:ProdData.Extensions.ListBoxExtenders.OnAutoScrollToCurrentItemChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            The OnAutoScrollToCurrentItemChanged.
+            </summary>
+            <param name="s">The s<see cref="T:System.Windows.DependencyObject"/>.</param>
+            <param name="e">The e<see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/>.</param>
+        </member>
+        <member name="M:ProdData.Extensions.ListBoxExtenders.SetAutoScrollToCurrentItem(System.Windows.DependencyObject,System.Boolean)">
+            <summary>
+            The SetAutoScrollToCurrentItem.
+            </summary>
+            <param name="obj">The obj<see cref="T:System.Windows.DependencyObject"/>.</param>
+            <param name="value">The value<see cref="T:System.Boolean"/>.</param>
+        </member>
+        <member name="T:ProdData.Extensions.RadCarouselBehaviorExtensions">
+            <summary>
+            Defines the <see cref="T:ProdData.Extensions.RadCarouselBehaviorExtensions" />.
+            </summary>
+        </member>
+        <member name="M:ProdData.Extensions.RadCarouselBehaviorExtensions.OnAttached">
+            <summary>
+            The OnAttached.
+            </summary>
+        </member>
+        <member name="M:ProdData.Extensions.RadCarouselBehaviorExtensions.CustomScrollWheelBehavior(System.Object,System.Windows.Input.MouseWheelEventArgs)">
+            <summary>
+            The CustomScrollWheelBehavior.
+            </summary>
+            <param name="s">The s<see cref="T:System.Object"/>.</param>
+            <param name="e">The e<see cref="T:System.Windows.Input.MouseWheelEventArgs"/>.</param>
+        </member>
+        <member name="M:ProdData.Extensions.RadCarouselBehaviorExtensions.PropChangedEventHandler(System.Object,System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            The PropChangedEventHandler.
+            </summary>
+            <param name="s">The s<see cref="T:System.Object"/>.</param>
+            <param name="e">The e<see cref="T:System.ComponentModel.PropertyChangedEventArgs"/>.</param>
+        </member>
+        <member name="M:ProdData.Extensions.RadCarouselBehaviorExtensions.SnapToCurrentItem(System.Object,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            The SnapToCurrentItem.
+            </summary>
+            <param name="s">The s<see cref="T:System.Object"/>.</param>
+            <param name="e">The e<see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/>.</param>
+        </member>
+        <member name="T:ProdData.Extensions.SelectedIndexFromSelectedItem">
+            <summary>
+            Defines the <see cref="T:ProdData.Extensions.SelectedIndexFromSelectedItem" />.
+            </summary>
+        </member>
+        <member name="F:ProdData.Extensions.SelectedIndexFromSelectedItem.SelectedIndexAttached">
+            <summary>
+            Defines the SelectedIndexAttached.
+            </summary>
+        </member>
+        <member name="M:ProdData.Extensions.SelectedIndexFromSelectedItem.GetSelectedIndex(System.Windows.DependencyObject)">
+            <summary>
+            The GetSelectedIndex.
+            </summary>
+            <param name="d">The d<see cref="T:System.Windows.DependencyObject"/>.</param>
+            <returns>The <see cref="T:System.Int32"/>.</returns>
+        </member>
+        <member name="M:ProdData.Extensions.SelectedIndexFromSelectedItem.SetSelectedIndex(System.Windows.DependencyObject,System.Int32)">
+            <summary>
+            The SetSelectedIndex.
+            </summary>
+            <param name="d">The d<see cref="T:System.Windows.DependencyObject"/>.</param>
+            <param name="value">The value<see cref="T:System.Int32"/>.</param>
+        </member>
+        <member name="M:ProdData.Extensions.SelectedIndexFromSelectedItem.SelectedIndexAttachedChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            The SelectedIndexAttachedChanged.
+            </summary>
+            <param name="d">The d<see cref="T:System.Windows.DependencyObject"/>.</param>
+            <param name="e">The e<see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/>.</param>
+        </member>
+        <member name="T:ProdData.Factories.BarcodeFactory">
+            <summary>
+            Defines the <see cref="T:ProdData.Factories.BarcodeFactory" />.
+            </summary>
+        </member>
+        <member name="M:ProdData.Factories.BarcodeFactory.Create(System.String,System.Windows.Media.Imaging.BitmapImage)">
+            <summary>
+            The Create.
+            </summary>
+            <param name="barcodeData">The barcodeData<see cref="T:System.String"/>.</param>
+            <param name="barcodeImage">The barcodeImage<see cref="T:System.Windows.Media.Imaging.BitmapImage"/>.</param>
+            <returns>The <see cref="T:ProductionCore.Interfaces.IBarcode"/>.</returns>
+        </member>
+        <member name="M:ProdData.Factories.BarcodeFactory.Create">
+            <summary>
+            The Create.
+            </summary>
+            <returns>The <see cref="T:ProductionCore.Interfaces.IBarcode"/>.</returns>
+        </member>
+        <member name="T:ProdData.Factories.ProgramDataFactory">
+            <summary>
+            Defines the <see cref="T:ProdData.Factories.ProgramDataFactory" />.
+            </summary>
+        </member>
+        <member name="F:ProdData.Factories.ProgramDataFactory._barcodeFactory">
+            <summary>
+            Defines the _barcodeFactory.
+            </summary>
+        </member>
+        <member name="M:ProdData.Factories.ProgramDataFactory.#ctor(ProductionCore.Interfaces.IBarcodeFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdData.Factories.ProgramDataFactory"/> class.
+            </summary>
+            <param name="barcodeFactory">Resolved registered type for <see cref="T:ProductionCore.Interfaces.IBarcodeFactory"/>.</param>
+        </member>
+        <member name="M:ProdData.Factories.ProgramDataFactory.Create">
+            <summary>
+            The Create.
+            </summary>
+            <returns>The <see cref="T:ProductionCore.Interfaces.IProgramData"/>.</returns>
+        </member>
+        <member name="M:ProdData.Factories.ProgramDataFactory.Create(System.String,System.Windows.Media.Imaging.BitmapImage)">
+            <summary>
+            The Create.
+            </summary>
+            <param name="barcodeData">The barcodeData<see cref="T:System.String"/>.</param>
+            <param name="barcodeImage">The barcodeImage<see cref="T:System.Windows.Media.Imaging.BitmapImage"/>.</param>
+            <returns>The <see cref="T:ProductionCore.Interfaces.IProgramData"/>.</returns>
+        </member>
+        <member name="T:ProdData.Models.Barcode">
+            <summary>
+            Defines the <see cref="T:ProdData.Models.Barcode" />.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.Barcode._barcodeData">
+            <summary>
+            Defines the _barcodeData.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.Barcode._barcodeImage">
+            <summary>
+            Defines the _barcodeImage.
+            </summary>
+        </member>
+        <member name="M:ProdData.Models.Barcode.#ctor(System.String,System.Windows.Media.Imaging.BitmapImage)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdData.Models.Barcode"/> class.
+            </summary>
+            <param name="barcodeData">The barcodeData<see cref="T:System.String"/>.</param>
+            <param name="barcodeImage">The barcodeImage<see cref="T:System.Windows.Media.Imaging.BitmapImage"/>.</param>
+        </member>
+        <member name="P:ProdData.Models.Barcode.BarcodeData">
+            <summary>
+            Gets or sets the BarcodeData.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.Barcode.BarcodeImage">
+            <summary>
+            Gets or sets the BarcodeImage.
+            </summary>
+        </member>
+        <member name="T:ProdData.Models.ProgramCollection">
+            <summary>
+            Defines the <see cref="T:ProdData.Models.ProgramCollection" />.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ProgramCollection._programList">
+            <summary>
+            Defines the _programList.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.ProgramCollection.ProgramList">
+            <summary>
+            Gets or sets the ProgramList.
+            </summary>
+        </member>
+        <member name="T:ProdData.Models.ProgramData">
+            <summary>
+            Defines the <see cref="T:ProdData.Models.ProgramData" />.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ProgramData._barcode">
+            <summary>
+            Defines the _barcode.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ProgramData._autoStartPlayback">
+            <summary>
+            Defines the _autoStartPlayback.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ProgramData._averageCycleTime">
+            <summary>
+            Defines the _averageCycleTime.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ProgramData._createdDate">
+            <summary>
+            Defines the _createdDate.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ProgramData._dimensions">
+            <summary>
+            Defines the _dimensions.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ProgramData._historicalCycles">
+            <summary>
+            Defines the _historicalCycles.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ProgramData._isFavorite">
+            <summary>
+            Defines the _isFavorite.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ProgramData._lastEditDate">
+            <summary>
+            Defines the _lastEditDate.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ProgramData._productImage">
+            <summary>
+            Defines the _productImage.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ProgramData._productName">
+            <summary>
+            Defines the _productName.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ProgramData._programCreator">
+            <summary>
+            Defines the _programCreator.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ProgramData._programName">
+            <summary>
+            Defines the _programName.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ProgramData._toolsUsed">
+            <summary>
+            Defines the _toolsUsed.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ProgramData._userCanStartPlayback">
+            <summary>
+            Defines the _userCanStartPlayback.
+            </summary>
+        </member>
+        <member name="M:ProdData.Models.ProgramData.#ctor(ProductionCore.Interfaces.IBarcode)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdData.Models.ProgramData"/> class.
+            </summary>
+            <param name="barcode">The barcode<see cref="T:ProductionCore.Interfaces.IBarcode"/>.</param>
+        </member>
+        <member name="P:ProdData.Models.ProgramData.AutoStartPlayback">
+            <summary>
+            Gets or sets a value indicating whether AutoStartPlayback.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.ProgramData.AverageCycleTime">
+            <summary>
+            Gets or sets the AverageCycleTime.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.ProgramData.Barcode">
+            <summary>
+            Gets or sets the Barcode.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.ProgramData.CreatedDate">
+            <summary>
+            Gets or sets the CreatedDate.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.ProgramData.Dimensions">
+            <summary>
+            Gets or sets the Dimensions.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.ProgramData.HistoricalCycles">
+            <summary>
+            Gets or sets the HistoricalCycles.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.ProgramData.IsFavorite">
+            <summary>
+            Gets or sets a value indicating whether IsFavorite.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.ProgramData.LastEditDate">
+            <summary>
+            Gets or sets the LastEditDate.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.ProgramData.ProductImage">
+            <summary>
+            Gets or sets the ProductImage.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.ProgramData.ProductName">
+            <summary>
+            Gets or sets the ProductName.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.ProgramData.ProgramCreator">
+            <summary>
+            Gets or sets the ProgramCreator.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.ProgramData.ProgramName">
+            <summary>
+            Gets or sets the ProgramName.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.ProgramData.ToolsUsed">
+            <summary>
+            Gets or sets the ToolsUsed.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.ProgramData.UserCanStartPlayback">
+            <summary>
+            Gets or sets a value indicating whether UserCanStartPlayback.
+            </summary>
+        </member>
+        <member name="M:ProdData.Models.ProgramData.UpdateAverageCycleTime(System.TimeSpan)">
+            <summary>
+            The UpdateAverageCycleTime.
+            </summary>
+            <param name="newestCycleTime">The newestCycleTime<see cref="T:System.TimeSpan"/>.</param>
+        </member>
+        <member name="M:ProdData.Models.ProgramData.UpdateLastEditDate">
+            <summary>
+            The UpdateLastEditDate.
+            </summary>
+        </member>
+        <member name="T:ProdData.ProdData">
+            <summary>
+            Defines the <see cref="T:ProdData.ProdData" />.
+            </summary>
+        </member>
+        <member name="F:ProdData.ProdData._regionManager">
+            <summary>
+            Defines the _regionManager.
+            </summary>
+        </member>
+        <member name="M:ProdData.ProdData.#ctor(Prism.Regions.IRegionManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdData.ProdData"/> class.
+            </summary>
+            <param name="regionManager">The regionManager<see cref="T:Prism.Regions.IRegionManager"/>.</param>
+        </member>
+        <member name="M:ProdData.ProdData.OnInitialized(Prism.Ioc.IContainerProvider)">
+            <summary>
+            The OnInitialized.
+            </summary>
+            <param name="containerProvider">The containerProvider<see cref="T:Prism.Ioc.IContainerProvider"/>.</param>
+        </member>
+        <member name="M:ProdData.ProdData.RegisterTypes(Prism.Ioc.IContainerRegistry)">
+            <summary>
+            The RegisterTypes.
+            </summary>
+            <param name="containerRegistry">The containerRegistry<see cref="T:Prism.Ioc.IContainerRegistry"/>.</param>
+        </member>
+        <member name="T:ProdData.ViewModels.ProdDataViewModel">
+            <summary>
+            Defines the <see cref="T:ProdData.ViewModels.ProdDataViewModel" />.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProdDataViewModel._eventAggregator">
+            <summary>
+            Defines the _eventAggregator.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProdDataViewModel._allowProgramChange">
+            <summary>
+            Defines the _allowProgramChange.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProdDataViewModel._cardCollection">
+            <summary>
+            Defines the _cardCollection.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProdDataViewModel._currentCard">
+            <summary>
+            Defines the _currentCard.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProdDataViewModel._currentCardIndex">
+            <summary>
+            Defines the _currentCardIndex.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProdDataViewModel._cycleCount">
+            <summary>
+            Defines the _cycleCount.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProdDataViewModel._cycleTime">
+            <summary>
+            Defines the _cycleTime.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProdDataViewModel._pauseAvailable">
+            <summary>
+            Defines the _pauseAvailable.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProdDataViewModel._playAvailable">
+            <summary>
+            Defines the _playAvailable.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProdDataViewModel._playBackRunning">
+            <summary>
+            Defines the _playBackRunning.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProdDataViewModel._productImage">
+            <summary>
+            Defines the _productImage.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProdDataViewModel._selectedProgramData">
+            <summary>
+            Defines the _selectedProgramData.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.#ctor(Prism.Events.IEventAggregator,ProductionCore.Interfaces.IProgramDataFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdData.ViewModels.ProdDataViewModel"/> class.
+            </summary>
+            <param name="eventAggregator">The eventAggregator<see cref="T:Prism.Events.IEventAggregator"/>.</param>
+            <param name="programDataFactory">The programDataFactory<see cref="T:ProductionCore.Interfaces.IProgramDataFactory"/>.</param>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdDataViewModel.AllowProgramChange">
+            <summary>
+            Gets or sets a value indicating whether AllowProgramChange.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdDataViewModel.CardCollection">
+            <summary>
+            Gets or sets the CardCollection.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdDataViewModel.CurrentCard">
+            <summary>
+            Gets or sets the CurrentCard.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdDataViewModel.CurrentCardIndex">
+            <summary>
+            Gets or sets the CurrentCardIndex.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdDataViewModel.CycleCount">
+            <summary>
+            Gets or sets the CycleCount.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdDataViewModel.CycleTime">
+            <summary>
+            Gets or sets the CycleTime.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdDataViewModel.OpenProgramSelect">
+            <summary>
+            Gets or sets the OpenProgramSelect.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdDataViewModel.PauseAvailable">
+            <summary>
+            Gets or sets a value indicating whether PauseAvailable.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdDataViewModel.PauseButton">
+            <summary>
+            Gets or sets the PauseButton.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdDataViewModel.PlayAvailable">
+            <summary>
+            Gets or sets a value indicating whether PlayAvailable.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdDataViewModel.PlayBackRunning">
+            <summary>
+            Gets or sets a value indicating whether PlayBackRunning.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdDataViewModel.PlayButton">
+            <summary>
+            Gets or sets the PlayButton.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdDataViewModel.ProductImage">
+            <summary>
+            Gets or sets the ProductImage.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdDataViewModel.SelectedProgramData">
+            <summary>
+            Gets or sets the SelectedProgramData.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.HandleAdvanceStep">
+            <summary>
+            The HandleAdvanceStep.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.IterateSubStep">
+            <summary>
+            The IterateSubStep.
+            </summary>
+            <returns>The <see cref="T:System.Boolean"/>.</returns>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.PauseCard">
+            <summary>
+            The PauseCard.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.RetryStep">
+            <summary>
+            The RetryStep.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.StartCard">
+            <summary>
+            The StartCard.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.CompleteCycle">
+            <summary>
+            The CompleteCycle.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.HandleModalAbortRequest(ProductionCore.Concrete.ModalResponseData)">
+            <summary>
+            The HandleModalAbortRequest.
+            </summary>
+            <param name="obj">The obj<see cref="T:ProductionCore.Concrete.ModalResponseData"/>.</param>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.HandleModalContinueRequest(ProductionCore.Concrete.ModalResponseData)">
+            <summary>
+            The HandleModalContinueRequest.
+            </summary>
+            <param name="obj">The obj<see cref="T:ProductionCore.Concrete.ModalResponseData"/>.</param>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.HandleModalCustomRequest(ProductionCore.Concrete.ModalResponseData)">
+            <summary>
+            The HandleModalCustomRequest.
+            </summary>
+            <param name="obj">The obj<see cref="T:ProductionCore.Concrete.ModalResponseData"/>.</param>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.HandleModalRetryRequest(ProductionCore.Concrete.ModalResponseData)">
+            <summary>
+            The HandleModalRetryRequest.
+            </summary>
+            <param name="obj">The obj<see cref="T:ProductionCore.Concrete.ModalResponseData"/>.</param>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.HandlePauseConfirmation">
+            <summary>
+            The HandlePauseConfirmation.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.HandlePauseRequest">
+            <summary>
+            The HandlePauseRequest.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.HandleProductImageChangeResponse(System.Windows.Media.Imaging.BitmapImage)">
+            <summary>
+            The HandleProductImageChangeResponse.
+            </summary>
+            <param name="image">The image<see cref="T:System.Windows.Media.Imaging.BitmapImage"/>.</param>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.HandleProgramDataResponse(System.Collections.ObjectModel.ObservableCollection{ProductionCore.Concrete.Card})">
+            <summary>
+            The HandleProgramDataResponse.
+            </summary>
+            <param name="publishedCardCollection">The publishedCardCollection<see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.</param>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.HandleProgramDataSaveResponse">
+            <summary>
+            The HandleProgramDataSaveResponse.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.HandleProgramHaltRequest">
+            <summary>
+            The HandleProgramHaltRequest.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.HandleProgramSelectResponse(ProductionCore.Interfaces.IProgramData)">
+            <summary>
+            The HandleProgramSelectResponse.
+            </summary>
+            <param name="programData">The programData<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.HandleRaiseError">
+            <summary>
+            The HandleRaiseError.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.HandleStartRequest">
+            <summary>
+            The HandleStartRequest.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.PausePressed">
+            <summary>
+            The PausePressed.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.PlaybackStart">
+            <summary>
+            The PlaybackStart.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.PlayPressed">
+            <summary>
+            The PlayPressed.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.RequestProgramSelect">
+            <summary>
+            The RequestProgramSelect.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.SetCurrentCard">
+            <summary>
+            The SetCurrentCard.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.UpdateProductImage">
+            <summary>
+            The UpdateProductImage.
+            </summary>
+        </member>
+        <member name="T:ProdData.ViewModels.ProdModalDialogViewModel">
+            <summary>
+            Defines the <see cref="T:ProdData.ViewModels.ProdModalDialogViewModel" />.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProdModalDialogViewModel._eventAggregator">
+            <summary>
+            Defines the _eventAggregator.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProdModalDialogViewModel._canAbort">
+            <summary>
+            Defines the _canAbort.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProdModalDialogViewModel._canContinue">
+            <summary>
+            Defines the _canContinue.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProdModalDialogViewModel._canCustom">
+            <summary>
+            Defines the _canCustom.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProdModalDialogViewModel._canRetry">
+            <summary>
+            Defines the _canRetry.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProdModalDialogViewModel._customGlyph">
+            <summary>
+            Defines the _customGlyph.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProdModalDialogViewModel._customText">
+            <summary>
+            Defines the _customText.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProdModalDialogViewModel._imageSource">
+            <summary>
+            Defines the _imageSource.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProdModalDialogViewModel._modalInstructions">
+            <summary>
+            Defines the _modalInstructions.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProdModalDialogViewModel._modalOpenRequested">
+            <summary>
+            Defines the _modalOpenRequested.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdModalDialogViewModel.#ctor(Prism.Events.IEventAggregator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdData.ViewModels.ProdModalDialogViewModel"/> class.
+            </summary>
+            <param name="eventAggregator">The eventAggregator<see cref="T:Prism.Events.IEventAggregator"/>.</param>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.CanAbort">
+            <summary>
+            Gets or sets a value indicating whether CanAbort.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.CanContinue">
+            <summary>
+            Gets or sets a value indicating whether CanContinue.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.CanCustom">
+            <summary>
+            Gets or sets a value indicating whether CanCustom.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.CanRetry">
+            <summary>
+            Gets or sets a value indicating whether CanRetry.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.CustomGlyph">
+            <summary>
+            Gets or sets the CustomGlyph.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.CustomText">
+            <summary>
+            Gets or sets the CustomText.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.DelegateAbort">
+            <summary>
+            Gets or sets the DelegateAbort.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.DelegateContinue">
+            <summary>
+            Gets or sets the DelegateContinue.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.DelegateCustom">
+            <summary>
+            Gets or sets the DelegateCustom.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.DelegateRetry">
+            <summary>
+            Gets or sets the DelegateRetry.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.ImageSource">
+            <summary>
+            Gets or sets the ImageSource.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.ModalInstructions">
+            <summary>
+            Gets or sets the ModalInstructions.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.ModalOpenRequested">
+            <summary>
+            Gets or sets a value indicating whether ModalOpenRequested.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdModalDialogViewModel.HandleModalRequest(ProductionCore.Concrete.ModalData)">
+            <summary>
+            The HandleModalRequest.
+            </summary>
+            <param name="modalData">The modalData<see cref="T:ProductionCore.Concrete.ModalData"/>.</param>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdModalDialogViewModel.RaiseAbort">
+            <summary>
+            The RaiseAbort.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdModalDialogViewModel.RaiseContinue">
+            <summary>
+            The RaiseContinue.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdModalDialogViewModel.RaiseCustom">
+            <summary>
+            The RaiseCustom.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdModalDialogViewModel.RaiseRetry">
+            <summary>
+            The RaiseRetry.
+            </summary>
+        </member>
+        <member name="T:ProdData.ViewModels.ProgramSelectViewModel">
+            <summary>
+            Defines the <see cref="T:ProdData.ViewModels.ProgramSelectViewModel" />.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProgramSelectViewModel._eventAggregator">
+            <summary>
+            Defines the _eventAggregator.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProgramSelectViewModel._canCancel">
+            <summary>
+            Defines the _canCancel.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProgramSelectViewModel._canConfirm">
+            <summary>
+            Defines the _canConfirm.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProgramSelectViewModel._oldSelectedProgramData">
+            <summary>
+            Defines the _oldSelectedProgramData.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProgramSelectViewModel._programList">
+            <summary>
+            Defines the _programList.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProgramSelectViewModel._programReqestOpen">
+            <summary>
+            Defines the _programReqestOpen.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProgramSelectViewModel._requestAwaiting">
+            <summary>
+            Defines the _requestAwaiting.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProgramSelectViewModel._selectedProgramData">
+            <summary>
+            Defines the _selectedProgramData.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProgramSelectViewModel.#ctor(Prism.Events.IEventAggregator,ProductionCore.Interfaces.IProgramCollection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdData.ViewModels.ProgramSelectViewModel"/> class.
+            </summary>
+            <param name="eventAggregator">The eventAggregator<see cref="T:Prism.Events.IEventAggregator"/>.</param>
+            <param name="programCollection">The programCollection<see cref="T:ProductionCore.Interfaces.IProgramCollection"/>.</param>
+        </member>
+        <member name="P:ProdData.ViewModels.ProgramSelectViewModel.CanCancel">
+            <summary>
+            Gets or sets a value indicating whether CanCancel.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProgramSelectViewModel.CancelButton">
+            <summary>
+            Gets or sets the CancelButton.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProgramSelectViewModel.CanConfirm">
+            <summary>
+            Gets or sets a value indicating whether CanConfirm.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProgramSelectViewModel.ConfirmButton">
+            <summary>
+            Gets or sets the ConfirmButton.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProgramSelectViewModel.ProgramList">
+            <summary>
+            Gets or sets the ProgramList.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProgramSelectViewModel.ProgramRequestOpen">
+            <summary>
+            Gets or sets a value indicating whether ProgramRequestOpen.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProgramSelectViewModel.RequestAwaiting">
+            <summary>
+            Gets or sets a value indicating whether RequestAwaiting.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProgramSelectViewModel.SelectedProgramData">
+            <summary>
+            Gets or sets the SelectedProgramData.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProgramSelectViewModel.CancelProgramChange">
+            <summary>
+            The CancelProgramChange.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProgramSelectViewModel.CleanInstance">
+            <summary>
+            The CleanInstance.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProgramSelectViewModel.ConfirmProgramChange">
+            <summary>
+            The ConfirmProgramChange.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProgramSelectViewModel.HandleProgramNamesResponse">
+            <summary>
+            The HandleProgramNamesResponse.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProgramSelectViewModel.HandleProgramSelectRequest(ProductionCore.Interfaces.IProgramData)">
+            <summary>
+            The HandleProgramSelectRequest.
+            </summary>
+            <param name="oldProgramData">The oldProgramData<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
+        </member>
+        <member name="M:ProdData.ViewModels.ProgramSelectViewModel.RequestPrograms">
+            <summary>
+            The RequestPrograms.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProgramSelectViewModel.SetCanConfirm">
+            <summary>
+            The SetCanConfirm.
+            </summary>
+        </member>
+        <member name="T:ProdData.Views.ProdDataView">
+            <summary>
+            Interaction logic for ProdData.xaml.
+            </summary>
+            <summary>
+            ProdDataView
+            </summary>
+        </member>
+        <member name="M:ProdData.Views.ProdDataView.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdData.Views.ProdDataView"/> class.
+            </summary>
+        </member>
+        <member name="M:ProdData.Views.ProdDataView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:ProdData.Views.ProdModalDialogView">
+            <summary>
+            Interaction logic for ProdModalDialog.xaml.
+            </summary>
+            <summary>
+            ProdModalDialogView
+            </summary>
+        </member>
+        <member name="M:ProdData.Views.ProdModalDialogView.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdData.Views.ProdModalDialogView"/> class.
+            </summary>
+        </member>
+        <member name="M:ProdData.Views.ProdModalDialogView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:ProdData.Views.ProgramSelectView">
+            <summary>
+            Interaction logic for ProgramSelectView.xaml.
+            </summary>
+            <summary>
+            ProgramSelectView
+            </summary>
+        </member>
+        <member name="M:ProdData.Views.ProgramSelectView.#ctor(ProductionCore.Interfaces.IProgramSelectViewModel)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdData.Views.ProgramSelectView"/> class.
+            </summary>
+            <param name="programSelectViewModel">The programSelectViewModel<see cref="T:ProductionCore.Interfaces.IProgramSelectViewModel"/>.</param>
+        </member>
+        <member name="M:ProdData.Views.ProgramSelectView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
+        </member>
+    </members>
+</doc>

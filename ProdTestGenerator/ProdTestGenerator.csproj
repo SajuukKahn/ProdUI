@@ -7,6 +7,11 @@
 	  <CodeAnalysisRuleSet>../PVA.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <DocumentationFile>C:\Users\Mikey Gunz\Source\Repos\SajuukKahn\ProdUI\ProdTestGenerator\ProdTestGenerator.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\ProductionCore\ProductionCore.csproj" />
     <ProjectReference Include="..\ProdUI\ProdUI.csproj" />

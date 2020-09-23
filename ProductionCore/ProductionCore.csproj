@@ -6,6 +6,10 @@
 	  <CodeAnalysisRuleSet>../PVA.ruleset</CodeAnalysisRuleSet>
 	  <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\Mikey Gunz\Source\Repos\SajuukKahn\ProdUI\ProductionCore\ProductionCore.xml</DocumentationFile>
+  </PropertyGroup>
 	
 	<ItemGroup>
 		<Analyzer Include="..\Lib\Analyzers\StyleCop.Analyzers.dll" />

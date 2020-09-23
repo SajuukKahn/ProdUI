@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ProductionCore.Interfaces
+﻿namespace ProductionCore.Interfaces
 {
+    /// <summary>
+    /// Defines the <see cref="IProgramSelectViewModel" />.
+    /// </summary>
     public interface IProgramSelectViewModel
     {
     }

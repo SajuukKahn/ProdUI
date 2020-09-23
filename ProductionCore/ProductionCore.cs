@@ -1,22 +1,27 @@
-﻿using Prism.Ioc;
-using Prism.Modularity;
-using Prism.Regions;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ProductionCore
+﻿namespace ProductionCore
 {
+    using Prism.Ioc;
+    using Prism.Modularity;
+
+    /// <summary>
+    /// Defines the <see cref="ProductionCore" />.
+    /// </summary>
     public class ProductionCore : IModule
     {
+        /// <summary>
+        /// The OnInitialized.
+        /// </summary>
+        /// <param name="containerProvider">The containerProvider<see cref="IContainerProvider"/>.</param>
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            
         }
 
+        /// <summary>
+        /// The RegisterTypes.
+        /// </summary>
+        /// <param name="containerRegistry">The containerRegistry<see cref="IContainerRegistry"/>.</param>
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            
         }
     }
 }

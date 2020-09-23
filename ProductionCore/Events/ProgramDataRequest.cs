@@ -1,9 +1,11 @@
-﻿using Prism.Events;
-using ProductionCore.Concrete;
-using ProductionCore.Interfaces;
-
-namespace ProductionCore.Events
+﻿namespace ProductionCore.Events
 {
+    using global::ProductionCore.Interfaces;
+    using Prism.Events;
+
+    /// <summary>
+    /// Defines the <see cref="ProgramDataRequest" />.
+    /// </summary>
     public class ProgramDataRequest : PubSubEvent<IProgramData?>
     {
     }

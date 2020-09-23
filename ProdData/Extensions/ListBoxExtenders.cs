@@ -44,8 +44,7 @@
         /// <param name="e">The e<see cref="DependencyPropertyChangedEventArgs"/>.</param>
         public static void OnAutoScrollToCurrentItemChanged(DependencyObject s, DependencyPropertyChangedEventArgs e)
         {
-            var listBox = s as ListBox;
-            if (listBox != null)
+            if (s is ListBox listBox)
             {
                 var listBoxItems = listBox.Items;
                 if (listBoxItems != null)

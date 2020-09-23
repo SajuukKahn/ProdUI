@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ProductionCore.Interfaces
+﻿namespace ProductionCore.Interfaces
 {
-    interface ICardCollection
+    /// <summary>
+    /// Defines the <see cref="ICardCollection" />.
+    /// </summary>
+    public interface ICardCollection
     {
     }
 }

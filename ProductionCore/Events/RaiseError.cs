@@ -1,8 +1,10 @@
-﻿using Prism.Events;
-using ProductionCore.Concrete;
-
-namespace ProductionCore.Events
+﻿namespace ProductionCore.Events
 {
+    using Prism.Events;
+
+    /// <summary>
+    /// Defines the <see cref="RaiseError" />.
+    /// </summary>
     public class RaiseError : PubSubEvent
     {
     }

@@ -1,10 +1,12 @@
 ﻿namespace ProdUI
 {
+    /// <summary>
+    /// Defines the <see cref="Notes" />.
+    /// </summary>
     internal class Notes
     {
         /*
-
-        //TODO Notes Section:
+         * //TODO Notes Section:
 
             1. StyleCop
             2. Event aggregator - replace with services

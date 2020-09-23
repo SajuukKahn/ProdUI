@@ -39,7 +39,7 @@
 
             region = _regionManager.Regions["ProgramSelectRegion"];
             var view2 = containerProvider.Resolve<Views.ProgramSelectView>();
-            /// view2.DataContext = containerProvider.Resolve<ViewModels.ProgramSelectViewModel>();
+            ////view2.DataContext = containerProvider.Resolve<ViewModels.ProgramSelectViewModel>();
             region.Add(view2);
 
             region = _regionManager.Regions["ProdModalRegion"];

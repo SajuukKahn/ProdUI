@@ -1,41 +1,101 @@
-﻿using Prism.Events;
-using Prism.Ioc;
-using ProductionCore.Events;
-using ProductionCore.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Media.Imaging;
-using ProductionCore.Concrete;
-using System.Drawing;
-
-namespace ProdTestGenerator
+﻿namespace ProdTestGenerator
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Drawing;
+    using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Windows.Media.Imaging;
+    using Prism.Events;
+    using ProductionCore.Concrete;
+    using ProductionCore.Events;
+    using ProductionCore.Interfaces;
+
+    /// <summary>
+    /// Defines the <see cref="TestGeneratorSingleton" />.
+    /// </summary>
     public class TestGeneratorSingleton
     {
+        /// <summary>
+        /// Defines the _eventAggregator.
+        /// </summary>
         private readonly IEventAggregator _eventAggregator;
 
+        /// <summary>
+        /// Defines the _programCollection.
+        /// </summary>
         private readonly IProgramCollection _programCollection;
-        private readonly IProgramDataFactory _programDataFactory;
-        private readonly IBarcodeFactory _barcodeFactory;
-        private IProdDataViewModel _prodDataViewModel;
 
+        /// <summary>
+        /// Defines the _programDataFactory.
+        /// </summary>
+        private readonly IProgramDataFactory _programDataFactory;
+
+        /// <summary>
+        /// Defines the _barcodeFactory.
+        /// </summary>
+        private readonly IBarcodeFactory _barcodeFactory;
+
+        /// <summary>
+        /// Defines the _scaleDataSet.
+        /// </summary>
         private readonly int _scaleDataSet = 1;
+
+        /// <summary>
+        /// Defines the _prodDataViewModel.
+        /// </summary>
+        private readonly IProdDataViewModel _prodDataViewModel;
+
+        /// <summary>
+        /// Defines the _programCancellationTokenSource.
+        /// </summary>
         private CancellationTokenSource? _programCancellationTokenSource;
 
+        /// <summary>
+        /// Defines the _programCancelToken.
+        /// </summary>
         private CancellationToken _programCancelToken;
 
+        /// <summary>
+        /// Defines the _programIsInProgress.
+        /// </summary>
         private bool _programIsInProgress;
 
+        /// <summary>
+        /// Defines the _programPaused.
+        /// </summary>
         private bool _programPaused;
-        private bool dateSwitch;
 
-        private DateTime lastDate;
+        /// <summary>
+        /// Defines the dateSwitch.
+        /// </summary>
+        private bool _dateSwitch;
 
+        /// <summary>
+        /// Defines the lastDate.
+        /// </summary>
+        private DateTime _lastDate;
+
+        /// <summary>
+        /// Defines the _modalRaised.
+        /// </summary>
+        private bool _modalRaised;
+
+        /// <summary>
+        /// Defines the _pauseRequestResponded.
+        /// </summary>
+        private bool _pauseRequestResponded;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TestGeneratorSingleton"/> class.
+        /// </summary>
+        /// <param name="eventAggregator">The eventAggregator<see cref="IEventAggregator"/>.</param>
+        /// <param name="programCollection">The programCollection<see cref="IProgramCollection"/>.</param>
+        /// <param name="programDataFactory">The programDataFactory<see cref="IProgramDataFactory"/>.</param>
+        /// <param name="barcodeFactory">The barcodeFactory<see cref="IBarcodeFactory"/>.</param>
+        /// <param name="prodDataViewModel">The prodDataViewModel<see cref="IProdDataViewModel"/>.</param>
         public TestGeneratorSingleton(IEventAggregator eventAggregator, IProgramCollection programCollection, IProgramDataFactory programDataFactory, IBarcodeFactory barcodeFactory, IProdDataViewModel prodDataViewModel)
         {
             _prodDataViewModel = prodDataViewModel;
@@ -53,35 +113,23 @@ namespace ProdTestGenerator
             _eventAggregator.GetEvent<ModalResponse>().Subscribe((m) => ModalHandle(false));
         }
 
-        private void ModalHandle(bool tf)
-        {
-            _modalRaised = tf;
-         }
-
+        /// <summary>
+        /// The GenerateRandom.
+        /// </summary>
+        /// <param name="programData">The programData<see cref="IProgramData"/>.</param>
+        /// <returns>The <see cref="ObservableCollection{Card}"/>.</returns>
         public ObservableCollection<Card?> GenerateRandom(IProgramData? programData)
         {
             ObservableCollection<Card?> cardDeck = new ObservableCollection<Card?>();
-            string[] TitleArray =
-            {
-                "PolyLine 3D",
-                "Area",
-                "Move",
-                "Line",
-                "PolyLine",
-                "Arc",
-                "Spiral",
-                "Rectangular Sprial",
-                "Dot",
-                "Part Presense Check"
-            };
+            string[] titleArray = { "PolyLine 3D", "Area", "Move", "Line", "PolyLine", "Arc", "Spiral", "Rectangular Sprial", "Dot", "Part Presense Check" };
 
             BitmapImage? image = new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\FID.bmp", UriKind.RelativeOrAbsolute));
 
-            if(programData?.ProgramName == "Manual Placement Simulation")
+            if (programData?.ProgramName == "Manual Placement Simulation")
             {
                 List<CardSubStep> steplist = new List<CardSubStep>
             {
-                new CardSubStep("Place Product", new string[] {""})
+                new CardSubStep("Place Product", new string[] { string.Empty }),
             };
                 Card zerothCardModel = new Card()
                 {
@@ -96,23 +144,24 @@ namespace ProdTestGenerator
                         Card = null,
                         Instructions = "Place Product and press 'Continue' to begin" + Environment.NewLine + "Press 'Abort' to exit path playback",
                         InstructionImage = programData.ProductImage,
-                        IsError = false
-                    }
+                        IsError = false,
+                    },
                 };
                 cardDeck.Add(zerothCardModel);
             }
 
-            List<CardSubStep> fidList = new List<CardSubStep>();
-
-            fidList.Add(new CardSubStep("Fiducial A", RandomCoordinates()));
-            fidList.Add(new CardSubStep("Fiducial B", RandomCoordinates()));
+            List<CardSubStep> fidList = new List<CardSubStep>
+            {
+                new CardSubStep("Fiducial A", RandomCoordinates()),
+                new CardSubStep("Fiducial B", RandomCoordinates()),
+            };
 
             Card firstCardModel = new Card()
             {
                 CardSubSteps = fidList,
                 StepTitle = "Fiducial Check",
                 StepImage = image,
-                StepModalData = new ModalData() { CanAbort = true, CanContinue = true, CanRetry = true, Card = null, Instructions = "Fiducials failed, Select an option below", InstructionImage = image }
+                StepModalData = new ModalData() { CanAbort = true, CanContinue = true, CanRetry = true, Card = null, Instructions = "Fiducials failed, Select an option below", InstructionImage = image },
             };
 
             cardDeck.Add(firstCardModel);
@@ -127,14 +176,14 @@ namespace ProdTestGenerator
             {
                 CardSubSteps = surfaceList,
                 StepTitle = "Surface Height Check",
-                StepModalData = new ModalData() { CanAbort = true, CanRetry = true, Card = null, Instructions = "Surface Height Checks failed, Select an option below"}
+                StepModalData = new ModalData() { CanAbort = true, CanRetry = true, Card = null, Instructions = "Surface Height Checks failed, Select an option below" },
             };
             cardDeck.Add(secondCardModel);
 
             randSize = new Random().Next(4 * _scaleDataSet, 12 * _scaleDataSet);
             for (int i = 0; i < randSize; i++)
             {
-                string stepTitle = TitleArray[new Random().Next(TitleArray.Length)];
+                string stepTitle = titleArray[new Random().Next(titleArray.Length)];
                 int randSteps = new Random().Next(1 * _scaleDataSet, 8 * _scaleDataSet);
                 List<CardSubStep> randomSteps = new List<CardSubStep>();
 
@@ -155,9 +204,9 @@ namespace ProdTestGenerator
                     cardModel.StepImage = image;
                 }
 
-                if(cardModel.StepTitle == "Part Presence Check")
+                if (cardModel.StepTitle == "Part Presence Check")
                 {
-                    cardModel.StepModalData = new ModalData() { CanAbort = true, CanContinue = true, CanRetry = true, Card = null, Instructions = cardModel.StepTitle +  " failed, Select an option below"};
+                    cardModel.StepModalData = new ModalData() { CanAbort = true, CanContinue = true, CanRetry = true, Card = null, Instructions = cardModel.StepTitle + " failed, Select an option below" };
                 }
 
                 cardDeck.Add(cardModel);
@@ -166,25 +215,28 @@ namespace ProdTestGenerator
             return cardDeck;
         }
 
+        /// <summary>
+        /// The GenerateRandomProgramCollection.
+        /// </summary>
         public void GenerateRandomProgramCollection()
         {
             int randsize = new Random().Next(7 * _scaleDataSet, 45 * _scaleDataSet);
 
             string[] makernames =
             {
-        "Frank Briggs", "Alfred Travis", "Clarence Wallace", "Oscar Stanley", "Allan Gregory", "Randy Wyatt", "Terrence Hall", "Martin Charles", "Daniel Frazier", "Kevin Phillips",
-        "Vernon Merrill", "Gene Nolan", "Kent Kirk", "Don Webb", "Eric Wilcox", "Edward Garrett", "Douglas Jacobs", "Reginald Booth", "Dustin Mathis", "Mason Campbell",
-        "Bonnie Willis", "Thelma Frye", "Geneva Fowler", "Emma English", "Martha Harrison", "Jan Livingston", "Krista Hensley", "Yolanda Maxwell", "Elizabeth Lucas", "Whitney Powers",
-        "Marion Evans", "Julia Cain", "Ellen O'Neill", "Martha Conrad", "Vicky Harvey", "Kathy Finley", "Tracie Gentry", "Kelsey Workman", "Natalie Petersen", "Whitney Lane"
-        };
+            "Frank Briggs", "Alfred Travis", "Clarence Wallace", "Oscar Stanley", "Allan Gregory", "Randy Wyatt", "Terrence Hall", "Martin Charles", "Daniel Frazier", "Kevin Phillips",
+            "Vernon Merrill", "Gene Nolan", "Kent Kirk", "Don Webb", "Eric Wilcox", "Edward Garrett", "Douglas Jacobs", "Reginald Booth", "Dustin Mathis", "Mason Campbell",
+            "Bonnie Willis", "Thelma Frye", "Geneva Fowler", "Emma English", "Martha Harrison", "Jan Livingston", "Krista Hensley", "Yolanda Maxwell", "Elizabeth Lucas", "Whitney Powers",
+            "Marion Evans", "Julia Cain", "Ellen O'Neill", "Martha Conrad", "Vicky Harvey", "Kathy Finley", "Tracie Gentry", "Kelsey Workman", "Natalie Petersen", "Whitney Lane",
+            };
 
             string[] relations =
             {
-        "Redshift Bundler", "Anode Booster", "Photon Slicer", "Cathode Estimator", "Cell Arranger", "Ptolemy Modifier", "Oersted Perceiver", "Hertz Constructor", "Ito Controller", "Brandt Clamper", "Axion Mixer",
-        "Electric Surger", "Exothermic Wrencher", "Rotation Compressor", "Harmonic Migrator", "Exothermic Repeller", "de Fermat Surger", "Broglie Arranger", "Malpighi Estimator", "Mesmer Energizer", "Gamma Bundler",
-        "Liquid Sterilizer", "Collision Morpher", "Pressure Sterilizer", "Electric Fuser", "Brongniart Mixer", "Nobel Merger", "Foucault Forger", "Heisenberg Pauser", "Ising Detector", "Plasma Transformer", "Anode Converter",
-        "Flexibility Merger", "Gradient Reflector", "Collision Multiplier", "Kapitsa Handler", "Pavlov Retriever", "Heisenberg Compressor", "Marconi Transformer", "Raman Twister"
-        };
+            "Redshift Bundler", "Anode Booster", "Photon Slicer", "Cathode Estimator", "Cell Arranger", "Ptolemy Modifier", "Oersted Perceiver", "Hertz Constructor", "Ito Controller", "Brandt Clamper", "Axion Mixer",
+            "Electric Surger", "Exothermic Wrencher", "Rotation Compressor", "Harmonic Migrator", "Exothermic Repeller", "de Fermat Surger", "Broglie Arranger", "Malpighi Estimator", "Mesmer Energizer", "Gamma Bundler",
+            "Liquid Sterilizer", "Collision Morpher", "Pressure Sterilizer", "Electric Fuser", "Brongniart Mixer", "Nobel Merger", "Foucault Forger", "Heisenberg Pauser", "Ising Detector", "Plasma Transformer", "Anode Converter",
+            "Flexibility Merger", "Gradient Reflector", "Collision Multiplier", "Kapitsa Handler", "Pavlov Retriever", "Heisenberg Compressor", "Marconi Transformer", "Raman Twister",
+            };
 
             for (int i = 0; i < randsize; i++)
             {
@@ -193,7 +245,8 @@ namespace ProdTestGenerator
 
                 if (new Random().Next(0, 5) == 1)
                 {
-                    prog.Barcode = _barcodeFactory.Create(GenerateRandomString(128),
+                    prog.Barcode = _barcodeFactory.Create(
+                        GenerateRandomString(128),
                         new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\BAR" + new Random().Next(1, 4).ToString() + ".bmp", UriKind.RelativeOrAbsolute)));
                 }
 
@@ -209,7 +262,7 @@ namespace ProdTestGenerator
                 prog.UserCanStartPlayback = new Random().Next(4).Equals(1);
                 prog.AutoStartPlayback = false;
                 prog.IsFavorite = new Random().Next(7).Equals(1);
-                
+
                 _programCollection!.ProgramList?.Add(prog);
             }
 
@@ -231,22 +284,44 @@ namespace ProdTestGenerator
             _programCollection!.ProgramList?.Add(specialProg);
         }
 
+        /// <summary>
+        /// The ModalHandle.
+        /// </summary>
+        /// <param name="tf">The tf<see cref="bool"/>.</param>
+        private void ModalHandle(bool tf)
+        {
+            _modalRaised = tf;
+        }
+
+        /// <summary>
+        /// The ChooseRandomImage.
+        /// </summary>
+        /// <returns>The <see cref="BitmapImage"/>.</returns>
         private BitmapImage ChooseRandomImage()
         {
             BitmapImage? image = new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\PCB" + new Random().Next(1, 9).ToString() + ".bmp", UriKind.RelativeOrAbsolute));
             return image;
         }
 
+        /// <summary>
+        /// The FulfillPauseRequest.
+        /// </summary>
         private void FulfillPauseRequest()
         {
             _programPaused = true;
         }
 
+        /// <summary>
+        /// The FulfillProcessDisplayChangeRequest.
+        /// </summary>
         private void FulfillProcessDisplayChangeRequest()
         {
             GenerateProcessDisplayChangeResponse();
         }
 
+        /// <summary>
+        /// The FulfillStartRequest.
+        /// </summary>
         private void FulfillStartRequest()
         {
             _programPaused = false;
@@ -256,30 +331,47 @@ namespace ProdTestGenerator
             }
         }
 
+        /// <summary>
+        /// The GenerateProcessDisplayChangeResponse.
+        /// </summary>
         private void GenerateProcessDisplayChangeResponse()
         {
             BitmapImage image = ChooseRandomImage();
             _eventAggregator.GetEvent<ProductImageChangeResponse>().Publish(image);
         }
 
+        /// <summary>
+        /// The GenerateRandomCycleTimeAverage.
+        /// </summary>
+        /// <returns>The <see cref="TimeSpan"/>.</returns>
         private TimeSpan GenerateRandomCycleTimeAverage()
         {
             return new TimeSpan(0, 0, new Random().Next(12), new Random().Next(59), new Random().Next(999));
         }
 
+        /// <summary>
+        /// The GenerateRandomDateTime.
+        /// </summary>
+        /// <returns>The <see cref="DateTime"/>.</returns>
         private DateTime GenerateRandomDateTime()
         {
             DateTime start = new DateTime(1995, 1, 1);
-            if (dateSwitch == true)
+            if (_dateSwitch == true)
             {
-                start = lastDate;
+                start = _lastDate;
             }
+
             int range = (DateTime.Today - start).Days;
-            lastDate = start.AddDays(new Random().Next(range));
-            dateSwitch ^= true;
-            return lastDate;
+            _lastDate = start.AddDays(new Random().Next(range));
+            _dateSwitch ^= true;
+            return _lastDate;
         }
 
+        /// <summary>
+        /// The GenerateRandomString.
+        /// </summary>
+        /// <param name="maxLength">The maxLength<see cref="int"/>.</param>
+        /// <returns>The <see cref="string"/>.</returns>
         private string GenerateRandomString(int maxLength)
         {
             var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -291,42 +383,58 @@ namespace ProdTestGenerator
                 stringChars[i] = chars[random.Next(chars.Length)];
             }
 
-            var finalString = new String(stringChars);
+            var finalString = new string(stringChars);
             return finalString;
         }
 
-        private string[] GenerateRandomTools()
+        /// <summary>
+        /// The GenerateRandomTools.
+        /// </summary>
+        /// <returns>The <see cref="ObservableCollection{String}"/>.</returns>
+        private ObservableCollection<string> GenerateRandomTools()
         {
-            string[] toolReturn = new string[new Random().Next(1, 4)];
+            ObservableCollection<string> toolReturn = new ObservableCollection<string>();
             string[] tools =
             {
-            "FCM100", "FC100", "FC300", "FC100-MC","FC100-CF","FC100-C4","FCS300-ES","FCS300-ES-ND","FCS300-R","FCS300-F","PC200","PC200-TCM",
-            "SB300","SB300-C","JDX","SJ100","VPX-2K","VPX-450","SVX","MR1","MR2","IR Sensor","Ionizer","UV Wand","Laser Height Sensor","Touch Probe"
+            "FCM100", "FC100", "FC300", "FC100-MC", "FC100-CF", "FC100-C4", "FCS300-ES", "FCS300-ES-ND", "FCS300-R", "FCS300-F", "PC200", "PC200-TCM",
+            "SB300", "SB300-C", "JDX", "SJ100", "VPX-2K", "VPX-450", "SVX", "MR1", "MR2", "IR Sensor", "Ionizer", "UV Wand", "Laser Height Sensor", "Touch Probe",
             };
 
-            for (int i = 0; i < toolReturn.Length; i++)
+            for (int i = 0; i < new Random().Next(1, 4); i++)
             {
                 string toolcheck = tools[new Random().Next(tools.Length)];
                 while (toolReturn.Contains(toolcheck))
                 {
                     toolcheck = tools[new Random().Next(tools.Length)];
                 }
-                toolReturn[i] = toolcheck;
+
+                toolReturn.Add(toolcheck);
             }
 
             return toolReturn;
         }
 
+        /// <summary>
+        /// The RandomCoordinates.
+        /// </summary>
+        /// <returns>The <see cref="string"/>.</returns>
         private string[] RandomCoordinates()
         {
             return new string[] { new Random().Next(-20000, 200000).ToString(), new Random().Next(-20000, 200000).ToString(), new Random().Next(-9000, 100000).ToString() };
         }
 
+        /// <summary>
+        /// The RequestProgramDataReceived.
+        /// </summary>
+        /// <param name="programData">The programData<see cref="IProgramData"/>.</param>
         private void RequestProgramDataReceived(IProgramData? programData)
         {
             _eventAggregator.GetEvent<ProgramDataResponse>().Publish(GenerateRandom(programData));
         }
 
+        /// <summary>
+        /// The RequestProgramDataSaveReceived.
+        /// </summary>
         private void RequestProgramDataSaveReceived()
         {
             var prodData = _prodDataViewModel;
@@ -358,18 +466,23 @@ namespace ProdTestGenerator
             {
                 sw.WriteLine(card?.ToString());
             }
+
             _eventAggregator.GetEvent<ProgramDataSaveResponse>().Publish();
             sw.Close();
         }
 
+        /// <summary>
+        /// The RequestProgramNamesReceived.
+        /// </summary>
         private void RequestProgramNamesReceived()
         {
             GenerateRandomProgramCollection();
             _eventAggregator.GetEvent<ProgramNamesResponse>().Publish();
         }
 
-        private bool _modalRaised;
-        bool _pauseRequestResponded;
+        /// <summary>
+        /// The RunProg.
+        /// </summary>
         private void RunProg()
         {
             if (_programCancellationTokenSource == null)
@@ -385,9 +498,9 @@ namespace ProdTestGenerator
                 _programCancelToken = _programCancellationTokenSource.Token;
             }
 
-            var task = Task.Run(() =>
+            var task = Task.Run(
+                () =>
             {
-                
                 _programIsInProgress = true;
                 while (true)
                 {

@@ -142,14 +142,13 @@
             RadContextMenu menu = (RadContextMenu)sender;
 
             GridViewHeaderCell cell = menu.GetClickedElement<GridViewHeaderCell>();
-            RadMenuItem? clickedItem = ((RadRoutedEventArgs)e).OriginalSource as RadMenuItem;
             GridViewColumn column = cell.Column;
 
             string header = string.Empty;
 
-            if (clickedItem != null)
+            if (((RadRoutedEventArgs)e).OriginalSource is RadMenuItem clickedItem)
             {
-                if (clickedItem.Parent is RadMenuItem)
+                if (clickedItem?.Parent is RadMenuItem)
                 {
                     return;
                 }

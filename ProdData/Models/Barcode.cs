@@ -22,8 +22,8 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="Barcode"/> class.
         /// </summary>
-        /// <param name="barcodeData">The barcodeData<see cref="string?"/>.</param>
-        /// <param name="barcodeImage">The barcodeImage<see cref="BitmapImage?"/>.</param>
+        /// <param name="barcodeData">The barcodeData<see cref="string"/>.</param>
+        /// <param name="barcodeImage">The barcodeImage<see cref="BitmapImage"/>.</param>
         public Barcode(string? barcodeData, BitmapImage? barcodeImage)
         {
             _barcodeData = barcodeData;

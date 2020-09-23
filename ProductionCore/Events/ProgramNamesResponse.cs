@@ -1,11 +1,10 @@
-﻿using Prism.Events;
-using ProductionCore.Concrete;
-using ProductionCore.Interfaces;
-using System;
-using System.Collections.ObjectModel;
-
-namespace ProductionCore.Events
+﻿namespace ProductionCore.Events
 {
+    using Prism.Events;
+
+    /// <summary>
+    /// Defines the <see cref="ProgramNamesResponse" />.
+    /// </summary>
     public class ProgramNamesResponse : PubSubEvent
     {
     }

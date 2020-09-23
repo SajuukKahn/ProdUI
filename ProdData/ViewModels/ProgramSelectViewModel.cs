@@ -55,7 +55,7 @@
         /// Initializes a new instance of the <see cref="ProgramSelectViewModel"/> class.
         /// </summary>
         /// <param name="eventAggregator">The eventAggregator<see cref="IEventAggregator"/>.</param>
-        /// <param name="programCollection">The programCollection<see cref="IProgramCollection?"/>.</param>
+        /// <param name="programCollection">The programCollection<see cref="IProgramCollection"/>.</param>
         public ProgramSelectViewModel(IEventAggregator eventAggregator, IProgramCollection? programCollection)
         {
             _programList = programCollection;
@@ -213,7 +213,7 @@
         /// <summary>
         /// The HandleProgramSelectRequest.
         /// </summary>
-        /// <param name="oldProgramData">The oldProgramData<see cref="IProgramData?"/>.</param>
+        /// <param name="oldProgramData">The oldProgramData<see cref="IProgramData"/>.</param>
         private void HandleProgramSelectRequest(IProgramData? oldProgramData)
         {
             _oldSelectedProgramData = oldProgramData;

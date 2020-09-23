@@ -1,0 +1,282 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ProdTestGenerator</name>
+    </assembly>
+    <members>
+        <member name="T:ProdTestGenerator.ProdTestGenerator">
+            <summary>
+            Defines the <see cref="T:ProdTestGenerator.ProdTestGenerator" />.
+            </summary>
+        </member>
+        <member name="F:ProdTestGenerator.ProdTestGenerator._regionManager">
+            <summary>
+            Defines the _regionManager.
+            </summary>
+        </member>
+        <member name="M:ProdTestGenerator.ProdTestGenerator.#ctor(Prism.Regions.IRegionManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdTestGenerator.ProdTestGenerator"/> class.
+            </summary>
+            <param name="regionManager">The regionManager<see cref="T:Prism.Regions.IRegionManager"/>.</param>
+        </member>
+        <member name="M:ProdTestGenerator.ProdTestGenerator.OnInitialized(Prism.Ioc.IContainerProvider)">
+            <summary>
+            The OnInitialized.
+            </summary>
+            <param name="containerProvider">The containerProvider<see cref="T:Prism.Ioc.IContainerProvider"/>.</param>
+        </member>
+        <member name="M:ProdTestGenerator.ProdTestGenerator.RegisterTypes(Prism.Ioc.IContainerRegistry)">
+            <summary>
+            The RegisterTypes.
+            </summary>
+            <param name="containerRegistry">The containerRegistry<see cref="T:Prism.Ioc.IContainerRegistry"/>.</param>
+        </member>
+        <member name="T:ProdTestGenerator.TestGeneratorSingleton">
+            <summary>
+            Defines the <see cref="T:ProdTestGenerator.TestGeneratorSingleton" />.
+            </summary>
+        </member>
+        <member name="F:ProdTestGenerator.TestGeneratorSingleton._eventAggregator">
+            <summary>
+            Defines the _eventAggregator.
+            </summary>
+        </member>
+        <member name="F:ProdTestGenerator.TestGeneratorSingleton._programCollection">
+            <summary>
+            Defines the _programCollection.
+            </summary>
+        </member>
+        <member name="F:ProdTestGenerator.TestGeneratorSingleton._programDataFactory">
+            <summary>
+            Defines the _programDataFactory.
+            </summary>
+        </member>
+        <member name="F:ProdTestGenerator.TestGeneratorSingleton._barcodeFactory">
+            <summary>
+            Defines the _barcodeFactory.
+            </summary>
+        </member>
+        <member name="F:ProdTestGenerator.TestGeneratorSingleton._scaleDataSet">
+            <summary>
+            Defines the _scaleDataSet.
+            </summary>
+        </member>
+        <member name="F:ProdTestGenerator.TestGeneratorSingleton._prodDataViewModel">
+            <summary>
+            Defines the _prodDataViewModel.
+            </summary>
+        </member>
+        <member name="F:ProdTestGenerator.TestGeneratorSingleton._programCancellationTokenSource">
+            <summary>
+            Defines the _programCancellationTokenSource.
+            </summary>
+        </member>
+        <member name="F:ProdTestGenerator.TestGeneratorSingleton._programCancelToken">
+            <summary>
+            Defines the _programCancelToken.
+            </summary>
+        </member>
+        <member name="F:ProdTestGenerator.TestGeneratorSingleton._programIsInProgress">
+            <summary>
+            Defines the _programIsInProgress.
+            </summary>
+        </member>
+        <member name="F:ProdTestGenerator.TestGeneratorSingleton._programPaused">
+            <summary>
+            Defines the _programPaused.
+            </summary>
+        </member>
+        <member name="F:ProdTestGenerator.TestGeneratorSingleton._dateSwitch">
+            <summary>
+            Defines the dateSwitch.
+            </summary>
+        </member>
+        <member name="F:ProdTestGenerator.TestGeneratorSingleton._lastDate">
+            <summary>
+            Defines the lastDate.
+            </summary>
+        </member>
+        <member name="F:ProdTestGenerator.TestGeneratorSingleton._modalRaised">
+            <summary>
+            Defines the _modalRaised.
+            </summary>
+        </member>
+        <member name="F:ProdTestGenerator.TestGeneratorSingleton._pauseRequestResponded">
+            <summary>
+            Defines the _pauseRequestResponded.
+            </summary>
+        </member>
+        <member name="M:ProdTestGenerator.TestGeneratorSingleton.#ctor(Prism.Events.IEventAggregator,ProductionCore.Interfaces.IProgramCollection,ProductionCore.Interfaces.IProgramDataFactory,ProductionCore.Interfaces.IBarcodeFactory,ProductionCore.Interfaces.IProdDataViewModel)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdTestGenerator.TestGeneratorSingleton"/> class.
+            </summary>
+            <param name="eventAggregator">The eventAggregator<see cref="T:Prism.Events.IEventAggregator"/>.</param>
+            <param name="programCollection">The programCollection<see cref="T:ProductionCore.Interfaces.IProgramCollection"/>.</param>
+            <param name="programDataFactory">The programDataFactory<see cref="T:ProductionCore.Interfaces.IProgramDataFactory"/>.</param>
+            <param name="barcodeFactory">The barcodeFactory<see cref="T:ProductionCore.Interfaces.IBarcodeFactory"/>.</param>
+            <param name="prodDataViewModel">The prodDataViewModel<see cref="T:ProductionCore.Interfaces.IProdDataViewModel"/>.</param>
+        </member>
+        <member name="M:ProdTestGenerator.TestGeneratorSingleton.GenerateRandom(ProductionCore.Interfaces.IProgramData)">
+            <summary>
+            The GenerateRandom.
+            </summary>
+            <param name="programData">The programData<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
+            <returns>The <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.</returns>
+        </member>
+        <member name="M:ProdTestGenerator.TestGeneratorSingleton.GenerateRandomProgramCollection">
+            <summary>
+            The GenerateRandomProgramCollection.
+            </summary>
+        </member>
+        <member name="M:ProdTestGenerator.TestGeneratorSingleton.ModalHandle(System.Boolean)">
+            <summary>
+            The ModalHandle.
+            </summary>
+            <param name="tf">The tf<see cref="T:System.Boolean"/>.</param>
+        </member>
+        <member name="M:ProdTestGenerator.TestGeneratorSingleton.ChooseRandomImage">
+            <summary>
+            The ChooseRandomImage.
+            </summary>
+            <returns>The <see cref="T:System.Windows.Media.Imaging.BitmapImage"/>.</returns>
+        </member>
+        <member name="M:ProdTestGenerator.TestGeneratorSingleton.FulfillPauseRequest">
+            <summary>
+            The FulfillPauseRequest.
+            </summary>
+        </member>
+        <member name="M:ProdTestGenerator.TestGeneratorSingleton.FulfillProcessDisplayChangeRequest">
+            <summary>
+            The FulfillProcessDisplayChangeRequest.
+            </summary>
+        </member>
+        <member name="M:ProdTestGenerator.TestGeneratorSingleton.FulfillStartRequest">
+            <summary>
+            The FulfillStartRequest.
+            </summary>
+        </member>
+        <member name="M:ProdTestGenerator.TestGeneratorSingleton.GenerateProcessDisplayChangeResponse">
+            <summary>
+            The GenerateProcessDisplayChangeResponse.
+            </summary>
+        </member>
+        <member name="M:ProdTestGenerator.TestGeneratorSingleton.GenerateRandomCycleTimeAverage">
+            <summary>
+            The GenerateRandomCycleTimeAverage.
+            </summary>
+            <returns>The <see cref="T:System.TimeSpan"/>.</returns>
+        </member>
+        <member name="M:ProdTestGenerator.TestGeneratorSingleton.GenerateRandomDateTime">
+            <summary>
+            The GenerateRandomDateTime.
+            </summary>
+            <returns>The <see cref="T:System.DateTime"/>.</returns>
+        </member>
+        <member name="M:ProdTestGenerator.TestGeneratorSingleton.GenerateRandomString(System.Int32)">
+            <summary>
+            The GenerateRandomString.
+            </summary>
+            <param name="maxLength">The maxLength<see cref="T:System.Int32"/>.</param>
+            <returns>The <see cref="T:System.String"/>.</returns>
+        </member>
+        <member name="M:ProdTestGenerator.TestGeneratorSingleton.GenerateRandomTools">
+            <summary>
+            The GenerateRandomTools.
+            </summary>
+            <returns>The <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.</returns>
+        </member>
+        <member name="M:ProdTestGenerator.TestGeneratorSingleton.RandomCoordinates">
+            <summary>
+            The RandomCoordinates.
+            </summary>
+            <returns>The <see cref="T:System.String"/>.</returns>
+        </member>
+        <member name="M:ProdTestGenerator.TestGeneratorSingleton.RequestProgramDataReceived(ProductionCore.Interfaces.IProgramData)">
+            <summary>
+            The RequestProgramDataReceived.
+            </summary>
+            <param name="programData">The programData<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
+        </member>
+        <member name="M:ProdTestGenerator.TestGeneratorSingleton.RequestProgramDataSaveReceived">
+            <summary>
+            The RequestProgramDataSaveReceived.
+            </summary>
+        </member>
+        <member name="M:ProdTestGenerator.TestGeneratorSingleton.RequestProgramNamesReceived">
+            <summary>
+            The RequestProgramNamesReceived.
+            </summary>
+        </member>
+        <member name="M:ProdTestGenerator.TestGeneratorSingleton.RunProg">
+            <summary>
+            The RunProg.
+            </summary>
+        </member>
+        <member name="T:ProdTestGenerator.ViewModels.TestGeneratorViewModel">
+            <summary>
+            Defines the <see cref="T:ProdTestGenerator.ViewModels.TestGeneratorViewModel" />.
+            </summary>
+        </member>
+        <member name="F:ProdTestGenerator.ViewModels.TestGeneratorViewModel._eventAggregator">
+            <summary>
+            Defines the _eventAggregator.
+            </summary>
+        </member>
+        <member name="M:ProdTestGenerator.ViewModels.TestGeneratorViewModel.#ctor(Prism.Events.IEventAggregator,ProductionCore.Interfaces.IProgramDataFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdTestGenerator.ViewModels.TestGeneratorViewModel"/> class.
+            </summary>
+            <param name="eventAggregator">The eventAggregator<see cref="T:Prism.Events.IEventAggregator"/>.</param>
+            <param name="programDataFactory">The programDataFactory<see cref="T:ProductionCore.Interfaces.IProgramDataFactory"/>.</param>
+        </member>
+        <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.ChangeProcessImage">
+            <summary>
+            Gets or sets the ChangeProcessImage.
+            </summary>
+        </member>
+        <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.ChangeProgram">
+            <summary>
+            Gets or sets the ChangeProgram.
+            </summary>
+        </member>
+        <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.PauseButton">
+            <summary>
+            Gets or sets the PauseButton.
+            </summary>
+        </member>
+        <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.StartButton">
+            <summary>
+            Gets or sets the StartButton.
+            </summary>
+        </member>
+        <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.ThrowCardError">
+            <summary>
+            Gets or sets the ThrowCardError.
+            </summary>
+        </member>
+        <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.ThrowError">
+            <summary>
+            Gets or sets the ThrowError.
+            </summary>
+        </member>
+        <member name="T:ProdTestGenerator.Views.TestGeneratorView">
+            <summary>
+            Interaction logic for TestGeneratorView.xaml.
+            </summary>
+            <summary>
+            TestGeneratorView
+            </summary>
+        </member>
+        <member name="M:ProdTestGenerator.Views.TestGeneratorView.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdTestGenerator.Views.TestGeneratorView"/> class.
+            </summary>
+        </member>
+        <member name="M:ProdTestGenerator.Views.TestGeneratorView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+    </members>
+</doc>

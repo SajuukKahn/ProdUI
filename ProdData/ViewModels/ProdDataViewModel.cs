@@ -327,14 +327,14 @@
         {
             if (_cardCollection[CurrentCardIndex]?.CardStepIndex < _cardCollection[CurrentCardIndex]?.CardSubSteps.Count - 1)
             {
-                _cardCollection[CurrentCardIndex]!.CardStepIndex++;
+                _cardCollection[CurrentCardIndex] !.CardStepIndex++;
                 return true;
             }
 
-            _cardCollection[CurrentCardIndex]!.StepStatus = StepStatus.Completed;
-            _cardCollection[CurrentCardIndex]!.StepComplete = true;
-            _cardCollection[CurrentCardIndex]!.IsActiveStep = false;
-            _cardCollection[CurrentCardIndex]!.CardTime.Pause();
+            _cardCollection[CurrentCardIndex] !.StepStatus = StepStatus.Completed;
+            _cardCollection[CurrentCardIndex] !.StepComplete = true;
+            _cardCollection[CurrentCardIndex] !.IsActiveStep = false;
+            _cardCollection[CurrentCardIndex] !.CardTime.Pause();
             return false;
         }
 
@@ -343,8 +343,8 @@
         /// </summary>
         public void PauseCard()
         {
-            _cardCollection[CurrentCardIndex]!.StepStatus = StepStatus.Paused;
-            _cardCollection[CurrentCardIndex]!.CardTime.Pause();
+            _cardCollection[CurrentCardIndex] !.StepStatus = StepStatus.Paused;
+            _cardCollection[CurrentCardIndex] !.CardTime.Pause();
         }
 
         /// <summary>
@@ -352,9 +352,10 @@
         /// </summary>
         public void RetryStep()
         {
-            _cardCollection[CurrentCardIndex]!.CardStepIndex = 0;
-            _cardCollection[CurrentCardIndex]!.CardTime.Reset();
-            _cardCollection[CurrentCardIndex]!.CardTime.Start();
+            CurrentCard?.RetryCard();
+            //// _cardCollection[CurrentCardIndex]!.CardStepIndex = 0;
+            //// _cardCollection[CurrentCardIndex]!.CardTime.Reset();
+            //// _cardCollection[CurrentCardIndex]!.CardTime.Start();
         }
 
         /// <summary>
@@ -362,13 +363,14 @@
         /// </summary>
         public void StartCard()
         {
-            _cardCollection[CurrentCardIndex]!.IsActiveStep = true;
-            _cardCollection[CurrentCardIndex]!.StepStatus = StepStatus.Running;
-            _cardCollection[CurrentCardIndex]!.CardTime.Start();
-            if (_cardCollection[CurrentCardIndex]!.StepModalData?.IsError == false)
-            {
-                _eventAggregator.GetEvent<ModalEvent>().Publish(_cardCollection[CurrentCardIndex]!.StepModalData!);
-            }
+            CurrentCard?.StartCard();
+            //// _cardCollection[CurrentCardIndex]!.IsActiveStep = true;
+            //// _cardCollection[CurrentCardIndex]!.StepStatus = StepStatus.Running;
+            //// _cardCollection[CurrentCardIndex]!.CardTime.Start();
+            //// if (_cardCollection[CurrentCardIndex]!.StepModalData?.IsError == false)
+            //// {
+            ////    _eventAggregator.GetEvent<ModalEvent>().Publish(_cardCollection[CurrentCardIndex]!.StepModalData!);
+            //// }
         }
 
         /// <summary>
@@ -382,7 +384,7 @@
             CycleCount++;
             SelectedProgramData!.HistoricalCycles = CycleCount;
             _eventAggregator.GetEvent<ProgramDataSaveRequest>().Publish();
-            if (_cardCollection[CurrentCardIndex]!.StepModalData?.IsError == false)
+            if (_cardCollection[CurrentCardIndex] !.StepModalData?.IsError == false)
             {
                 _eventAggregator.GetEvent<StartRequest>().Publish();
             }
@@ -449,7 +451,7 @@
         /// <summary>
         /// The HandleProductImageChangeResponse.
         /// </summary>
-        /// <param name="image">The image<see cref="BitmapImage?"/>.</param>
+        /// <param name="image">The image<see cref="BitmapImage"/>.</param>
         private void HandleProductImageChangeResponse(BitmapImage? image)
         {
             ProductImage = image;
@@ -458,14 +460,14 @@
         /// <summary>
         /// The HandleProgramDataResponse.
         /// </summary>
-        /// <param name="publishedCardCollection">The publishedCardCollection<see cref="ObservableCollection{Card?}"/>.</param>
+        /// <param name="publishedCardCollection">The publishedCardCollection<see cref="ObservableCollection{Card}"/>.</param>
         private void HandleProgramDataResponse(ObservableCollection<Card?> publishedCardCollection)
         {
             CardCollection = publishedCardCollection;
             CurrentCardIndex = 0;
             CycleCount = SelectedProgramData!.HistoricalCycles;
             PlayAvailable = SelectedProgramData.UserCanStartPlayback;
-            _cardCollection[CurrentCardIndex]!.IsActiveStep = true;
+            _cardCollection[CurrentCardIndex] !.IsActiveStep = true;
             if (SelectedProgramData.AutoStartPlayback)
             {
                 _eventAggregator.GetEvent<StartRequest>().Publish();
@@ -499,7 +501,7 @@
         /// <summary>
         /// The HandleProgramSelectResponse.
         /// </summary>
-        /// <param name="programData">The programData<see cref="IProgramData?"/>.</param>
+        /// <param name="programData">The programData<see cref="IProgramData"/>.</param>
         private void HandleProgramSelectResponse(IProgramData? programData)
         {
             SelectedProgramData = programData!;
@@ -512,7 +514,7 @@
         {
             _eventAggregator.GetEvent<PauseRequest>().Publish();
             CycleTime.Pause();
-            if (_cardCollection[CurrentCardIndex]!.StepModalData == null)
+            if (_cardCollection[CurrentCardIndex] !.StepModalData == null)
             {
                 _eventAggregator.GetEvent<ModalEvent>().Publish(new ModalData()
                 {
@@ -523,7 +525,7 @@
             }
             else
             {
-                _eventAggregator.GetEvent<ModalEvent>().Publish(_cardCollection[CurrentCardIndex]!.StepModalData!);
+                _eventAggregator.GetEvent<ModalEvent>().Publish(_cardCollection[CurrentCardIndex] !.StepModalData!);
             }
         }
 
