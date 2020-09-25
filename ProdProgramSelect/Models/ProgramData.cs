@@ -1,4 +1,4 @@
-﻿namespace ProdData.Models
+﻿namespace ProdProgramSelect.Models
 {
     using System;
     using System.Collections.ObjectModel;

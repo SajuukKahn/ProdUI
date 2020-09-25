@@ -82,7 +82,6 @@
         /// <param name="programDataFactory">The programDataFactory<see cref="IProgramDataFactory"/>.</param>
         public ProdDataViewModel(IEventAggregator eventAggregator, IProgramDataFactory programDataFactory)
         {
-            _selectedProgramData = programDataFactory.Create();
             _eventAggregator = eventAggregator;
             PlayButton = new DelegateCommand(PlayPressed).ObservesCanExecute(() => PlayAvailable);
             PauseButton = new DelegateCommand(PausePressed).ObservesCanExecute(() => PauseAvailable);
@@ -101,6 +100,7 @@
             _eventAggregator.GetEvent<ModalResponse>().Subscribe(HandleModalContinueRequest, ThreadOption.BackgroundThread, false, modalData => modalData.Equals(ModalResponseData.Continue));
             _eventAggregator.GetEvent<ModalResponse>().Subscribe(HandleModalRetryRequest, ThreadOption.BackgroundThread, false, modalData => modalData.Equals(ModalResponseData.Retry));
             _eventAggregator.GetEvent<ModalResponse>().Subscribe(HandleModalCustomRequest, ThreadOption.BackgroundThread, false, modalData => modalData.Equals(ModalResponseData.Custom));
+            _selectedProgramData = programDataFactory.Create();
 
             AllowProgramChange = true;
         }

@@ -1,4 +1,4 @@
-﻿namespace ProdData.Views
+﻿namespace ProdProgramSelect.Views
 {
     using System.Windows.Controls;
     using ProductionCore.Interfaces;

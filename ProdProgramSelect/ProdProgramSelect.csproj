@@ -2,18 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UseWPF>true</UseWPF>
 	  <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
 	  <CodeAnalysisRuleSet>../PVA.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\Users\Mikey Gunz\Source\Repos\SajuukKahn\ProdUI\ProdData\ProdData.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy &quot;$(TargetDir)$(TargetName)*$(TargetExt)&quot; &quot;$(SolutionDir)$(SolutionName)\bin\Debug\netcoreapp3.1\Modules\&quot; /Y /S" />
-  </Target>
+	
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+		<DocumentationFile>C:\Users\Mikey Gunz\Source\Repos\SajuukKahn\ProdUI\ProdTestGenerator\ProdTestGenerator.xml</DocumentationFile>
+	</PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ProductionCore\ProductionCore.csproj" />
@@ -25,7 +22,7 @@
 		<Analyzer Include="..\Lib\Analyzers\StyleCop.Analyzers.CodeFixes.dll" />
 	</ItemGroup>
 
-	<ItemGroup>
+  <ItemGroup>
     <Reference Include="CommonServiceLocator">
       <HintPath>..\Lib\CommonServiceLocator.dll</HintPath>
     </Reference>
@@ -47,8 +44,20 @@
     <Reference Include="Telerik.Windows.Controls.Data">
       <HintPath>..\Lib\Telerik.Windows.Controls.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Telerik.Windows.Controls.DataVisualization">
+      <HintPath>..\Lib\Telerik.Windows.Controls.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Diagrams">
+      <HintPath>..\Lib\Telerik.Windows.Controls.Diagrams.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Diagrams.Extensions">
+      <HintPath>..\Lib\Telerik.Windows.Controls.Diagrams.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="Telerik.Windows.Controls.Docking">
       <HintPath>..\Lib\Telerik.Windows.Controls.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Expressions">
+      <HintPath>..\Lib\Telerik.Windows.Controls.Expressions.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Windows.Controls.GridView">
       <HintPath>..\Lib\Telerik.Windows.Controls.GridView.dll</HintPath>
@@ -85,9 +94,8 @@
     </Reference>
   </ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Factories\" />
-	  <Folder Include="Models\" />
-	</ItemGroup>
-
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="xcopy &quot;$(TargetDir)$(TargetName)*$(TargetExt)&quot; &quot;$(SolutionDir)$(SolutionName)\bin\Debug\netcoreapp3.1\Modules\&quot; /Y /S" />
+	</Target>
+	
 </Project>

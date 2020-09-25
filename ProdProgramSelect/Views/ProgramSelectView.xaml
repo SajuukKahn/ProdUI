@@ -1,12 +1,11 @@
 ﻿<UserControl
-    x:Class="ProdData.Views.ProgramSelectView"
+    x:Class="ProdProgramSelect.Views.ProgramSelectView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:Converters="clr-namespace:ProdData.Converters"
     xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:ex="clr-namespace:ProdData.Extensions"
-    xmlns:local="clr-namespace:ProdData.Views"
+    xmlns:ex="clr-namespace:ProdProgramSelect.Extensions"
+    xmlns:local="clr-namespace:ProdProgramSelect.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sys="clr-namespace:System;assembly=System.Runtime"
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
@@ -30,7 +29,6 @@
             </ResourceDictionary.MergedDictionaries>
             <telerik:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <telerik:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
-            <Converters:ArrayToDelimitedStringConverter x:Key="ArrayToDeimitedStringConverter" />
 
             <Style BasedOn="{StaticResource DetailsPresenterStyle}" TargetType="telerik:DetailsPresenter">
                 <Setter Property="Padding" Value="0" />
@@ -444,7 +442,7 @@
                                             Grid.Row="4"
                                             Grid.Column="1"
                                             Grid.ColumnSpan="3"
-                                            Text="{Binding Path=ToolsUsed, Converter={StaticResource ArrayToDeimitedStringConverter}}" />
+                                            Text="{Binding Path=ToolsUsed}" />
 
                                     </Grid>
 

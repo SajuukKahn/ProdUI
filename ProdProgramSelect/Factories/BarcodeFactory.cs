@@ -1,14 +1,21 @@
-﻿namespace ProdData.Factories
+﻿namespace ProdProgramSelect.Factories
 {
-    using System.Windows.Media.Imaging;
-    using global::ProdData.Models;
+    using global::ProdProgramSelect.Models;
     using ProductionCore.Interfaces;
+    using System.Windows.Media.Imaging;
 
     /// <summary>
     /// Defines the <see cref="BarcodeFactory" />.
     /// </summary>
     public class BarcodeFactory : IBarcodeFactory
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BarcodeFactory"/> class.
+        /// </summary>
+        public BarcodeFactory()
+        {
+        }
+
         /// <summary>
         /// The Create.
         /// </summary>

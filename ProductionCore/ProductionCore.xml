@@ -835,6 +835,11 @@
             </summary>
             <returns>The <see cref="T:ProductionCore.Interfaces.IProgramData"/>.</returns>
         </member>
+        <member name="T:ProductionCore.Interfaces.IProgramDataService">
+            <summary>
+            Defines the <see cref="T:ProductionCore.Interfaces.IProgramDataService" />.
+            </summary>
+        </member>
         <member name="T:ProductionCore.Interfaces.IProgramSelectViewModel">
             <summary>
             Defines the <see cref="T:ProductionCore.Interfaces.IProgramSelectViewModel" />.
@@ -856,6 +861,16 @@
             The RegisterTypes.
             </summary>
             <param name="containerRegistry">The containerRegistry<see cref="T:Prism.Ioc.IContainerRegistry"/>.</param>
+        </member>
+        <member name="T:ProductionCore.Services.ProgramDataService">
+            <summary>
+            Defines the <see cref="T:ProductionCore.Services.ProgramDataService" />.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Services.ProgramDataService.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProductionCore.Services.ProgramDataService"/> class.
+            </summary>
         </member>
     </members>
 </doc>

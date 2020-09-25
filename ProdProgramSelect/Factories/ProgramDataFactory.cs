@@ -1,7 +1,7 @@
-﻿namespace ProdData.Factories
+﻿namespace ProdProgramSelect.Factories
 {
     using System.Windows.Media.Imaging;
-    using global::ProdData.Models;
+    using global::ProdProgramSelect.Models;
     using ProductionCore.Interfaces;
 
     /// <summary>

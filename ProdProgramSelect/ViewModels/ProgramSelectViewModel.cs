@@ -1,4 +1,4 @@
-﻿namespace ProdData.ViewModels
+﻿namespace ProdProgramSelect.ViewModels
 {
     using Prism.Commands;
     using Prism.Events;

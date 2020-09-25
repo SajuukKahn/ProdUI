@@ -1,4 +1,4 @@
-﻿namespace ProdData.Extensions
+﻿namespace ProdProgramSelect.Extensions
 {
     using System.ComponentModel;
     using System.Linq;
