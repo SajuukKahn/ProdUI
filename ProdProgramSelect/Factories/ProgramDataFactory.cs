@@ -1,6 +1,5 @@
 ﻿namespace ProdProgramSelect.Factories
 {
-    using System.Windows.Media.Imaging;
     using global::ProdProgramSelect.Models;
     using ProductionCore.Interfaces;
 
@@ -30,17 +29,6 @@
         public IProgramData Create()
         {
             return new ProgramData(_barcodeFactory.Create());
-        }
-
-        /// <summary>
-        /// The Create.
-        /// </summary>
-        /// <param name="barcodeData">The barcodeData<see cref="string"/>.</param>
-        /// <param name="barcodeImage">The barcodeImage<see cref="BitmapImage"/>.</param>
-        /// <returns>The <see cref="IProgramData"/>.</returns>
-        public IProgramData Create(string? barcodeData, BitmapImage? barcodeImage)
-        {
-            return new ProgramData(_barcodeFactory.Create(barcodeData, barcodeImage));
         }
     }
 }

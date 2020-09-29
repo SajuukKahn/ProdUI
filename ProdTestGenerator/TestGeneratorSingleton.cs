@@ -24,21 +24,6 @@
         private readonly IEventAggregator _eventAggregator;
 
         /// <summary>
-        /// Defines the _programCollection.
-        /// </summary>
-        private readonly IProgramCollection _programCollection;
-
-        /// <summary>
-        /// Defines the _programDataFactory.
-        /// </summary>
-        private readonly IProgramDataFactory _programDataFactory;
-
-        /// <summary>
-        /// Defines the _barcodeFactory.
-        /// </summary>
-        private readonly IBarcodeFactory _barcodeFactory;
-
-        /// <summary>
         /// Defines the _scaleDataSet.
         /// </summary>
         private readonly int _scaleDataSet = 1;
@@ -47,6 +32,11 @@
         /// Defines the _prodDataViewModel.
         /// </summary>
         private readonly IProdDataViewModel _prodDataViewModel;
+
+        /// <summary>
+        /// Defines the _programDataService.
+        /// </summary>
+        private readonly IProgramDataService _programDataService;
 
         /// <summary>
         /// Defines the _programCancellationTokenSource.
@@ -69,12 +59,12 @@
         private bool _programPaused;
 
         /// <summary>
-        /// Defines the dateSwitch.
+        /// Defines the _dateSwitch.
         /// </summary>
         private bool _dateSwitch;
 
         /// <summary>
-        /// Defines the lastDate.
+        /// Defines the _lastDate.
         /// </summary>
         private DateTime _lastDate;
 
@@ -92,25 +82,21 @@
         /// Initializes a new instance of the <see cref="TestGeneratorSingleton"/> class.
         /// </summary>
         /// <param name="eventAggregator">The eventAggregator<see cref="IEventAggregator"/>.</param>
-        /// <param name="programCollection">The programCollection<see cref="IProgramCollection"/>.</param>
-        /// <param name="programDataFactory">The programDataFactory<see cref="IProgramDataFactory"/>.</param>
-        /// <param name="barcodeFactory">The barcodeFactory<see cref="IBarcodeFactory"/>.</param>
         /// <param name="prodDataViewModel">The prodDataViewModel<see cref="IProdDataViewModel"/>.</param>
-        public TestGeneratorSingleton(IEventAggregator eventAggregator, IProgramCollection programCollection, IProgramDataFactory programDataFactory, IBarcodeFactory barcodeFactory, IProdDataViewModel prodDataViewModel)
+        /// <param name="programDataService">The programDataService<see cref="IProgramDataService"/>.</param>
+        public TestGeneratorSingleton(IEventAggregator eventAggregator, IProdDataViewModel prodDataViewModel, IProgramDataService programDataService)
         {
             _prodDataViewModel = prodDataViewModel;
-            _programCollection = programCollection;
+            _programDataService = programDataService;
             _eventAggregator = eventAggregator;
-            _programDataFactory = programDataFactory;
-            _barcodeFactory = barcodeFactory;
             _eventAggregator.GetEvent<StartRequest>().Subscribe(FulfillStartRequest);
             _eventAggregator.GetEvent<PauseRequest>().Subscribe(FulfillPauseRequest);
             _eventAggregator.GetEvent<ProductImageChangeRequest>().Subscribe(FulfillProcessDisplayChangeRequest);
-            _eventAggregator.GetEvent<ProgramNamesRequest>().Subscribe(RequestProgramNamesReceived);
             _eventAggregator.GetEvent<ProgramDataRequest>().Subscribe(RequestProgramDataReceived);
             _eventAggregator.GetEvent<ProgramDataSaveRequest>().Subscribe(RequestProgramDataSaveReceived);
             _eventAggregator.GetEvent<ModalEvent>().Subscribe((m) => ModalHandle(true));
             _eventAggregator.GetEvent<ModalResponse>().Subscribe((m) => ModalHandle(false));
+            var task = new Task(() => GenerateRandomProgramCollection());
         }
 
         /// <summary>
@@ -240,19 +226,19 @@
 
             for (int i = 0; i < randsize; i++)
             {
-                var prog = _programDataFactory.Create();
+                var prog = _programDataService.CreateProgram();
                 prog.AverageCycleTime = GenerateRandomCycleTimeAverage();
 
                 if (new Random().Next(0, 5) == 1)
                 {
-                    prog.Barcode = _barcodeFactory.Create(
-                        GenerateRandomString(128),
-                        new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\BAR" + new Random().Next(1, 4).ToString() + ".bmp", UriKind.RelativeOrAbsolute)));
+                    prog.Barcode = _programDataService.CreateBarcode();
+                    prog.Barcode.BarcodeData = GenerateRandomString(128);
+                    prog.Barcode.BarcodeImage = new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\BAR" + new Random().Next(1, 4).ToString() + ".bmp", UriKind.RelativeOrAbsolute));
                 }
 
                 prog.CreatedDate = GenerateRandomDateTime();
                 prog.Dimensions = new Size(new Random().Next(750), new Random().Next(750));
-                prog.HistoricalCycles = new Random().Next(0, 9999);
+                prog.Cycles = new Random().Next(0, 9999);
                 prog.LastEditDate = GenerateRandomDateTime();
                 prog.ProductImage = new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\PCB" + new Random().Next(1, 9).ToString() + ".bmp", UriKind.RelativeOrAbsolute));
                 prog.ProgramName = GenerateRandomString(26) + " Rev_" + (char)new Random().Next(65, 90);
@@ -263,15 +249,15 @@
                 prog.AutoStartPlayback = false;
                 prog.IsFavorite = new Random().Next(7).Equals(1);
 
-                _programCollection!.ProgramList?.Add(prog);
+                _programDataService.ProgramList.Add(prog);
             }
 
-            var specialProg = _programDataFactory.Create();
+            var specialProg = _programDataService.CreateProgram();
 
             specialProg.AverageCycleTime = GenerateRandomCycleTimeAverage();
             specialProg.CreatedDate = GenerateRandomDateTime();
             specialProg.Dimensions = new Size(new Random().Next(750), new Random().Next(750));
-            specialProg.HistoricalCycles = new Random().Next(0, 9999);
+            specialProg.Cycles = new Random().Next(0, 9999);
             specialProg.LastEditDate = GenerateRandomDateTime();
             specialProg.ProductImage = new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\PCB" + new Random().Next(1, 9).ToString() + ".bmp", UriKind.RelativeOrAbsolute));
             specialProg.ProgramName = "Manual Placement Simulation";
@@ -281,7 +267,7 @@
             specialProg.UserCanStartPlayback = false;
             specialProg.AutoStartPlayback = true;
 
-            _programCollection!.ProgramList?.Add(specialProg);
+            _programDataService.ProgramList.Add(specialProg);
         }
 
         /// <summary>
@@ -440,7 +426,7 @@
             var prodData = _prodDataViewModel;
             string filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             string fileName = prodData.SelectedProgramData?.ProgramName +
-                                "Run#" + prodData.SelectedProgramData?.HistoricalCycles + "_Completed" +
+                                "Run#" + prodData.SelectedProgramData?.Cycles + "_Completed" +
                                 DateTime.Now.ToString("yyyy-MM-d--HH-mm-ss") + ".csv";
             string outputPath = Path.Combine(filePath, fileName);
 
@@ -451,14 +437,14 @@
                 nameof(prodData.SelectedProgramData.ProductName) + "," +
                 nameof(prodData.SelectedProgramData.ProgramCreator) + "," +
                 nameof(prodData.SelectedProgramData.AverageCycleTime) + "," +
-                nameof(prodData.SelectedProgramData.HistoricalCycles) + ",");
+                nameof(prodData.SelectedProgramData.Cycles) + ",");
 
             sw.WriteLine(
                 prodData.SelectedProgramData?.ProgramName + "," +
                 prodData.SelectedProgramData?.ProductName + "," +
                 prodData.SelectedProgramData?.ProgramCreator + "," +
                 prodData.SelectedProgramData?.AverageCycleTime + "," +
-                prodData.SelectedProgramData?.HistoricalCycles + ",");
+                prodData.SelectedProgramData?.Cycles + ",");
 
             sw.WriteLine("Title,Time,Status,Sub Steps");
 
@@ -469,15 +455,6 @@
 
             _eventAggregator.GetEvent<ProgramDataSaveResponse>().Publish();
             sw.Close();
-        }
-
-        /// <summary>
-        /// The RequestProgramNamesReceived.
-        /// </summary>
-        private void RequestProgramNamesReceived()
-        {
-            GenerateRandomProgramCollection();
-            _eventAggregator.GetEvent<ProgramNamesResponse>().Publish();
         }
 
         /// <summary>

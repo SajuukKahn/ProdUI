@@ -111,7 +111,6 @@
                     DockPanel.Dock="Top"
                     EditTriggers="None"
                     GroupRenderMode="Flat"
-                    IsBusy="{Binding RequestAwaiting}"
                     IsSearchingDeferred="True"
                     IsSynchronizedWithCurrentItem="True"
                     ItemsSource="{Binding ProgramList.ProgramList}"
@@ -417,7 +416,7 @@
                                         <TextBlock
                                             Grid.Row="2"
                                             Grid.Column="4"
-                                            Text="{Binding Path=HistoricalCycles}" />
+                                            Text="{Binding Path=Cycles}" />
                                         <TextBlock
                                             Grid.Row="3"
                                             Grid.Column="0"

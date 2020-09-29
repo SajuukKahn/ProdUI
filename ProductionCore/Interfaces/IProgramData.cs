@@ -38,7 +38,7 @@
         /// <summary>
         /// Gets or sets the HistoricalCycles.
         /// </summary>
-        long HistoricalCycles { get; set; }
+        long Cycles { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether IsFavorite.

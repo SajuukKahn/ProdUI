@@ -1,7 +1,6 @@
 ﻿namespace ProdData.ViewModels
 {
     using System.Collections.ObjectModel;
-    using System.Diagnostics;
     using System.Windows.Media.Imaging;
     using Prism.Commands;
     using Prism.Events;
@@ -19,6 +18,11 @@
         /// Defines the _eventAggregator.
         /// </summary>
         private readonly IEventAggregator _eventAggregator;
+
+        /// <summary>
+        /// Defines the _programDataService.
+        /// </summary>
+        private readonly IProgramDataService _programDataService;
 
         /// <summary>
         /// Defines the _allowProgramChange.
@@ -39,11 +43,6 @@
         /// Defines the _currentCardIndex.
         /// </summary>
         private int _currentCardIndex;
-
-        /// <summary>
-        /// Defines the _cycleCount.
-        /// </summary>
-        private long _cycleCount;
 
         /// <summary>
         /// Defines the _cycleTime.
@@ -71,21 +70,17 @@
         private BitmapImage? _productImage;
 
         /// <summary>
-        /// Defines the _selectedProgramData.
-        /// </summary>
-        private IProgramData? _selectedProgramData;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="ProdDataViewModel"/> class.
         /// </summary>
         /// <param name="eventAggregator">The eventAggregator<see cref="IEventAggregator"/>.</param>
-        /// <param name="programDataFactory">The programDataFactory<see cref="IProgramDataFactory"/>.</param>
-        public ProdDataViewModel(IEventAggregator eventAggregator, IProgramDataFactory programDataFactory)
+        /// <param name="programDataService">The programDataService<see cref="IProgramDataService"/>.</param>
+        public ProdDataViewModel(IEventAggregator eventAggregator, IProgramDataService programDataService)
         {
             _eventAggregator = eventAggregator;
+            _programDataService = programDataService;
             PlayButton = new DelegateCommand(PlayPressed).ObservesCanExecute(() => PlayAvailable);
             PauseButton = new DelegateCommand(PausePressed).ObservesCanExecute(() => PauseAvailable);
-            OpenProgramSelect = new DelegateCommand(RequestProgramSelect).ObservesCanExecute(() => AllowProgramChange);
+            OpenProgramSelect = new DelegateCommand(() => _programDataService.ProgramSelectRequest()).ObservesCanExecute(() => AllowProgramChange);
             _eventAggregator.GetEvent<ProgramDataResponse>().Subscribe(HandleProgramDataResponse);
             _eventAggregator.GetEvent<StartRequest>().Subscribe(HandleStartRequest);
             _eventAggregator.GetEvent<ProgramPaused>().Subscribe(HandlePauseConfirmation);
@@ -100,8 +95,6 @@
             _eventAggregator.GetEvent<ModalResponse>().Subscribe(HandleModalContinueRequest, ThreadOption.BackgroundThread, false, modalData => modalData.Equals(ModalResponseData.Continue));
             _eventAggregator.GetEvent<ModalResponse>().Subscribe(HandleModalRetryRequest, ThreadOption.BackgroundThread, false, modalData => modalData.Equals(ModalResponseData.Retry));
             _eventAggregator.GetEvent<ModalResponse>().Subscribe(HandleModalCustomRequest, ThreadOption.BackgroundThread, false, modalData => modalData.Equals(ModalResponseData.Custom));
-            _selectedProgramData = programDataFactory.Create();
-
             AllowProgramChange = true;
         }
 
@@ -165,7 +158,6 @@
 
             set
             {
-                Debug.WriteLine(nameof(value) + " Set to: " + value.ToString());
                 SetProperty(ref _currentCardIndex, value, SetCurrentCard);
             }
         }
@@ -177,12 +169,12 @@
         {
             get
             {
-                return _cycleCount;
+                return _programDataService.SelectedProgramData?.Cycles ?? 0;
             }
 
             set
             {
-                SetProperty(ref _cycleCount, value);
+                _programDataService.SelectedProgramData.Cycles = value;
             }
         }
 
@@ -288,17 +280,15 @@
         {
             get
             {
-                return _selectedProgramData;
+                return _programDataService.SelectedProgramData;
             }
 
             set
             {
-                SetProperty(ref _selectedProgramData, value, UpdateProductImage);
+                _programDataService.SelectedProgramData = value;
+                UpdateProductImage();
             }
         }
-
-        // TODO I don't think this is a good way to handle going to the next card
-        // It should probably be a method contained in the target object?
 
         /// <summary>
         /// The HandleAdvanceStep.
@@ -327,14 +317,14 @@
         {
             if (_cardCollection[CurrentCardIndex]?.CardStepIndex < _cardCollection[CurrentCardIndex]?.CardSubSteps.Count - 1)
             {
-                _cardCollection[CurrentCardIndex] !.CardStepIndex++;
+                _cardCollection[CurrentCardIndex]!.CardStepIndex++;
                 return true;
             }
 
-            _cardCollection[CurrentCardIndex] !.StepStatus = StepStatus.Completed;
-            _cardCollection[CurrentCardIndex] !.StepComplete = true;
-            _cardCollection[CurrentCardIndex] !.IsActiveStep = false;
-            _cardCollection[CurrentCardIndex] !.CardTime.Pause();
+            _cardCollection[CurrentCardIndex]!.StepStatus = StepStatus.Completed;
+            _cardCollection[CurrentCardIndex]!.StepComplete = true;
+            _cardCollection[CurrentCardIndex]!.IsActiveStep = false;
+            _cardCollection[CurrentCardIndex]!.CardTime.Pause();
             return false;
         }
 
@@ -343,8 +333,8 @@
         /// </summary>
         public void PauseCard()
         {
-            _cardCollection[CurrentCardIndex] !.StepStatus = StepStatus.Paused;
-            _cardCollection[CurrentCardIndex] !.CardTime.Pause();
+            _cardCollection[CurrentCardIndex]!.StepStatus = StepStatus.Paused;
+            _cardCollection[CurrentCardIndex]!.CardTime.Pause();
         }
 
         /// <summary>
@@ -353,9 +343,6 @@
         public void RetryStep()
         {
             CurrentCard?.RetryCard();
-            //// _cardCollection[CurrentCardIndex]!.CardStepIndex = 0;
-            //// _cardCollection[CurrentCardIndex]!.CardTime.Reset();
-            //// _cardCollection[CurrentCardIndex]!.CardTime.Start();
         }
 
         /// <summary>
@@ -364,13 +351,6 @@
         public void StartCard()
         {
             CurrentCard?.StartCard();
-            //// _cardCollection[CurrentCardIndex]!.IsActiveStep = true;
-            //// _cardCollection[CurrentCardIndex]!.StepStatus = StepStatus.Running;
-            //// _cardCollection[CurrentCardIndex]!.CardTime.Start();
-            //// if (_cardCollection[CurrentCardIndex]!.StepModalData?.IsError == false)
-            //// {
-            ////    _eventAggregator.GetEvent<ModalEvent>().Publish(_cardCollection[CurrentCardIndex]!.StepModalData!);
-            //// }
         }
 
         /// <summary>
@@ -382,9 +362,9 @@
             CycleTime.Pause();
             SelectedProgramData!.UpdateAverageCycleTime(CycleTime.TimeSpan);
             CycleCount++;
-            SelectedProgramData!.HistoricalCycles = CycleCount;
+            SelectedProgramData!.Cycles = CycleCount;
             _eventAggregator.GetEvent<ProgramDataSaveRequest>().Publish();
-            if (_cardCollection[CurrentCardIndex] !.StepModalData?.IsError == false)
+            if (_cardCollection[CurrentCardIndex]!.StepModalData?.IsError == false)
             {
                 _eventAggregator.GetEvent<StartRequest>().Publish();
             }
@@ -465,9 +445,9 @@
         {
             CardCollection = publishedCardCollection;
             CurrentCardIndex = 0;
-            CycleCount = SelectedProgramData!.HistoricalCycles;
+            CycleCount = SelectedProgramData!.Cycles;
             PlayAvailable = SelectedProgramData.UserCanStartPlayback;
-            _cardCollection[CurrentCardIndex] !.IsActiveStep = true;
+            _cardCollection[CurrentCardIndex]!.IsActiveStep = true;
             if (SelectedProgramData.AutoStartPlayback)
             {
                 _eventAggregator.GetEvent<StartRequest>().Publish();
@@ -514,7 +494,7 @@
         {
             _eventAggregator.GetEvent<PauseRequest>().Publish();
             CycleTime.Pause();
-            if (_cardCollection[CurrentCardIndex] !.StepModalData == null)
+            if (_cardCollection[CurrentCardIndex]!.StepModalData == null)
             {
                 _eventAggregator.GetEvent<ModalEvent>().Publish(new ModalData()
                 {
@@ -525,7 +505,7 @@
             }
             else
             {
-                _eventAggregator.GetEvent<ModalEvent>().Publish(_cardCollection[CurrentCardIndex] !.StepModalData!);
+                _eventAggregator.GetEvent<ModalEvent>().Publish(_cardCollection[CurrentCardIndex]!.StepModalData!);
             }
         }
 
@@ -567,14 +547,6 @@
         private void PlayPressed()
         {
             _eventAggregator.GetEvent<StartRequest>().Publish();
-        }
-
-        /// <summary>
-        /// The RequestProgramSelect.
-        /// </summary>
-        private void RequestProgramSelect()
-        {
-            _eventAggregator.GetEvent<ProgramSelectRequest>().Publish(SelectedProgramData);
         }
 
         /// <summary>

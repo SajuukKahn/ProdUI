@@ -38,9 +38,9 @@
         private Size _dimensions;
 
         /// <summary>
-        /// Defines the _historicalCycles.
+        /// Defines the _cycles.
         /// </summary>
-        private long _historicalCycles;
+        private long _cycles;
 
         /// <summary>
         /// Defines the _isFavorite.
@@ -172,18 +172,18 @@
         }
 
         /// <summary>
-        /// Gets or sets the HistoricalCycles.
+        /// Gets or sets the Cycles.
         /// </summary>
-        public long HistoricalCycles
+        public long Cycles
         {
             get
             {
-                return _historicalCycles;
+                return _cycles;
             }
 
             set
             {
-                SetProperty(ref _historicalCycles, value);
+                SetProperty(ref _cycles, value);
             }
         }
 

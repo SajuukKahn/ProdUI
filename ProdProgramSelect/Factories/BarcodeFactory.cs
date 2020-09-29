@@ -1,8 +1,8 @@
 ﻿namespace ProdProgramSelect.Factories
 {
+    using System.Windows.Media.Imaging;
     using global::ProdProgramSelect.Models;
     using ProductionCore.Interfaces;
-    using System.Windows.Media.Imaging;
 
     /// <summary>
     /// Defines the <see cref="BarcodeFactory" />.

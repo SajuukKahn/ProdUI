@@ -539,6 +539,16 @@
             Defines the <see cref="T:ProductionCore.Interfaces.IBarcode" />.
             </summary>
         </member>
+        <member name="P:ProductionCore.Interfaces.IBarcode.BarcodeData">
+            <summary>
+            Gets or sets the BarcodeData.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IBarcode.BarcodeImage">
+            <summary>
+            Gets or sets the BarcodeImage.
+            </summary>
+        </member>
         <member name="T:ProductionCore.Interfaces.IBarcodeFactory">
             <summary>
             Defines the <see cref="T:ProductionCore.Interfaces.IBarcodeFactory" />.
@@ -555,6 +565,17 @@
         <member name="M:ProductionCore.Interfaces.IBarcodeFactory.Create">
             <summary>
             The Create.
+            </summary>
+            <returns>The <see cref="T:ProductionCore.Interfaces.IBarcode"/>.</returns>
+        </member>
+        <member name="T:ProductionCore.Interfaces.IBarcodeService">
+            <summary>
+            Defines the <see cref="T:ProductionCore.Interfaces.IBarcodeService" />.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IBarcodeService.CreateBarcode">
+            <summary>
+            The CreateBarcode.
             </summary>
             <returns>The <see cref="T:ProductionCore.Interfaces.IBarcode"/>.</returns>
         </member>
@@ -720,16 +741,6 @@
             The StartCard.
             </summary>
         </member>
-        <member name="T:ProductionCore.Interfaces.IProgramCollection">
-            <summary>
-            Defines the <see cref="T:ProductionCore.Interfaces.IProgramCollection" />.
-            </summary>
-        </member>
-        <member name="P:ProductionCore.Interfaces.IProgramCollection.ProgramList">
-            <summary>
-            Gets or sets the ProgramList.
-            </summary>
-        </member>
         <member name="T:ProductionCore.Interfaces.IProgramData">
             <summary>
             Defines the <see cref="T:ProductionCore.Interfaces.IProgramData" />.
@@ -760,7 +771,7 @@
             Gets or sets the Dimensions.
             </summary>
         </member>
-        <member name="P:ProductionCore.Interfaces.IProgramData.HistoricalCycles">
+        <member name="P:ProductionCore.Interfaces.IProgramData.Cycles">
             <summary>
             Gets or sets the HistoricalCycles.
             </summary>
@@ -821,14 +832,6 @@
             Defines the <see cref="T:ProductionCore.Interfaces.IProgramDataFactory" />.
             </summary>
         </member>
-        <member name="M:ProductionCore.Interfaces.IProgramDataFactory.Create(System.String,System.Windows.Media.Imaging.BitmapImage)">
-            <summary>
-            The Create.
-            </summary>
-            <param name="barcodeData">The barcodeData<see cref="T:System.String"/>.</param>
-            <param name="barcodeImage">The barcodeImage<see cref="T:System.Windows.Media.Imaging.BitmapImage"/>.</param>
-            <returns>The <see cref="T:ProductionCore.Interfaces.IProgramData"/>.</returns>
-        </member>
         <member name="M:ProductionCore.Interfaces.IProgramDataFactory.Create">
             <summary>
             The Create.
@@ -839,6 +842,45 @@
             <summary>
             Defines the <see cref="T:ProductionCore.Interfaces.IProgramDataService" />.
             </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IProgramDataService.ProgramList">
+            <summary>
+            Gets or sets the ProgramList
+            Defines the ProgramList...........
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IProgramDataService.SelectedProgramData">
+            <summary>
+            Gets or sets the SelectedProgramData.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IProgramDataService.ProgramRequestOpen">
+            <summary>
+            Gets or sets a value indicating whether ProgramRequestOpen.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IProgramDataService.ProgramSelectRequest">
+            <summary>
+            The ProgramSelectRequest.
+            </summary>
+            <returns>The <see cref="T:System.Boolean"/>.</returns>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IProgramDataService.ProgramSelectClose">
+            <summary>
+            The ProgramSelectClose.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IProgramDataService.CreateProgram">
+            <summary>
+            The Program.
+            </summary>
+            <returns>A new <see cref="T:ProductionCore.Interfaces.IProgramData"/>.</returns>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IProgramDataService.CreateBarcode">
+            <summary>
+            The CreateBarcode.
+            </summary>
+            <returns>The <see cref="T:ProductionCore.Interfaces.IBarcode"/>.</returns>
         </member>
         <member name="T:ProductionCore.Interfaces.IProgramSelectViewModel">
             <summary>
@@ -862,15 +904,102 @@
             </summary>
             <param name="containerRegistry">The containerRegistry<see cref="T:Prism.Ioc.IContainerRegistry"/>.</param>
         </member>
+        <member name="T:ProductionCore.Services.BarcodeService">
+            <summary>
+            Defines the <see cref="T:ProductionCore.Services.BarcodeService" />.
+            </summary>
+        </member>
+        <member name="F:ProductionCore.Services.BarcodeService._barcodeFactory">
+            <summary>
+            Defines the _barcodeFactory.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Services.BarcodeService.#ctor(ProductionCore.Interfaces.IBarcodeFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProductionCore.Services.BarcodeService"/> class.
+            </summary>
+            <param name="barcodeFactory">The barcodeFactory<see cref="T:ProductionCore.Interfaces.IBarcodeFactory"/>.</param>
+        </member>
+        <member name="M:ProductionCore.Services.BarcodeService.CreateBarcode">
+            <summary>
+            The CreateBarcode.
+            </summary>
+            <returns>The <see cref="T:ProductionCore.Interfaces.IBarcode"/>.</returns>
+        </member>
         <member name="T:ProductionCore.Services.ProgramDataService">
             <summary>
             Defines the <see cref="T:ProductionCore.Services.ProgramDataService" />.
             </summary>
         </member>
-        <member name="M:ProductionCore.Services.ProgramDataService.#ctor">
+        <member name="F:ProductionCore.Services.ProgramDataService._programDataFactory">
+            <summary>
+            Defines the _programDataFactory.
+            </summary>
+        </member>
+        <member name="F:ProductionCore.Services.ProgramDataService._barcodeService">
+            <summary>
+            Defines the _barcodeService.
+            </summary>
+        </member>
+        <member name="F:ProductionCore.Services.ProgramDataService._programRequestOpen">
+            <summary>
+            Defines the _programRequestOpen.
+            </summary>
+        </member>
+        <member name="F:ProductionCore.Services.ProgramDataService._selectedProgramData">
+            <summary>
+            Defines the _selectedProgramData.
+            </summary>
+        </member>
+        <member name="F:ProductionCore.Services.ProgramDataService._programList">
+            <summary>
+            Defines the _programList.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Services.ProgramDataService.#ctor(ProductionCore.Interfaces.IProgramDataFactory,ProductionCore.Interfaces.IBarcodeService)">
             <summary>
             Initializes a new instance of the <see cref="T:ProductionCore.Services.ProgramDataService"/> class.
             </summary>
+            <param name="programDataFactory">The programDataFactory<see cref="T:ProductionCore.Interfaces.IProgramDataFactory"/>.</param>
+            <param name="barcodeService">The barcodeService<see cref="T:ProductionCore.Interfaces.IBarcodeService"/>.</param>
+        </member>
+        <member name="P:ProductionCore.Services.ProgramDataService.ProgramList">
+            <summary>
+            Gets or sets the ProgramList.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Services.ProgramDataService.SelectedProgramData">
+            <summary>
+            Gets or sets the SelectedProgramData.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Services.ProgramDataService.ProgramRequestOpen">
+            <summary>
+            Gets or sets a value indicating whether ProgramRequestOpen.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Services.ProgramDataService.ProgramSelectRequest">
+            <summary>
+            The ProgramSelectRequest.
+            </summary>
+            <returns>The <see cref="T:System.Boolean"/>.</returns>
+        </member>
+        <member name="M:ProductionCore.Services.ProgramDataService.ProgramSelectClose">
+            <summary>
+            The ProgramSelectClose.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Services.ProgramDataService.CreateProgram">
+            <summary>
+            The Program.
+            </summary>
+            <returns>The <see cref="T:ProductionCore.Interfaces.IProgramData"/>.</returns>
+        </member>
+        <member name="M:ProductionCore.Services.ProgramDataService.CreateBarcode">
+            <summary>
+            The CreateBarcode.
+            </summary>
+            <returns>The <see cref="T:ProductionCore.Interfaces.IBarcode"/>.</returns>
         </member>
     </members>
 </doc>
