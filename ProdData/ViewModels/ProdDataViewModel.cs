@@ -1,13 +1,13 @@
 ﻿namespace ProdData.ViewModels
 {
-    using System.Collections.ObjectModel;
-    using System.Windows.Media.Imaging;
     using Prism.Commands;
     using Prism.Events;
     using Prism.Mvvm;
     using ProductionCore.Concrete;
     using ProductionCore.Events;
     using ProductionCore.Interfaces;
+    using System.Collections.ObjectModel;
+    using System.Windows.Media.Imaging;
 
     /// <summary>
     /// Defines the <see cref="ProdDataViewModel" />.
@@ -80,7 +80,7 @@
             _programDataService = programDataService;
             PlayButton = new DelegateCommand(PlayPressed).ObservesCanExecute(() => PlayAvailable);
             PauseButton = new DelegateCommand(PausePressed).ObservesCanExecute(() => PauseAvailable);
-            OpenProgramSelect = new DelegateCommand(() => _programDataService.ProgramSelectRequest()).ObservesCanExecute(() => AllowProgramChange);
+            OpenProgramSelect = new DelegateCommand(OpenProgramSelectFired).ObservesCanExecute(() => AllowProgramChange);
             _eventAggregator.GetEvent<ProgramDataResponse>().Subscribe(HandleProgramDataResponse);
             _eventAggregator.GetEvent<StartRequest>().Subscribe(HandleStartRequest);
             _eventAggregator.GetEvent<ProgramPaused>().Subscribe(HandlePauseConfirmation);
@@ -351,6 +351,14 @@
         public void StartCard()
         {
             CurrentCard?.StartCard();
+        }
+
+        /// <summary>
+        /// The OpenProgramSelectFired.
+        /// </summary>
+        private void OpenProgramSelectFired()
+        {
+            _programDataService.ProgramSelectRequest();
         }
 
         /// <summary>

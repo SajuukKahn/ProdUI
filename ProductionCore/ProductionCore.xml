@@ -843,10 +843,15 @@
             Defines the <see cref="T:ProductionCore.Interfaces.IProgramDataService" />.
             </summary>
         </member>
+        <member name="E:ProductionCore.Interfaces.IProgramDataService.ProgramRequestOpenChanged">
+            <summary>
+            Defines the ProgramRequestOpenChanged.
+            </summary>
+        </member>
         <member name="P:ProductionCore.Interfaces.IProgramDataService.ProgramList">
             <summary>
             Gets or sets the ProgramList
-            Defines the ProgramList...........
+            Defines the ProgramList............
             </summary>
         </member>
         <member name="P:ProductionCore.Interfaces.IProgramDataService.SelectedProgramData">
@@ -962,6 +967,11 @@
             </summary>
             <param name="programDataFactory">The programDataFactory<see cref="T:ProductionCore.Interfaces.IProgramDataFactory"/>.</param>
             <param name="barcodeService">The barcodeService<see cref="T:ProductionCore.Interfaces.IBarcodeService"/>.</param>
+        </member>
+        <member name="E:ProductionCore.Services.ProgramDataService.ProgramRequestOpenChanged">
+            <summary>
+            Defines the ProgramRequestOpenChanged.
+            </summary>
         </member>
         <member name="P:ProductionCore.Services.ProgramDataService.ProgramList">
             <summary>

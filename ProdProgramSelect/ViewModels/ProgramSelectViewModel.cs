@@ -1,11 +1,13 @@
 ﻿namespace ProdProgramSelect.ViewModels
 {
-    using System.Collections.ObjectModel;
     using Prism.Commands;
     using Prism.Events;
     using Prism.Mvvm;
     using ProductionCore.Events;
     using ProductionCore.Interfaces;
+    using System;
+    using System.Collections.ObjectModel;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// Defines the <see cref="ProgramSelectViewModel" />.
@@ -33,6 +35,11 @@
         private bool _canConfirm;
 
         /// <summary>
+        /// Defines the _programRequestOpen.
+        /// </summary>
+        private bool _programRequestOpen;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ProgramSelectViewModel"/> class.
         /// </summary>
         /// <param name="eventAggregator">The eventAggregator<see cref="IEventAggregator"/>.</param>
@@ -41,6 +48,7 @@
         {
             _programDataService = programDataService;
             _eventAggregator = eventAggregator;
+            _programDataService.ProgramRequestOpenChanged += new EventHandler((s, e) => ProgramRequestOpen ^= true);
             ConfirmButton = new DelegateCommand(ConfirmProgramChange).ObservesCanExecute(() => CanConfirm);
             CancelButton = new DelegateCommand(CancelProgramChange).ObservesCanExecute(() => CanCancel);
         }
@@ -89,7 +97,7 @@
 
         /// <summary>
         /// Gets the ProgramList
-        /// Gets or sets the ProgramList....
+        /// Gets or sets the ProgramList.....
         /// </summary>
         public ObservableCollection<IProgramData> ProgramList
         {
@@ -101,18 +109,18 @@
 
         /// <summary>
         /// Gets or sets a value indicating whether ProgramRequestOpen
-        /// Gets a value indicating whether ProgramRequestOpen..
+        /// Gets a value indicating whether ProgramRequestOpen...
         /// </summary>
         public bool ProgramRequestOpen
         {
             get
             {
-                return _programDataService.ProgramRequestOpen;
+                return _programRequestOpen;
             }
 
             set
             {
-                RaisePropertyChanged(nameof(ProgramRequestOpen));
+                SetProperty(ref _programRequestOpen, value);
             }
         }
 
@@ -149,6 +157,7 @@
             CanConfirm = false;
             CanCancel = false;
             _programDataService.ProgramSelectClose();
+            ProgramRequestOpen = false;
         }
 
         /// <summary>

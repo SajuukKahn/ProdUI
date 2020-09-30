@@ -96,7 +96,7 @@
             _eventAggregator.GetEvent<ProgramDataSaveRequest>().Subscribe(RequestProgramDataSaveReceived);
             _eventAggregator.GetEvent<ModalEvent>().Subscribe((m) => ModalHandle(true));
             _eventAggregator.GetEvent<ModalResponse>().Subscribe((m) => ModalHandle(false));
-            var task = new Task(() => GenerateRandomProgramCollection());
+            GenerateRandomProgramCollection();
         }
 
         /// <summary>

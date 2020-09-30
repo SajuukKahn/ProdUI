@@ -1,5 +1,6 @@
 ﻿namespace ProductionCore.Interfaces
 {
+    using System;
     using System.Collections.ObjectModel;
 
     /// <summary>
@@ -7,9 +8,15 @@
     /// </summary>
     public interface IProgramDataService
     {
+
+        /// <summary>
+        /// Defines the ProgramRequestOpenChanged.
+        /// </summary>
+        public event EventHandler ProgramRequestOpenChanged;
+
         /// <summary>
         /// Gets or sets the ProgramList
-        /// Defines the ProgramList...........
+        /// Defines the ProgramList............
         /// </summary>
         public ObservableCollection<IProgramData> ProgramList { get; set; }
 

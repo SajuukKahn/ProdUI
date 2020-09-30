@@ -113,7 +113,7 @@
                     GroupRenderMode="Flat"
                     IsSearchingDeferred="True"
                     IsSynchronizedWithCurrentItem="True"
-                    ItemsSource="{Binding ProgramList.ProgramList}"
+                    ItemsSource="{Binding ProgramList}"
                     RowDetailsVisibilityMode="VisibleWhenSelected"
                     RowIndicatorVisibility="Collapsed"
                     SearchMode="MatchAnyTerm"

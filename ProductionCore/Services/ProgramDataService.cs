@@ -1,8 +1,9 @@
 ﻿namespace ProductionCore.Services
 {
-    using System.Collections.ObjectModel;
     using global::ProductionCore.Interfaces;
     using Prism.Mvvm;
+    using System;
+    using System.Collections.ObjectModel;
 
     /// <summary>
     /// Defines the <see cref="ProgramDataService" />.
@@ -44,6 +45,11 @@
             _programDataFactory = programDataFactory;
             _barcodeService = barcodeService;
         }
+
+        /// <summary>
+        /// Defines the ProgramRequestOpenChanged.
+        /// </summary>
+        public event EventHandler ProgramRequestOpenChanged;
 
         /// <summary>
         /// Gets or sets the ProgramList.
@@ -89,7 +95,10 @@
 
             set
             {
-                SetProperty(ref _programRequestOpen, value);
+                SetProperty(ref _programRequestOpen, value, () =>
+                {
+                    ProgramRequestOpenChanged.Invoke(this, new EventArgs());
+                });
             }
         }
 
