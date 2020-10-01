@@ -423,38 +423,38 @@
         /// </summary>
         private void RequestProgramDataSaveReceived()
         {
-            var prodData = _prodDataViewModel;
-            string filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            string fileName = prodData.SelectedProgramData?.ProgramName +
-                                "Run#" + prodData.SelectedProgramData?.Cycles + "_Completed" +
-                                DateTime.Now.ToString("yyyy-MM-d--HH-mm-ss") + ".csv";
-            string outputPath = Path.Combine(filePath, fileName);
-
-            TextWriter sw = new StreamWriter(outputPath);
-
-            sw.WriteLine(
-                nameof(prodData.SelectedProgramData.ProgramName) + "," +
-                nameof(prodData.SelectedProgramData.ProductName) + "," +
-                nameof(prodData.SelectedProgramData.ProgramCreator) + "," +
-                nameof(prodData.SelectedProgramData.AverageCycleTime) + "," +
-                nameof(prodData.SelectedProgramData.Cycles) + ",");
-
-            sw.WriteLine(
-                prodData.SelectedProgramData?.ProgramName + "," +
-                prodData.SelectedProgramData?.ProductName + "," +
-                prodData.SelectedProgramData?.ProgramCreator + "," +
-                prodData.SelectedProgramData?.AverageCycleTime + "," +
-                prodData.SelectedProgramData?.Cycles + ",");
-
-            sw.WriteLine("Title,Time,Status,Sub Steps");
-
-            foreach (Card? card in prodData.CardCollection)
-            {
-                sw.WriteLine(card?.ToString());
-            }
-
-            _eventAggregator.GetEvent<ProgramDataSaveResponse>().Publish();
-            sw.Close();
+         ////   var prodData = _prodDataViewModel;
+         ////   string filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+         ////   string fileName = prodData.SelectedProgramData?.ProgramName +
+         ////                       "Run#" + prodData.SelectedProgramData?.Cycles + "_Completed" +
+         ////                       DateTime.Now.ToString("yyyy-MM-d--HH-mm-ss") + ".csv";
+         ////   string outputPath = Path.Combine(filePath, fileName);
+         ////
+         ////   TextWriter sw = new StreamWriter(outputPath);
+         ////
+         ////   sw.WriteLine(
+         ////       nameof(prodData.SelectedProgramData.ProgramName) + "," +
+         ////       nameof(prodData.SelectedProgramData.ProductName) + "," +
+         ////       nameof(prodData.SelectedProgramData.ProgramCreator) + "," +
+         ////       nameof(prodData.SelectedProgramData.AverageCycleTime) + "," +
+         ////       nameof(prodData.SelectedProgramData.Cycles) + ",");
+         ////
+         ////   sw.WriteLine(
+         ////       prodData.SelectedProgramData?.ProgramName + "," +
+         ////       prodData.SelectedProgramData?.ProductName + "," +
+         ////       prodData.SelectedProgramData?.ProgramCreator + "," +
+         ////       prodData.SelectedProgramData?.AverageCycleTime + "," +
+         ////       prodData.SelectedProgramData?.Cycles + ",");
+         ////
+         ////   sw.WriteLine("Title,Time,Status,Sub Steps");
+         ////
+         ////   foreach (Card? card in prodData.CardCollection)
+         ////   {
+         ////       sw.WriteLine(card?.ToString());
+         ////   }
+         ////
+         ////   _eventAggregator.GetEvent<ProgramDataSaveResponse>().Publish();
+         ////   sw.Close();
         }
 
         /// <summary>

@@ -192,6 +192,83 @@
             Gets or sets the SubStepName.
             </summary>
         </member>
+        <member name="T:ProductionCore.Concrete.Chronometer">
+            <summary>
+            Defines the <see cref="T:ProductionCore.Concrete.Chronometer" />.
+            </summary>
+        </member>
+        <member name="F:ProductionCore.Concrete.Chronometer._stopwatch">
+            <summary>
+            Defines the _stopwatch.
+            </summary>
+        </member>
+        <member name="F:ProductionCore.Concrete.Chronometer._dispatcherTimer">
+            <summary>
+            Defines the _dispatcherTimer.
+            </summary>
+        </member>
+        <member name="F:ProductionCore.Concrete.Chronometer._timeSpan">
+            <summary>
+            Defines the _timeSpan.
+            </summary>
+        </member>
+        <member name="F:ProductionCore.Concrete.Chronometer._elapsedTime">
+            <summary>
+            Defines the _elapsedTime.
+            </summary>
+        </member>
+        <member name="F:ProductionCore.Concrete.Chronometer._startTime">
+            <summary>
+            Defines the _startTime.
+            </summary>
+        </member>
+        <member name="F:ProductionCore.Concrete.Chronometer._timeDifference">
+            <summary>
+            Defines the _timeDifference.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Concrete.Chronometer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProductionCore.Concrete.Chronometer"/> class.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Concrete.Chronometer.ElapsedTime">
+            <summary>
+            Gets or sets the ElapsedTime.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Concrete.Chronometer.TimeSpan">
+            <summary>
+            Gets or sets the TimeSpan.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Concrete.Chronometer.StartTime">
+            <summary>
+            Gets or sets the StartTime.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Concrete.Chronometer.Pause">
+            <summary>
+            The Pause.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Concrete.Chronometer.Reset">
+            <summary>
+            The Reset.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Concrete.Chronometer.Start">
+            <summary>
+            The Start.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Concrete.Chronometer.Timer_Tick(System.Object,System.EventArgs)">
+            <summary>
+            The Timer_Tick.
+            </summary>
+            <param name="sender">The sender<see cref="T:System.Object"/>.</param>
+            <param name="e">The e<see cref="T:System.EventArgs"/>.</param>
+        </member>
         <member name="T:ProductionCore.Concrete.ModalData">
             <summary>
             Defines the <see cref="T:ProductionCore.Concrete.ModalData" />.
@@ -357,83 +434,6 @@
             </summary>
             <returns>The <see cref="T:System.String"/>.</returns>
         </member>
-        <member name="T:ProductionCore.Concrete.Timer">
-            <summary>
-            Defines the <see cref="T:ProductionCore.Concrete.Timer" />.
-            </summary>
-        </member>
-        <member name="F:ProductionCore.Concrete.Timer._stopwatch">
-            <summary>
-            Defines the _stopwatch.
-            </summary>
-        </member>
-        <member name="F:ProductionCore.Concrete.Timer._dispatcherTimer">
-            <summary>
-            Defines the _dispatcherTimer.
-            </summary>
-        </member>
-        <member name="F:ProductionCore.Concrete.Timer._timeSpan">
-            <summary>
-            Defines the _timeSpan.
-            </summary>
-        </member>
-        <member name="F:ProductionCore.Concrete.Timer._elapsedTime">
-            <summary>
-            Defines the _elapsedTime.
-            </summary>
-        </member>
-        <member name="F:ProductionCore.Concrete.Timer._startTime">
-            <summary>
-            Defines the _startTime.
-            </summary>
-        </member>
-        <member name="F:ProductionCore.Concrete.Timer._timeDifference">
-            <summary>
-            Defines the _timeDifference.
-            </summary>
-        </member>
-        <member name="M:ProductionCore.Concrete.Timer.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:ProductionCore.Concrete.Timer"/> class.
-            </summary>
-        </member>
-        <member name="P:ProductionCore.Concrete.Timer.ElapsedTime">
-            <summary>
-            Gets or sets the ElapsedTime.
-            </summary>
-        </member>
-        <member name="P:ProductionCore.Concrete.Timer.TimeSpan">
-            <summary>
-            Gets or sets the TimeSpan.
-            </summary>
-        </member>
-        <member name="P:ProductionCore.Concrete.Timer.StartTime">
-            <summary>
-            Gets or sets the StartTime.
-            </summary>
-        </member>
-        <member name="M:ProductionCore.Concrete.Timer.Pause">
-            <summary>
-            The Pause.
-            </summary>
-        </member>
-        <member name="M:ProductionCore.Concrete.Timer.Reset">
-            <summary>
-            The Reset.
-            </summary>
-        </member>
-        <member name="M:ProductionCore.Concrete.Timer.Start">
-            <summary>
-            The Start.
-            </summary>
-        </member>
-        <member name="M:ProductionCore.Concrete.Timer.Timer_Tick(System.Object,System.EventArgs)">
-            <summary>
-            The Timer_Tick.
-            </summary>
-            <param name="sender">The sender<see cref="T:System.Object"/>.</param>
-            <param name="e">The e<see cref="T:System.EventArgs"/>.</param>
-        </member>
         <member name="T:ProductionCore.Events.AdvanceStep">
             <summary>
             Defines the <see cref="T:ProductionCore.Events.AdvanceStep" />.
@@ -507,16 +507,6 @@
         <member name="T:ProductionCore.Events.ProgramPaused">
             <summary>
             Defines the <see cref="T:ProductionCore.Events.ProgramPaused" />.
-            </summary>
-        </member>
-        <member name="T:ProductionCore.Events.ProgramSelectRequest">
-            <summary>
-            Defines the <see cref="T:ProductionCore.Events.ProgramSelectRequest" />.
-            </summary>
-        </member>
-        <member name="T:ProductionCore.Events.ProgramSelectResponse">
-            <summary>
-            Defines the <see cref="T:ProductionCore.Events.ProgramSelectResponse" />.
             </summary>
         </member>
         <member name="T:ProductionCore.Events.RaiseError">
@@ -655,6 +645,11 @@
             Defines the <see cref="T:ProductionCore.Interfaces.ICardCollection" />.
             </summary>
         </member>
+        <member name="T:ProductionCore.Interfaces.IChronometer">
+            <summary>
+            Defines the <see cref="T:ProductionCore.Interfaces.IChronometer" />.
+            </summary>
+        </member>
         <member name="T:ProductionCore.Interfaces.IProdDataViewModel">
             <summary>
             Defines the <see cref="T:ProductionCore.Interfaces.IProdDataViewModel" />.
@@ -680,11 +675,6 @@
             Gets or sets the CurrentCardIndex.
             </summary>
         </member>
-        <member name="P:ProductionCore.Interfaces.IProdDataViewModel.CycleCount">
-            <summary>
-            Gets or sets the CycleCount.
-            </summary>
-        </member>
         <member name="P:ProductionCore.Interfaces.IProdDataViewModel.CycleTime">
             <summary>
             Gets or sets the CycleTime.
@@ -708,11 +698,6 @@
         <member name="P:ProductionCore.Interfaces.IProdDataViewModel.ProductImage">
             <summary>
             Gets or sets the ProductImage.
-            </summary>
-        </member>
-        <member name="P:ProductionCore.Interfaces.IProdDataViewModel.SelectedProgramData">
-            <summary>
-            Gets or sets the SelectedProgramData.
             </summary>
         </member>
         <member name="M:ProductionCore.Interfaces.IProdDataViewModel.HandleAdvanceStep">
@@ -843,15 +828,10 @@
             Defines the <see cref="T:ProductionCore.Interfaces.IProgramDataService" />.
             </summary>
         </member>
-        <member name="E:ProductionCore.Interfaces.IProgramDataService.ProgramRequestOpenChanged">
-            <summary>
-            Defines the ProgramRequestOpenChanged.
-            </summary>
-        </member>
         <member name="P:ProductionCore.Interfaces.IProgramDataService.ProgramList">
             <summary>
             Gets or sets the ProgramList
-            Defines the ProgramList............
+            Defines the ProgramList.....................
             </summary>
         </member>
         <member name="P:ProductionCore.Interfaces.IProgramDataService.SelectedProgramData">
@@ -859,20 +839,41 @@
             Gets or sets the SelectedProgramData.
             </summary>
         </member>
-        <member name="P:ProductionCore.Interfaces.IProgramDataService.ProgramRequestOpen">
+        <member name="P:ProductionCore.Interfaces.IProgramDataService.CurrentProgram">
             <summary>
-            Gets or sets a value indicating whether ProgramRequestOpen.
+            Gets or sets the CurrentProgram.
             </summary>
         </member>
-        <member name="M:ProductionCore.Interfaces.IProgramDataService.ProgramSelectRequest">
+        <member name="P:ProductionCore.Interfaces.IProgramDataService.ProgramRequestShow">
             <summary>
-            The ProgramSelectRequest.
+            Gets or sets a value indicating whether ProgramRequestShow..
             </summary>
-            <returns>The <see cref="T:System.Boolean"/>.</returns>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IProgramDataService.CanCancel">
+            <summary>
+            Gets a value indicating whether CanCancel..
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IProgramDataService.CanConfirm">
+            <summary>
+            Gets a value indicating whether CanConfirm..
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IProgramDataService.UpdateProgramCycleTime(ProductionCore.Interfaces.IProgramData,System.Int64)">
+            <summary>
+            The UpdateProgramCycleTime.
+            </summary>
+            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
+            <param name="cycles">The cycles<see cref="T:System.Int64"/>.</param>
         </member>
         <member name="M:ProductionCore.Interfaces.IProgramDataService.ProgramSelectClose">
             <summary>
             The ProgramSelectClose.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IProgramDataService.SetSelectedProgramAsCurrent">
+            <summary>
+            The SetSelectedProgramAsCurrent.
             </summary>
         </member>
         <member name="M:ProductionCore.Interfaces.IProgramDataService.CreateProgram">
@@ -946,6 +947,16 @@
             Defines the _barcodeService.
             </summary>
         </member>
+        <member name="F:ProductionCore.Services.ProgramDataService._canCancel">
+            <summary>
+            Defines the _canCancel.
+            </summary>
+        </member>
+        <member name="F:ProductionCore.Services.ProgramDataService._canConfirm">
+            <summary>
+            Defines the _canConfirm.
+            </summary>
+        </member>
         <member name="F:ProductionCore.Services.ProgramDataService._programRequestOpen">
             <summary>
             Defines the _programRequestOpen.
@@ -954,6 +965,11 @@
         <member name="F:ProductionCore.Services.ProgramDataService._selectedProgramData">
             <summary>
             Defines the _selectedProgramData.
+            </summary>
+        </member>
+        <member name="F:ProductionCore.Services.ProgramDataService._currentProgram">
+            <summary>
+            Defines the _currentProgram.
             </summary>
         </member>
         <member name="F:ProductionCore.Services.ProgramDataService._programList">
@@ -968,11 +984,6 @@
             <param name="programDataFactory">The programDataFactory<see cref="T:ProductionCore.Interfaces.IProgramDataFactory"/>.</param>
             <param name="barcodeService">The barcodeService<see cref="T:ProductionCore.Interfaces.IBarcodeService"/>.</param>
         </member>
-        <member name="E:ProductionCore.Services.ProgramDataService.ProgramRequestOpenChanged">
-            <summary>
-            Defines the ProgramRequestOpenChanged.
-            </summary>
-        </member>
         <member name="P:ProductionCore.Services.ProgramDataService.ProgramList">
             <summary>
             Gets or sets the ProgramList.
@@ -983,16 +994,32 @@
             Gets or sets the SelectedProgramData.
             </summary>
         </member>
-        <member name="P:ProductionCore.Services.ProgramDataService.ProgramRequestOpen">
+        <member name="P:ProductionCore.Services.ProgramDataService.ProgramRequestShow">
             <summary>
-            Gets or sets a value indicating whether ProgramRequestOpen.
+            Gets or sets a value indicating whether ProgramRequestShow.
             </summary>
         </member>
-        <member name="M:ProductionCore.Services.ProgramDataService.ProgramSelectRequest">
+        <member name="P:ProductionCore.Services.ProgramDataService.CanCancel">
             <summary>
-            The ProgramSelectRequest.
+            Gets or sets a value indicating whether CanCancel.
             </summary>
-            <returns>The <see cref="T:System.Boolean"/>.</returns>
+        </member>
+        <member name="P:ProductionCore.Services.ProgramDataService.CanConfirm">
+            <summary>
+            Gets a value indicating whether CanConfirm.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Services.ProgramDataService.CurrentProgram">
+            <summary>
+            Gets or sets the CurrentProgram.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Services.ProgramDataService.UpdateProgramCycleTime(ProductionCore.Interfaces.IProgramData,System.Int64)">
+            <summary>
+            The UpdateProgramCycleTime.
+            </summary>
+            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
+            <param name="cycles">The cycles<see cref="T:System.Int64"/>.</param>
         </member>
         <member name="M:ProductionCore.Services.ProgramDataService.ProgramSelectClose">
             <summary>
@@ -1010,6 +1037,21 @@
             The CreateBarcode.
             </summary>
             <returns>The <see cref="T:ProductionCore.Interfaces.IBarcode"/>.</returns>
+        </member>
+        <member name="M:ProductionCore.Services.ProgramDataService.SetSelectedProgramAsCurrent">
+            <summary>
+            The SetSelectedProgramAsCurrent.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Services.ProgramDataService.SetCancelStatus">
+            <summary>
+            The SetCancelStatus.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Services.ProgramDataService.SetConfirmStatus">
+            <summary>
+            The SetConfirmStatus.
+            </summary>
         </member>
     </members>
 </doc>

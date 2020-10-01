@@ -1,13 +1,13 @@
 ﻿namespace ProdData.ViewModels
 {
+    using System.Collections.ObjectModel;
+    using System.Windows.Media.Imaging;
     using Prism.Commands;
     using Prism.Events;
     using Prism.Mvvm;
     using ProductionCore.Concrete;
     using ProductionCore.Events;
     using ProductionCore.Interfaces;
-    using System.Collections.ObjectModel;
-    using System.Windows.Media.Imaging;
 
     /// <summary>
     /// Defines the <see cref="ProdDataViewModel" />.
@@ -47,7 +47,7 @@
         /// <summary>
         /// Defines the _cycleTime.
         /// </summary>
-        private Timer _cycleTime = new Timer();
+        private Chronometer _cycleTime = new Chronometer();
 
         /// <summary>
         /// Defines the _pauseAvailable.
@@ -80,13 +80,12 @@
             _programDataService = programDataService;
             PlayButton = new DelegateCommand(PlayPressed).ObservesCanExecute(() => PlayAvailable);
             PauseButton = new DelegateCommand(PausePressed).ObservesCanExecute(() => PauseAvailable);
-            OpenProgramSelect = new DelegateCommand(OpenProgramSelectFired).ObservesCanExecute(() => AllowProgramChange);
+            OpenProgramSelect = new DelegateCommand(() => { _programDataService.ProgramRequestShow = true; }).ObservesCanExecute(() => AllowProgramChange);
             _eventAggregator.GetEvent<ProgramDataResponse>().Subscribe(HandleProgramDataResponse);
             _eventAggregator.GetEvent<StartRequest>().Subscribe(HandleStartRequest);
             _eventAggregator.GetEvent<ProgramPaused>().Subscribe(HandlePauseConfirmation);
             _eventAggregator.GetEvent<PauseRequest>().Subscribe(HandlePauseRequest);
             _eventAggregator.GetEvent<ProgramDataSaveResponse>().Subscribe(HandleProgramDataSaveResponse);
-            _eventAggregator.GetEvent<ProgramSelectResponse>().Subscribe(HandleProgramSelectResponse);
             _eventAggregator.GetEvent<ProductImageChangeResponse>().Subscribe(HandleProductImageChangeResponse);
             _eventAggregator.GetEvent<RaiseError>().Subscribe(HandleRaiseError);
             _eventAggregator.GetEvent<AdvanceStep>().Subscribe(HandleAdvanceStep);
@@ -96,6 +95,17 @@
             _eventAggregator.GetEvent<ModalResponse>().Subscribe(HandleModalRetryRequest, ThreadOption.BackgroundThread, false, modalData => modalData.Equals(ModalResponseData.Retry));
             _eventAggregator.GetEvent<ModalResponse>().Subscribe(HandleModalCustomRequest, ThreadOption.BackgroundThread, false, modalData => modalData.Equals(ModalResponseData.Custom));
             AllowProgramChange = true;
+        }
+
+        /// <summary>
+        /// Gets the ProgramDataService.
+        /// </summary>
+        public IProgramDataService ProgramDataService
+        {
+            get
+            {
+                return _programDataService;
+            }
         }
 
         /// <summary>
@@ -163,25 +173,9 @@
         }
 
         /// <summary>
-        /// Gets or sets the CycleCount.
-        /// </summary>
-        public long CycleCount
-        {
-            get
-            {
-                return _programDataService.SelectedProgramData?.Cycles ?? 0;
-            }
-
-            set
-            {
-                _programDataService.SelectedProgramData.Cycles = value;
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the CycleTime.
         /// </summary>
-        public Timer CycleTime
+        public Chronometer CycleTime
         {
             get
             {
@@ -200,6 +194,16 @@
         public DelegateCommand OpenProgramSelect { get; set; }
 
         /// <summary>
+        /// Gets or sets the PauseButton.
+        /// </summary>
+        public DelegateCommand PauseButton { get; set; }
+
+        /// <summary>
+        /// Gets or sets the PlayButton.
+        /// </summary>
+        public DelegateCommand PlayButton { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether PauseAvailable.
         /// </summary>
         public bool PauseAvailable
@@ -214,11 +218,6 @@
                 SetProperty(ref _pauseAvailable, value);
             }
         }
-
-        /// <summary>
-        /// Gets or sets the PauseButton.
-        /// </summary>
-        public DelegateCommand PauseButton { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether PlayAvailable.
@@ -253,11 +252,6 @@
         }
 
         /// <summary>
-        /// Gets or sets the PlayButton.
-        /// </summary>
-        public DelegateCommand PlayButton { get; set; }
-
-        /// <summary>
         /// Gets or sets the ProductImage.
         /// </summary>
         public BitmapImage? ProductImage
@@ -270,23 +264,6 @@
             set
             {
                 SetProperty(ref _productImage, value);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the SelectedProgramData.
-        /// </summary>
-        public IProgramData? SelectedProgramData
-        {
-            get
-            {
-                return _programDataService.SelectedProgramData;
-            }
-
-            set
-            {
-                _programDataService.SelectedProgramData = value;
-                UpdateProductImage();
             }
         }
 
@@ -354,23 +331,15 @@
         }
 
         /// <summary>
-        /// The OpenProgramSelectFired.
-        /// </summary>
-        private void OpenProgramSelectFired()
-        {
-            _programDataService.ProgramSelectRequest();
-        }
-
-        /// <summary>
         /// The CompleteCycle.
         /// </summary>
         private void CompleteCycle()
         {
             _eventAggregator.GetEvent<PauseRequest>().Publish();
             CycleTime.Pause();
-            SelectedProgramData!.UpdateAverageCycleTime(CycleTime.TimeSpan);
-            CycleCount++;
-            SelectedProgramData!.Cycles = CycleCount;
+            ////SelectedProgramData!.UpdateAverageCycleTime(CycleTime.TimeSpan);
+            ////CycleCount++;
+            ////SelectedProgramData!.Cycles = CycleCount;
             _eventAggregator.GetEvent<ProgramDataSaveRequest>().Publish();
             if (_cardCollection[CurrentCardIndex]!.StepModalData?.IsError == false)
             {
@@ -453,10 +422,10 @@
         {
             CardCollection = publishedCardCollection;
             CurrentCardIndex = 0;
-            CycleCount = SelectedProgramData!.Cycles;
-            PlayAvailable = SelectedProgramData.UserCanStartPlayback;
+            ////CycleCount = SelectedProgramData!.Cycles;
+            PlayAvailable = _programDataService.SelectedProgramData.UserCanStartPlayback;
             _cardCollection[CurrentCardIndex]!.IsActiveStep = true;
-            if (SelectedProgramData.AutoStartPlayback)
+            if (_programDataService.SelectedProgramData.AutoStartPlayback)
             {
                 _eventAggregator.GetEvent<StartRequest>().Publish();
             }
@@ -487,15 +456,6 @@
         }
 
         /// <summary>
-        /// The HandleProgramSelectResponse.
-        /// </summary>
-        /// <param name="programData">The programData<see cref="IProgramData"/>.</param>
-        private void HandleProgramSelectResponse(IProgramData? programData)
-        {
-            SelectedProgramData = programData!;
-        }
-
-        /// <summary>
         /// The HandleRaiseError.
         /// </summary>
         private void HandleRaiseError()
@@ -522,7 +482,7 @@
         /// </summary>
         private void HandleStartRequest()
         {
-            if (PlayBackRunning == false && SelectedProgramData != null)
+            if (PlayBackRunning == false && _programDataService.SelectedProgramData != null)
             {
                 PlaybackStart();
             }
@@ -570,7 +530,7 @@
         /// </summary>
         private void UpdateProductImage()
         {
-            ProductImage = SelectedProgramData!.ProductImage;
+            ProductImage = _programDataService.SelectedProgramData!.ProductImage ?? null;
         }
     }
 }

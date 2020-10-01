@@ -28,7 +28,7 @@
         /// <summary>
         /// Defines the _cardTime.
         /// </summary>
-        private Timer _cardTime = new Timer();
+        private Chronometer _cardTime = new Chronometer();
 
         /// <summary>
         /// Defines the _isActiveStep.
@@ -149,7 +149,7 @@
         /// <summary>
         /// Gets or sets the CardTime.
         /// </summary>
-        public Timer CardTime
+        public Chronometer CardTime
         {
             get
             {

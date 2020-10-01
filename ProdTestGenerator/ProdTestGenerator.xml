@@ -338,51 +338,20 @@
             Defines the <see cref="T:ProdProgramSelect.ViewModels.ProgramSelectViewModel" />.
             </summary>
         </member>
-        <member name="F:ProdProgramSelect.ViewModels.ProgramSelectViewModel._eventAggregator">
-            <summary>
-            Defines the _eventAggregator.
-            </summary>
-        </member>
         <member name="F:ProdProgramSelect.ViewModels.ProgramSelectViewModel._programDataService">
             <summary>
             Defines the _programDataService.
             </summary>
         </member>
-        <member name="F:ProdProgramSelect.ViewModels.ProgramSelectViewModel._canCancel">
-            <summary>
-            Defines the _canCancel.
-            </summary>
-        </member>
-        <member name="F:ProdProgramSelect.ViewModels.ProgramSelectViewModel._canConfirm">
-            <summary>
-            Defines the _canConfirm.
-            </summary>
-        </member>
-        <member name="F:ProdProgramSelect.ViewModels.ProgramSelectViewModel._programRequestOpen">
-            <summary>
-            Defines the _programRequestOpen.
-            </summary>
-        </member>
-        <member name="M:ProdProgramSelect.ViewModels.ProgramSelectViewModel.#ctor(Prism.Events.IEventAggregator,ProductionCore.Interfaces.IProgramDataService)">
+        <member name="M:ProdProgramSelect.ViewModels.ProgramSelectViewModel.#ctor(ProductionCore.Interfaces.IProgramDataService)">
             <summary>
             Initializes a new instance of the <see cref="T:ProdProgramSelect.ViewModels.ProgramSelectViewModel"/> class.
             </summary>
-            <param name="eventAggregator">The eventAggregator<see cref="T:Prism.Events.IEventAggregator"/>.</param>
             <param name="programDataService">The programDataService<see cref="T:ProductionCore.Interfaces.IProgramDataService"/>.</param>
         </member>
-        <member name="P:ProdProgramSelect.ViewModels.ProgramSelectViewModel.CanCancel">
+        <member name="P:ProdProgramSelect.ViewModels.ProgramSelectViewModel.ProgramDataService">
             <summary>
-            Gets or sets a value indicating whether CanCancel.
-            </summary>
-        </member>
-        <member name="P:ProdProgramSelect.ViewModels.ProgramSelectViewModel.CancelButton">
-            <summary>
-            Gets or sets the CancelButton.
-            </summary>
-        </member>
-        <member name="P:ProdProgramSelect.ViewModels.ProgramSelectViewModel.CanConfirm">
-            <summary>
-            Gets or sets a value indicating whether CanConfirm.
+            Gets the ProgramDataService.
             </summary>
         </member>
         <member name="P:ProdProgramSelect.ViewModels.ProgramSelectViewModel.ConfirmButton">
@@ -390,21 +359,9 @@
             Gets or sets the ConfirmButton.
             </summary>
         </member>
-        <member name="P:ProdProgramSelect.ViewModels.ProgramSelectViewModel.ProgramList">
+        <member name="P:ProdProgramSelect.ViewModels.ProgramSelectViewModel.CancelButton">
             <summary>
-            Gets the ProgramList
-            Gets or sets the ProgramList.....
-            </summary>
-        </member>
-        <member name="P:ProdProgramSelect.ViewModels.ProgramSelectViewModel.ProgramRequestOpen">
-            <summary>
-            Gets or sets a value indicating whether ProgramRequestOpen
-            Gets a value indicating whether ProgramRequestOpen...
-            </summary>
-        </member>
-        <member name="P:ProdProgramSelect.ViewModels.ProgramSelectViewModel.SelectedProgramData">
-            <summary>
-            Gets or sets the SelectedProgramData.
+            Gets or sets the CancelButton.
             </summary>
         </member>
         <member name="M:ProdProgramSelect.ViewModels.ProgramSelectViewModel.CancelProgramChange">
@@ -420,11 +377,6 @@
         <member name="M:ProdProgramSelect.ViewModels.ProgramSelectViewModel.ConfirmProgramChange">
             <summary>
             The ConfirmProgramChange.
-            </summary>
-        </member>
-        <member name="M:ProdProgramSelect.ViewModels.ProgramSelectViewModel.SetCanConfirm">
-            <summary>
-            The SetCanConfirm.
             </summary>
         </member>
         <member name="T:ProdProgramSelect.Views.ProgramSelectView">

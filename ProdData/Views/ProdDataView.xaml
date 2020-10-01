@@ -55,10 +55,10 @@
                         <Button
                             MaxWidth="140"
                             Command="{Binding Path=OpenProgramSelect}"
-                            Content="{Binding Path=SelectedProgramData.ProgramName, FallbackValue=------------------------}" />
+                            Content="{Binding Path=ProgramDataService.CurrentProgram.ProgramName, FallbackValue=------------------------}" />
 
                         <telerik:Label Content="Cycle Count:" />
-                        <telerik:Label Content="{Binding Path=CycleCount}" />
+                        <telerik:Label Content="{Binding Path=ProgramDataService.CurrentProgram.CycleCount}" />
                         <telerik:Label Content="Program Step:" />
                         <StackPanel Orientation="Horizontal">
 
@@ -105,7 +105,7 @@
                         Visibility="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 </StackPanel>
             </StackPanel>
-            
+
             <Viewbox
                 Grid.Column="1"
                 HorizontalAlignment="Center"

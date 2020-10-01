@@ -27,7 +27,7 @@
         /// <summary>
         /// Gets or sets the CardTime.
         /// </summary>
-        public Timer CardTime { get; set; }
+        public Chronometer CardTime { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether IsActiveStep.

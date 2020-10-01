@@ -30,14 +30,9 @@
         public int CurrentCardIndex { get; set; }
 
         /// <summary>
-        /// Gets or sets the CycleCount.
-        /// </summary>
-        public long CycleCount { get; set; }
-
-        /// <summary>
         /// Gets or sets the CycleTime.
         /// </summary>
-        public Timer CycleTime { get; set; }
+        public Chronometer CycleTime { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether PauseAvailable.
@@ -58,11 +53,6 @@
         /// Gets or sets the ProductImage.
         /// </summary>
         public BitmapImage? ProductImage { get; set; }
-
-        /// <summary>
-        /// Gets or sets the SelectedProgramData.
-        /// </summary>
-        public IProgramData? SelectedProgramData { get; set; }
 
         /// <summary>
         /// The HandleAdvanceStep.

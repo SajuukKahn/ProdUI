@@ -6,9 +6,9 @@
     using Prism.Mvvm;
 
     /// <summary>
-    /// Defines the <see cref="Timer" />.
+    /// Defines the <see cref="Chronometer" />.
     /// </summary>
-    public class Timer : BindableBase
+    public class Chronometer : BindableBase
     {
         /// <summary>
         /// Defines the _stopwatch.
@@ -41,9 +41,9 @@
         private TimeSpan _timeDifference;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Timer"/> class.
+        /// Initializes a new instance of the <see cref="Chronometer"/> class.
         /// </summary>
-        public Timer()
+        public Chronometer()
         {
             System.Windows.Application.Current.Dispatcher.Invoke(
                 () =>

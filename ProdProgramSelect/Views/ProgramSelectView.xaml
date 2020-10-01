@@ -10,7 +10,7 @@
     xmlns:sys="clr-namespace:System;assembly=System.Runtime"
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
     Background="#AA000000"
-    Visibility="{Binding ProgramRequestOpen, Converter={StaticResource BooleanToVisibilityConverter}}"
+    Visibility="{Binding ProgramDataService.ProgramRequestShow, Converter={StaticResource BooleanToVisibilityConverter}}"
     mc:Ignorable="d">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -56,7 +56,6 @@
                 <Setter Property="Margin" Value="0,0,0,3" />
                 <Setter Property="FocusVisualStyle" Value="{x:Null}" />
                 <Setter Property="IsHitTestVisible" Value="False" />
-
             </Style>
 
         </ResourceDictionary>
@@ -113,12 +112,12 @@
                     GroupRenderMode="Flat"
                     IsSearchingDeferred="True"
                     IsSynchronizedWithCurrentItem="True"
-                    ItemsSource="{Binding ProgramList}"
+                    ItemsSource="{Binding ProgramDataService.ProgramList}"
                     RowDetailsVisibilityMode="VisibleWhenSelected"
                     RowIndicatorVisibility="Collapsed"
                     SearchMode="MatchAnyTerm"
                     SearchPanelCloseButtonVisibility="Collapsed"
-                    SelectedItem="{Binding SelectedProgramData}"
+                    SelectedItem="{Binding ProgramDataService.SelectedProgramData}"
                     SelectionMode="Single"
                     SelectionUnit="FullRow"
                     ShowSearchPanel="True"

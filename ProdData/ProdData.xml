@@ -249,6 +249,11 @@
             <param name="eventAggregator">The eventAggregator<see cref="T:Prism.Events.IEventAggregator"/>.</param>
             <param name="programDataService">The programDataService<see cref="T:ProductionCore.Interfaces.IProgramDataService"/>.</param>
         </member>
+        <member name="P:ProdData.ViewModels.ProdDataViewModel.ProgramDataService">
+            <summary>
+            Gets the ProgramDataService.
+            </summary>
+        </member>
         <member name="P:ProdData.ViewModels.ProdDataViewModel.AllowProgramChange">
             <summary>
             Gets or sets a value indicating whether AllowProgramChange.
@@ -269,11 +274,6 @@
             Gets or sets the CurrentCardIndex.
             </summary>
         </member>
-        <member name="P:ProdData.ViewModels.ProdDataViewModel.CycleCount">
-            <summary>
-            Gets or sets the CycleCount.
-            </summary>
-        </member>
         <member name="P:ProdData.ViewModels.ProdDataViewModel.CycleTime">
             <summary>
             Gets or sets the CycleTime.
@@ -284,14 +284,19 @@
             Gets or sets the OpenProgramSelect.
             </summary>
         </member>
-        <member name="P:ProdData.ViewModels.ProdDataViewModel.PauseAvailable">
-            <summary>
-            Gets or sets a value indicating whether PauseAvailable.
-            </summary>
-        </member>
         <member name="P:ProdData.ViewModels.ProdDataViewModel.PauseButton">
             <summary>
             Gets or sets the PauseButton.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdDataViewModel.PlayButton">
+            <summary>
+            Gets or sets the PlayButton.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdDataViewModel.PauseAvailable">
+            <summary>
+            Gets or sets a value indicating whether PauseAvailable.
             </summary>
         </member>
         <member name="P:ProdData.ViewModels.ProdDataViewModel.PlayAvailable">
@@ -304,19 +309,9 @@
             Gets or sets a value indicating whether PlayBackRunning.
             </summary>
         </member>
-        <member name="P:ProdData.ViewModels.ProdDataViewModel.PlayButton">
-            <summary>
-            Gets or sets the PlayButton.
-            </summary>
-        </member>
         <member name="P:ProdData.ViewModels.ProdDataViewModel.ProductImage">
             <summary>
             Gets or sets the ProductImage.
-            </summary>
-        </member>
-        <member name="P:ProdData.ViewModels.ProdDataViewModel.SelectedProgramData">
-            <summary>
-            Gets or sets the SelectedProgramData.
             </summary>
         </member>
         <member name="M:ProdData.ViewModels.ProdDataViewModel.HandleAdvanceStep">
@@ -343,11 +338,6 @@
         <member name="M:ProdData.ViewModels.ProdDataViewModel.StartCard">
             <summary>
             The StartCard.
-            </summary>
-        </member>
-        <member name="M:ProdData.ViewModels.ProdDataViewModel.OpenProgramSelectFired">
-            <summary>
-            The OpenProgramSelectFired.
             </summary>
         </member>
         <member name="M:ProdData.ViewModels.ProdDataViewModel.CompleteCycle">
@@ -410,12 +400,6 @@
             <summary>
             The HandleProgramHaltRequest.
             </summary>
-        </member>
-        <member name="M:ProdData.ViewModels.ProdDataViewModel.HandleProgramSelectResponse(ProductionCore.Interfaces.IProgramData)">
-            <summary>
-            The HandleProgramSelectResponse.
-            </summary>
-            <param name="programData">The programData<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
         </member>
         <member name="M:ProdData.ViewModels.ProdDataViewModel.HandleRaiseError">
             <summary>

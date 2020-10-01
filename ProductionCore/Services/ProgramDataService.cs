@@ -1,9 +1,8 @@
 ﻿namespace ProductionCore.Services
 {
+    using System.Collections.ObjectModel;
     using global::ProductionCore.Interfaces;
     using Prism.Mvvm;
-    using System;
-    using System.Collections.ObjectModel;
 
     /// <summary>
     /// Defines the <see cref="ProgramDataService" />.
@@ -21,6 +20,16 @@
         private readonly IBarcodeService _barcodeService;
 
         /// <summary>
+        /// Defines the _canCancel.
+        /// </summary>
+        private bool _canCancel;
+
+        /// <summary>
+        /// Defines the _canConfirm.
+        /// </summary>
+        private bool _canConfirm;
+
+        /// <summary>
         /// Defines the _programRequestOpen.
         /// </summary>
         private bool _programRequestOpen;
@@ -29,6 +38,11 @@
         /// Defines the _selectedProgramData.
         /// </summary>
         private IProgramData? _selectedProgramData;
+
+        /// <summary>
+        /// Defines the _currentProgram.
+        /// </summary>
+        private IProgramData? _currentProgram;
 
         /// <summary>
         /// Defines the _programList.
@@ -45,11 +59,6 @@
             _programDataFactory = programDataFactory;
             _barcodeService = barcodeService;
         }
-
-        /// <summary>
-        /// Defines the ProgramRequestOpenChanged.
-        /// </summary>
-        public event EventHandler ProgramRequestOpenChanged;
 
         /// <summary>
         /// Gets or sets the ProgramList.
@@ -79,14 +88,14 @@
 
             set
             {
-                SetProperty(ref _selectedProgramData, value);
+                SetProperty(ref _selectedProgramData, value, SetConfirmStatus);
             }
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether ProgramRequestOpen.
+        /// Gets or sets a value indicating whether ProgramRequestShow.
         /// </summary>
-        public bool ProgramRequestOpen
+        public bool ProgramRequestShow
         {
             get
             {
@@ -95,21 +104,75 @@
 
             set
             {
-                SetProperty(ref _programRequestOpen, value, () =>
-                {
-                    ProgramRequestOpenChanged.Invoke(this, new EventArgs());
-                });
+                SetProperty(ref _programRequestOpen, value);
             }
         }
 
         /// <summary>
-        /// The ProgramSelectRequest.
+        /// Gets or sets a value indicating whether CanCancel.
         /// </summary>
-        /// <returns>The <see cref="bool"/>.</returns>
-        public bool ProgramSelectRequest()
+        public bool CanCancel
         {
-            ProgramRequestOpen = true;
-            return true;
+            get
+            {
+                return _canCancel;
+            }
+
+            set
+            {
+                SetProperty(ref _canCancel, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether CanConfirm.
+        /// </summary>
+        public bool CanConfirm
+        {
+            get
+            {
+                return _canConfirm;
+            }
+
+            private set
+            {
+                SetProperty(ref _canConfirm, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the CurrentProgram.
+        /// </summary>
+        public IProgramData? CurrentProgram
+        {
+            get
+            {
+                return _currentProgram;
+            }
+
+            set
+            {
+                SetProperty(ref _currentProgram, value, SetCancelStatus);
+            }
+        }
+
+        /// <summary>
+        /// The UpdateProgramCycleTime.
+        /// </summary>
+        /// <param name="program">The program<see cref="IProgramData"/>.</param>
+        /// <param name="cycles">The cycles<see cref="long"/>.</param>
+        public void UpdateProgramCycleTime(IProgramData? program, long cycles)
+        {
+            if (program == null)
+            {
+                program = CurrentProgram ?? null;
+                if (program == null)
+                {
+                    return;
+                }
+            }
+
+            program.Cycles = cycles;
         }
 
         /// <summary>
@@ -136,6 +199,44 @@
         public IBarcode CreateBarcode()
         {
             return _barcodeService.CreateBarcode();
+        }
+
+        /// <summary>
+        /// The SetSelectedProgramAsCurrent.
+        /// </summary>
+        public void SetSelectedProgramAsCurrent()
+        {
+            CurrentProgram = SelectedProgramData;
+        }
+
+        /// <summary>
+        /// The SetCancelStatus.
+        /// </summary>
+        private void SetCancelStatus()
+        {
+            if (_currentProgram == null)
+            {
+                CanCancel = false;
+            }
+            else
+            {
+                CanCancel = true;
+            }
+        }
+
+        /// <summary>
+        /// The SetConfirmStatus.
+        /// </summary>
+        private void SetConfirmStatus()
+        {
+            if (_selectedProgramData == null)
+            {
+                CanConfirm = false;
+            }
+            else
+            {
+                CanConfirm = true;
+            }
         }
     }
 }
