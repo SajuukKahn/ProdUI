@@ -431,11 +431,6 @@
             The SetCurrentCard.
             </summary>
         </member>
-        <member name="M:ProdData.ViewModels.ProdDataViewModel.UpdateProductImage">
-            <summary>
-            The UpdateProductImage.
-            </summary>
-        </member>
         <member name="T:ProdData.ViewModels.ProdModalDialogViewModel">
             <summary>
             Defines the <see cref="T:ProdData.ViewModels.ProdModalDialogViewModel" />.

@@ -9,7 +9,7 @@
     {
         /// <summary>
         /// Gets or sets the ProgramList
-        /// Defines the ProgramList.....................
+        /// Defines the ProgramList.......................
         /// </summary>
         ObservableCollection<IProgramData> ProgramList { get; set; }
 
@@ -24,17 +24,17 @@
         IProgramData? CurrentProgram { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether ProgramRequestShow..
+        /// Gets or sets a value indicating whether ProgramRequestShow....
         /// </summary>
         bool ProgramRequestShow { get; set; }
 
         /// <summary>
-        /// Gets a value indicating whether CanCancel..
+        /// Gets a value indicating whether CanCancel....
         /// </summary>
         bool CanCancel { get; }
 
         /// <summary>
-        /// Gets a value indicating whether CanConfirm..
+        /// Gets a value indicating whether CanConfirm....
         /// </summary>
         bool CanConfirm { get; }
 
@@ -54,6 +54,18 @@
         /// The SetSelectedProgramAsCurrent.
         /// </summary>
         void SetSelectedProgramAsCurrent();
+
+        /// <summary>
+        /// The LoadProgram.
+        /// </summary>
+        /// <param name="program">The program<see cref="IProgramData"/>.</param>
+        void LoadProgram(IProgramData? program = null);
+
+        /// <summary>
+        /// The SaveProgram.
+        /// </summary>
+        /// <param name="program">The program<see cref="IProgramData"/>.</param>
+        void SaveProgram(IProgramData? program = null);
 
         /// <summary>
         /// The Program.

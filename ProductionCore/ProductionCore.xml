@@ -640,15 +640,21 @@
             </summary>
             <returns>The <see cref="T:System.String"/>.</returns>
         </member>
-        <member name="T:ProductionCore.Interfaces.ICardCollection">
-            <summary>
-            Defines the <see cref="T:ProductionCore.Interfaces.ICardCollection" />.
-            </summary>
-        </member>
         <member name="T:ProductionCore.Interfaces.IChronometer">
             <summary>
             Defines the <see cref="T:ProductionCore.Interfaces.IChronometer" />.
             </summary>
+        </member>
+        <member name="T:ProductionCore.Interfaces.IFileService">
+            <summary>
+            Defines the <see cref="T:ProductionCore.Interfaces.IFileService" />.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IFileService.SaveToJSON(ProductionCore.Interfaces.IProgramData)">
+            <summary>
+            The SaveToJSON.
+            </summary>
+            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
         </member>
         <member name="T:ProductionCore.Interfaces.IProdDataViewModel">
             <summary>
@@ -831,7 +837,7 @@
         <member name="P:ProductionCore.Interfaces.IProgramDataService.ProgramList">
             <summary>
             Gets or sets the ProgramList
-            Defines the ProgramList.....................
+            Defines the ProgramList.......................
             </summary>
         </member>
         <member name="P:ProductionCore.Interfaces.IProgramDataService.SelectedProgramData">
@@ -846,17 +852,17 @@
         </member>
         <member name="P:ProductionCore.Interfaces.IProgramDataService.ProgramRequestShow">
             <summary>
-            Gets or sets a value indicating whether ProgramRequestShow..
+            Gets or sets a value indicating whether ProgramRequestShow....
             </summary>
         </member>
         <member name="P:ProductionCore.Interfaces.IProgramDataService.CanCancel">
             <summary>
-            Gets a value indicating whether CanCancel..
+            Gets a value indicating whether CanCancel....
             </summary>
         </member>
         <member name="P:ProductionCore.Interfaces.IProgramDataService.CanConfirm">
             <summary>
-            Gets a value indicating whether CanConfirm..
+            Gets a value indicating whether CanConfirm....
             </summary>
         </member>
         <member name="M:ProductionCore.Interfaces.IProgramDataService.UpdateProgramCycleTime(ProductionCore.Interfaces.IProgramData,System.Int64)">
@@ -875,6 +881,18 @@
             <summary>
             The SetSelectedProgramAsCurrent.
             </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IProgramDataService.LoadProgram(ProductionCore.Interfaces.IProgramData)">
+            <summary>
+            The LoadProgram.
+            </summary>
+            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IProgramDataService.SaveProgram(ProductionCore.Interfaces.IProgramData)">
+            <summary>
+            The SaveProgram.
+            </summary>
+            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
         </member>
         <member name="M:ProductionCore.Interfaces.IProgramDataService.CreateProgram">
             <summary>
@@ -931,6 +949,17 @@
             The CreateBarcode.
             </summary>
             <returns>The <see cref="T:ProductionCore.Interfaces.IBarcode"/>.</returns>
+        </member>
+        <member name="T:ProductionCore.Services.FileService">
+            <summary>
+            Defines the <see cref="T:ProductionCore.Services.FileService" />.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Services.FileService.SaveToJSON(ProductionCore.Interfaces.IProgramData)">
+            <summary>
+            The SaveToJSON.
+            </summary>
+            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
         </member>
         <member name="T:ProductionCore.Services.ProgramDataService">
             <summary>
@@ -1042,6 +1071,18 @@
             <summary>
             The SetSelectedProgramAsCurrent.
             </summary>
+        </member>
+        <member name="M:ProductionCore.Services.ProgramDataService.LoadProgram(ProductionCore.Interfaces.IProgramData)">
+            <summary>
+            The LoadProgram.
+            </summary>
+            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
+        </member>
+        <member name="M:ProductionCore.Services.ProgramDataService.SaveProgram(ProductionCore.Interfaces.IProgramData)">
+            <summary>
+            The SaveProgram.
+            </summary>
+            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
         </member>
         <member name="M:ProductionCore.Services.ProgramDataService.SetCancelStatus">
             <summary>

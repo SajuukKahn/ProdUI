@@ -21,6 +21,23 @@
             + Add more Interfaces to universalize properties within classes and Interfaces
             + Eliminate the EventAggregator and all PubSubEvent inheriting classes and replace with services
             + Add ability to spawn multiple process regions
+
+
+        Steps:
+
+        Fix or revamp Enumerated StepStatus to be simpler, possibly just a string.
+
+        PlaybackService
+        - Pause / Play / Halt / Abort / Raise Error / End (notify others)
+        - ICard, ICardFactory : needs creation
+
+        ModalService : create to handle Modal transactions and control the ModalViewModel
+
+        Move Concretes to ProdData, move Services to appropriate locations
+
+        Create FileService in Test, use to load programs and filenames, and save programdata to JSON
+        -> use some simple overloaded methods like LogData(T[] members) to save all relevant data...
+
         */
     }
 }

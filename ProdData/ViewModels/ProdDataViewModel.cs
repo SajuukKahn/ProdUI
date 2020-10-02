@@ -423,9 +423,9 @@
             CardCollection = publishedCardCollection;
             CurrentCardIndex = 0;
             ////CycleCount = SelectedProgramData!.Cycles;
-            PlayAvailable = _programDataService.SelectedProgramData.UserCanStartPlayback;
+            PlayAvailable = _programDataService.SelectedProgramData?.UserCanStartPlayback ?? false;
             _cardCollection[CurrentCardIndex]!.IsActiveStep = true;
-            if (_programDataService.SelectedProgramData.AutoStartPlayback)
+            if (_programDataService.SelectedProgramData?.AutoStartPlayback == true)
             {
                 _eventAggregator.GetEvent<StartRequest>().Publish();
             }
@@ -523,14 +523,6 @@
         private void SetCurrentCard()
         {
             CurrentCard = _cardCollection[CurrentCardIndex];
-        }
-
-        /// <summary>
-        /// The UpdateProductImage.
-        /// </summary>
-        private void UpdateProductImage()
-        {
-            ProductImage = _programDataService.SelectedProgramData!.ProductImage ?? null;
         }
     }
 }

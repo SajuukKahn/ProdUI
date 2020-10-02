@@ -210,6 +210,42 @@
         }
 
         /// <summary>
+        /// The LoadProgram.
+        /// </summary>
+        /// <param name="program">The program<see cref="IProgramData"/>.</param>
+        public void LoadProgram(IProgramData? program = null)
+        {
+            if (program == null && CurrentProgram == null)
+            {
+                return;
+            }
+            else if (program == null)
+            {
+                program = CurrentProgram ?? null;
+            }
+            //// do something here... load the program, which currently is the job of the testgeneratorsingleton class
+            //// not sure what to do, since it should be abstracted somehow...
+        }
+
+        /// <summary>
+        /// The SaveProgram.
+        /// </summary>
+        /// <param name="program">The program<see cref="IProgramData"/>.</param>
+        public void SaveProgram(IProgramData? program = null)
+        {
+            if (program == null && CurrentProgram == null)
+            {
+                return;
+            }
+            else if (program == null)
+            {
+                program = CurrentProgram ?? null;
+            }
+            //// do something here... save the program, which currently is the job of the testgeneratorsingleton class
+            //// not sure what to do, since it should be abstracted somehow...
+        }
+
+        /// <summary>
         /// The SetCancelStatus.
         /// </summary>
         private void SetCancelStatus()

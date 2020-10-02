@@ -112,7 +112,7 @@
                 DockPanel.Dock="Right"
                 Stretch="Uniform"
                 StretchDirection="DownOnly">
-                <Image Margin="5" Source="{Binding Path=ProductImage}" />
+                <Image Margin="5" Source="{Binding Path=ProgramDataService.CurrentProgram.ProductImage}" />
             </Viewbox>
         </DockPanel>
 
