@@ -64,7 +64,7 @@
             Defines the _stepTitle.
             </summary>
         </member>
-        <member name="M:ProductionCore.Concrete.Card.#ctor(System.Windows.Media.ImageSource,System.Boolean,System.Boolean,System.String,ProductionCore.Concrete.StepStatus)">
+        <member name="M:ProductionCore.Concrete.Card.#ctor(System.Windows.Media.ImageSource,System.Boolean,System.Boolean,System.String,System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:ProductionCore.Concrete.Card"/> class.
             </summary>
@@ -376,59 +376,6 @@
             <param name="statusReadout">The statusReadout<see cref="T:System.String"/>.</param>
         </member>
         <member name="M:ProductionCore.Concrete.ModalResponseData.ToString">
-            <summary>
-            The ToString.
-            </summary>
-            <returns>The <see cref="T:System.String"/>.</returns>
-        </member>
-        <member name="T:ProductionCore.Concrete.StepStatus">
-            <summary>
-            Defines the <see cref="T:ProductionCore.Concrete.StepStatus" />.
-            </summary>
-        </member>
-        <member name="F:ProductionCore.Concrete.StepStatus.Completed">
-            <summary>
-            Defines the Completed.
-            </summary>
-        </member>
-        <member name="F:ProductionCore.Concrete.StepStatus.Paused">
-            <summary>
-            Defines the Paused.
-            </summary>
-        </member>
-        <member name="F:ProductionCore.Concrete.StepStatus.Pausing">
-            <summary>
-            Defines the Pausing.
-            </summary>
-        </member>
-        <member name="F:ProductionCore.Concrete.StepStatus.Running">
-            <summary>
-            Defines the Running.
-            </summary>
-        </member>
-        <member name="F:ProductionCore.Concrete.StepStatus.Waiting">
-            <summary>
-            Defines the Waiting.
-            </summary>
-        </member>
-        <member name="F:ProductionCore.Concrete.StepStatus._status">
-            <summary>
-            Defines the Status.
-            </summary>
-        </member>
-        <member name="F:ProductionCore.Concrete.StepStatus._statusReadout">
-            <summary>
-            Defines the StatusReadout.
-            </summary>
-        </member>
-        <member name="M:ProductionCore.Concrete.StepStatus.#ctor(System.UInt32,System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:ProductionCore.Concrete.StepStatus"/> class.
-            </summary>
-            <param name="status">The status<see cref="T:System.UInt32"/>.</param>
-            <param name="statusReadout">The statusReadout<see cref="T:System.String"/>.</param>
-        </member>
-        <member name="M:ProductionCore.Concrete.StepStatus.ToString">
             <summary>
             The ToString.
             </summary>

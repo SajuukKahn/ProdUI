@@ -1,6 +1,6 @@
-﻿namespace ProductionCore.Services
+﻿namespace ProdProgramSelect.Services
 {
-    using global::ProductionCore.Interfaces;
+    using ProductionCore.Interfaces;
 
     /// <summary>
     /// Defines the <see cref="BarcodeService" />.

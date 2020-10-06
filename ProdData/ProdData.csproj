@@ -85,9 +85,4 @@
     </Reference>
   </ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Factories\" />
-	  <Folder Include="Models\" />
-	</ItemGroup>
-
 </Project>

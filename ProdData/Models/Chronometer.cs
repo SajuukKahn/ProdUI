@@ -1,14 +1,15 @@
-﻿namespace ProductionCore.Concrete
+﻿namespace ProdData.Models
 {
     using System;
     using System.Diagnostics;
     using System.Windows.Threading;
     using Prism.Mvvm;
+    using ProductionCore.Interfaces;
 
     /// <summary>
     /// Defines the <see cref="Chronometer" />.
     /// </summary>
-    public class Chronometer : BindableBase
+    public class Chronometer : BindableBase, IChronometer
     {
         /// <summary>
         /// Defines the _stopwatch.

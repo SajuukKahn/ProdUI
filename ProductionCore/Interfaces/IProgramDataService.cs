@@ -1,5 +1,6 @@
 ﻿namespace ProductionCore.Interfaces
 {
+    using System;
     using System.Collections.ObjectModel;
 
     /// <summary>
@@ -9,7 +10,7 @@
     {
         /// <summary>
         /// Gets or sets the ProgramList
-        /// Defines the ProgramList.......................
+        /// Defines the ProgramList........................
         /// </summary>
         ObservableCollection<IProgramData> ProgramList { get; set; }
 
@@ -24,17 +25,20 @@
         IProgramData? CurrentProgram { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether ProgramRequestShow....
+        /// Gets or sets the ProgramRequestShow
+        /// Gets or sets a value indicating whether ProgramRequestShow.....
         /// </summary>
         bool ProgramRequestShow { get; set; }
 
         /// <summary>
-        /// Gets a value indicating whether CanCancel....
+        /// Gets the CanCancel
+        /// Gets a value indicating whether CanCancel.....
         /// </summary>
         bool CanCancel { get; }
 
         /// <summary>
-        /// Gets a value indicating whether CanConfirm....
+        /// Gets the CanConfirm
+        /// Gets a value indicating whether CanConfirm.....
         /// </summary>
         bool CanConfirm { get; }
 
@@ -42,8 +46,14 @@
         /// The UpdateProgramCycleTime.
         /// </summary>
         /// <param name="program">The program<see cref="IProgramData"/>.</param>
-        /// <param name="cycles">The cycles<see cref="long"/>.</param>
-        void UpdateProgramCycleTime(IProgramData? program, long cycles);
+        void IterateProgramCycles(IProgramData? program);
+
+        /// <summary>
+        /// The UpdateProgramAverageCycleTime.
+        /// </summary>
+        /// <param name="program">The program<see cref="IProgramData?"/>.</param>
+        /// <param name="cycleTime">The cycleTime<see cref="TimeSpan"/>.</param>
+        void UpdateProgramAverageCycleTime(IProgramData? program, TimeSpan cycleTime);
 
         /// <summary>
         /// The ProgramSelectClose.

@@ -1,8 +1,9 @@
-﻿namespace ProductionCore.Services
+﻿namespace ProdProgramSelect.Services
 {
-    using System.Collections.ObjectModel;
-    using global::ProductionCore.Interfaces;
     using Prism.Mvvm;
+    using ProductionCore.Interfaces;
+    using System;
+    using System.Collections.ObjectModel;
 
     /// <summary>
     /// Defines the <see cref="ProgramDataService" />.
@@ -18,6 +19,11 @@
         /// Defines the _barcodeService.
         /// </summary>
         private readonly IBarcodeService _barcodeService;
+
+        /// <summary>
+        /// Defines the _playbackService.
+        /// </summary>
+        private readonly IPlaybackService _playbackService;
 
         /// <summary>
         /// Defines the _canCancel.
@@ -54,10 +60,12 @@
         /// </summary>
         /// <param name="programDataFactory">The programDataFactory<see cref="IProgramDataFactory"/>.</param>
         /// <param name="barcodeService">The barcodeService<see cref="IBarcodeService"/>.</param>
-        public ProgramDataService(IProgramDataFactory programDataFactory, IBarcodeService barcodeService)
+        /// <param name="playbackService">The playbackService<see cref="IPlaybackService"/>.</param>
+        public ProgramDataService(IProgramDataFactory programDataFactory, IBarcodeService barcodeService, IPlaybackService playbackService)
         {
             _programDataFactory = programDataFactory;
             _barcodeService = barcodeService;
+            _playbackService = playbackService;
         }
 
         /// <summary>
@@ -160,8 +168,7 @@
         /// The UpdateProgramCycleTime.
         /// </summary>
         /// <param name="program">The program<see cref="IProgramData"/>.</param>
-        /// <param name="cycles">The cycles<see cref="long"/>.</param>
-        public void UpdateProgramCycleTime(IProgramData? program, long cycles)
+        public void IterateProgramCycles(IProgramData? program)
         {
             if (program == null)
             {
@@ -172,7 +179,26 @@
                 }
             }
 
-            program.Cycles = cycles;
+            program.Cycles++;
+        }
+
+        /// <summary>
+        /// The UpdateProgramAverageCycleTime.
+        /// </summary>
+        /// <param name="program">The program<see cref="IProgramData"/>.</param>
+        /// <param name="cycleTime">The cycleTime<see cref="TimeSpan"/>.</param>
+        public void UpdateProgramAverageCycleTime(IProgramData? program, TimeSpan cycleTime)
+        {
+            if (program == null)
+            {
+                program = CurrentProgram ?? null;
+                if (program == null)
+                {
+                    return;
+                }
+            }
+
+            program.AverageCycleTime = default(TimeSpan).Add(program.AverageCycleTime.Add(cycleTime)).Divide(2);
         }
 
         /// <summary>
@@ -223,8 +249,8 @@
             {
                 program = CurrentProgram ?? null;
             }
-            //// do something here... load the program, which currently is the job of the testgeneratorsingleton class
-            //// not sure what to do, since it should be abstracted somehow...
+
+            _playbackService.LoadProgramData(program!);
         }
 
         /// <summary>
@@ -241,8 +267,8 @@
             {
                 program = CurrentProgram ?? null;
             }
-            //// do something here... save the program, which currently is the job of the testgeneratorsingleton class
-            //// not sure what to do, since it should be abstracted somehow...
+
+            _playbackService.LoadProgramData(program!);
         }
 
         /// <summary>

@@ -1,9 +1,9 @@
-﻿namespace ProductionCore.Concrete
+﻿namespace ProdData.Models
 {
+    using Prism.Mvvm;
+    using ProductionCore.Interfaces;
     using System.Collections.Generic;
     using System.Windows.Media;
-    using global::ProductionCore.Interfaces;
-    using Prism.Mvvm;
 
     /// <summary>
     /// Defines the <see cref="Card" />.
@@ -23,12 +23,12 @@
         /// <summary>
         /// Defines the _cardSubSteps.
         /// </summary>
-        private List<CardSubStep> _cardSubSteps = new List<CardSubStep>();
+        private List<ICardSubStep?>? _cardSubSteps = new List<ICardSubStep?>();
 
         /// <summary>
         /// Defines the _cardTime.
         /// </summary>
-        private Chronometer _cardTime = new Chronometer();
+        private IChronometer _cardTime;
 
         /// <summary>
         /// Defines the _isActiveStep.
@@ -48,38 +48,32 @@
         /// <summary>
         /// Defines the _stepModalData.
         /// </summary>
-        private ModalData? _stepModalData;
+        private IModalData? _stepModalData;
 
         /// <summary>
         /// Defines the _currentSubStep.
         /// </summary>
-        private CardSubStep? _currentSubStep;
+        private ICardSubStep? _currentSubStep;
 
         /// <summary>
         /// Defines the _stepStatus.
         /// </summary>
-        private StepStatus _stepStatus = StepStatus.Waiting;
+        private string _stepStatus = "Waiting";
 
         /// <summary>
         /// Defines the _stepTitle.
         /// </summary>
         private string? _stepTitle;
 
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Card"/> class.
         /// </summary>
-        /// <param name="imageSource">The imageSource<see cref="ImageSource"/>.</param>
-        /// <param name="isActiveStep">The isActiveStep<see cref="bool"/>.</param>
-        /// <param name="stepComplete">The stepComplete<see cref="bool"/>.</param>
-        /// <param name="stepTitle">The stepTitle<see cref="string"/>.</param>
-        /// <param name="stepStatus">The stepStatus<see cref="StepStatus"/>.</param>
-        public Card(ImageSource? imageSource = null, bool isActiveStep = false, bool stepComplete = false, string stepTitle = "No Data", StepStatus? stepStatus = null)
+        /// <param name="chronometerFactory">The chronometerFactory<see cref="IChronometerFactory"/>.</param>
+        /// <param name="cardSubStepFactory">The cardSubStepFactory<see cref="ICardSubStepFactory"/>.</param>
+        public Card(IChronometerFactory chronometerFactory)
         {
-            StepImage = imageSource;
-            IsActiveStep = isActiveStep;
-            StepComplete = stepComplete;
-            StepTitle = stepTitle;
-            StepStatus = stepStatus ?? StepStatus.Waiting;
+            _cardTime = chronometerFactory.Create();
         }
 
         /// <summary>
@@ -101,7 +95,7 @@
         /// <summary>
         /// Gets or sets the CurrentSubStep.
         /// </summary>
-        public CardSubStep? CurrentSubStep
+        public ICardSubStep? CurrentSubStep
         {
             get
             {
@@ -133,7 +127,7 @@
         /// <summary>
         /// Gets or sets the CardSubSteps.
         /// </summary>
-        public List<CardSubStep> CardSubSteps
+        public List<ICardSubStep?>? CardSubSteps
         {
             get
             {
@@ -149,7 +143,7 @@
         /// <summary>
         /// Gets or sets the CardTime.
         /// </summary>
-        public Chronometer CardTime
+        public IChronometer CardTime
         {
             get
             {
@@ -213,7 +207,7 @@
         /// <summary>
         /// Gets or sets the StepModalData.
         /// </summary>
-        public ModalData? StepModalData
+        public IModalData? StepModalData
         {
             get
             {
@@ -229,7 +223,7 @@
         /// <summary>
         /// Gets or sets the StepStatus.
         /// </summary>
-        public StepStatus StepStatus
+        public string StepStatus
         {
             get
             {
@@ -265,7 +259,7 @@
         {
             get
             {
-                return CardSubSteps.Count;
+                return CardSubSteps?.Count ?? 0;
             }
         }
 
@@ -275,7 +269,7 @@
         public void StartCard()
         {
             IsActiveStep = true;
-            StepStatus = StepStatus.Running;
+            StepStatus = "Running";
             CardTime.Start();
             if (StepModalData?.IsError == false)
             {
@@ -298,7 +292,7 @@
         /// </summary>
         public void Initialize()
         {
-            StepStatus = StepStatus.Waiting;
+            StepStatus = "Waiting";
             StepComplete = false;
             IsActiveStep = false;
             CardTime.Reset();
@@ -306,32 +300,14 @@
         }
 
         /// <summary>
-        /// The ToString.
-        /// </summary>
-        /// <returns>The <see cref="string"/>.</returns>
-        public override string ToString()
-        {
-            string s = string.Empty;
-            s += StepTitle + ",";
-            s += CardTime.ElapsedTime + ",";
-            s += StepStatus + ",";
-
-            foreach (CardSubStep sub in CardSubSteps)
-            {
-                s += sub.SubStepName;
-                s += "(" + string.Join(' ', sub.SubStepData) + ")";
-                s += "  ";
-            }
-
-            return s;
-        }
-
-        /// <summary>
         /// The SetCurrentSubstep.
         /// </summary>
         private void SetCurrentSubstep()
         {
-            CurrentSubStep = _cardSubSteps[_cardStepIndex];
+            if (_cardSubSteps != null)
+            {
+                CurrentSubStep = _cardSubSteps[_cardStepIndex];
+            }
         }
 
         /// <summary>
@@ -339,7 +315,14 @@
         /// </summary>
         private void SetCardStepIndex()
         {
-            CardStepIndex = _cardSubSteps.IndexOf(_currentSubStep ?? _cardSubSteps[0]);
+            if (_cardSubSteps != null)
+            {
+                CardStepIndex = _cardSubSteps.IndexOf(_currentSubStep ?? _cardSubSteps[0]);
+            }
+            else
+            {
+                CardStepIndex = 0;
+            }
         }
     }
 }

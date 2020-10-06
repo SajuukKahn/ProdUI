@@ -1,10 +1,19 @@
-﻿namespace ProductionCore.Concrete
+﻿namespace ProdData.Models
 {
+    using ProductionCore.Interfaces;
+
     /// <summary>
     /// Defines the <see cref="CardSubStep" />.
     /// </summary>
-    public class CardSubStep
+    public class CardSubStep : ICardSubStep
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CardSubStep"/> class.
+        /// </summary>
+        public CardSubStep()
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CardSubStep"/> class.
         /// </summary>
@@ -23,18 +32,23 @@
         {
             get
             {
-                return string.Join(", ", SubStepData);
+                if (SubStepData != null)
+                {
+                    return string.Join(", ", SubStepData);
+                }
+
+                return string.Empty;
             }
         }
 
         /// <summary>
         /// Gets or sets the SubStepData.
         /// </summary>
-        public string[] SubStepData { get; set; }
+        public string[]? SubStepData { get; set; }
 
         /// <summary>
         /// Gets or sets the SubStepName.
         /// </summary>
-        public string SubStepName { get; set; }
+        public string? SubStepName { get; set; }
     }
 }

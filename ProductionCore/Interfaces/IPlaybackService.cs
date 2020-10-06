@@ -1,0 +1,110 @@
+﻿namespace ProductionCore.Interfaces
+{
+    using System.Collections.ObjectModel;
+    using System.Windows.Media.Imaging;
+
+    /// <summary>
+    /// Defines the <see cref="IPlaybackService" />.
+    /// </summary>
+    public interface IPlaybackService
+    {
+        /// <summary>
+        /// Gets or sets the ProgramSteps.
+        /// </summary>
+        ObservableCollection<ICard?>? ProgramSteps { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether ProgramPaused.....
+        /// </summary>
+        bool ProgramPaused { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether AllowProgramChange.
+        /// </summary>
+        bool AllowProgramChange { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether PauseAvailable.
+        /// </summary>
+        bool PauseAvailable { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether PlayAvailable.
+        /// </summary>
+        bool PlayAvailable { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether PlaybackRunning.
+        /// </summary>
+        bool PlaybackRunning { get; set; }
+
+        /// <summary>
+        /// Gets or sets the CurrentCard.
+        /// </summary>
+        ICard? CurrentCard { get; set; }
+
+        /// <summary>
+        /// Gets or sets the CurrentCardIndex.
+        /// </summary>
+        int CurrentCardIndex { get; set; }
+
+        /// <summary>
+        /// Gets or sets the CycleTime.
+        /// </summary>
+        IChronometer? CycleTime { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ProductImage.
+        /// </summary>
+        BitmapImage? ProductImage { get; set; }
+
+        /// <summary>
+        /// The AdvanceStep.
+        /// </summary>
+        void AdvanceStep();
+
+        /// <summary>
+        /// The ModalEvent.
+        /// </summary>
+        /// <param name="modalData">The modalData<see cref="IModalData"/>.</param>
+        void ModalEvent(IModalData modalData);
+
+        /// <summary>
+        /// The ModalResponse.
+        /// </summary>
+        /// <returns>The <see cref="IModalResponseData"/>.</returns>
+        IModalResponseData ModalResponse();
+
+        /// <summary>
+        /// The Halt.
+        /// </summary>
+        void Halt();
+
+        /// <summary>
+        /// The Pause.
+        /// </summary>
+        void Pause();
+
+        /// <summary>
+        /// The Play.
+        /// </summary>
+        void Play();
+
+        /// <summary>
+        /// The RaiseError.
+        /// </summary>
+        void RaiseError();
+
+        /// <summary>
+        /// The LoadProgramData.
+        /// </summary>
+        /// <param name="program">The program<see cref="IProgramData"/>.</param>
+        void LoadProgramData(IProgramData program);
+
+        /// <summary>
+        /// The SaveProgramData.
+        /// </summary>
+        /// <param name="program">The program<see cref="IProgramData"/>.</param>
+        void SaveProgramData(IProgramData program);
+    }
+}

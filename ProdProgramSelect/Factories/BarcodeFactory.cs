@@ -10,13 +10,6 @@
     public class BarcodeFactory : IBarcodeFactory
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BarcodeFactory"/> class.
-        /// </summary>
-        public BarcodeFactory()
-        {
-        }
-
-        /// <summary>
         /// The Create.
         /// </summary>
         /// <param name="barcodeData">The barcodeData<see cref="string"/>.</param>

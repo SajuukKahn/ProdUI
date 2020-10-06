@@ -1,11 +1,9 @@
-﻿namespace ProductionCore.Concrete
+﻿namespace ProductionCore.Interfaces
 {
-    using global::ProductionCore.Interfaces;
-
     /// <summary>
-    /// Defines the <see cref="ModalResponseData" />.
+    /// Defines the <see cref="IModalResponseData" />.
     /// </summary>
-    public class ModalResponseData : IModalResponseData
+    public interface IModalResponseData
     {
         /// <summary>
         /// Defines the Abort.

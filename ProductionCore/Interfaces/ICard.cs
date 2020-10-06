@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Windows.Media;
-    using global::ProductionCore.Concrete;
 
     /// <summary>
     /// Defines the <see cref="ICard" />.
@@ -22,12 +21,12 @@
         /// <summary>
         /// Gets or sets the CardSubSteps.
         /// </summary>
-        public List<CardSubStep> CardSubSteps { get; set; }
+        public List<ICardSubStep?>? CardSubSteps { get; set; }
 
         /// <summary>
         /// Gets or sets the CardTime.
         /// </summary>
-        public Chronometer CardTime { get; set; }
+        public IChronometer CardTime { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether IsActiveStep.
@@ -47,17 +46,27 @@
         /// <summary>
         /// Gets or sets the StepModalData.
         /// </summary>
-        public ModalData? StepModalData { get; set; }
+        public IModalData? StepModalData { get; set; }
 
         /// <summary>
         /// Gets or sets the StepStatus.
         /// </summary>
-        public StepStatus StepStatus { get; set; }
+        public string StepStatus { get; set; }
 
         /// <summary>
         /// Gets or sets the StepTitle.
         /// </summary>
         public string? StepTitle { get; set; }
+
+        /// <summary>
+        /// The StartCard.
+        /// </summary>
+        void StartCard();
+
+        /// <summary>
+        /// The RetryCard.
+        /// </summary>
+        void RetryCard();
 
         /// <summary>
         /// Gets the SubStepCount.
