@@ -2,10 +2,8 @@
 {
     using System;
     using System.Windows.Media.Imaging;
-    using Prism.Events;
     using Prism.Mvvm;
-    using ProductionCore.Concrete;
-    using ProductionCore.Events;
+    using ProductionCore.Interfaces;
     using Telerik.Windows.Controls;
 
     /// <summary>
@@ -13,11 +11,6 @@
     /// </summary>
     internal class ProdModalDialogViewModel : BindableBase
     {
-        /// <summary>
-        /// Defines the _eventAggregator.
-        /// </summary>
-        private readonly IEventAggregator _eventAggregator;
-
         /// <summary>
         /// Defines the _canAbort.
         /// </summary>
@@ -66,11 +59,8 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="ProdModalDialogViewModel"/> class.
         /// </summary>
-        /// <param name="eventAggregator">The eventAggregator<see cref="IEventAggregator"/>.</param>
-        public ProdModalDialogViewModel(IEventAggregator eventAggregator)
+        public ProdModalDialogViewModel()
         {
-            _eventAggregator = eventAggregator;
-            _eventAggregator.GetEvent<ModalEvent>().Subscribe(HandleModalRequest);
             DelegateAbort = new Prism.Commands.DelegateCommand(RaiseAbort).ObservesCanExecute(() => CanAbort);
             DelegateContinue = new Prism.Commands.DelegateCommand(RaiseContinue).ObservesCanExecute(() => CanContinue);
             DelegateRetry = new Prism.Commands.DelegateCommand(RaiseRetry).ObservesCanExecute(() => CanRetry);
@@ -244,8 +234,8 @@
         /// <summary>
         /// The HandleModalRequest.
         /// </summary>
-        /// <param name="modalData">The modalData<see cref="ModalData"/>.</param>
-        private void HandleModalRequest(ModalData modalData)
+        /// <param name="modalData">The modalData<see cref="IModalData"/>.</param>
+        private void HandleModalRequest(IModalData modalData)
         {
             if (modalData == null)
             {
@@ -255,7 +245,7 @@
             ModalOpenRequested = true;
             if (modalData.IsError)
             {
-                _eventAggregator.GetEvent<ProgramHaltRequest>().Publish();
+                //// _eventAggregator.GetEvent<ProgramHaltRequest>().Publish();
             }
 
             if (modalData.Card != null)
@@ -288,7 +278,7 @@
         /// </summary>
         private void RaiseAbort()
         {
-            _eventAggregator.GetEvent<ModalResponse>().Publish(ModalResponseData.Abort);
+            //// _eventAggregator.GetEvent<ModalResponse>().Publish(ModalResponseData.Abort);
             ModalOpenRequested = false;
         }
 
@@ -297,7 +287,7 @@
         /// </summary>
         private void RaiseContinue()
         {
-            _eventAggregator.GetEvent<ModalResponse>().Publish(ModalResponseData.Continue);
+            //// _eventAggregator.GetEvent<ModalResponse>().Publish(ModalResponseData.Continue);
             ModalOpenRequested = false;
         }
 
@@ -306,7 +296,7 @@
         /// </summary>
         private void RaiseCustom()
         {
-            _eventAggregator.GetEvent<ModalResponse>().Publish(ModalResponseData.Custom);
+            //// _eventAggregator.GetEvent<ModalResponse>().Publish(ModalResponseData.Custom);
             ModalOpenRequested = false;
         }
 
@@ -315,7 +305,7 @@
         /// </summary>
         private void RaiseRetry()
         {
-            _eventAggregator.GetEvent<ModalResponse>().Publish(ModalResponseData.Retry);
+            //// _eventAggregator.GetEvent<ModalResponse>().Publish(ModalResponseData.Retry);
             ModalOpenRequested = false;
         }
     }

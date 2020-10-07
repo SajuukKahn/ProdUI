@@ -4,6 +4,7 @@
     using System.Windows.Media.Imaging;
     using Prism.Mvvm;
     using ProductionCore.Interfaces;
+    using Telerik.Windows.Controls.TreeListView;
 
     /// <summary>
     /// Defines the <see cref="PlaybackService" />.
@@ -282,7 +283,7 @@
         public void Halt()
         {
             Pause();
-            PauseCard();
+            CycleTime?.Pause();
         }
 
         /// <summary>
@@ -302,9 +303,9 @@
         /// </summary>
         public void Pause()
         {
-            CurrentCard?.CardTime.Pause();
+            PauseCard();
+            ProgramPaused = true;
             PauseAvailable = false;
-            _controllerService.PauseExecution();
         }
 
         /// <summary>
@@ -326,6 +327,7 @@
             PlaybackRunning = true;
             PlayAvailable = false;
             PauseAvailable = true;
+            ProgramPaused = false;
             CycleTime?.Start();
         }
 

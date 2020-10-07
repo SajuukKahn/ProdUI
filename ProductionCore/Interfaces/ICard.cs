@@ -59,6 +59,11 @@
         public string? StepTitle { get; set; }
 
         /// <summary>
+        /// Gets the SubStepCount.
+        /// </summary>
+        public int SubStepCount { get; }
+
+        /// <summary>
         /// The StartCard.
         /// </summary>
         void StartCard();
@@ -67,11 +72,6 @@
         /// The RetryCard.
         /// </summary>
         void RetryCard();
-
-        /// <summary>
-        /// Gets the SubStepCount.
-        /// </summary>
-        public int SubStepCount { get; }
 
         /// <summary>
         /// The Initialize.

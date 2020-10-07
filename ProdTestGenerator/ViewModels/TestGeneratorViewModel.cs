@@ -1,12 +1,10 @@
 ﻿namespace ProdTestGenerator.ViewModels
 {
-    using System;
     using Prism.Commands;
-    using Prism.Events;
     using Prism.Mvvm;
-    using ProductionCore.Concrete;
-    using ProductionCore.Events;
     using ProductionCore.Interfaces;
+    using System;
+    using System.Windows.Media.Imaging;
 
     /// <summary>
     /// Defines the <see cref="TestGeneratorViewModel" />.
@@ -14,24 +12,17 @@
     public class TestGeneratorViewModel : BindableBase
     {
         /// <summary>
-        /// Defines the _eventAggregator.
-        /// </summary>
-        private readonly IEventAggregator _eventAggregator;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="TestGeneratorViewModel"/> class.
         /// </summary>
-        /// <param name="eventAggregator">The eventAggregator<see cref="IEventAggregator"/>.</param>
-        /// <param name="programDataFactory">The programDataFactory<see cref="IProgramDataFactory"/>.</param>
-        public TestGeneratorViewModel(IEventAggregator eventAggregator, IProgramDataFactory programDataFactory)
+        /// <param name="playbackService">The playbackService<see cref="IPlaybackService"/>.</param>
+        public TestGeneratorViewModel(IPlaybackService playbackService, IFileService fileService, IModalService modalService)
         {
-            _eventAggregator = eventAggregator;
-            StartButton = new DelegateCommand(() => _eventAggregator.GetEvent<StartRequest>().Publish());
-            PauseButton = new DelegateCommand(() => _eventAggregator.GetEvent<PauseRequest>().Publish());
-            ChangeProgram = new DelegateCommand(() => _eventAggregator.GetEvent<ProgramDataRequest>().Publish(programDataFactory.Create()));
-            ChangeProcessImage = new DelegateCommand(() => _eventAggregator.GetEvent<ProductImageChangeRequest>().Publish());
-            ThrowCardError = new DelegateCommand(() => _eventAggregator.GetEvent<RaiseError>().Publish());
-            ThrowError = new DelegateCommand(() => _eventAggregator.GetEvent<ModalEvent>().Publish(new ModalData() { CanAbort = true, Instructions = "Generic Error Raised!" + Environment.NewLine + "Must Abort Program." }));
+            StartButton = new DelegateCommand(() => playbackService.Play()).ObservesCanExecute(() => playbackService.PlayAvailable);
+            PauseButton = new DelegateCommand(() => playbackService.Pause()).ObservesCanExecute(() => playbackService.PauseAvailable);
+            ChangeProgram = new DelegateCommand(() => fileService.RetrieveProgram(null));
+            ChangeProcessImage = new DelegateCommand(() => { playbackService.ProductImage = new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\PCB" + new Random().Next(1, 9).ToString() + ".bmp", UriKind.RelativeOrAbsolute)); });            
+            ThrowCardError = new DelegateCommand(() => playbackService.RaiseError());
+            ThrowError = new DelegateCommand(() => playbackService.RaiseError(modalService.CreateModalData()));
         }
 
         /// <summary>

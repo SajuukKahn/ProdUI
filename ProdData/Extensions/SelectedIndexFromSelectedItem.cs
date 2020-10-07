@@ -3,7 +3,7 @@
     using System;
     using System.Windows;
     using System.Windows.Threading;
-    using ProductionCore.Concrete;
+    using ProductionCore.Interfaces;
     using Telerik.Windows.Controls;
 
     /// <summary>
@@ -24,7 +24,7 @@
         public static int GetSelectedIndex(DependencyObject d)
         {
             RadCarousel dpo = (RadCarousel)d;
-            Card card = (Card)dpo.CurrentItem;
+            ICard card = (ICard)dpo.CurrentItem;
             var coll = dpo.Items;
             return coll.IndexOf(card);
         }

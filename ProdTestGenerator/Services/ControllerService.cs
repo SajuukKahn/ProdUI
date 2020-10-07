@@ -1,9 +1,9 @@
 ﻿namespace ProdTestGenerator.Services
 {
-    using ProductionCore.Interfaces;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using ProductionCore.Interfaces;
 
     /// <summary>
     /// Defines the <see cref="ControllerService" />.
@@ -48,6 +48,7 @@
         public ControllerService(IPlaybackService playbackService, IModalService modalService)
         {
             _playbackService = playbackService;
+            _modalService = modalService;
         }
 
         /// <summary>
@@ -116,7 +117,7 @@
                         if (!_playbackService.ProgramPaused)
                         {
                             Thread.Sleep(TimeSpan.FromSeconds(new Random().Next(2, 5) + new Random().NextDouble()));
-                            if (!_playbackService.ProgramPaused && !_modalService.)
+                            if (!_playbackService.ProgramPaused && !_modalService.ModalActive)
                             {
                                 _pauseRequestResponded = false;
                                 SendAdvance();

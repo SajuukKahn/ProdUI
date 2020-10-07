@@ -1,7 +1,7 @@
 ﻿namespace ProdData.Factories
 {
-    using ProductionCore.Interfaces;
     using global::ProdData.Models;
+    using ProductionCore.Interfaces;
 
     /// <summary>
     /// Defines the <see cref="ModalFactory" />.

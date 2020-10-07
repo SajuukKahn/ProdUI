@@ -7,7 +7,6 @@
     using Prism.Modularity;
     using Prism.Regions;
     using ProductionCore.Interfaces;
-    using ProductionCore.Services;
 
     /// <summary>
     /// Defines the <see cref="ProdProgramSelect" />.
@@ -50,8 +49,6 @@
             containerRegistry.RegisterSingleton<IBarcodeFactory, BarcodeFactory>();
             containerRegistry.RegisterSingleton<IProgramDataFactory, ProgramDataFactory>();
             containerRegistry.RegisterSingleton<IProgramSelectViewModel, ProgramSelectViewModel>();
-            containerRegistry.RegisterSingleton<IProgramDataService, ProgramDataService>();
-            containerRegistry.RegisterSingleton<IBarcodeService, BarcodeService>();
         }
     }
 }

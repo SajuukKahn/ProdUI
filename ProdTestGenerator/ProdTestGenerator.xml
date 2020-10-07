@@ -70,11 +70,6 @@
             Defines the <see cref="T:ProdProgramSelect.Factories.BarcodeFactory" />.
             </summary>
         </member>
-        <member name="M:ProdProgramSelect.Factories.BarcodeFactory.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:ProdProgramSelect.Factories.BarcodeFactory"/> class.
-            </summary>
-        </member>
         <member name="M:ProdProgramSelect.Factories.BarcodeFactory.Create(System.String,System.Windows.Media.Imaging.BitmapImage)">
             <summary>
             The Create.
@@ -332,6 +327,183 @@
             The RegisterTypes.
             </summary>
             <param name="containerRegistry">The containerRegistry<see cref="T:Prism.Ioc.IContainerRegistry"/>.</param>
+        </member>
+        <member name="T:ProdProgramSelect.Services.BarcodeService">
+            <summary>
+            Defines the <see cref="T:ProdProgramSelect.Services.BarcodeService" />.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.Services.BarcodeService._barcodeFactory">
+            <summary>
+            Defines the _barcodeFactory.
+            </summary>
+        </member>
+        <member name="M:ProdProgramSelect.Services.BarcodeService.#ctor(ProductionCore.Interfaces.IBarcodeFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdProgramSelect.Services.BarcodeService"/> class.
+            </summary>
+            <param name="barcodeFactory">The barcodeFactory<see cref="T:ProductionCore.Interfaces.IBarcodeFactory"/>.</param>
+        </member>
+        <member name="M:ProdProgramSelect.Services.BarcodeService.CreateBarcode">
+            <summary>
+            The CreateBarcode.
+            </summary>
+            <returns>The <see cref="T:ProductionCore.Interfaces.IBarcode"/>.</returns>
+        </member>
+        <member name="T:ProdProgramSelect.Services.ProgramDataService">
+            <summary>
+            Defines the <see cref="T:ProdProgramSelect.Services.ProgramDataService" />.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.Services.ProgramDataService._programDataFactory">
+            <summary>
+            Defines the _programDataFactory.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.Services.ProgramDataService._barcodeService">
+            <summary>
+            Defines the _barcodeService.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.Services.ProgramDataService._fileService">
+            <summary>
+            Defines the _fileService.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.Services.ProgramDataService._canCancel">
+            <summary>
+            Defines the _canCancel.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.Services.ProgramDataService._canConfirm">
+            <summary>
+            Defines the _canConfirm.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.Services.ProgramDataService._allowProgramChange">
+            <summary>
+            Defines the _allowProgramChange.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.Services.ProgramDataService._programRequestOpen">
+            <summary>
+            Defines the _programRequestOpen.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.Services.ProgramDataService._selectedProgramData">
+            <summary>
+            Defines the _selectedProgramData.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.Services.ProgramDataService._currentProgram">
+            <summary>
+            Defines the _currentProgram.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.Services.ProgramDataService._programList">
+            <summary>
+            Defines the _programList.
+            </summary>
+        </member>
+        <member name="M:ProdProgramSelect.Services.ProgramDataService.#ctor(ProductionCore.Interfaces.IProgramDataFactory,ProductionCore.Interfaces.IBarcodeService,ProductionCore.Interfaces.IFileService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdProgramSelect.Services.ProgramDataService"/> class.
+            </summary>
+            <param name="programDataFactory">The programDataFactory<see cref="T:ProductionCore.Interfaces.IProgramDataFactory"/>.</param>
+            <param name="barcodeService">The barcodeService<see cref="T:ProductionCore.Interfaces.IBarcodeService"/>.</param>
+            <param name="fileService">The fileService<see cref="T:ProductionCore.Interfaces.IFileService"/>.</param>
+        </member>
+        <member name="P:ProdProgramSelect.Services.ProgramDataService.ProgramList">
+            <summary>
+            Gets or sets the ProgramList.
+            </summary>
+        </member>
+        <member name="P:ProdProgramSelect.Services.ProgramDataService.SelectedProgramData">
+            <summary>
+            Gets or sets the SelectedProgramData.
+            </summary>
+        </member>
+        <member name="P:ProdProgramSelect.Services.ProgramDataService.ProgramRequestShow">
+            <summary>
+            Gets or sets a value indicating whether ProgramRequestShow.
+            </summary>
+        </member>
+        <member name="P:ProdProgramSelect.Services.ProgramDataService.CanCancel">
+            <summary>
+            Gets or sets a value indicating whether CanCancel.
+            </summary>
+        </member>
+        <member name="P:ProdProgramSelect.Services.ProgramDataService.CanConfirm">
+            <summary>
+            Gets a value indicating whether CanConfirm.
+            </summary>
+        </member>
+        <member name="P:ProdProgramSelect.Services.ProgramDataService.AllowProgramChange">
+            <summary>
+            Gets or sets a value indicating whether AllowProgramChange.
+            </summary>
+        </member>
+        <member name="P:ProdProgramSelect.Services.ProgramDataService.CurrentProgram">
+            <summary>
+            Gets or sets the CurrentProgram.
+            </summary>
+        </member>
+        <member name="M:ProdProgramSelect.Services.ProgramDataService.IterateProgramCycles(ProductionCore.Interfaces.IProgramData)">
+            <summary>
+            The UpdateProgramCycleTime.
+            </summary>
+            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
+        </member>
+        <member name="M:ProdProgramSelect.Services.ProgramDataService.UpdateProgramAverageCycleTime(ProductionCore.Interfaces.IProgramData,System.TimeSpan)">
+            <summary>
+            The UpdateProgramAverageCycleTime.
+            </summary>
+            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
+            <param name="cycleTime">The cycleTime<see cref="T:System.TimeSpan"/>.</param>
+        </member>
+        <member name="M:ProdProgramSelect.Services.ProgramDataService.ProgramSelectClose">
+            <summary>
+            The ProgramSelectClose.
+            </summary>
+        </member>
+        <member name="M:ProdProgramSelect.Services.ProgramDataService.CreateProgram">
+            <summary>
+            The Program.
+            </summary>
+            <returns>The <see cref="T:ProductionCore.Interfaces.IProgramData"/>.</returns>
+        </member>
+        <member name="M:ProdProgramSelect.Services.ProgramDataService.CreateBarcode">
+            <summary>
+            The CreateBarcode.
+            </summary>
+            <returns>The <see cref="T:ProductionCore.Interfaces.IBarcode"/>.</returns>
+        </member>
+        <member name="M:ProdProgramSelect.Services.ProgramDataService.SetSelectedProgramAsCurrent">
+            <summary>
+            The SetSelectedProgramAsCurrent.
+            </summary>
+        </member>
+        <member name="M:ProdProgramSelect.Services.ProgramDataService.LoadProgram(ProductionCore.Interfaces.IProgramData)">
+            <summary>
+            The LoadProgram.
+            </summary>
+            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
+        </member>
+        <member name="M:ProdProgramSelect.Services.ProgramDataService.SaveProgram(ProductionCore.Interfaces.IProgramData)">
+            <summary>
+            The SaveProgram.
+            </summary>
+            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
+        </member>
+        <member name="M:ProdProgramSelect.Services.ProgramDataService.SetCancelStatus">
+            <summary>
+            The SetCancelStatus.
+            </summary>
+        </member>
+        <member name="M:ProdProgramSelect.Services.ProgramDataService.SetConfirmStatus">
+            <summary>
+            The SetConfirmStatus.
+            </summary>
         </member>
         <member name="T:ProdProgramSelect.ViewModels.ProgramSelectViewModel">
             <summary>

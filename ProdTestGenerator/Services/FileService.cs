@@ -1,10 +1,10 @@
 ﻿namespace ProdTestGenerator.Services
 {
-    using ProductionCore.Interfaces;
     using System;
     using System.Collections.ObjectModel;
     using System.Drawing;
     using System.Windows.Media.Imaging;
+    using ProductionCore.Interfaces;
 
     /// <summary>
     /// Defines the <see cref="FileService" />.
@@ -32,6 +32,11 @@
         private readonly IModalService _modalService;
 
         /// <summary>
+        /// Defines the _scaleDataSet.
+        /// </summary>
+        private readonly int _scaleDataSet = 1;
+
+        /// <summary>
         /// Defines the _programDataService.
         /// </summary>
         private readonly IProgramDataService _programDataService;
@@ -45,11 +50,6 @@
         /// Defines the _lastDate.
         /// </summary>
         private DateTime _lastDate;
-
-        /// <summary>
-        /// Defines the _scaleDataSet.
-        /// </summary>
-        private readonly int _scaleDataSet = 1;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FileService"/> class.
