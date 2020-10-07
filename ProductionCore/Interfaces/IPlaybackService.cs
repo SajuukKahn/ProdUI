@@ -14,27 +14,26 @@
         ObservableCollection<ICard?>? ProgramSteps { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether ProgramPaused.....
+        /// Gets or sets the ProgramPaused
+        /// Gets or sets a value indicating whether ProgramPaused.......
         /// </summary>
         bool ProgramPaused { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether AllowProgramChange.
-        /// </summary>
-        bool AllowProgramChange { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether PauseAvailable.
+        /// Gets or sets the PauseAvailable
+        /// Gets or sets a value indicating whether PauseAvailable...
         /// </summary>
         bool PauseAvailable { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether PlayAvailable.
+        /// Gets or sets the PlayAvailable
+        /// Gets or sets a value indicating whether PlayAvailable...
         /// </summary>
         bool PlayAvailable { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether PlaybackRunning.
+        /// Gets or sets the PlaybackRunning
+        /// Gets or sets a value indicating whether PlaybackRunning...
         /// </summary>
         bool PlaybackRunning { get; set; }
 
@@ -70,12 +69,6 @@
         void ModalEvent(IModalData modalData);
 
         /// <summary>
-        /// The ModalResponse.
-        /// </summary>
-        /// <returns>The <see cref="IModalResponseData"/>.</returns>
-        IModalResponseData ModalResponse();
-
-        /// <summary>
         /// The Halt.
         /// </summary>
         void Halt();
@@ -96,15 +89,8 @@
         void RaiseError();
 
         /// <summary>
-        /// The LoadProgramData.
+        /// The ExecutionPausedConfirmation.
         /// </summary>
-        /// <param name="program">The program<see cref="IProgramData"/>.</param>
-        void LoadProgramData(IProgramData program);
-
-        /// <summary>
-        /// The SaveProgramData.
-        /// </summary>
-        /// <param name="program">The program<see cref="IProgramData"/>.</param>
-        void SaveProgramData(IProgramData program);
+        void ExecutionPausedConfirmation();
     }
 }

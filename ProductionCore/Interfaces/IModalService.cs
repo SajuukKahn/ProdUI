@@ -6,25 +6,25 @@
     public interface IModalService
     {
         /// <summary>
-        /// Gets or sets the ModalData.
+        /// Gets a value indicating whether ModalActive...
         /// </summary>
-        IModalData ModalData { get; set; }
+        bool ModalActive { get; }
 
         /// <summary>
-        /// Gets or sets the ModalResponseData.
+        /// Gets or sets the ActiveModalData.
         /// </summary>
-        IModalResponseData ModalResponseData { get; set; }
+        IModalData? ActiveModalData { get; set; }
 
         /// <summary>
         /// The ShowModal.
         /// </summary>
-        void ShowModal();
+        /// <param name="modalData">The modalData<see cref="IModalData"/>.</param>
+        void ShowModal(IModalData modalData);
 
         /// <summary>
-        /// The SendResponse.
+        /// The CreateModalData.
         /// </summary>
-        /// <param name="responseData">The responseData<see cref="IModalResponseData"/>.</param>
-        /// <returns>The <see cref="IModalResponseData"/>.</returns>
-        IModalResponseData SendResponse(IModalResponseData responseData);
+        /// <returns>The <see cref="IModalData"/>.</returns>
+        IModalData CreateModalData();
     }
 }

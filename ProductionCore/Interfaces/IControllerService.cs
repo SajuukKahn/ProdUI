@@ -6,28 +6,8 @@
     public interface IControllerService
     {
         /// <summary>
-        /// The AcceptPause.
+        /// The BeginExecution.
         /// </summary>
-        void AcceptPause();
-
-        /// <summary>
-        /// The AcceptPlay.
-        /// </summary>
-        void AcceptPlay();
-
-        /// <summary>
-        /// The SendPause.
-        /// </summary>
-        void SendPause();
-
-        /// <summary>
-        /// The SendPlay.
-        /// </summary>
-        void SendPlay();
-
-        /// <summary>
-        /// The SendAdvance.
-        /// </summary>
-        void SendAdvance();
+        void BeginExecution();
     }
 }

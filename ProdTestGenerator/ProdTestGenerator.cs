@@ -30,7 +30,6 @@
         /// <param name="containerProvider">The containerProvider<see cref="IContainerProvider"/>.</param>
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            containerProvider.Resolve<TestGeneratorSingleton>();
             IRegion region = _regionManager.Regions["TestRegion"];
             var view = containerProvider.Resolve<TestGeneratorView>();
             region.Add(view);
@@ -42,7 +41,6 @@
         /// <param name="containerRegistry">The containerRegistry<see cref="IContainerRegistry"/>.</param>
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterSingleton<TestGeneratorSingleton>();
         }
     }
 }

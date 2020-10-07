@@ -1,9 +1,9 @@
 ﻿namespace ProdTestGenerator.Services
 {
+    using ProductionCore.Interfaces;
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using ProductionCore.Interfaces;
 
     /// <summary>
     /// Defines the <see cref="ControllerService" />.
@@ -14,6 +14,11 @@
         /// Defines the _playbackService.
         /// </summary>
         private readonly IPlaybackService _playbackService;
+
+        /// <summary>
+        /// Defines the _modalService.
+        /// </summary>
+        private readonly IModalService _modalService;
 
         /// <summary>
         /// Defines the _programCancellationTokenSource.
@@ -31,16 +36,6 @@
         private bool _programIsInProgress;
 
         /// <summary>
-        /// Defines the _programPaused.
-        /// </summary>
-        private bool _programPaused;
-
-        /// <summary>
-        /// Defines the _modalRaised.
-        /// </summary>
-        private bool _modalRaised;
-
-        /// <summary>
         /// Defines the _pauseRequestResponded.
         /// </summary>
         private bool _pauseRequestResponded;
@@ -49,49 +44,37 @@
         /// Initializes a new instance of the <see cref="ControllerService"/> class.
         /// </summary>
         /// <param name="playbackService">The playbackService<see cref="IPlaybackService"/>.</param>
-        public ControllerService(IPlaybackService playbackService)
+        /// <param name="modalService">The modalService<see cref="IModalService"/>.</param>
+        public ControllerService(IPlaybackService playbackService, IModalService modalService)
         {
             _playbackService = playbackService;
         }
 
         /// <summary>
-        /// The AcceptPause.
+        /// The BeginExecution.
         /// </summary>
-        public void AcceptPause()
+        public void BeginExecution()
         {
-            throw new System.NotImplementedException();
+            if (_programIsInProgress == false)
+            {
+                RunProg();
+            }
         }
 
         /// <summary>
-        /// The AcceptPlay.
+        /// The AcceptPause.
         /// </summary>
-        public void AcceptPlay()
+        private void RespondToPause()
         {
-            throw new System.NotImplementedException();
+            _playbackService.ExecutionPausedConfirmation();
         }
 
         /// <summary>
         /// The SendAdvance.
         /// </summary>
-        public void SendAdvance()
+        private void SendAdvance()
         {
-            throw new System.NotImplementedException();
-        }
-
-        /// <summary>
-        /// The SendPause.
-        /// </summary>
-        public void SendPause()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        /// <summary>
-        /// The SendPlay.
-        /// </summary>
-        public void SendPlay()
-        {
-            throw new System.NotImplementedException();
+            _playbackService.AdvanceStep();
         }
 
         /// <summary>
@@ -124,16 +107,16 @@
                             return;
                         }
 
-                        if (_programPaused && !_pauseRequestResponded)
+                        if (_playbackService.ProgramPaused && !_pauseRequestResponded)
                         {
-                            AcceptPause();
+                            RespondToPause();
                             _pauseRequestResponded = true;
                         }
 
-                        if (!_programPaused)
+                        if (!_playbackService.ProgramPaused)
                         {
                             Thread.Sleep(TimeSpan.FromSeconds(new Random().Next(2, 5) + new Random().NextDouble()));
-                            if (!_programPaused && !_modalRaised)
+                            if (!_playbackService.ProgramPaused && !_modalService.)
                             {
                                 _pauseRequestResponded = false;
                                 SendAdvance();

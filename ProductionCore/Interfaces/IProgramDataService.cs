@@ -10,7 +10,7 @@
     {
         /// <summary>
         /// Gets or sets the ProgramList
-        /// Defines the ProgramList........................
+        /// Defines the ProgramList.........................
         /// </summary>
         ObservableCollection<IProgramData> ProgramList { get; set; }
 
@@ -26,21 +26,26 @@
 
         /// <summary>
         /// Gets or sets the ProgramRequestShow
-        /// Gets or sets a value indicating whether ProgramRequestShow.....
+        /// Gets or sets a value indicating whether ProgramRequestShow......
         /// </summary>
         bool ProgramRequestShow { get; set; }
 
         /// <summary>
         /// Gets the CanCancel
-        /// Gets a value indicating whether CanCancel.....
+        /// Gets a value indicating whether CanCancel......
         /// </summary>
         bool CanCancel { get; }
 
         /// <summary>
         /// Gets the CanConfirm
-        /// Gets a value indicating whether CanConfirm.....
+        /// Gets a value indicating whether CanConfirm......
         /// </summary>
         bool CanConfirm { get; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether AllowProgramChange.
+        /// </summary>
+        bool AllowProgramChange { get; set; }
 
         /// <summary>
         /// The UpdateProgramCycleTime.

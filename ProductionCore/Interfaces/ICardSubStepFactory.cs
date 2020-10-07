@@ -10,5 +10,13 @@
         /// </summary>
         /// <returns>The <see cref="ICardSubStep"/>.</returns>
         ICardSubStep Create();
+
+        /// <summary>
+        /// The Create.
+        /// </summary>
+        /// <param name="subStepName">The subStepName<see cref="string"/>.</param>
+        /// <param name="subStepData">The subStepData<see cref="string"/>.</param>
+        /// <returns>The <see cref="ICardSubStep"/>.</returns>
+        ICardSubStep Create(string subStepName, string[] subStepData);
     }
 }

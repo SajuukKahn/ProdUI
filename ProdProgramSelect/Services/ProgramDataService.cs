@@ -21,9 +21,9 @@
         private readonly IBarcodeService _barcodeService;
 
         /// <summary>
-        /// Defines the _playbackService.
+        /// Defines the _fileService.
         /// </summary>
-        private readonly IPlaybackService _playbackService;
+        private readonly IFileService _fileService;
 
         /// <summary>
         /// Defines the _canCancel.
@@ -34,6 +34,11 @@
         /// Defines the _canConfirm.
         /// </summary>
         private bool _canConfirm;
+
+        /// <summary>
+        /// Defines the _allowProgramChange.
+        /// </summary>
+        private bool _allowProgramChange;
 
         /// <summary>
         /// Defines the _programRequestOpen.
@@ -60,12 +65,12 @@
         /// </summary>
         /// <param name="programDataFactory">The programDataFactory<see cref="IProgramDataFactory"/>.</param>
         /// <param name="barcodeService">The barcodeService<see cref="IBarcodeService"/>.</param>
-        /// <param name="playbackService">The playbackService<see cref="IPlaybackService"/>.</param>
-        public ProgramDataService(IProgramDataFactory programDataFactory, IBarcodeService barcodeService, IPlaybackService playbackService)
+        /// <param name="fileService">The fileService<see cref="IFileService"/>.</param>
+        public ProgramDataService(IProgramDataFactory programDataFactory, IBarcodeService barcodeService, IFileService fileService)
         {
             _programDataFactory = programDataFactory;
             _barcodeService = barcodeService;
-            _playbackService = playbackService;
+            _fileService = fileService;
         }
 
         /// <summary>
@@ -145,6 +150,22 @@
             private set
             {
                 SetProperty(ref _canConfirm, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether AllowProgramChange.
+        /// </summary>
+        public bool AllowProgramChange
+        {
+            get
+            {
+                return _allowProgramChange;
+            }
+
+            set
+            {
+                SetProperty(ref _allowProgramChange, value);
             }
         }
 
@@ -250,7 +271,7 @@
                 program = CurrentProgram ?? null;
             }
 
-            _playbackService.LoadProgramData(program!);
+            _fileService.RetrieveProgram(program!);
         }
 
         /// <summary>
@@ -268,7 +289,7 @@
                 program = CurrentProgram ?? null;
             }
 
-            _playbackService.LoadProgramData(program!);
+            _fileService.SaveToJSON(program!);
         }
 
         /// <summary>

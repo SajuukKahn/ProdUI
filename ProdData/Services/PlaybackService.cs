@@ -1,18 +1,29 @@
 ﻿namespace ProdData.Services
 {
-    using Prism.Mvvm;
-    using ProductionCore.Events;
-    using ProductionCore.Interfaces;
     using System.Collections.ObjectModel;
-    using System.Security.Cryptography.Pkcs;
     using System.Windows.Media.Imaging;
+    using Prism.Mvvm;
+    using ProductionCore.Interfaces;
 
     /// <summary>
     /// Defines the <see cref="PlaybackService" />.
     /// </summary>
     public class PlaybackService : BindableBase, IPlaybackService
     {
+        /// <summary>
+        /// Defines the _programDataService.
+        /// </summary>
         private readonly IProgramDataService _programDataService;
+
+        /// <summary>
+        /// Defines the _modalService.
+        /// </summary>
+        private readonly IModalService _modalService;
+
+        /// <summary>
+        /// Defines the _controllerService.
+        /// </summary>
+        private readonly IControllerService _controllerService;
 
         /// <summary>
         /// Defines the _programSteps.
@@ -23,11 +34,6 @@
         /// Defines the _programPaused.
         /// </summary>
         private bool _programPaused;
-
-        /// <summary>
-        /// Defines the _allowProgramChange.
-        /// </summary>
-        private bool _allowProgramChange;
 
         /// <summary>
         /// Defines the _pauseAvailable.
@@ -69,10 +75,14 @@
         /// </summary>
         /// <param name="chronometerFactory">The chronometerFactory<see cref="IChronometerFactory"/>.</param>
         /// <param name="programDataService">The programDataService<see cref="IProgramDataService"/>.</param>
-        public PlaybackService(IChronometerFactory chronometerFactory, IProgramDataService programDataService)
+        /// <param name="modalService">The modalService<see cref="IModalService"/>.</param>
+        /// <param name="controllerService">The controllerService<see cref="IControllerService"/>.</param>
+        public PlaybackService(IChronometerFactory chronometerFactory, IProgramDataService programDataService, IModalService modalService, IControllerService controllerService)
         {
             _cycleTime = chronometerFactory.Create();
             _programDataService = programDataService;
+            _modalService = modalService;
+            _controllerService = controllerService;
         }
 
         /// <summary>
@@ -104,22 +114,6 @@
             set
             {
                 SetProperty(ref _programPaused, value);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether AllowProgramChange.
-        /// </summary>
-        public bool AllowProgramChange
-        {
-            get
-            {
-                return _allowProgramChange;
-            }
-
-            set
-            {
-                SetProperty(ref _allowProgramChange, value);
             }
         }
 
@@ -287,15 +281,8 @@
         /// </summary>
         public void Halt()
         {
-            throw new System.NotImplementedException();
-        }
-
-        /// <summary>
-        /// The LoadProgramData.
-        /// </summary>
-        /// <param name="program">The program<see cref="IProgramData"/>.</param>
-        public void LoadProgramData(IProgramData program)
-        {
+            Pause();
+            PauseCard();
         }
 
         /// <summary>
@@ -304,16 +291,10 @@
         /// <param name="modalData">The modalData<see cref="IModalData"/>.</param>
         public void ModalEvent(IModalData modalData)
         {
-            throw new System.NotImplementedException();
-        }
-
-        /// <summary>
-        /// The ModalResponse.
-        /// </summary>
-        /// <returns>The <see cref="IModalResponseData"/>.</returns>
-        public IModalResponseData ModalResponse()
-        {
-            throw new System.NotImplementedException();
+            if (CurrentCard!.StepModalData != null)
+            {
+                _modalService.ShowModal(CurrentCard!.StepModalData);
+            }
         }
 
         /// <summary>
@@ -321,7 +302,19 @@
         /// </summary>
         public void Pause()
         {
-            throw new System.NotImplementedException();
+            CurrentCard?.CardTime.Pause();
+            PauseAvailable = false;
+            _controllerService.PauseExecution();
+        }
+
+        /// <summary>
+        /// The ExecutionPausedConfirmation.
+        /// </summary>
+        public void ExecutionPausedConfirmation()
+        {
+            PlaybackRunning = false;
+            PlayAvailable = true;
+            _programDataService.AllowProgramChange = true;
         }
 
         /// <summary>
@@ -329,7 +322,11 @@
         /// </summary>
         public void Play()
         {
-            throw new System.NotImplementedException();
+            _programDataService.AllowProgramChange = false;
+            PlaybackRunning = true;
+            PlayAvailable = false;
+            PauseAvailable = true;
+            CycleTime?.Start();
         }
 
         /// <summary>
@@ -337,23 +334,20 @@
         /// </summary>
         public void RaiseError()
         {
-            throw new System.NotImplementedException();
-        }
-
-        /// <summary>
-        /// The SaveProgramData.
-        /// </summary>
-        /// <param name="program">The program<see cref="IProgramData"/>.</param>
-        public void SaveProgramData(IProgramData program)
-        {
-            CycleTime!.Reset();
-
-            foreach (ICard? card in _programSteps!)
+            Halt();
+            if (CurrentCard!.StepModalData == null)
             {
-                card!.Initialize();
-            }
+                IModalData modalData = _modalService.CreateModalData();
+                modalData.CanAbort = true;
+                modalData.IsError = true;
+                modalData.Card = CurrentCard;
 
-            CurrentCardIndex = 0;
+                _modalService.ShowModal(modalData);
+            }
+            else
+            {
+                _modalService.ShowModal(CurrentCard!.StepModalData);
+            }
         }
 
         /// <summary>
@@ -390,6 +384,15 @@
             _programDataService.IterateProgramCycles(null);
             _programDataService.UpdateProgramAverageCycleTime(null, CycleTime.TimeSpan);
             _programDataService.SaveProgram(null);
+
+            CycleTime!.Reset();
+            foreach (ICard? card in _programSteps!)
+            {
+                card!.Initialize();
+            }
+
+            CurrentCardIndex = 0;
+
             if (_programSteps != null && _programSteps[CurrentCardIndex]!.StepModalData?.IsError == false)
             {
                 Play();
@@ -419,6 +422,22 @@
             if (_programDataService.SelectedProgramData?.AutoStartPlayback == true)
             {
                 Play();
+            }
+        }
+
+        /// <summary>
+        /// The PlaybackStart.
+        /// </summary>
+        private void PlaybackStart()
+        {
+            if (PlaybackRunning == false && _programDataService!.SelectedProgramData != null)
+            {
+                PlayAvailable = false;
+                PauseAvailable = true;
+                CycleTime!.Start();
+                CurrentCard!.StartCard();
+                PlaybackRunning = true;
+                _programDataService!.AllowProgramChange = false;
             }
         }
     }
