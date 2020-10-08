@@ -1,9 +1,9 @@
 ﻿namespace ProdData.Models
 {
-    using Prism.Mvvm;
-    using ProductionCore.Interfaces;
     using System.Collections.Generic;
     using System.Windows.Media;
+    using Prism.Mvvm;
+    using ProductionCore.Interfaces;
 
     /// <summary>
     /// Defines the <see cref="Card" />.
@@ -65,12 +65,10 @@
         /// </summary>
         private string? _stepTitle;
 
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Card"/> class.
         /// </summary>
         /// <param name="chronometerFactory">The chronometerFactory<see cref="IChronometerFactory"/>.</param>
-        /// <param name="cardSubStepFactory">The cardSubStepFactory<see cref="ICardSubStepFactory"/>.</param>
         public Card(IChronometerFactory chronometerFactory)
         {
             _cardTime = chronometerFactory.Create();
@@ -271,10 +269,6 @@
             IsActiveStep = true;
             StepStatus = "Running";
             CardTime.Start();
-            if (StepModalData?.IsError == false)
-            {
-                // TODO Need a ModalData Service here to raise any modal interaction required
-            }
         }
 
         /// <summary>
@@ -297,6 +291,25 @@
             IsActiveStep = false;
             CardTime.Reset();
             CardStepIndex = 0;
+        }
+
+        /// <summary>
+        /// The IterateSubStep.
+        /// </summary>
+        /// <returns>The <see cref="bool"/>.</returns>
+        public bool IterateSubStep()
+        {
+            if (CardStepIndex < CardSubSteps?.Count - 1)
+            {
+                CardStepIndex++;
+                return true;
+            }
+
+            StepStatus = "Completed";
+            StepComplete = true;
+            IsActiveStep = false;
+            CardTime.Pause();
+            return false;
         }
 
         /// <summary>

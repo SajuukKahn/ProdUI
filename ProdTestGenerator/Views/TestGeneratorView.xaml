@@ -37,19 +37,19 @@
             </StackPanel>
         </Button>
 
-        <Button Margin="3" Command="{Binding Path=ChangeProgram}">
+        <!--<Button Margin="3" Command="{Binding Path=ChangeProgram}">
             <StackPanel Orientation="Horizontal">
                 <telerik:Label Content="Change Program" />
                 <telerik:RadGlyph Glyph="{StaticResource GlyphReset}" />
             </StackPanel>
-        </Button>
+        </Button>-->
 
-        <!--Button Margin="3" Command="{Binding Path=ChangeProcessImage}">
+        <Button Margin="3" Command="{Binding Path=ChangeProcessImage}">
             <StackPanel Orientation="Horizontal">
                 <telerik:Label Content="Change Image" />
                 <telerik:RadGlyph Glyph="{StaticResource GlyphImageEdit}" />
             </StackPanel>
-        </Button>-->
+        </Button>
 
         <Button Margin="3" Command="{Binding Path=ThrowError}">
             <StackPanel Orientation="Horizontal">
@@ -58,12 +58,12 @@
             </StackPanel>
         </Button>
 
-        <Button Margin="3" Command="{Binding Path=ThrowCardError}">
+        <!--<Button Margin="3" Command="{Binding Path=ThrowCardError}">
             <StackPanel Orientation="Horizontal">
                 <telerik:Label Content="Throw Card Error" />
                 <telerik:RadGlyph Glyph="{StaticResource GlyphWarning}" />
             </StackPanel>
-        </Button>
+        </Button>-->
 
     </UniformGrid>
 </UserControl>

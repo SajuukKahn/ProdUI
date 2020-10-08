@@ -71,8 +71,8 @@
         /// <summary>
         /// The SaveToJSON.
         /// </summary>
-        /// <param name="program">The program<see cref="IProgramData"/>.</param>
-        public void SaveToJSON(IProgramData program)
+        /// <param name="obj">The obj<see cref="object"/>.</param>
+        public void SaveToJSON(object obj)
         {
         }
 
@@ -81,6 +81,23 @@
         /// </summary>
         /// <param name="programData">The programData<see cref="IProgramData"/>.</param>
         public void RetrieveProgram(IProgramData programData)
+        {
+            GenerateRandomProgram(programData);
+        }
+
+        /// <summary>
+        /// The RetrieveProgramCollection.
+        /// </summary>
+        public void RetrieveProgramCollection()
+        {
+            GenerateRandomProgramCollection();
+        }
+
+        /// <summary>
+        /// The GenerateRandomProgram.
+        /// </summary>
+        /// <param name="programData">The programData<see cref="IProgramData"/>.</param>
+        private void GenerateRandomProgram(IProgramData programData)
         {
             string[] titleArray = { "PolyLine 3D", "Area", "Move", "Line", "PolyLine", "Arc", "Spiral", "Rectangular Sprial", "Dot", "Part Presense Check" };
 
@@ -167,7 +184,7 @@
         /// <summary>
         /// The GenerateRandomProgramCollection.
         /// </summary>
-        public void GenerateRandomProgramCollection()
+        private void GenerateRandomProgramCollection()
         {
             int randsize = new Random().Next(7 * _scaleDataSet, 45 * _scaleDataSet);
 
@@ -305,7 +322,7 @@
         /// </summary>
         private void GenerateProcessDisplayChangeResponse()
         {
-            BitmapImage image = ChooseRandomImage();
+            _playbackService.ProductImage = ChooseRandomImage();
         }
 
         /// <summary>
@@ -314,8 +331,7 @@
         /// <returns>The <see cref="BitmapImage"/>.</returns>
         private BitmapImage ChooseRandomImage()
         {
-            BitmapImage? image = new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\PCB" + new Random().Next(1, 9).ToString() + ".bmp", UriKind.RelativeOrAbsolute));
-            return image;
+            return new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\PCB" + new Random().Next(1, 9).ToString() + ".bmp", UriKind.RelativeOrAbsolute));
         }
 
         /// <summary>

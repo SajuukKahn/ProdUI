@@ -79,9 +79,9 @@
         public void Initialize();
 
         /// <summary>
-        /// The ToString.
+        /// The IterateSubStep.
         /// </summary>
-        /// <returns>The <see cref="string"/>.</returns>
-        public string? ToString();
+        /// <returns>The <see cref="bool"/>.</returns>
+        public bool IterateSubStep();
     }
 }

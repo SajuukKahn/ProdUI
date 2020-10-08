@@ -14,22 +14,22 @@
         ObservableCollection<ICard?>? ProgramSteps { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether ProgramPaused.......
+        /// Gets or sets a value indicating whether ProgramPaused........
         /// </summary>
         bool ProgramPaused { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether PauseAvailable...
+        /// Gets or sets a value indicating whether PauseAvailable....
         /// </summary>
         bool PauseAvailable { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether PlayAvailable...
+        /// Gets or sets a value indicating whether PlayAvailable....
         /// </summary>
         bool PlayAvailable { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether PlaybackRunning...
+        /// Gets or sets a value indicating whether PlaybackRunning....
         /// </summary>
         bool PlaybackRunning { get; set; }
 
@@ -54,6 +54,11 @@
         BitmapImage? ProductImage { get; set; }
 
         /// <summary>
+        /// The Abort.
+        /// </summary>
+        void Abort();
+
+        /// <summary>
         /// The AdvanceStep.
         /// </summary>
         void AdvanceStep();
@@ -63,11 +68,6 @@
         /// </summary>
         /// <param name="modalData">The modalData<see cref="IModalData"/>.</param>
         void ModalEvent(IModalData modalData);
-
-        /// <summary>
-        /// The Halt.
-        /// </summary>
-        void Halt();
 
         /// <summary>
         /// The Pause.
@@ -83,6 +83,11 @@
         /// The RaiseError.
         /// </summary>
         void RaiseError();
+
+        /// <summary>
+        /// The RetryCard.
+        /// </summary>
+        void RetryCard();
 
         /// <summary>
         /// The ExecutionPausedConfirmation.

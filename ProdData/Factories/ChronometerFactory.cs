@@ -4,14 +4,14 @@
     using ProductionCore.Interfaces;
 
     /// <summary>
-    /// Defines the <see cref="ChonometerFactory" />.
+    /// Defines the <see cref="ChronometerFactory" />.
     /// </summary>
-    public class ChonometerFactory : IChronometerFactory
+    public class ChronometerFactory : IChronometerFactory
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ChonometerFactory"/> class.
+        /// Initializes a new instance of the <see cref="ChronometerFactory"/> class.
         /// </summary>
-        public ChonometerFactory()
+        public ChronometerFactory()
         {
         }
 

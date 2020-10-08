@@ -1,9 +1,11 @@
 ﻿namespace ProdTestGenerator
 {
+    using global::ProdTestGenerator.Services;
     using global::ProdTestGenerator.Views;
     using Prism.Ioc;
     using Prism.Modularity;
     using Prism.Regions;
+    using ProductionCore.Interfaces;
 
     /// <summary>
     /// Defines the <see cref="ProdTestGenerator" />.
@@ -41,6 +43,8 @@
         /// <param name="containerRegistry">The containerRegistry<see cref="IContainerRegistry"/>.</param>
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.Register<IControllerService, ControllerService>();
+            containerRegistry.Register<IFileService, FileService>();
         }
     }
 }

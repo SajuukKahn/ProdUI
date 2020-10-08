@@ -9,24 +9,29 @@
     public interface IModalData
     {
         /// <summary>
-        /// Gets or sets a value indicating whether IsError..
+        /// Gets or sets a value indicating whether IsError...
         /// </summary>
         bool IsError { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether CanAbort..
+        /// Gets or sets a value indicating whether CanAbort...
         /// </summary>
         bool CanAbort { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether CanContinue..
+        /// Gets or sets a value indicating whether CanContinue...
         /// </summary>
         bool CanContinue { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether CanRetry..
+        /// Gets or sets a value indicating whether CanRetry...
         /// </summary>
         bool CanRetry { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether CanCustom.
+        /// </summary>
+        bool CanCustom { get; set; }
 
         /// <summary>
         /// Gets or sets the Card.

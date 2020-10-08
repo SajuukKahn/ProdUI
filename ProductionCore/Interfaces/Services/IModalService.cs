@@ -6,7 +6,7 @@
     public interface IModalService
     {
         /// <summary>
-        /// Gets a value indicating whether ModalActive...
+        /// Gets a value indicating whether ModalActive.
         /// </summary>
         bool ModalActive { get; }
 
@@ -20,6 +20,11 @@
         /// </summary>
         /// <param name="modalData">The modalData<see cref="IModalData"/>.</param>
         void ShowModal(IModalData modalData);
+
+        /// <summary>
+        /// The CloseModal.
+        /// </summary>
+        void CloseModal();
 
         /// <summary>
         /// The CreateModalData.

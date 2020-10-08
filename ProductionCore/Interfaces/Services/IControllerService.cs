@@ -9,5 +9,10 @@
         /// The BeginExecution.
         /// </summary>
         void BeginExecution();
+
+        /// <summary>
+        /// The EndExecution.
+        /// </summary>
+        void EndExecution();
     }
 }

@@ -2,6 +2,7 @@
 {
     using global::ProdProgramSelect.Factories;
     using global::ProdProgramSelect.Models;
+    using global::ProdProgramSelect.Services;
     using global::ProdProgramSelect.ViewModels;
     using Prism.Ioc;
     using Prism.Modularity;
@@ -48,7 +49,9 @@
             containerRegistry.Register<IProgramData, ProgramData>();
             containerRegistry.RegisterSingleton<IBarcodeFactory, BarcodeFactory>();
             containerRegistry.RegisterSingleton<IProgramDataFactory, ProgramDataFactory>();
-            containerRegistry.RegisterSingleton<IProgramSelectViewModel, ProgramSelectViewModel>();
+            containerRegistry.Register<IBarcodeService, BarcodeService>();
+            containerRegistry.Register<IProgramDataService, ProgramDataService>();
+            containerRegistry.Register<IProgramSelectViewModel, ProgramSelectViewModel>();
         }
     }
 }

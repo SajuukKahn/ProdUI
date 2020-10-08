@@ -1,5 +1,8 @@
 ﻿namespace ProdData
 {
+    using global::ProdData.Factories;
+    using global::ProdData.Models;
+    using global::ProdData.Services;
     using global::ProdData.ViewModels;
     using Prism.Ioc;
     using Prism.Modularity;
@@ -47,7 +50,18 @@
         /// <param name="containerRegistry">The containerRegistry<see cref="IContainerRegistry"/>.</param>
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.Register<ICard, Card>();
+            containerRegistry.Register<ICardSubStep, CardSubStep>();
+            containerRegistry.Register<IChronometer, Chronometer>();
+            containerRegistry.Register<IModalData, ModalData>();
+            containerRegistry.RegisterSingleton<ICardFactory, CardFactory>();
+            containerRegistry.RegisterSingleton<ICardSubStepFactory, CardSubStepFactory>();
+            containerRegistry.RegisterSingleton<IChronometerFactory, ChronometerFactory>();
+            containerRegistry.RegisterSingleton<IModalFactory, ModalFactory>();
+            containerRegistry.Register<IModalService, ModalService>();
+            containerRegistry.Register<IPlaybackService, PlaybackService>();
             containerRegistry.Register<IProdDataViewModel, ProdDataViewModel>();
+            containerRegistry.Register<IProdModalDialogViewModel, ProdModalDialogViewModel>();
         }
     }
 }

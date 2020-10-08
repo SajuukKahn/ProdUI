@@ -195,17 +195,17 @@
             <param name="subStepData">The subStepData<see cref="T:System.String"/>.</param>
             <returns>The <see cref="T:ProductionCore.Interfaces.ICardSubStep"/>.</returns>
         </member>
-        <member name="T:ProdData.Factories.ChonometerFactory">
+        <member name="T:ProdData.Factories.ChronometerFactory">
             <summary>
-            Defines the <see cref="T:ProdData.Factories.ChonometerFactory" />.
+            Defines the <see cref="T:ProdData.Factories.ChronometerFactory" />.
             </summary>
         </member>
-        <member name="M:ProdData.Factories.ChonometerFactory.#ctor">
+        <member name="M:ProdData.Factories.ChronometerFactory.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:ProdData.Factories.ChonometerFactory"/> class.
+            Initializes a new instance of the <see cref="T:ProdData.Factories.ChronometerFactory"/> class.
             </summary>
         </member>
-        <member name="M:ProdData.Factories.ChonometerFactory.Create">
+        <member name="M:ProdData.Factories.ChronometerFactory.Create">
             <summary>
             The Create.
             </summary>
@@ -287,7 +287,6 @@
             Initializes a new instance of the <see cref="T:ProdData.Models.Card"/> class.
             </summary>
             <param name="chronometerFactory">The chronometerFactory<see cref="T:ProductionCore.Interfaces.IChronometerFactory"/>.</param>
-            <param name="cardSubStepFactory">The cardSubStepFactory<see cref="T:ProductionCore.Interfaces.ICardSubStepFactory"/>.</param>
         </member>
         <member name="P:ProdData.Models.Card.BreakOnError">
             <summary>
@@ -363,6 +362,12 @@
             <summary>
             The Initialize.
             </summary>
+        </member>
+        <member name="M:ProdData.Models.Card.IterateSubStep">
+            <summary>
+            The IterateSubStep.
+            </summary>
+            <returns>The <see cref="T:System.Boolean"/>.</returns>
         </member>
         <member name="M:ProdData.Models.Card.SetCurrentSubstep">
             <summary>
@@ -488,6 +493,56 @@
             Defines the <see cref="T:ProdData.Models.ModalData" />.
             </summary>
         </member>
+        <member name="F:ProdData.Models.ModalData._isError">
+            <summary>
+            Defines the _isError.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ModalData._canAbort">
+            <summary>
+            Defines the _canAbort.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ModalData._canContinue">
+            <summary>
+            Defines the _canContinue.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ModalData._canRetry">
+            <summary>
+            Defines the _canRetry.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ModalData._canCustom">
+            <summary>
+            Defines the _canCustom.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ModalData._card">
+            <summary>
+            Defines the _card.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ModalData._instructions">
+            <summary>
+            Defines the _instructions.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ModalData._customButtonGlyph">
+            <summary>
+            Defines the _customButtonGlyph.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ModalData._customButtonText">
+            <summary>
+            Defines the _customButtonText.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ModalData._instructionImage">
+            <summary>
+            Defines the _instructionImage.
+            </summary>
+        </member>
         <member name="P:ProdData.Models.ModalData.IsError">
             <summary>
             Gets or sets a value indicating whether IsError.
@@ -508,6 +563,21 @@
             Gets or sets a value indicating whether CanRetry.
             </summary>
         </member>
+        <member name="P:ProdData.Models.ModalData.CanCustom">
+            <summary>
+            Gets or sets a value indicating whether CanCustom.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.ModalData.Instructions">
+            <summary>
+            Gets or sets the Instructions.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.ModalData.InstructionImage">
+            <summary>
+            Gets or sets the InstructionImage.
+            </summary>
+        </member>
         <member name="P:ProdData.Models.ModalData.Card">
             <summary>
             Gets or sets the Card.
@@ -521,16 +591,6 @@
         <member name="P:ProdData.Models.ModalData.CustomButtonText">
             <summary>
             Gets or sets the CustomButtonText.
-            </summary>
-        </member>
-        <member name="P:ProdData.Models.ModalData.InstructionImage">
-            <summary>
-            Gets or sets the InstructionImage.
-            </summary>
-        </member>
-        <member name="P:ProdData.Models.ModalData.Instructions">
-            <summary>
-            Gets or sets the Instructions.
             </summary>
         </member>
         <member name="T:ProdData.ProdData">
@@ -573,7 +633,7 @@
         </member>
         <member name="F:ProdData.Services.ModalService._modalActive">
             <summary>
-            Defines the _modalActive.
+            Defines the _modalOpenRequested.
             </summary>
         </member>
         <member name="F:ProdData.Services.ModalService._activeModalData">
@@ -587,14 +647,14 @@
             </summary>
             <param name="modalFactory">The modalFactory<see cref="T:ProductionCore.Interfaces.IModalFactory"/>.</param>
         </member>
-        <member name="P:ProdData.Services.ModalService.ModalActive">
-            <summary>
-            Gets a value indicating whether ModalActive
-            </summary>
-        </member>
         <member name="P:ProdData.Services.ModalService.ActiveModalData">
             <summary>
             Gets or sets the ActiveModalData.
+            </summary>
+        </member>
+        <member name="P:ProdData.Services.ModalService.ModalActive">
+            <summary>
+            Gets or sets a value indicating whether ModalOpenRequested.
             </summary>
         </member>
         <member name="M:ProdData.Services.ModalService.CreateModalData">
@@ -608,6 +668,11 @@
             The ShowModal.
             </summary>
             <param name="modalData">The modalData<see cref="T:ProductionCore.Interfaces.IModalData"/>.</param>
+        </member>
+        <member name="M:ProdData.Services.ModalService.CloseModal">
+            <summary>
+            The CloseModal.
+            </summary>
         </member>
         <member name="T:ProdData.Services.PlaybackService">
             <summary>
@@ -728,6 +793,11 @@
             Gets or sets the ProductImage.
             </summary>
         </member>
+        <member name="M:ProdData.Services.PlaybackService.Abort">
+            <summary>
+            The Abort.
+            </summary>
+        </member>
         <member name="M:ProdData.Services.PlaybackService.AdvanceStep">
             <summary>
             The AdvanceStep.
@@ -746,11 +816,6 @@
         <member name="M:ProdData.Services.PlaybackService.PlayCard">
             <summary>
             The StartCard.
-            </summary>
-        </member>
-        <member name="M:ProdData.Services.PlaybackService.Halt">
-            <summary>
-            The Halt.
             </summary>
         </member>
         <member name="M:ProdData.Services.PlaybackService.ModalEvent(ProductionCore.Interfaces.IModalData)">
@@ -779,12 +844,6 @@
             The RaiseError.
             </summary>
         </member>
-        <member name="M:ProdData.Services.PlaybackService.IterateSubStep">
-            <summary>
-            The IterateSubStep.
-            </summary>
-            <returns>The <see cref="T:System.Boolean"/>.</returns>
-        </member>
         <member name="M:ProdData.Services.PlaybackService.CompleteCycle">
             <summary>
             The CompleteCycle.
@@ -800,9 +859,9 @@
             The HandleChangedProgramData.
             </summary>
         </member>
-        <member name="M:ProdData.Services.PlaybackService.PlaybackStart">
+        <member name="M:ProdData.Services.PlaybackService.Halt">
             <summary>
-            The PlaybackStart.
+            The Halt.
             </summary>
         </member>
         <member name="T:ProdData.ViewModels.ProdDataViewModel">
@@ -857,145 +916,36 @@
             Defines the <see cref="T:ProdData.ViewModels.ProdModalDialogViewModel" />.
             </summary>
         </member>
-        <member name="F:ProdData.ViewModels.ProdModalDialogViewModel._canAbort">
-            <summary>
-            Defines the _canAbort.
-            </summary>
-        </member>
-        <member name="F:ProdData.ViewModels.ProdModalDialogViewModel._canContinue">
-            <summary>
-            Defines the _canContinue.
-            </summary>
-        </member>
-        <member name="F:ProdData.ViewModels.ProdModalDialogViewModel._canCustom">
-            <summary>
-            Defines the _canCustom.
-            </summary>
-        </member>
-        <member name="F:ProdData.ViewModels.ProdModalDialogViewModel._canRetry">
-            <summary>
-            Defines the _canRetry.
-            </summary>
-        </member>
-        <member name="F:ProdData.ViewModels.ProdModalDialogViewModel._customGlyph">
-            <summary>
-            Defines the _customGlyph.
-            </summary>
-        </member>
-        <member name="F:ProdData.ViewModels.ProdModalDialogViewModel._customText">
-            <summary>
-            Defines the _customText.
-            </summary>
-        </member>
-        <member name="F:ProdData.ViewModels.ProdModalDialogViewModel._imageSource">
-            <summary>
-            Defines the _imageSource.
-            </summary>
-        </member>
-        <member name="F:ProdData.ViewModels.ProdModalDialogViewModel._modalInstructions">
-            <summary>
-            Defines the _modalInstructions.
-            </summary>
-        </member>
-        <member name="F:ProdData.ViewModels.ProdModalDialogViewModel._modalOpenRequested">
-            <summary>
-            Defines the _modalOpenRequested.
-            </summary>
-        </member>
-        <member name="M:ProdData.ViewModels.ProdModalDialogViewModel.#ctor">
+        <member name="M:ProdData.ViewModels.ProdModalDialogViewModel.#ctor(ProductionCore.Interfaces.IModalService,ProductionCore.Interfaces.IPlaybackService)">
             <summary>
             Initializes a new instance of the <see cref="T:ProdData.ViewModels.ProdModalDialogViewModel"/> class.
             </summary>
+            <param name="modalService">The modalService<see cref="T:ProductionCore.Interfaces.IModalService"/>.</param>
+            <param name="playbackService">The playbackService<see cref="T:ProductionCore.Interfaces.IPlaybackService"/>.</param>
         </member>
-        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.CanAbort">
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.ModalService">
             <summary>
-            Gets or sets a value indicating whether CanAbort.
+            Gets the ModalService.
             </summary>
         </member>
-        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.CanContinue">
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.Abort">
             <summary>
-            Gets or sets a value indicating whether CanContinue.
+            Gets or sets the Abort.
             </summary>
         </member>
-        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.CanCustom">
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.Continue">
             <summary>
-            Gets or sets a value indicating whether CanCustom.
+            Gets or sets the Continue.
             </summary>
         </member>
-        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.CanRetry">
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.Custom">
             <summary>
-            Gets or sets a value indicating whether CanRetry.
+            Gets or sets the Custom.
             </summary>
         </member>
-        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.CustomGlyph">
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.Retry">
             <summary>
-            Gets or sets the CustomGlyph.
-            </summary>
-        </member>
-        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.CustomText">
-            <summary>
-            Gets or sets the CustomText.
-            </summary>
-        </member>
-        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.DelegateAbort">
-            <summary>
-            Gets or sets the DelegateAbort.
-            </summary>
-        </member>
-        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.DelegateContinue">
-            <summary>
-            Gets or sets the DelegateContinue.
-            </summary>
-        </member>
-        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.DelegateCustom">
-            <summary>
-            Gets or sets the DelegateCustom.
-            </summary>
-        </member>
-        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.DelegateRetry">
-            <summary>
-            Gets or sets the DelegateRetry.
-            </summary>
-        </member>
-        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.ImageSource">
-            <summary>
-            Gets or sets the ImageSource.
-            </summary>
-        </member>
-        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.ModalInstructions">
-            <summary>
-            Gets or sets the ModalInstructions.
-            </summary>
-        </member>
-        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.ModalOpenRequested">
-            <summary>
-            Gets or sets a value indicating whether ModalOpenRequested.
-            </summary>
-        </member>
-        <member name="M:ProdData.ViewModels.ProdModalDialogViewModel.HandleModalRequest(ProductionCore.Interfaces.IModalData)">
-            <summary>
-            The HandleModalRequest.
-            </summary>
-            <param name="modalData">The modalData<see cref="T:ProductionCore.Interfaces.IModalData"/>.</param>
-        </member>
-        <member name="M:ProdData.ViewModels.ProdModalDialogViewModel.RaiseAbort">
-            <summary>
-            The RaiseAbort.
-            </summary>
-        </member>
-        <member name="M:ProdData.ViewModels.ProdModalDialogViewModel.RaiseContinue">
-            <summary>
-            The RaiseContinue.
-            </summary>
-        </member>
-        <member name="M:ProdData.ViewModels.ProdModalDialogViewModel.RaiseCustom">
-            <summary>
-            The RaiseCustom.
-            </summary>
-        </member>
-        <member name="M:ProdData.ViewModels.ProdModalDialogViewModel.RaiseRetry">
-            <summary>
-            The RaiseRetry.
+            Gets or sets the Retry.
             </summary>
         </member>
         <member name="T:ProdData.Views.ProdDataView">
@@ -1025,44 +975,15 @@
             ProdModalDialogView
             </summary>
         </member>
-        <member name="M:ProdData.Views.ProdModalDialogView.#ctor">
+        <member name="M:ProdData.Views.ProdModalDialogView.#ctor(ProductionCore.Interfaces.IProdModalDialogViewModel)">
             <summary>
             Initializes a new instance of the <see cref="T:ProdData.Views.ProdModalDialogView"/> class.
             </summary>
+            <param name="prodModalDialogViewModel">The prodModalDialogViewModel<see cref="T:ProductionCore.Interfaces.IProdModalDialogViewModel"/>.</param>
         </member>
         <member name="M:ProdData.Views.ProdModalDialogView.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
-            <summary>
-            GeneratedInternalTypeHelper
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
-            <summary>
-            CreateInstance
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            GetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            SetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
-            <summary>
-            CreateDelegate
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
-            <summary>
-            AddEventHandler
             </summary>
         </member>
     </members>

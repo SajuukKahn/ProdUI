@@ -4,21 +4,6 @@
         <name>ProductionCore</name>
     </assembly>
     <members>
-        <member name="T:ProductionCore.Interfaces.IBarcode">
-            <summary>
-            Defines the <see cref="T:ProductionCore.Interfaces.IBarcode" />.
-            </summary>
-        </member>
-        <member name="P:ProductionCore.Interfaces.IBarcode.BarcodeData">
-            <summary>
-            Gets or sets the BarcodeData.
-            </summary>
-        </member>
-        <member name="P:ProductionCore.Interfaces.IBarcode.BarcodeImage">
-            <summary>
-            Gets or sets the BarcodeImage.
-            </summary>
-        </member>
         <member name="T:ProductionCore.Interfaces.IBarcodeFactory">
             <summary>
             Defines the <see cref="T:ProductionCore.Interfaces.IBarcodeFactory" />.
@@ -38,6 +23,69 @@
             </summary>
             <returns>The <see cref="T:ProductionCore.Interfaces.IBarcode"/>.</returns>
         </member>
+        <member name="T:ProductionCore.Interfaces.ICardFactory">
+            <summary>
+            Defines the <see cref="T:ProductionCore.Interfaces.ICardFactory" />.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.ICardFactory.Create">
+            <summary>
+            The Create.
+            </summary>
+            <returns>The <see cref="T:ProductionCore.Interfaces.ICard"/>.</returns>
+        </member>
+        <member name="T:ProductionCore.Interfaces.ICardSubStepFactory">
+            <summary>
+            Defines the <see cref="T:ProductionCore.Interfaces.ICardSubStepFactory" />.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.ICardSubStepFactory.Create">
+            <summary>
+            The Create.
+            </summary>
+            <returns>The <see cref="T:ProductionCore.Interfaces.ICardSubStep"/>.</returns>
+        </member>
+        <member name="M:ProductionCore.Interfaces.ICardSubStepFactory.Create(System.String,System.String[])">
+            <summary>
+            The Create.
+            </summary>
+            <param name="subStepName">The subStepName<see cref="T:System.String"/>.</param>
+            <param name="subStepData">The subStepData<see cref="T:System.String"/>.</param>
+            <returns>The <see cref="T:ProductionCore.Interfaces.ICardSubStep"/>.</returns>
+        </member>
+        <member name="T:ProductionCore.Interfaces.IChronometerFactory">
+            <summary>
+            Defines the <see cref="T:ProductionCore.Interfaces.IChronometerFactory" />.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IChronometerFactory.Create">
+            <summary>
+            The Create.
+            </summary>
+            <returns>The <see cref="T:ProductionCore.Interfaces.IChronometer"/>.</returns>
+        </member>
+        <member name="T:ProductionCore.Interfaces.IModalFactory">
+            <summary>
+            Defines the <see cref="T:ProductionCore.Interfaces.IModalFactory" />.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IModalFactory.CreateModalData">
+            <summary>
+            The CreateModalData.
+            </summary>
+            <returns>The <see cref="T:ProductionCore.Interfaces.IModalData"/>.</returns>
+        </member>
+        <member name="T:ProductionCore.Interfaces.IProgramDataFactory">
+            <summary>
+            Defines the <see cref="T:ProductionCore.Interfaces.IProgramDataFactory" />.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IProgramDataFactory.Create">
+            <summary>
+            The Create.
+            </summary>
+            <returns>The <see cref="T:ProductionCore.Interfaces.IProgramData"/>.</returns>
+        </member>
         <member name="T:ProductionCore.Interfaces.IBarcodeService">
             <summary>
             Defines the <see cref="T:ProductionCore.Interfaces.IBarcodeService" />.
@@ -48,6 +96,268 @@
             The CreateBarcode.
             </summary>
             <returns>The <see cref="T:ProductionCore.Interfaces.IBarcode"/>.</returns>
+        </member>
+        <member name="T:ProductionCore.Interfaces.IControllerService">
+            <summary>
+            Defines the <see cref="T:ProductionCore.Interfaces.IControllerService" />.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IControllerService.BeginExecution">
+            <summary>
+            The BeginExecution.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IControllerService.EndExecution">
+            <summary>
+            The EndExecution.
+            </summary>
+        </member>
+        <member name="T:ProductionCore.Interfaces.IFileService">
+            <summary>
+            Defines the <see cref="T:ProductionCore.Interfaces.IFileService" />.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IFileService.RetrieveProgram(ProductionCore.Interfaces.IProgramData)">
+            <summary>
+            The RetrieveProgram.
+            </summary>
+            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IFileService.SaveToJSON(System.Object)">
+            <summary>
+            The SaveToJSON.
+            </summary>
+            <param name="obj">The obj<see cref="T:System.Object"/>.</param>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IFileService.RetrieveProgramCollection">
+            <summary>
+            The RetrieveProgramCollection.
+            </summary>
+        </member>
+        <member name="T:ProductionCore.Interfaces.IModalService">
+            <summary>
+            Defines the <see cref="T:ProductionCore.Interfaces.IModalService" />.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IModalService.ModalActive">
+            <summary>
+            Gets a value indicating whether ModalActive.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IModalService.ActiveModalData">
+            <summary>
+            Gets or sets the ActiveModalData.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IModalService.ShowModal(ProductionCore.Interfaces.IModalData)">
+            <summary>
+            The ShowModal.
+            </summary>
+            <param name="modalData">The modalData<see cref="T:ProductionCore.Interfaces.IModalData"/>.</param>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IModalService.CloseModal">
+            <summary>
+            The CloseModal.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IModalService.CreateModalData">
+            <summary>
+            The CreateModalData.
+            </summary>
+            <returns>The <see cref="T:ProductionCore.Interfaces.IModalData"/>.</returns>
+        </member>
+        <member name="T:ProductionCore.Interfaces.IPlaybackService">
+            <summary>
+            Defines the <see cref="T:ProductionCore.Interfaces.IPlaybackService" />.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IPlaybackService.ProgramSteps">
+            <summary>
+            Gets or sets the ProgramSteps.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IPlaybackService.ProgramPaused">
+            <summary>
+            Gets or sets a value indicating whether ProgramPaused........
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IPlaybackService.PauseAvailable">
+            <summary>
+            Gets or sets a value indicating whether PauseAvailable....
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IPlaybackService.PlayAvailable">
+            <summary>
+            Gets or sets a value indicating whether PlayAvailable....
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IPlaybackService.PlaybackRunning">
+            <summary>
+            Gets or sets a value indicating whether PlaybackRunning....
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IPlaybackService.CurrentCard">
+            <summary>
+            Gets or sets the CurrentCard.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IPlaybackService.CurrentCardIndex">
+            <summary>
+            Gets or sets the CurrentCardIndex.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IPlaybackService.CycleTime">
+            <summary>
+            Gets or sets the CycleTime.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IPlaybackService.ProductImage">
+            <summary>
+            Gets or sets the ProductImage.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IPlaybackService.Abort">
+            <summary>
+            The Abort.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IPlaybackService.AdvanceStep">
+            <summary>
+            The AdvanceStep.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IPlaybackService.ModalEvent(ProductionCore.Interfaces.IModalData)">
+            <summary>
+            The ModalEvent.
+            </summary>
+            <param name="modalData">The modalData<see cref="T:ProductionCore.Interfaces.IModalData"/>.</param>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IPlaybackService.Pause">
+            <summary>
+            The Pause.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IPlaybackService.Play">
+            <summary>
+            The Play.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IPlaybackService.RaiseError">
+            <summary>
+            The RaiseError.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IPlaybackService.RetryCard">
+            <summary>
+            The RetryCard.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IPlaybackService.ExecutionPausedConfirmation">
+            <summary>
+            The ExecutionPausedConfirmation.
+            </summary>
+        </member>
+        <member name="T:ProductionCore.Interfaces.IProgramDataService">
+            <summary>
+            Defines the <see cref="T:ProductionCore.Interfaces.IProgramDataService" />.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IProgramDataService.ProgramList">
+            <summary>
+            Gets or sets the ProgramList.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IProgramDataService.SelectedProgramData">
+            <summary>
+            Gets or sets the SelectedProgramData.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IProgramDataService.CurrentProgram">
+            <summary>
+            Gets or sets the CurrentProgram.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IProgramDataService.ProgramRequestShow">
+            <summary>
+            Gets or sets a value indicating whether ProgramRequestShow......
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IProgramDataService.CanCancel">
+            <summary>
+            Gets a value indicating whether CanCancel......
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IProgramDataService.CanConfirm">
+            <summary>
+            Gets a value indicating whether CanConfirm......
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IProgramDataService.AllowProgramChange">
+            <summary>
+            Gets or sets a value indicating whether AllowProgramChange.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IProgramDataService.IterateProgramCycles(ProductionCore.Interfaces.IProgramData)">
+            <summary>
+            The UpdateProgramCycleTime.
+            </summary>
+            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IProgramDataService.UpdateProgramAverageCycleTime(ProductionCore.Interfaces.IProgramData,System.TimeSpan)">
+            <summary>
+            The UpdateProgramAverageCycleTime.
+            </summary>
+            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
+            <param name="cycleTime">The cycleTime<see cref="T:System.TimeSpan"/>.</param>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IProgramDataService.ProgramSelectClose">
+            <summary>
+            The ProgramSelectClose.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IProgramDataService.SetSelectedProgramAsCurrent">
+            <summary>
+            The SetSelectedProgramAsCurrent.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IProgramDataService.LoadProgram(ProductionCore.Interfaces.IProgramData)">
+            <summary>
+            The LoadProgram.
+            </summary>
+            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IProgramDataService.SaveProgram(ProductionCore.Interfaces.IProgramData)">
+            <summary>
+            The SaveProgram.
+            </summary>
+            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IProgramDataService.CreateProgram">
+            <summary>
+            The Program.
+            </summary>
+            <returns>A new <see cref="T:ProductionCore.Interfaces.IProgramData"/>.</returns>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IProgramDataService.CreateBarcode">
+            <summary>
+            The CreateBarcode.
+            </summary>
+            <returns>The <see cref="T:ProductionCore.Interfaces.IBarcode"/>.</returns>
+        </member>
+        <member name="T:ProductionCore.Interfaces.IBarcode">
+            <summary>
+            Defines the <see cref="T:ProductionCore.Interfaces.IBarcode" />.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IBarcode.BarcodeData">
+            <summary>
+            Gets or sets the BarcodeData.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IBarcode.BarcodeImage">
+            <summary>
+            Gets or sets the BarcodeImage.
+            </summary>
         </member>
         <member name="T:ProductionCore.Interfaces.ICard">
             <summary>
@@ -124,22 +434,11 @@
             The Initialize.
             </summary>
         </member>
-        <member name="M:ProductionCore.Interfaces.ICard.ToString">
+        <member name="M:ProductionCore.Interfaces.ICard.IterateSubStep">
             <summary>
-            The ToString.
+            The IterateSubStep.
             </summary>
-            <returns>The <see cref="T:System.String"/>.</returns>
-        </member>
-        <member name="T:ProductionCore.Interfaces.ICardFactory">
-            <summary>
-            Defines the <see cref="T:ProductionCore.Interfaces.ICardFactory" />.
-            </summary>
-        </member>
-        <member name="M:ProductionCore.Interfaces.ICardFactory.Create">
-            <summary>
-            The Create.
-            </summary>
-            <returns>The <see cref="T:ProductionCore.Interfaces.ICard"/>.</returns>
+            <returns>The <see cref="T:System.Boolean"/>.</returns>
         </member>
         <member name="T:ProductionCore.Interfaces.ICardSubStep">
             <summary>
@@ -160,25 +459,6 @@
             <summary>
             Gets or sets the SubStepName.
             </summary>
-        </member>
-        <member name="T:ProductionCore.Interfaces.ICardSubStepFactory">
-            <summary>
-            Defines the <see cref="T:ProductionCore.Interfaces.ICardSubStepFactory" />.
-            </summary>
-        </member>
-        <member name="M:ProductionCore.Interfaces.ICardSubStepFactory.Create">
-            <summary>
-            The Create.
-            </summary>
-            <returns>The <see cref="T:ProductionCore.Interfaces.ICardSubStep"/>.</returns>
-        </member>
-        <member name="M:ProductionCore.Interfaces.ICardSubStepFactory.Create(System.String,System.String[])">
-            <summary>
-            The Create.
-            </summary>
-            <param name="subStepName">The subStepName<see cref="T:System.String"/>.</param>
-            <param name="subStepData">The subStepData<see cref="T:System.String"/>.</param>
-            <returns>The <see cref="T:ProductionCore.Interfaces.ICardSubStep"/>.</returns>
         </member>
         <member name="T:ProductionCore.Interfaces.IChronometer">
             <summary>
@@ -215,44 +495,6 @@
             The Start.
             </summary>
         </member>
-        <member name="T:ProductionCore.Interfaces.IChronometerFactory">
-            <summary>
-            Defines the <see cref="T:ProductionCore.Interfaces.IChronometerFactory" />.
-            </summary>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IChronometerFactory.Create">
-            <summary>
-            The Create.
-            </summary>
-            <returns>The <see cref="T:ProductionCore.Interfaces.IChronometer"/>.</returns>
-        </member>
-        <member name="T:ProductionCore.Interfaces.IControllerService">
-            <summary>
-            Defines the <see cref="T:ProductionCore.Interfaces.IControllerService" />.
-            </summary>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IControllerService.BeginExecution">
-            <summary>
-            The BeginExecution.
-            </summary>
-        </member>
-        <member name="T:ProductionCore.Interfaces.IFileService">
-            <summary>
-            Defines the <see cref="T:ProductionCore.Interfaces.IFileService" />.
-            </summary>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IFileService.RetrieveProgram(ProductionCore.Interfaces.IProgramData)">
-            <summary>
-            The RetrieveProgram.
-            </summary>
-            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IFileService.SaveToJSON(ProductionCore.Interfaces.IProgramData)">
-            <summary>
-            The SaveToJSON.
-            </summary>
-            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
-        </member>
         <member name="T:ProductionCore.Interfaces.IModalData">
             <summary>
             Defines the <see cref="T:ProductionCore.Interfaces.IModalData" />.
@@ -260,22 +502,27 @@
         </member>
         <member name="P:ProductionCore.Interfaces.IModalData.IsError">
             <summary>
-            Gets or sets a value indicating whether IsError..
+            Gets or sets a value indicating whether IsError...
             </summary>
         </member>
         <member name="P:ProductionCore.Interfaces.IModalData.CanAbort">
             <summary>
-            Gets or sets a value indicating whether CanAbort..
+            Gets or sets a value indicating whether CanAbort...
             </summary>
         </member>
         <member name="P:ProductionCore.Interfaces.IModalData.CanContinue">
             <summary>
-            Gets or sets a value indicating whether CanContinue..
+            Gets or sets a value indicating whether CanContinue...
             </summary>
         </member>
         <member name="P:ProductionCore.Interfaces.IModalData.CanRetry">
             <summary>
-            Gets or sets a value indicating whether CanRetry..
+            Gets or sets a value indicating whether CanRetry...
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IModalData.CanCustom">
+            <summary>
+            Gets or sets a value indicating whether CanCustom.
             </summary>
         </member>
         <member name="P:ProductionCore.Interfaces.IModalData.Card">
@@ -301,135 +548,6 @@
         <member name="P:ProductionCore.Interfaces.IModalData.Instructions">
             <summary>
             Gets or sets the Instructions.
-            </summary>
-        </member>
-        <member name="T:ProductionCore.Interfaces.IModalFactory">
-            <summary>
-            Defines the <see cref="T:ProductionCore.Interfaces.IModalFactory" />.
-            </summary>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IModalFactory.CreateModalData">
-            <summary>
-            The CreateModalData.
-            </summary>
-            <returns>The <see cref="T:ProductionCore.Interfaces.IModalData"/>.</returns>
-        </member>
-        <member name="T:ProductionCore.Interfaces.IModalService">
-            <summary>
-            Defines the <see cref="T:ProductionCore.Interfaces.IModalService" />.
-            </summary>
-        </member>
-        <member name="P:ProductionCore.Interfaces.IModalService.ModalActive">
-            <summary>
-            Gets a value indicating whether ModalActive...
-            </summary>
-        </member>
-        <member name="P:ProductionCore.Interfaces.IModalService.ActiveModalData">
-            <summary>
-            Gets or sets the ActiveModalData.
-            </summary>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IModalService.ShowModal(ProductionCore.Interfaces.IModalData)">
-            <summary>
-            The ShowModal.
-            </summary>
-            <param name="modalData">The modalData<see cref="T:ProductionCore.Interfaces.IModalData"/>.</param>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IModalService.CreateModalData">
-            <summary>
-            The CreateModalData.
-            </summary>
-            <returns>The <see cref="T:ProductionCore.Interfaces.IModalData"/>.</returns>
-        </member>
-        <member name="T:ProductionCore.Interfaces.IPlaybackService">
-            <summary>
-            Defines the <see cref="T:ProductionCore.Interfaces.IPlaybackService" />.
-            </summary>
-        </member>
-        <member name="P:ProductionCore.Interfaces.IPlaybackService.ProgramSteps">
-            <summary>
-            Gets or sets the ProgramSteps.
-            </summary>
-        </member>
-        <member name="P:ProductionCore.Interfaces.IPlaybackService.ProgramPaused">
-            <summary>
-            Gets or sets a value indicating whether ProgramPaused.......
-            </summary>
-        </member>
-        <member name="P:ProductionCore.Interfaces.IPlaybackService.PauseAvailable">
-            <summary>
-            Gets or sets a value indicating whether PauseAvailable...
-            </summary>
-        </member>
-        <member name="P:ProductionCore.Interfaces.IPlaybackService.PlayAvailable">
-            <summary>
-            Gets or sets a value indicating whether PlayAvailable...
-            </summary>
-        </member>
-        <member name="P:ProductionCore.Interfaces.IPlaybackService.PlaybackRunning">
-            <summary>
-            Gets or sets a value indicating whether PlaybackRunning...
-            </summary>
-        </member>
-        <member name="P:ProductionCore.Interfaces.IPlaybackService.CurrentCard">
-            <summary>
-            Gets or sets the CurrentCard.
-            </summary>
-        </member>
-        <member name="P:ProductionCore.Interfaces.IPlaybackService.CurrentCardIndex">
-            <summary>
-            Gets or sets the CurrentCardIndex.
-            </summary>
-        </member>
-        <member name="P:ProductionCore.Interfaces.IPlaybackService.CycleTime">
-            <summary>
-            Gets or sets the CycleTime.
-            </summary>
-        </member>
-        <member name="P:ProductionCore.Interfaces.IPlaybackService.ProductImage">
-            <summary>
-            Gets or sets the ProductImage.
-            </summary>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IPlaybackService.AdvanceStep">
-            <summary>
-            The AdvanceStep.
-            </summary>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IPlaybackService.ModalEvent(ProductionCore.Interfaces.IModalData)">
-            <summary>
-            The ModalEvent.
-            </summary>
-            <param name="modalData">The modalData<see cref="T:ProductionCore.Interfaces.IModalData"/>.</param>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IPlaybackService.Halt">
-            <summary>
-            The Halt.
-            </summary>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IPlaybackService.Pause">
-            <summary>
-            The Pause.
-            </summary>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IPlaybackService.Play">
-            <summary>
-            The Play.
-            </summary>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IPlaybackService.RaiseError">
-            <summary>
-            The RaiseError.
-            </summary>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IPlaybackService.ExecutionPausedConfirmation">
-            <summary>
-            The ExecutionPausedConfirmation.
-            </summary>
-        </member>
-        <member name="T:ProductionCore.Interfaces.IProdDataViewModel">
-            <summary>
-            Defines the <see cref="T:ProductionCore.Interfaces.IProdDataViewModel" />.
             </summary>
         </member>
         <member name="T:ProductionCore.Interfaces.IProgramData">
@@ -518,103 +636,15 @@
             The UpdateLastEditDate.
             </summary>
         </member>
-        <member name="T:ProductionCore.Interfaces.IProgramDataFactory">
+        <member name="T:ProductionCore.Interfaces.IProdDataViewModel">
             <summary>
-            Defines the <see cref="T:ProductionCore.Interfaces.IProgramDataFactory" />.
+            Defines the <see cref="T:ProductionCore.Interfaces.IProdDataViewModel" />.
             </summary>
         </member>
-        <member name="M:ProductionCore.Interfaces.IProgramDataFactory.Create">
+        <member name="T:ProductionCore.Interfaces.IProdModalDialogViewModel">
             <summary>
-            The Create.
+            Defines the <see cref="T:ProductionCore.Interfaces.IProdModalDialogViewModel" />.
             </summary>
-            <returns>The <see cref="T:ProductionCore.Interfaces.IProgramData"/>.</returns>
-        </member>
-        <member name="T:ProductionCore.Interfaces.IProgramDataService">
-            <summary>
-            Defines the <see cref="T:ProductionCore.Interfaces.IProgramDataService" />.
-            </summary>
-        </member>
-        <member name="P:ProductionCore.Interfaces.IProgramDataService.ProgramList">
-            <summary>
-            Gets or sets the ProgramList.
-            </summary>
-        </member>
-        <member name="P:ProductionCore.Interfaces.IProgramDataService.SelectedProgramData">
-            <summary>
-            Gets or sets the SelectedProgramData.
-            </summary>
-        </member>
-        <member name="P:ProductionCore.Interfaces.IProgramDataService.CurrentProgram">
-            <summary>
-            Gets or sets the CurrentProgram.
-            </summary>
-        </member>
-        <member name="P:ProductionCore.Interfaces.IProgramDataService.ProgramRequestShow">
-            <summary>
-            Gets or sets a value indicating whether ProgramRequestShow......
-            </summary>
-        </member>
-        <member name="P:ProductionCore.Interfaces.IProgramDataService.CanCancel">
-            <summary>
-            Gets a value indicating whether CanCancel......
-            </summary>
-        </member>
-        <member name="P:ProductionCore.Interfaces.IProgramDataService.CanConfirm">
-            <summary>
-            Gets a value indicating whether CanConfirm......
-            </summary>
-        </member>
-        <member name="P:ProductionCore.Interfaces.IProgramDataService.AllowProgramChange">
-            <summary>
-            Gets or sets a value indicating whether AllowProgramChange.
-            </summary>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IProgramDataService.IterateProgramCycles(ProductionCore.Interfaces.IProgramData)">
-            <summary>
-            The UpdateProgramCycleTime.
-            </summary>
-            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IProgramDataService.UpdateProgramAverageCycleTime(ProductionCore.Interfaces.IProgramData,System.TimeSpan)">
-            <summary>
-            The UpdateProgramAverageCycleTime.
-            </summary>
-            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
-            <param name="cycleTime">The cycleTime<see cref="T:System.TimeSpan"/>.</param>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IProgramDataService.ProgramSelectClose">
-            <summary>
-            The ProgramSelectClose.
-            </summary>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IProgramDataService.SetSelectedProgramAsCurrent">
-            <summary>
-            The SetSelectedProgramAsCurrent.
-            </summary>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IProgramDataService.LoadProgram(ProductionCore.Interfaces.IProgramData)">
-            <summary>
-            The LoadProgram.
-            </summary>
-            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IProgramDataService.SaveProgram(ProductionCore.Interfaces.IProgramData)">
-            <summary>
-            The SaveProgram.
-            </summary>
-            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IProgramDataService.CreateProgram">
-            <summary>
-            The Program.
-            </summary>
-            <returns>A new <see cref="T:ProductionCore.Interfaces.IProgramData"/>.</returns>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IProgramDataService.CreateBarcode">
-            <summary>
-            The CreateBarcode.
-            </summary>
-            <returns>The <see cref="T:ProductionCore.Interfaces.IBarcode"/>.</returns>
         </member>
         <member name="T:ProductionCore.Interfaces.IProgramSelectViewModel">
             <summary>

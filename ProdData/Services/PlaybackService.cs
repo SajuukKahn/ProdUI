@@ -4,7 +4,6 @@
     using System.Windows.Media.Imaging;
     using Prism.Mvvm;
     using ProductionCore.Interfaces;
-    using Telerik.Windows.Controls.TreeListView;
 
     /// <summary>
     /// Defines the <see cref="PlaybackService" />.
@@ -231,12 +230,41 @@
         }
 
         /// <summary>
+        /// The Abort.
+        /// </summary>
+        public void Abort()
+        {
+            Halt();
+            _programDataService.SaveProgram(null);
+
+            CycleTime!.Reset();
+            foreach (ICard? card in _programSteps!)
+            {
+                card!.Initialize();
+            }
+
+            CurrentCardIndex = 0;
+
+            if (_programSteps != null && _programDataService.CurrentProgram != null && CurrentCard!.StepModalData?.IsError == false)
+            {
+                if (_programDataService.CurrentProgram.AutoStartPlayback == true)
+                {
+                    Play();
+                }
+            }
+        }
+
+        /// <summary>
         /// The AdvanceStep.
         /// </summary>
         public void AdvanceStep()
         {
-            if (IterateSubStep())
+            if (CurrentCard!.IterateSubStep())
             {
+                if (CurrentCard!.StepModalData != null && CurrentCard!.StepModalData!.IsError == false)
+                {
+                    _modalService.ShowModal(CurrentCard!.StepModalData);
+                }
             }
             else if (CurrentCardIndex < _programSteps?.Count - 1)
             {
@@ -278,15 +306,6 @@
         }
 
         /// <summary>
-        /// The Halt.
-        /// </summary>
-        public void Halt()
-        {
-            Pause();
-            CycleTime?.Pause();
-        }
-
-        /// <summary>
         /// The ModalEvent.
         /// </summary>
         /// <param name="modalData">The modalData<see cref="IModalData"/>.</param>
@@ -323,12 +342,23 @@
         /// </summary>
         public void Play()
         {
+            if (_programDataService!.SelectedProgramData == null)
+            {
+                return;
+            }
+
+            if (PlaybackRunning == false)
+            {
+                CycleTime?.Start();
+                _controllerService.BeginExecution();
+            }
+
+            CurrentCard!.StartCard();
             _programDataService.AllowProgramChange = false;
             PlaybackRunning = true;
             PlayAvailable = false;
             PauseAvailable = true;
             ProgramPaused = false;
-            CycleTime?.Start();
         }
 
         /// <summary>
@@ -353,38 +383,13 @@
         }
 
         /// <summary>
-        /// The IterateSubStep.
-        /// </summary>
-        /// <returns>The <see cref="bool"/>.</returns>
-        private bool IterateSubStep()
-        {
-            if (_programSteps != null && _programSteps[CurrentCardIndex] != null)
-            {
-                if (_programSteps[CurrentCardIndex]?.CardStepIndex < _programSteps[CurrentCardIndex]?.CardSubSteps?.Count - 1)
-                {
-                    _programSteps[CurrentCardIndex]!.CardStepIndex++;
-                    return true;
-                }
-
-                _programSteps[CurrentCardIndex]!.StepStatus = "Completed";
-                _programSteps[CurrentCardIndex]!.StepComplete = true;
-                _programSteps[CurrentCardIndex]!.IsActiveStep = false;
-                _programSteps[CurrentCardIndex]!.CardTime.Pause();
-                return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
         /// The CompleteCycle.
         /// </summary>
         private void CompleteCycle()
         {
-            Pause();
-            CycleTime!.Pause();
+            Halt();
             _programDataService.IterateProgramCycles(null);
-            _programDataService.UpdateProgramAverageCycleTime(null, CycleTime.TimeSpan);
+            _programDataService.UpdateProgramAverageCycleTime(null, CycleTime!.TimeSpan);
             _programDataService.SaveProgram(null);
 
             CycleTime!.Reset();
@@ -395,7 +400,7 @@
 
             CurrentCardIndex = 0;
 
-            if (_programSteps != null && _programSteps[CurrentCardIndex]!.StepModalData?.IsError == false)
+            if (_programSteps != null && CurrentCard!.StepModalData?.IsError == false)
             {
                 Play();
             }
@@ -428,19 +433,13 @@
         }
 
         /// <summary>
-        /// The PlaybackStart.
+        /// The Halt.
         /// </summary>
-        private void PlaybackStart()
+        private void Halt()
         {
-            if (PlaybackRunning == false && _programDataService!.SelectedProgramData != null)
-            {
-                PlayAvailable = false;
-                PauseAvailable = true;
-                CycleTime!.Start();
-                CurrentCard!.StartCard();
-                PlaybackRunning = true;
-                _programDataService!.AllowProgramChange = false;
-            }
+            Pause();
+            CycleTime?.Pause();
+            _controllerService.EndExecution();
         }
     }
 }

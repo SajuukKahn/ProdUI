@@ -1,9 +1,9 @@
 ﻿namespace ProdProgramSelect.Services
 {
-    using Prism.Mvvm;
-    using ProductionCore.Interfaces;
     using System;
     using System.Collections.ObjectModel;
+    using Prism.Mvvm;
+    using ProductionCore.Interfaces;
 
     /// <summary>
     /// Defines the <see cref="ProgramDataService" />.
@@ -71,6 +71,7 @@
             _programDataFactory = programDataFactory;
             _barcodeService = barcodeService;
             _fileService = fileService;
+            _fileService.RetrieveProgramCollection();
         }
 
         /// <summary>

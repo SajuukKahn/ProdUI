@@ -63,6 +63,17 @@
         }
 
         /// <summary>
+        /// The EndExecution.
+        /// </summary>
+        public void EndExecution()
+        {
+            if (_programCancellationTokenSource != null)
+            {
+                _programCancellationTokenSource.Cancel();
+            }
+        }
+
+        /// <summary>
         /// The AcceptPause.
         /// </summary>
         private void RespondToPause()
