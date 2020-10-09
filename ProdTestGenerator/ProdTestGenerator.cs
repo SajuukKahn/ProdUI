@@ -1,6 +1,7 @@
 ﻿namespace ProdTestGenerator
 {
     using global::ProdTestGenerator.Services;
+    using global::ProdTestGenerator.ViewModels;
     using global::ProdTestGenerator.Views;
     using Prism.Ioc;
     using Prism.Modularity;
@@ -45,6 +46,7 @@
         {
             containerRegistry.Register<IControllerService, ControllerService>();
             containerRegistry.Register<IFileService, FileService>();
+            containerRegistry.Register<ITestGeneratorViewModel, TestGeneratorViewModel>();
         }
     }
 }

@@ -12,6 +12,7 @@
     /// <summary>
     /// Defines the <see cref="ProdProgramSelect" />.
     /// </summary>
+    [ModuleDependency("ProdData")]
     public class ProdProgramSelect : IModule
     {
         /// <summary>

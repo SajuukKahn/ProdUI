@@ -651,6 +651,11 @@
             Defines the <see cref="T:ProductionCore.Interfaces.IProgramSelectViewModel" />.
             </summary>
         </member>
+        <member name="T:ProductionCore.Interfaces.ITestGeneratorViewModel">
+            <summary>
+            Defines the <see cref="T:ProductionCore.Interfaces.ITestGeneratorViewModel" />.
+            </summary>
+        </member>
         <member name="T:ProductionCore.ProductionCore">
             <summary>
             Defines the <see cref="T:ProductionCore.ProductionCore" />.

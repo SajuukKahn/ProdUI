@@ -9,7 +9,7 @@
     /// <summary>
     /// Defines the <see cref="TestGeneratorViewModel" />.
     /// </summary>
-    public class TestGeneratorViewModel : BindableBase
+    public class TestGeneratorViewModel : BindableBase, ITestGeneratorViewModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TestGeneratorViewModel"/> class.

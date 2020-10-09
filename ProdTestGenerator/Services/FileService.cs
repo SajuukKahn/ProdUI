@@ -79,7 +79,7 @@
         /// <summary>
         /// The RetrieveProgram.
         /// </summary>
-        /// <param name="programData">The programData<see cref="IProgramData"/>.</param>
+        /// <param name="programData">The programData <see cref="IProgramData"/>.</param>
         public void RetrieveProgram(IProgramData programData)
         {
             GenerateRandomProgram(programData);
@@ -96,7 +96,7 @@
         /// <summary>
         /// The GenerateRandomProgram.
         /// </summary>
-        /// <param name="programData">The programData<see cref="IProgramData"/>.</param>
+        /// <param name="programData">The programData <see cref="IProgramData"/>.</param>
         private void GenerateRandomProgram(IProgramData programData)
         {
             string[] titleArray = { "PolyLine 3D", "Area", "Move", "Line", "PolyLine", "Arc", "Spiral", "Rectangular Sprial", "Dot", "Part Presense Check" };

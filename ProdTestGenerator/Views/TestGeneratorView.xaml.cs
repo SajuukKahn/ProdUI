@@ -1,5 +1,6 @@
 ﻿namespace ProdTestGenerator.Views
 {
+    using ProductionCore.Interfaces;
     using System.Windows.Controls;
 
     /// <summary>
@@ -10,9 +11,11 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="TestGeneratorView"/> class.
         /// </summary>
-        public TestGeneratorView()
+        /// <param name="testGeneratorViewModel">The testGeneratorViewModel<see cref="ITestGeneratorViewModel"/>.</param>
+        public TestGeneratorView(ITestGeneratorViewModel testGeneratorViewModel)
         {
             InitializeComponent();
+            DataContext = testGeneratorViewModel;
         }
     }
 }

@@ -9,7 +9,6 @@
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
     Width="320"
     Height="180"
-    prism:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
 
     <UserControl.Resources>

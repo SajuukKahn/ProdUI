@@ -426,6 +426,7 @@
             CurrentCard = _programSteps![0];
             PlayAvailable = _programDataService.SelectedProgramData?.UserCanStartPlayback ?? false;
             CurrentCard!.IsActiveStep = true;
+            ProductImage = _programDataService.SelectedProgramData?.ProductImage;
             if (_programDataService.SelectedProgramData?.AutoStartPlayback == true)
             {
                 Play();

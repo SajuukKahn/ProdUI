@@ -164,7 +164,7 @@
             <summary>
             The RetrieveProgram.
             </summary>
-            <param name="programData">The programData<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
+            <param name="programData">The programData <see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
         </member>
         <member name="M:ProdTestGenerator.Services.FileService.RetrieveProgramCollection">
             <summary>
@@ -175,7 +175,7 @@
             <summary>
             The GenerateRandomProgram.
             </summary>
-            <param name="programData">The programData<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
+            <param name="programData">The programData <see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
         </member>
         <member name="M:ProdTestGenerator.Services.FileService.GenerateRandomProgramCollection">
             <summary>
@@ -263,10 +263,11 @@
             TestGeneratorView
             </summary>
         </member>
-        <member name="M:ProdTestGenerator.Views.TestGeneratorView.#ctor">
+        <member name="M:ProdTestGenerator.Views.TestGeneratorView.#ctor(ProductionCore.Interfaces.ITestGeneratorViewModel)">
             <summary>
             Initializes a new instance of the <see cref="T:ProdTestGenerator.Views.TestGeneratorView"/> class.
             </summary>
+            <param name="testGeneratorViewModel">The testGeneratorViewModel<see cref="T:ProductionCore.Interfaces.ITestGeneratorViewModel"/>.</param>
         </member>
         <member name="M:ProdTestGenerator.Views.TestGeneratorView.InitializeComponent">
             <summary>
