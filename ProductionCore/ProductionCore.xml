@@ -86,17 +86,6 @@
             </summary>
             <returns>The <see cref="T:ProductionCore.Interfaces.IProgramData"/>.</returns>
         </member>
-        <member name="T:ProductionCore.Interfaces.IBarcodeService">
-            <summary>
-            Defines the <see cref="T:ProductionCore.Interfaces.IBarcodeService" />.
-            </summary>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IBarcodeService.CreateBarcode">
-            <summary>
-            The CreateBarcode.
-            </summary>
-            <returns>The <see cref="T:ProductionCore.Interfaces.IBarcode"/>.</returns>
-        </member>
         <member name="T:ProductionCore.Interfaces.IControllerService">
             <summary>
             Defines the <see cref="T:ProductionCore.Interfaces.IControllerService" />.
@@ -112,26 +101,34 @@
             The EndExecution.
             </summary>
         </member>
-        <member name="T:ProductionCore.Interfaces.IFileService">
+        <member name="T:ProductionCore.Interfaces.IMediationService">
             <summary>
-            Defines the <see cref="T:ProductionCore.Interfaces.IFileService" />.
+            Defines the <see cref="T:ProductionCore.Interfaces.IMediationService" />.
             </summary>
         </member>
-        <member name="M:ProductionCore.Interfaces.IFileService.RetrieveProgram(ProductionCore.Interfaces.IProgramData)">
+        <member name="P:ProductionCore.Interfaces.IMediationService.PlaybackPaused">
             <summary>
-            The RetrieveProgram.
+            Gets or sets a value indicating whether PlaybackPaused.
             </summary>
-            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
         </member>
-        <member name="M:ProductionCore.Interfaces.IFileService.SaveToJSON(System.Object)">
+        <member name="M:ProductionCore.Interfaces.IMediationService.BeginExecution">
             <summary>
-            The SaveToJSON.
+            The BeginExecution.
             </summary>
-            <param name="obj">The obj<see cref="T:System.Object"/>.</param>
         </member>
-        <member name="M:ProductionCore.Interfaces.IFileService.RetrieveProgramCollection">
+        <member name="M:ProductionCore.Interfaces.IMediationService.ExecutionPausedConfirmation">
             <summary>
-            The RetrieveProgramCollection.
+            The ExecutionPausedConfirmation.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IMediationService.AdvanceStep">
+            <summary>
+            The AdvanceStep.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IMediationService.EndExecution">
+            <summary>
+            The EndExecution.
             </summary>
         </member>
         <member name="T:ProductionCore.Interfaces.IModalService">
@@ -176,6 +173,11 @@
             Gets or sets the ProgramSteps.
             </summary>
         </member>
+        <member name="P:ProductionCore.Interfaces.IPlaybackService.AllowProgramChange">
+            <summary>
+            Gets or sets a value indicating whether AllowProgramChange.
+            </summary>
+        </member>
         <member name="P:ProductionCore.Interfaces.IPlaybackService.ProgramPaused">
             <summary>
             Gets or sets a value indicating whether ProgramPaused........
@@ -211,6 +213,11 @@
             Gets or sets the CycleTime.
             </summary>
         </member>
+        <member name="P:ProductionCore.Interfaces.IPlaybackService.RunningProgram">
+            <summary>
+            Gets or sets the RunningProgram.
+            </summary>
+        </member>
         <member name="P:ProductionCore.Interfaces.IPlaybackService.ProductImage">
             <summary>
             Gets or sets the ProductImage.
@@ -242,6 +249,11 @@
             The Play.
             </summary>
         </member>
+        <member name="M:ProductionCore.Interfaces.IPlaybackService.RequestProgramChange">
+            <summary>
+            The ReuqestProgramChange.
+            </summary>
+        </member>
         <member name="M:ProductionCore.Interfaces.IPlaybackService.RaiseError">
             <summary>
             The RaiseError.
@@ -250,11 +262,6 @@
         <member name="M:ProductionCore.Interfaces.IPlaybackService.RetryCard">
             <summary>
             The RetryCard.
-            </summary>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IPlaybackService.ExecutionPausedConfirmation">
-            <summary>
-            The ExecutionPausedConfirmation.
             </summary>
         </member>
         <member name="T:ProductionCore.Interfaces.IProgramDataService">
@@ -292,11 +299,6 @@
             Gets a value indicating whether CanConfirm......
             </summary>
         </member>
-        <member name="P:ProductionCore.Interfaces.IProgramDataService.AllowProgramChange">
-            <summary>
-            Gets or sets a value indicating whether AllowProgramChange.
-            </summary>
-        </member>
         <member name="M:ProductionCore.Interfaces.IProgramDataService.IterateProgramCycles(ProductionCore.Interfaces.IProgramData)">
             <summary>
             The UpdateProgramCycleTime.
@@ -319,12 +321,6 @@
             <summary>
             The SetSelectedProgramAsCurrent.
             </summary>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IProgramDataService.LoadProgram(ProductionCore.Interfaces.IProgramData)">
-            <summary>
-            The LoadProgram.
-            </summary>
-            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
         </member>
         <member name="M:ProductionCore.Interfaces.IProgramDataService.SaveProgram(ProductionCore.Interfaces.IProgramData)">
             <summary>
@@ -672,6 +668,41 @@
             The RegisterTypes.
             </summary>
             <param name="containerRegistry">The containerRegistry<see cref="T:Prism.Ioc.IContainerRegistry"/>.</param>
+        </member>
+        <member name="T:ProductionCore.Services.MediationService">
+            <summary>
+            Defines the <see cref="T:ProductionCore.Services.MediationService" />.
+            </summary>
+        </member>
+        <member name="F:ProductionCore.Services.MediationService._playbackPaused">
+            <summary>
+            Defines the _playbackPaused.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Services.MediationService.PlaybackPaused">
+            <summary>
+            Gets or sets a value indicating whether PlaybackPaused.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Services.MediationService.AdvanceStep">
+            <summary>
+            The AdvanceStep.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Services.MediationService.BeginExecution">
+            <summary>
+            The BeginExecution.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Services.MediationService.EndExecution">
+            <summary>
+            The EndExecution.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Services.MediationService.ExecutionPausedConfirmation">
+            <summary>
+            The ExecutionPausedConfirmation.
+            </summary>
         </member>
     </members>
 </doc>

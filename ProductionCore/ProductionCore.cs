@@ -1,5 +1,7 @@
 ﻿namespace ProductionCore
 {
+    using global::ProductionCore.Interfaces;
+    using global::ProductionCore.Services;
     using Prism.Ioc;
     using Prism.Modularity;
 
@@ -22,6 +24,7 @@
         /// <param name="containerRegistry">The containerRegistry<see cref="IContainerRegistry"/>.</param>
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.Register<IMediationService, MediationService>();
         }
     }
 }

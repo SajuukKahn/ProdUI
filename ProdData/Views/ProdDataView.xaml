@@ -55,10 +55,10 @@
                         <Button
                             MaxWidth="140"
                             Command="{Binding Path=OpenProgramSelect}"
-                            Content="{Binding Path=ProgramDataService.CurrentProgram.ProgramName, FallbackValue=------------------------}" />
+                            Content="{Binding Path=PlaybackService.RunningProgram.ProgramName, FallbackValue=------------------------}" />
 
                         <telerik:Label Content="Cycle Count:" />
-                        <telerik:Label Content="{Binding Path=ProgramDataService.CurrentProgram.CycleCount}" />
+                        <telerik:Label Content="{Binding Path=PlaybackService.RunningProgram.CycleCount, FallbackValue=0}" />
                         <telerik:Label Content="Program Step:" />
                         <StackPanel Orientation="Horizontal">
 
@@ -75,11 +75,11 @@
                             </telerik:Label>
 
                             <telerik:Label Content=" / " />
-                            <telerik:Label Content="{Binding Path=PlaybackService.ProgramSteps.Count}" />
+                            <telerik:Label Content="{Binding Path=PlaybackService.ProgramSteps.Count, FallbackValue=0}" />
                         </StackPanel>
 
                         <telerik:Label Content="Cycle Time:" />
-                        <telerik:Label Content="{Binding Path=PlaybackService.CycleTime.ElapsedTime, FallbackValue=00:00:00.000}" />
+                        <telerik:Label Content="{Binding Path=PlaybackService.CycleTime.ElapsedTime, FallbackValue=00}" />
                     </UniformGrid>
                 </Border>
 

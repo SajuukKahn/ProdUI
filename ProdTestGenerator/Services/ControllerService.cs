@@ -11,14 +11,9 @@
     public class ControllerService : IControllerService
     {
         /// <summary>
-        /// Defines the _playbackService.
+        /// Defines the _mediationService.
         /// </summary>
-        private readonly IPlaybackService _playbackService;
-
-        /// <summary>
-        /// Defines the _modalService.
-        /// </summary>
-        private readonly IModalService _modalService;
+        private readonly IMediationService _mediationService;
 
         /// <summary>
         /// Defines the _programCancellationTokenSource.
@@ -35,20 +30,9 @@
         /// </summary>
         private bool _programIsInProgress;
 
-        /// <summary>
-        /// Defines the _pauseRequestResponded.
-        /// </summary>
-        private bool _pauseRequestResponded;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ControllerService"/> class.
-        /// </summary>
-        /// <param name="playbackService">The playbackService<see cref="IPlaybackService"/>.</param>
-        /// <param name="modalService">The modalService<see cref="IModalService"/>.</param>
-        public ControllerService(IPlaybackService playbackService, IModalService modalService)
+        public ControllerService(IMediationService mediationService)
         {
-            _playbackService = playbackService;
-            _modalService = modalService;
+            _mediationService = mediationService;
         }
 
         /// <summary>
@@ -78,7 +62,7 @@
         /// </summary>
         private void RespondToPause()
         {
-            _playbackService.ExecutionPausedConfirmation();
+            _mediationService.ExecutionPausedConfirmation();
         }
 
         /// <summary>
@@ -86,7 +70,7 @@
         /// </summary>
         private void SendAdvance()
         {
-            _playbackService.AdvanceStep();
+            _mediationService.AdvanceStep();
         }
 
         /// <summary>
@@ -119,18 +103,11 @@
                             return;
                         }
 
-                        if (_playbackService.ProgramPaused && !_pauseRequestResponded)
-                        {
-                            RespondToPause();
-                            _pauseRequestResponded = true;
-                        }
-
-                        if (!_playbackService.ProgramPaused)
+                        if (!_mediationService.PlaybackPaused)
                         {
                             Thread.Sleep(TimeSpan.FromSeconds(new Random().Next(2, 5) + new Random().NextDouble()));
-                            if (!_playbackService.ProgramPaused && !_modalService.ModalActive)
+                            if (!_mediationService.PlaybackPaused)
                             {
-                                _pauseRequestResponded = false;
                                 SendAdvance();
                             }
                         }

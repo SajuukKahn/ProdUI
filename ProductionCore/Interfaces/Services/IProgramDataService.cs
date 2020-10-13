@@ -39,11 +39,6 @@
         bool CanConfirm { get; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether AllowProgramChange.
-        /// </summary>
-        bool AllowProgramChange { get; set; }
-
-        /// <summary>
         /// The UpdateProgramCycleTime.
         /// </summary>
         /// <param name="program">The program<see cref="IProgramData"/>.</param>
@@ -65,12 +60,6 @@
         /// The SetSelectedProgramAsCurrent.
         /// </summary>
         void SetSelectedProgramAsCurrent();
-
-        /// <summary>
-        /// The LoadProgram.
-        /// </summary>
-        /// <param name="program">The program<see cref="IProgramData"/>.</param>
-        void LoadProgram(IProgramData? program = null);
 
         /// <summary>
         /// The SaveProgram.

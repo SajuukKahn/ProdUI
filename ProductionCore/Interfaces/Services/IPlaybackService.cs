@@ -14,6 +14,11 @@
         ObservableCollection<ICard?>? ProgramSteps { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether AllowProgramChange.
+        /// </summary>
+        bool AllowProgramChange { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether ProgramPaused........
         /// </summary>
         bool ProgramPaused { get; set; }
@@ -49,6 +54,11 @@
         IChronometer? CycleTime { get; set; }
 
         /// <summary>
+        /// Gets or sets the RunningProgram.
+        /// </summary>
+        IProgramData? RunningProgram { get; set; }
+
+        /// <summary>
         /// Gets or sets the ProductImage.
         /// </summary>
         BitmapImage? ProductImage { get; set; }
@@ -80,6 +90,11 @@
         void Play();
 
         /// <summary>
+        /// The ReuqestProgramChange.
+        /// </summary>
+        void RequestProgramChange();
+
+        /// <summary>
         /// The RaiseError.
         /// </summary>
         void RaiseError();
@@ -88,10 +103,5 @@
         /// The RetryCard.
         /// </summary>
         void RetryCard();
-
-        /// <summary>
-        /// The ExecutionPausedConfirmation.
-        /// </summary>
-        void ExecutionPausedConfirmation();
     }
 }

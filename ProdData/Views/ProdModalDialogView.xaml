@@ -73,7 +73,7 @@
                 Padding="15"
                 HorizontalAlignment="Stretch"
                 HorizontalContentAlignment="Center"
-                Content="{Binding ModalService.ActiveModalData.ModalInstructions}"
+                Content="{Binding ModalService.ActiveModalData.ModalInstructions, FallbackValue=-}"
                 DockPanel.Dock="Top"
                 FontSize="24" />
 

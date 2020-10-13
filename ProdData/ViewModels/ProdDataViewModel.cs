@@ -10,11 +10,6 @@
     public class ProdDataViewModel : BindableBase, IProdDataViewModel
     {
         /// <summary>
-        /// Defines the _programDataService.
-        /// </summary>
-        private readonly IProgramDataService _programDataService;
-
-        /// <summary>
         /// Defines the _playbackService.
         /// </summary>
         private readonly IPlaybackService _playbackService;
@@ -22,26 +17,13 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="ProdDataViewModel"/> class.
         /// </summary>
-        /// <param name="programDataService">The programDataService<see cref="IProgramDataService"/>.</param>
         /// <param name="playbackService">The playbackService<see cref="IPlaybackService"/>.</param>
-        public ProdDataViewModel(IProgramDataService programDataService, IPlaybackService playbackService)
+        public ProdDataViewModel(IPlaybackService playbackService)
         {
-            _programDataService = programDataService;
             _playbackService = playbackService;
             PlayButton = new DelegateCommand(() => PlaybackService.Play()).ObservesCanExecute(() => PlaybackService.PlayAvailable);
             PauseButton = new DelegateCommand(() => PlaybackService.Pause()).ObservesCanExecute(() => PlaybackService.PauseAvailable);
-            OpenProgramSelect = new DelegateCommand(() => { ProgramDataService.ProgramRequestShow = true; }).ObservesCanExecute(() => ProgramDataService.AllowProgramChange);
-        }
-
-        /// <summary>
-        /// Gets the ProgramDataService.
-        /// </summary>
-        public IProgramDataService ProgramDataService
-        {
-            get
-            {
-                return _programDataService;
-            }
+            OpenProgramSelect = new DelegateCommand(() => PlaybackService.RequestProgramChange()).ObservesCanExecute(() => PlaybackService.AllowProgramChange);
         }
 
         /// <summary>

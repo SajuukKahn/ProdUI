@@ -12,7 +12,6 @@
     /// <summary>
     /// Defines the <see cref="ProdProgramSelect" />.
     /// </summary>
-    [ModuleDependency("ProdData")]
     public class ProdProgramSelect : IModule
     {
         /// <summary>
@@ -50,8 +49,7 @@
             containerRegistry.Register<IProgramData, ProgramData>();
             containerRegistry.RegisterSingleton<IBarcodeFactory, BarcodeFactory>();
             containerRegistry.RegisterSingleton<IProgramDataFactory, ProgramDataFactory>();
-            containerRegistry.Register<IBarcodeService, BarcodeService>();
-            containerRegistry.Register<IProgramDataService, ProgramDataService>();
+            containerRegistry.RegisterSingleton<IProgramDataService, ProgramDataService>();
             containerRegistry.Register<IProgramSelectViewModel, ProgramSelectViewModel>();
         }
     }

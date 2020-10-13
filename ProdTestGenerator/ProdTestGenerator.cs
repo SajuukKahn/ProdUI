@@ -11,6 +11,8 @@
     /// <summary>
     /// Defines the <see cref="ProdTestGenerator" />.
     /// </summary>
+    [ModuleDependency("ProdProgramSelect")]
+    [ModuleDependency("ProdData")]
     public class ProdTestGenerator : IModule
     {
         /// <summary>
@@ -45,7 +47,6 @@
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.Register<IControllerService, ControllerService>();
-            containerRegistry.Register<IFileService, FileService>();
             containerRegistry.Register<ITestGeneratorViewModel, TestGeneratorViewModel>();
         }
     }

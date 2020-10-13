@@ -9,6 +9,8 @@
     /// </summary>
     public class ProdModalDialogViewModel : BindableBase, IProdModalDialogViewModel
     {
+        private readonly IModalService _modalService;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ProdModalDialogViewModel"/> class.
         /// </summary>
@@ -16,7 +18,7 @@
         /// <param name="playbackService">The playbackService<see cref="IPlaybackService"/>.</param>
         public ProdModalDialogViewModel(IModalService modalService, IPlaybackService playbackService)
         {
-            ModalService = modalService;
+            _modalService = modalService;
 
             Abort = new DelegateCommand(() =>
             {
@@ -46,7 +48,13 @@
         /// <summary>
         /// Gets the ModalService.
         /// </summary>
-        public IModalService ModalService { get; }
+        public IModalService ModalService
+        {
+            get
+            {
+                return _modalService;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the Abort.

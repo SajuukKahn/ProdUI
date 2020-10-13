@@ -22,7 +22,6 @@
             + Eliminate the EventAggregator and all PubSubEvent inheriting classes and replace with services
             + Add ability to spawn multiple process regions
 
-
         Steps:
 
         Fix or revamp Enumerated StepStatus to be simpler, possibly just a string.
