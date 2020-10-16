@@ -1,6 +1,5 @@
 ﻿namespace ProdData.Services
 {
-    using System;
     using System.Collections.ObjectModel;
     using System.Windows.Media.Imaging;
     using Prism.Mvvm;
@@ -22,24 +21,9 @@
         private readonly IMediationService _mediationService;
 
         /// <summary>
-        /// Defines the _cardFactory.
-        /// </summary>
-        private readonly ICardFactory _cardFactory;
-
-        /// <summary>
-        /// Defines the _cardSubStepFactory.
-        /// </summary>
-        private readonly ICardSubStepFactory _cardSubStepFactory;
-
-        /// <summary>
         /// Defines the _programSteps.
         /// </summary>
-        private ObservableCollection<ICard?>? _programSteps;
-
-        /// <summary>
-        /// Defines the _programDataService.
-        /// </summary>
-        private IProgramDataService _programDataService;
+        private ObservableCollection<ICard?> _programSteps = new ObservableCollection<ICard?>();
 
         /// <summary>
         /// Defines the _allowProgramChange.
@@ -82,11 +66,6 @@
         private IChronometer? _cycleTime;
 
         /// <summary>
-        /// Defines the _runningProgram.
-        /// </summary>
-        private IProgramData? _runningProgram;
-
-        /// <summary>
         /// Defines the _productImage.
         /// </summary>
         private BitmapImage? _productImage;
@@ -95,55 +74,19 @@
         /// Initializes a new instance of the <see cref="PlaybackService"/> class.
         /// </summary>
         /// <param name="chronometerFactory">The chronometerFactory<see cref="IChronometerFactory"/>.</param>
-        /// <param name="programDataService">The programDataService<see cref="IProgramDataService"/>.</param>
         /// <param name="modalService">The modalService<see cref="IModalService"/>.</param>
         /// <param name="mediationService">The mediationService<see cref="IMediationService"/>.</param>
-        /// <param name="cardFactory">The cardFactory<see cref="ICardFactory"/>.</param>
-        /// <param name="cardSubStepFactory">The cardSubStepFactory<see cref="ICardSubStepFactory"/>.</param>
-        public PlaybackService(
-            IChronometerFactory chronometerFactory,
-            IProgramDataService programDataService,
-            IModalService modalService,
-            IMediationService mediationService,
-            ICardFactory cardFactory,
-            ICardSubStepFactory cardSubStepFactory)
+        public PlaybackService(IChronometerFactory chronometerFactory, IModalService modalService, IMediationService mediationService)
         {
             _cycleTime = chronometerFactory.Create();
-            _programDataService = programDataService;
             _modalService = modalService;
             _mediationService = mediationService;
-            _cardFactory = cardFactory;
-            _cardSubStepFactory = cardSubStepFactory;
-        }
-
-        /// <summary>
-        /// Gets or sets the ProgramDataService.
-        /// </summary>
-        public IProgramDataService ProgramDataService
-        {
-            get
-            {
-                return _programDataService;
-            }
-
-            set
-            {
-                SetProperty(ref _programDataService, value, UpdateDataFromProgramDataService);
-            }
-        }
-
-        /// <summary>
-        /// The UpdateDataFromProgramDataService.
-        /// </summary>
-        private void UpdateDataFromProgramDataService()
-        {
-            RunningProgram = ProgramDataService.CurrentProgram;
         }
 
         /// <summary>
         /// Gets or sets the ProgramSteps.
         /// </summary>
-        public ObservableCollection<ICard?>? ProgramSteps
+        public ObservableCollection<ICard?> ProgramSteps
         {
             get
             {
@@ -285,22 +228,6 @@
         }
 
         /// <summary>
-        /// Gets or sets the RunningProgram.
-        /// </summary>
-        public IProgramData? RunningProgram
-        {
-            get
-            {
-                return _runningProgram;
-            }
-
-            set
-            {
-                SetProperty(ref _runningProgram, value);
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the ProductImage.
         /// </summary>
         public BitmapImage? ProductImage
@@ -322,7 +249,6 @@
         public void Abort()
         {
             Halt();
-            _programDataService.SaveProgram(null);
 
             CycleTime!.Reset();
             foreach (ICard? card in _programSteps!)
@@ -332,9 +258,9 @@
 
             CurrentCardIndex = 0;
 
-            if (ProgramSteps != null && RunningProgram != null && CurrentCard!.StepModalData?.IsError == false)
+            if (ProgramSteps != null && _mediationService.CurrentProgram != null && CurrentCard!.StepModalData?.IsError == false)
             {
-                if (RunningProgram.AutoStartPlayback == true)
+                if (_mediationService.CurrentProgram.AutoStartPlayback == true)
                 {
                     Play();
                 }
@@ -423,7 +349,7 @@
         /// </summary>
         public void Play()
         {
-            if (RunningProgram == null)
+            if (_mediationService.CurrentProgram == null)
             {
                 return;
             }
@@ -431,7 +357,7 @@
             if (PlaybackRunning == false)
             {
                 CycleTime?.Start();
-                _mediationService.BeginExecution();
+                _mediationService.BeginExecute = true;
             }
 
             CurrentCard!.StartCard();
@@ -447,7 +373,7 @@
         /// </summary>
         public void RequestProgramChange()
         {
-            _programDataService.ProgramRequestShow = true;
+            _mediationService.ProgramRequestShow = true;
         }
 
         /// <summary>
@@ -472,41 +398,12 @@
         }
 
         /// <summary>
-        /// The LoadProgram.
-        /// </summary>
-        /// <param name="program">The program<see cref="IProgramData"/>.</param>
-        public void LoadProgram(IProgramData? program = null)
-        {
-            if (program == null && RunningProgram == null)
-            {
-                return;
-            }
-            else if (program == null)
-            {
-                program = RunningProgram ?? null;
-            }
-
-            RetrieveProgram(program!);
-        }
-
-        /// <summary>
-        /// The RetrieveProgram.
-        /// </summary>
-        /// <param name="programData">The programData <see cref="IProgramData"/>.</param>
-        public void RetrieveProgram(IProgramData programData)
-        {
-            GenerateRandomProgram(programData);
-        }
-
-        /// <summary>
         /// The CompleteCycle.
         /// </summary>
         private void CompleteCycle()
         {
             Halt();
-            _programDataService.IterateProgramCycles(null);
-            _programDataService.UpdateProgramAverageCycleTime(null, CycleTime!.TimeSpan);
-            _programDataService.SaveProgram(null);
+            _mediationService.SaveProgram(true, CycleTime);
 
             CycleTime!.Reset();
             foreach (ICard? card in _programSteps!)
@@ -538,13 +435,13 @@
         /// </summary>
         private void HandleChangedProgramData()
         {
+            // TODO: This doesn't fire when the collection is updated?
             CurrentCardIndex = 0;
             CurrentCard = _programSteps![0];
-            RunningProgram = _programDataService.CurrentProgram!;
-            PlayAvailable = RunningProgram?.UserCanStartPlayback ?? false;
+            PlayAvailable = _mediationService.CurrentProgram?.UserCanStartPlayback ?? false;
             CurrentCard!.IsActiveStep = true;
-            ProductImage = RunningProgram?.ProductImage;
-            if (RunningProgram?.AutoStartPlayback == true)
+            ProductImage = _mediationService.CurrentProgram!.ProductImage;
+            if (_mediationService.CurrentProgram.AutoStartPlayback == true)
             {
                 Play();
             }
@@ -557,119 +454,7 @@
         {
             Pause();
             CycleTime?.Pause();
-            _mediationService.EndExecution();
-        }
-
-        /// <summary>
-        /// The GenerateRandomProgram.
-        /// </summary>
-        /// <param name="programData">The programData <see cref="IProgramData"/>.</param>
-        private void GenerateRandomProgram(IProgramData programData)
-        {
-            string[] titleArray = { "PolyLine 3D", "Area", "Move", "Line", "PolyLine", "Arc", "Spiral", "Rectangular Sprial", "Dot", "Part Presense Check" };
-
-            BitmapImage? image = new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\FID.bmp", UriKind.RelativeOrAbsolute));
-
-            ProgramSteps?.Clear();
-
-            if (programData?.ProgramName == "Manual Placement Simulation")
-            {
-                ICard manualCard = _cardFactory.Create();
-                manualCard.CardSubSteps?.Add(_cardSubStepFactory.Create("Place Product", new string[] { string.Empty }));
-                manualCard.StepTitle = "Place Product";
-                manualCard.StepImage = programData.ProductImage;
-                manualCard.StepModalData = _modalService.CreateModalData();
-                manualCard.StepModalData!.CanAbort = true;
-                manualCard.StepModalData!.CanContinue = true;
-                manualCard.StepModalData!.CanRetry = false;
-                manualCard.StepModalData!.Card = null;
-                manualCard.StepModalData!.Instructions = "Place Product and press 'Continue' to begin" + Environment.NewLine + "Press 'Abort' to exit path playback";
-                manualCard.StepModalData!.InstructionImage = programData.ProductImage;
-                manualCard.StepModalData!.IsError = false;
-                ProgramSteps?.Add(manualCard);
-            }
-
-            ICard fiducialCard = _cardFactory.Create();
-            fiducialCard.CardSubSteps?.Add(_cardSubStepFactory.Create("Fiducial A", RandomCoordinates()));
-            fiducialCard.CardSubSteps?.Add(_cardSubStepFactory.Create("Fiducial B", RandomCoordinates()));
-            fiducialCard.StepTitle = "Fiducial Check";
-            fiducialCard.StepImage = image;
-            fiducialCard.StepModalData = _modalService.CreateModalData();
-            fiducialCard.StepModalData!.CanAbort = true;
-            fiducialCard.StepModalData!.CanContinue = true;
-            fiducialCard.StepModalData!.CanRetry = true;
-            fiducialCard.StepModalData!.Card = null;
-            fiducialCard.StepModalData!.Instructions = "Fiducials Failed, Select an option below";
-            fiducialCard.StepModalData!.InstructionImage = image;
-            fiducialCard.StepModalData!.IsError = false;
-            ProgramSteps?.Add(fiducialCard);
-            int randSize = new Random().Next(2, 8);
-
-            ICard surfaceCard = _cardFactory.Create();
-            for (int i = 0; i < randSize; i++)
-            {
-                surfaceCard.CardSubSteps?.Add(_cardSubStepFactory.Create("Surface " + (i + 1), RandomCoordinates()));
-            }
-
-            surfaceCard.StepTitle = "Surface Height Check";
-            surfaceCard.StepModalData = _modalService.CreateModalData();
-            surfaceCard.StepModalData!.CanAbort = true;
-            surfaceCard.StepModalData!.CanRetry = true;
-            surfaceCard.StepModalData!.Card = null;
-            surfaceCard.StepModalData!.Instructions = "Surface Height Checks failed, Select an option below";
-            surfaceCard.StepModalData!.IsError = false;
-            ProgramSteps?.Add(surfaceCard);
-
-            randSize = new Random().Next(4, 12);
-            for (int i = 0; i < randSize; i++)
-            {
-                int randSteps = new Random().Next(1, 8);
-                string stepTitle = titleArray[new Random().Next(titleArray.Length)];
-                ICard card = _cardFactory.Create();
-                card.CardSubSteps?.Add(_cardSubStepFactory.Create(stepTitle, RandomCoordinates()));
-                card.StepTitle = stepTitle;
-                for (int j = 0; j < randSteps; j++)
-                {
-                    card.CardSubSteps?.Add(_cardSubStepFactory.Create(stepTitle + " " + (j + 1), RandomCoordinates()));
-                }
-
-                if (new Random().Next(0, 4) == 1)
-                {
-                    image = new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\PCB" + new Random().Next(1, 9).ToString() + ".bmp", UriKind.RelativeOrAbsolute));
-                    card.StepImage = image;
-                }
-
-                if (stepTitle == "Part Presence Check")
-                {
-                    card.StepModalData = _modalService.CreateModalData();
-                    card.StepModalData!.CanAbort = true;
-                    card.StepModalData!.CanContinue = true;
-                    card.StepModalData!.CanRetry = true;
-                    card.StepModalData!.Card = null;
-                    card.StepModalData!.Instructions = "Part Presence Check failed, Select an option below";
-                    card.StepModalData!.IsError = false;
-                }
-
-                ProgramSteps?.Add(card);
-            }
-        }
-
-        /// <summary>
-        /// The ChooseRandomImage.
-        /// </summary>
-        /// <returns>The <see cref="BitmapImage"/>.</returns>
-        private BitmapImage ChooseRandomImage()
-        {
-            return new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\PCB" + new Random().Next(1, 9).ToString() + ".bmp", UriKind.RelativeOrAbsolute));
-        }
-
-        /// <summary>
-        /// The RandomCoordinates.
-        /// </summary>
-        /// <returns>The <see cref="string"/>.</returns>
-        private string[] RandomCoordinates()
-        {
-            return new string[] { new Random().Next(-20000, 200000).ToString(), new Random().Next(-20000, 200000).ToString(), new Random().Next(-9000, 100000).ToString() };
+            _mediationService.EndExecute = true;
         }
     }
 }

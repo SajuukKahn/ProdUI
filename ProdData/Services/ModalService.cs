@@ -1,9 +1,9 @@
 ﻿namespace ProdData.Services
 {
-    using Prism.Mvvm;
-    using ProductionCore.Interfaces;
     using System;
     using System.Windows.Media.Imaging;
+    using Prism.Mvvm;
+    using ProductionCore.Interfaces;
 
     /// <summary>
     /// Defines the <see cref="ModalService" />.
@@ -120,7 +120,6 @@
         /// </summary>
         public void CloseModal()
         {
-            ActiveModalData = null;
             ModalActive = false;
         }
     }

@@ -11,7 +11,6 @@
     xmlns:prism="http://prismlibrary.com/"
     xmlns:sys="clr-namespace:System;assembly=System.Runtime"
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
-    prism:ViewModelLocator.AutoWireViewModel="True"
     Background="LightGray"
     mc:Ignorable="d">
 
@@ -55,10 +54,10 @@
                         <Button
                             MaxWidth="140"
                             Command="{Binding Path=OpenProgramSelect}"
-                            Content="{Binding Path=PlaybackService.RunningProgram.ProgramName, FallbackValue=------------------------}" />
+                            Content="{Binding Path=MediationService.CurrentProgram.ProgramName, FallbackValue=------------------------}" />
 
                         <telerik:Label Content="Cycle Count:" />
-                        <telerik:Label Content="{Binding Path=PlaybackService.RunningProgram.CycleCount, FallbackValue=0}" />
+                        <telerik:Label Content="{Binding Path=MediationService.CurrentProgram.CycleCount, FallbackValue=0}" />
                         <telerik:Label Content="Program Step:" />
                         <StackPanel Orientation="Horizontal">
 

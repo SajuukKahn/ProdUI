@@ -10,7 +10,7 @@
     xmlns:sys="clr-namespace:System;assembly=System.Runtime"
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
     Background="#AA000000"
-    Visibility="{Binding ProgramDataService.ProgramRequestShow, Converter={StaticResource BooleanToVisibilityConverter}}"
+    Visibility="{Binding MediationService.ProgramRequestShow, Converter={StaticResource BooleanToVisibilityConverter}}"
     mc:Ignorable="d">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -77,7 +77,8 @@
                         x:Name="CancelButton"
                         Margin="3"
                         Command="{Binding Path=CancelButton}"
-                        DockPanel.Dock="Left">
+                        DockPanel.Dock="Left"
+                        IsEnabled="{Binding MediationService.CanCancel}">
                         <StackPanel Orientation="Horizontal">
                             <telerik:Label Content="Cancel" />
                             <telerik:RadGlyph Glyph="{StaticResource GlyphClose}" />

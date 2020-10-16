@@ -1,7 +1,7 @@
 ﻿namespace ProdTestGenerator.Views
 {
-    using ProductionCore.Interfaces;
     using System.Windows.Controls;
+    using ProductionCore.Interfaces;
 
     /// <summary>
     /// Interaction logic for TestGeneratorView.xaml.

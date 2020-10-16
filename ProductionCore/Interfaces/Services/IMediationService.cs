@@ -6,28 +6,40 @@
     public interface IMediationService
     {
         /// <summary>
-        /// Gets or sets a value indicating whether PlaybackPaused.
+        /// Gets or sets a value indicating whether PlaybackPaused......
         /// </summary>
         bool PlaybackPaused { get; set; }
 
         /// <summary>
-        /// The BeginExecution.
+        /// Gets or sets a value indicating whether PauseComplete...
         /// </summary>
-        void BeginExecution();
+        bool PauseComplete { get; set; }
 
         /// <summary>
-        /// The ExecutionPausedConfirmation.
+        /// Gets or sets a value indicating whether BeginExecute.....
         /// </summary>
-        void ExecutionPausedConfirmation();
+        bool BeginExecute { get; set; }
 
         /// <summary>
-        /// The AdvanceStep.
+        /// Gets or sets a value indicating whether EndExecute....
         /// </summary>
-        void AdvanceStep();
+        bool EndExecute { get; set; }
 
         /// <summary>
-        /// The EndExecution.
+        /// Gets or sets a value indicating whether ProgramRequestShow..
         /// </summary>
-        void EndExecution();
+        bool ProgramRequestShow { get; set; }
+
+        /// <summary>
+        /// Gets or sets the CurrentProgram.
+        /// </summary>
+        IProgramData? CurrentProgram { get; set; }
+
+        /// <summary>
+        /// The SaveProgram.
+        /// </summary>
+        /// <param name="programSuccessful">The programSuccessful<see cref="bool"/>.</param>
+        /// <param name="cycleTime">The cycleTime<see cref="IChronometer"/>.</param>
+        void SaveProgram(bool programSuccessful, IChronometer? cycleTime);
     }
 }

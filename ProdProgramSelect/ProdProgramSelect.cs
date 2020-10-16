@@ -12,6 +12,7 @@
     /// <summary>
     /// Defines the <see cref="ProdProgramSelect" />.
     /// </summary>
+    [ModuleDependency("ProductionCore")]
     public class ProdProgramSelect : IModule
     {
         /// <summary>
@@ -47,10 +48,10 @@
         {
             containerRegistry.Register<IBarcode, Barcode>();
             containerRegistry.Register<IProgramData, ProgramData>();
-            containerRegistry.RegisterSingleton<IBarcodeFactory, BarcodeFactory>();
-            containerRegistry.RegisterSingleton<IProgramDataFactory, ProgramDataFactory>();
+            containerRegistry.Register<IBarcodeFactory, BarcodeFactory>();
+            containerRegistry.Register<IProgramDataFactory, ProgramDataFactory>();
             containerRegistry.RegisterSingleton<IProgramDataService, ProgramDataService>();
-            containerRegistry.Register<IProgramSelectViewModel, ProgramSelectViewModel>();
+            containerRegistry.RegisterSingleton<IProgramSelectViewModel, ProgramSelectViewModel>();
         }
     }
 }

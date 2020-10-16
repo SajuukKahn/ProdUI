@@ -11,7 +11,7 @@
         /// <summary>
         /// Gets or sets the ProgramSteps.
         /// </summary>
-        ObservableCollection<ICard?>? ProgramSteps { get; set; }
+        ObservableCollection<ICard?> ProgramSteps { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether AllowProgramChange.
@@ -52,11 +52,6 @@
         /// Gets or sets the CycleTime.
         /// </summary>
         IChronometer? CycleTime { get; set; }
-
-        /// <summary>
-        /// Gets or sets the RunningProgram.
-        /// </summary>
-        IProgramData? RunningProgram { get; set; }
 
         /// <summary>
         /// Gets or sets the ProductImage.

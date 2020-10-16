@@ -7,10 +7,12 @@
     using Prism.Modularity;
     using Prism.Regions;
     using ProductionCore.Interfaces;
+    using ProductionCore.Interfaces.Services;
 
     /// <summary>
     /// Defines the <see cref="ProdTestGenerator" />.
     /// </summary>
+    [ModuleDependency("ProductionCore")]
     [ModuleDependency("ProdProgramSelect")]
     [ModuleDependency("ProdData")]
     public class ProdTestGenerator : IModule
@@ -19,6 +21,11 @@
         /// Defines the _regionManager.
         /// </summary>
         private readonly IRegionManager _regionManager;
+
+        /// <summary>
+        /// Defines the FileService.
+        /// </summary>
+        public FileService FileService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProdTestGenerator"/> class.
@@ -38,6 +45,7 @@
             IRegion region = _regionManager.Regions["TestRegion"];
             var view = containerProvider.Resolve<TestGeneratorView>();
             region.Add(view);
+            FileService = containerProvider.Resolve<FileService>();
         }
 
         /// <summary>
@@ -48,6 +56,7 @@
         {
             containerRegistry.Register<IControllerService, ControllerService>();
             containerRegistry.Register<ITestGeneratorViewModel, TestGeneratorViewModel>();
+            containerRegistry.RegisterInstance<IFileService>(FileService);
         }
     }
 }

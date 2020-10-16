@@ -101,6 +101,11 @@
             The EndExecution.
             </summary>
         </member>
+        <member name="T:ProductionCore.Interfaces.Services.IFileService">
+            <summary>
+            Defines the <see cref="T:ProductionCore.Interfaces.Services.IFileService" />.
+            </summary>
+        </member>
         <member name="T:ProductionCore.Interfaces.IMediationService">
             <summary>
             Defines the <see cref="T:ProductionCore.Interfaces.IMediationService" />.
@@ -108,28 +113,40 @@
         </member>
         <member name="P:ProductionCore.Interfaces.IMediationService.PlaybackPaused">
             <summary>
-            Gets or sets a value indicating whether PlaybackPaused.
+            Gets or sets a value indicating whether PlaybackPaused......
             </summary>
         </member>
-        <member name="M:ProductionCore.Interfaces.IMediationService.BeginExecution">
+        <member name="P:ProductionCore.Interfaces.IMediationService.PauseComplete">
             <summary>
-            The BeginExecution.
+            Gets or sets a value indicating whether PauseComplete...
             </summary>
         </member>
-        <member name="M:ProductionCore.Interfaces.IMediationService.ExecutionPausedConfirmation">
+        <member name="P:ProductionCore.Interfaces.IMediationService.BeginExecute">
             <summary>
-            The ExecutionPausedConfirmation.
+            Gets or sets a value indicating whether BeginExecute.....
             </summary>
         </member>
-        <member name="M:ProductionCore.Interfaces.IMediationService.AdvanceStep">
+        <member name="P:ProductionCore.Interfaces.IMediationService.EndExecute">
             <summary>
-            The AdvanceStep.
+            Gets or sets a value indicating whether EndExecute....
             </summary>
         </member>
-        <member name="M:ProductionCore.Interfaces.IMediationService.EndExecution">
+        <member name="P:ProductionCore.Interfaces.IMediationService.ProgramRequestShow">
             <summary>
-            The EndExecution.
+            Gets or sets a value indicating whether ProgramRequestShow..
             </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IMediationService.CurrentProgram">
+            <summary>
+            Gets or sets the CurrentProgram.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IMediationService.SaveProgram(System.Boolean,ProductionCore.Interfaces.IChronometer)">
+            <summary>
+            The SaveProgram.
+            </summary>
+            <param name="programSuccessful">The programSuccessful<see cref="T:System.Boolean"/>.</param>
+            <param name="cycleTime">The cycleTime<see cref="T:ProductionCore.Interfaces.IChronometer"/>.</param>
         </member>
         <member name="T:ProductionCore.Interfaces.IModalService">
             <summary>
@@ -213,11 +230,6 @@
             Gets or sets the CycleTime.
             </summary>
         </member>
-        <member name="P:ProductionCore.Interfaces.IPlaybackService.RunningProgram">
-            <summary>
-            Gets or sets the RunningProgram.
-            </summary>
-        </member>
         <member name="P:ProductionCore.Interfaces.IPlaybackService.ProductImage">
             <summary>
             Gets or sets the ProductImage.
@@ -279,16 +291,6 @@
             Gets or sets the SelectedProgramData.
             </summary>
         </member>
-        <member name="P:ProductionCore.Interfaces.IProgramDataService.CurrentProgram">
-            <summary>
-            Gets or sets the CurrentProgram.
-            </summary>
-        </member>
-        <member name="P:ProductionCore.Interfaces.IProgramDataService.ProgramRequestShow">
-            <summary>
-            Gets or sets a value indicating whether ProgramRequestShow......
-            </summary>
-        </member>
         <member name="P:ProductionCore.Interfaces.IProgramDataService.CanCancel">
             <summary>
             Gets a value indicating whether CanCancel......
@@ -299,19 +301,6 @@
             Gets a value indicating whether CanConfirm......
             </summary>
         </member>
-        <member name="M:ProductionCore.Interfaces.IProgramDataService.IterateProgramCycles(ProductionCore.Interfaces.IProgramData)">
-            <summary>
-            The UpdateProgramCycleTime.
-            </summary>
-            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IProgramDataService.UpdateProgramAverageCycleTime(ProductionCore.Interfaces.IProgramData,System.TimeSpan)">
-            <summary>
-            The UpdateProgramAverageCycleTime.
-            </summary>
-            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
-            <param name="cycleTime">The cycleTime<see cref="T:System.TimeSpan"/>.</param>
-        </member>
         <member name="M:ProductionCore.Interfaces.IProgramDataService.ProgramSelectClose">
             <summary>
             The ProgramSelectClose.
@@ -321,24 +310,6 @@
             <summary>
             The SetSelectedProgramAsCurrent.
             </summary>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IProgramDataService.SaveProgram(ProductionCore.Interfaces.IProgramData)">
-            <summary>
-            The SaveProgram.
-            </summary>
-            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IProgramDataService.CreateProgram">
-            <summary>
-            The Program.
-            </summary>
-            <returns>A new <see cref="T:ProductionCore.Interfaces.IProgramData"/>.</returns>
-        </member>
-        <member name="M:ProductionCore.Interfaces.IProgramDataService.CreateBarcode">
-            <summary>
-            The CreateBarcode.
-            </summary>
-            <returns>The <see cref="T:ProductionCore.Interfaces.IBarcode"/>.</returns>
         </member>
         <member name="T:ProductionCore.Interfaces.IBarcode">
             <summary>
@@ -669,6 +640,16 @@
             </summary>
             <param name="containerRegistry">The containerRegistry<see cref="T:Prism.Ioc.IContainerRegistry"/>.</param>
         </member>
+        <member name="T:ProductionCore.Services.GlobalCommands">
+            <summary>
+            Defines the <see cref="T:ProductionCore.Services.GlobalCommands" />.
+            </summary>
+        </member>
+        <member name="F:ProductionCore.Services.GlobalCommands.RequestProgram">
+            <summary>
+            Defines the RequestProgram.
+            </summary>
+        </member>
         <member name="T:ProductionCore.Services.MediationService">
             <summary>
             Defines the <see cref="T:ProductionCore.Services.MediationService" />.
@@ -679,30 +660,67 @@
             Defines the _playbackPaused.
             </summary>
         </member>
+        <member name="F:ProductionCore.Services.MediationService._pauseComplete">
+            <summary>
+            Defines the _pauseComplete.
+            </summary>
+        </member>
+        <member name="F:ProductionCore.Services.MediationService._beginExecute">
+            <summary>
+            Defines the _beginExecute.
+            </summary>
+        </member>
+        <member name="F:ProductionCore.Services.MediationService._programRequestShow">
+            <summary>
+            Defines the _programRequestShow.
+            </summary>
+        </member>
+        <member name="F:ProductionCore.Services.MediationService._endExecute">
+            <summary>
+            Defines the _endExecute.
+            </summary>
+        </member>
+        <member name="F:ProductionCore.Services.MediationService._currentProgram">
+            <summary>
+            Defines the _currentProgram.
+            </summary>
+        </member>
         <member name="P:ProductionCore.Services.MediationService.PlaybackPaused">
             <summary>
             Gets or sets a value indicating whether PlaybackPaused.
             </summary>
         </member>
-        <member name="M:ProductionCore.Services.MediationService.AdvanceStep">
+        <member name="P:ProductionCore.Services.MediationService.PauseComplete">
             <summary>
-            The AdvanceStep.
+            Gets or sets a value indicating whether PauseComplete.
             </summary>
         </member>
-        <member name="M:ProductionCore.Services.MediationService.BeginExecution">
+        <member name="P:ProductionCore.Services.MediationService.BeginExecute">
             <summary>
-            The BeginExecution.
+            Gets or sets a value indicating whether BeginExecute.
             </summary>
         </member>
-        <member name="M:ProductionCore.Services.MediationService.EndExecution">
+        <member name="P:ProductionCore.Services.MediationService.EndExecute">
             <summary>
-            The EndExecution.
+            Gets or sets a value indicating whether EndExecute.
             </summary>
         </member>
-        <member name="M:ProductionCore.Services.MediationService.ExecutionPausedConfirmation">
+        <member name="P:ProductionCore.Services.MediationService.ProgramRequestShow">
             <summary>
-            The ExecutionPausedConfirmation.
+            Gets or sets a value indicating whether ProgramRequestShow.
             </summary>
+        </member>
+        <member name="P:ProductionCore.Services.MediationService.CurrentProgram">
+            <summary>
+            Gets or sets the CurrentProgram.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Services.MediationService.SaveProgram(System.Boolean,ProductionCore.Interfaces.IChronometer)">
+            <summary>
+            The UpdateProgramInformation.
+            </summary>
+            <param name="programSuccessful">The programSuccessful<see cref="T:System.Boolean"/>.</param>
+            <param name="cycleTime">The cycleTime<see cref="T:ProductionCore.Interfaces.IChronometer"/>.</param>
         </member>
     </members>
 </doc>

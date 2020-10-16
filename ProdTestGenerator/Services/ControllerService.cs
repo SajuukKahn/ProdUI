@@ -11,6 +11,11 @@
     public class ControllerService : IControllerService
     {
         /// <summary>
+        /// Defines the _playbackService.
+        /// </summary>
+        private readonly IPlaybackService _playbackService;
+
+        /// <summary>
         /// Defines the _mediationService.
         /// </summary>
         private readonly IMediationService _mediationService;
@@ -30,8 +35,14 @@
         /// </summary>
         private bool _programIsInProgress;
 
-        public ControllerService(IMediationService mediationService)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ControllerService"/> class.
+        /// </summary>
+        /// <param name="playbackService">The playbackService<see cref="IPlaybackService"/>.</param>
+        /// <param name="mediationService">The mediationService<see cref="IMediationService"/>.</param>
+        public ControllerService(IPlaybackService playbackService, IMediationService mediationService)
         {
+            _playbackService = playbackService;
             _mediationService = mediationService;
         }
 
@@ -58,19 +69,11 @@
         }
 
         /// <summary>
-        /// The AcceptPause.
-        /// </summary>
-        private void RespondToPause()
-        {
-            _mediationService.ExecutionPausedConfirmation();
-        }
-
-        /// <summary>
         /// The SendAdvance.
         /// </summary>
         private void SendAdvance()
         {
-            _mediationService.AdvanceStep();
+            _playbackService.AdvanceStep();
         }
 
         /// <summary>
@@ -101,6 +104,11 @@
                         {
                             _programIsInProgress = false;
                             return;
+                        }
+
+                        if (_mediationService.PlaybackPaused && !_mediationService.PauseComplete)
+                        {
+                            _mediationService.PauseComplete = true;
                         }
 
                         if (!_mediationService.PlaybackPaused)

@@ -24,7 +24,7 @@
         /// <param name="containerRegistry">The containerRegistry<see cref="IContainerRegistry"/>.</param>
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.Register<IMediationService, MediationService>();
+            containerRegistry.RegisterSingleton<IMediationService, MediationService>();
         }
     }
 }

@@ -13,7 +13,7 @@
         /// <summary>
         /// Gets or sets the ActiveModalData.
         /// </summary>
-        IModalData? ActiveModalData { get; set; }
+        IModalData ActiveModalData { get; set; }
 
         /// <summary>
         /// The ShowModal.

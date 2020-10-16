@@ -13,7 +13,6 @@
     /// Defines the <see cref="ProdData" />.
     /// </summary>
     [ModuleDependency("ProductionCore")]
-    [ModuleDependency("ProdProgramSelect")]
     public class ProdData : IModule
     {
         /// <summary>
@@ -55,14 +54,14 @@
             containerRegistry.Register<ICardSubStep, CardSubStep>();
             containerRegistry.Register<IChronometer, Chronometer>();
             containerRegistry.Register<IModalData, ModalData>();
-            containerRegistry.RegisterSingleton<ICardFactory, CardFactory>();
-            containerRegistry.RegisterSingleton<ICardSubStepFactory, CardSubStepFactory>();
-            containerRegistry.RegisterSingleton<IChronometerFactory, ChronometerFactory>();
-            containerRegistry.RegisterSingleton<IModalFactory, ModalFactory>();
-            containerRegistry.Register<IModalService, ModalService>();
-            containerRegistry.Register<IPlaybackService, PlaybackService>();
-            containerRegistry.Register<IProdDataViewModel, ProdDataViewModel>();
-            containerRegistry.Register<IProdModalDialogViewModel, ProdModalDialogViewModel>();
+            containerRegistry.Register<ICardFactory, CardFactory>();
+            containerRegistry.Register<ICardSubStepFactory, CardSubStepFactory>();
+            containerRegistry.Register<IChronometerFactory, ChronometerFactory>();
+            containerRegistry.Register<IModalFactory, ModalFactory>();
+            containerRegistry.RegisterSingleton<IModalService, ModalService>();
+            containerRegistry.RegisterSingleton<IPlaybackService, PlaybackService>();
+            containerRegistry.RegisterSingleton<IProdDataViewModel, ProdDataViewModel>();
+            containerRegistry.RegisterSingleton<IProdModalDialogViewModel, ProdModalDialogViewModel>();
         }
     }
 }

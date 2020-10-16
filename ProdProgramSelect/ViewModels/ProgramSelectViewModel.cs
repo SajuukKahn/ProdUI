@@ -3,6 +3,7 @@
     using Prism.Commands;
     using Prism.Mvvm;
     using ProductionCore.Interfaces;
+    using ProductionCore.Services;
 
     /// <summary>
     /// Defines the <see cref="ProgramSelectViewModel" />.
@@ -15,14 +16,21 @@
         private readonly IProgramDataService _programDataService;
 
         /// <summary>
+        /// Defines the _mediationService.
+        /// </summary>
+        private readonly IMediationService _mediationService;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ProgramSelectViewModel"/> class.
         /// </summary>
         /// <param name="programDataService">The programDataService<see cref="IProgramDataService"/>.</param>
-        public ProgramSelectViewModel(IProgramDataService programDataService)
+        /// <param name="mediationService">The mediationService<see cref="IMediationService"/>.</param>
+        public ProgramSelectViewModel(IProgramDataService programDataService, IMediationService mediationService)
         {
             _programDataService = programDataService;
+            _mediationService = mediationService;
             ConfirmButton = new DelegateCommand(ConfirmProgramChange).ObservesCanExecute(() => ProgramDataService.CanConfirm);
-            CancelButton = new DelegateCommand(CancelProgramChange).ObservesCanExecute(() => ProgramDataService.CanCancel);
+            CancelButton = new DelegateCommand(CancelProgramChange);
         }
 
         /// <summary>
@@ -33,6 +41,17 @@
             get
             {
                 return _programDataService;
+            }
+        }
+
+        /// <summary>
+        /// Gets the MediationService.
+        /// </summary>
+        public IMediationService MediationService
+        {
+            get
+            {
+                return _mediationService;
             }
         }
 
@@ -59,7 +78,7 @@
         /// </summary>
         private void CleanInstance()
         {
-            _programDataService.ProgramRequestShow = false;
+            _mediationService.ProgramRequestShow = false;
         }
 
         /// <summary>
@@ -67,7 +86,8 @@
         /// </summary>
         private void ConfirmProgramChange()
         {
-            _programDataService.SetSelectedProgramAsCurrent();
+            ProgramDataService.SetSelectedProgramAsCurrent();
+            GlobalCommands.RequestProgram.Execute(null);
             CleanInstance();
         }
     }

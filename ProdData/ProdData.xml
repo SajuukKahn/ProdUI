@@ -695,24 +695,9 @@
             Defines the _mediationService.
             </summary>
         </member>
-        <member name="F:ProdData.Services.PlaybackService._cardFactory">
-            <summary>
-            Defines the _cardFactory.
-            </summary>
-        </member>
-        <member name="F:ProdData.Services.PlaybackService._cardSubStepFactory">
-            <summary>
-            Defines the _cardSubStepFactory.
-            </summary>
-        </member>
         <member name="F:ProdData.Services.PlaybackService._programSteps">
             <summary>
             Defines the _programSteps.
-            </summary>
-        </member>
-        <member name="F:ProdData.Services.PlaybackService._programDataService">
-            <summary>
-            Defines the _programDataService.
             </summary>
         </member>
         <member name="F:ProdData.Services.PlaybackService._allowProgramChange">
@@ -755,36 +740,18 @@
             Defines the _cycleTime.
             </summary>
         </member>
-        <member name="F:ProdData.Services.PlaybackService._runningProgram">
-            <summary>
-            Defines the _runningProgram.
-            </summary>
-        </member>
         <member name="F:ProdData.Services.PlaybackService._productImage">
             <summary>
             Defines the _productImage.
             </summary>
         </member>
-        <member name="M:ProdData.Services.PlaybackService.#ctor(ProductionCore.Interfaces.IChronometerFactory,ProductionCore.Interfaces.IProgramDataService,ProductionCore.Interfaces.IModalService,ProductionCore.Interfaces.IMediationService,ProductionCore.Interfaces.ICardFactory,ProductionCore.Interfaces.ICardSubStepFactory)">
+        <member name="M:ProdData.Services.PlaybackService.#ctor(ProductionCore.Interfaces.IChronometerFactory,ProductionCore.Interfaces.IModalService,ProductionCore.Interfaces.IMediationService)">
             <summary>
             Initializes a new instance of the <see cref="T:ProdData.Services.PlaybackService"/> class.
             </summary>
             <param name="chronometerFactory">The chronometerFactory<see cref="T:ProductionCore.Interfaces.IChronometerFactory"/>.</param>
-            <param name="programDataService">The programDataService<see cref="T:ProductionCore.Interfaces.IProgramDataService"/>.</param>
             <param name="modalService">The modalService<see cref="T:ProductionCore.Interfaces.IModalService"/>.</param>
             <param name="mediationService">The mediationService<see cref="T:ProductionCore.Interfaces.IMediationService"/>.</param>
-            <param name="cardFactory">The cardFactory<see cref="T:ProductionCore.Interfaces.ICardFactory"/>.</param>
-            <param name="cardSubStepFactory">The cardSubStepFactory<see cref="T:ProductionCore.Interfaces.ICardSubStepFactory"/>.</param>
-        </member>
-        <member name="P:ProdData.Services.PlaybackService.ProgramDataService">
-            <summary>
-            Gets or sets the ProgramDataService.
-            </summary>
-        </member>
-        <member name="M:ProdData.Services.PlaybackService.UpdateDataFromProgramDataService">
-            <summary>
-            The UpdateDataFromProgramDataService.
-            </summary>
         </member>
         <member name="P:ProdData.Services.PlaybackService.ProgramSteps">
             <summary>
@@ -829,11 +796,6 @@
         <member name="P:ProdData.Services.PlaybackService.CycleTime">
             <summary>
             Gets or sets the CycleTime.
-            </summary>
-        </member>
-        <member name="P:ProdData.Services.PlaybackService.RunningProgram">
-            <summary>
-            Gets or sets the RunningProgram.
             </summary>
         </member>
         <member name="P:ProdData.Services.PlaybackService.ProductImage">
@@ -892,18 +854,6 @@
             The RaiseError.
             </summary>
         </member>
-        <member name="M:ProdData.Services.PlaybackService.LoadProgram(ProductionCore.Interfaces.IProgramData)">
-            <summary>
-            The LoadProgram.
-            </summary>
-            <param name="program">The program<see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
-        </member>
-        <member name="M:ProdData.Services.PlaybackService.RetrieveProgram(ProductionCore.Interfaces.IProgramData)">
-            <summary>
-            The RetrieveProgram.
-            </summary>
-            <param name="programData">The programData <see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
-        </member>
         <member name="M:ProdData.Services.PlaybackService.CompleteCycle">
             <summary>
             The CompleteCycle.
@@ -924,24 +874,6 @@
             The Halt.
             </summary>
         </member>
-        <member name="M:ProdData.Services.PlaybackService.GenerateRandomProgram(ProductionCore.Interfaces.IProgramData)">
-            <summary>
-            The GenerateRandomProgram.
-            </summary>
-            <param name="programData">The programData <see cref="T:ProductionCore.Interfaces.IProgramData"/>.</param>
-        </member>
-        <member name="M:ProdData.Services.PlaybackService.ChooseRandomImage">
-            <summary>
-            The ChooseRandomImage.
-            </summary>
-            <returns>The <see cref="T:System.Windows.Media.Imaging.BitmapImage"/>.</returns>
-        </member>
-        <member name="M:ProdData.Services.PlaybackService.RandomCoordinates">
-            <summary>
-            The RandomCoordinates.
-            </summary>
-            <returns>The <see cref="T:System.String"/>.</returns>
-        </member>
         <member name="T:ProdData.ViewModels.ProdDataViewModel">
             <summary>
             Defines the <see cref="T:ProdData.ViewModels.ProdDataViewModel" />.
@@ -952,15 +884,26 @@
             Defines the _playbackService.
             </summary>
         </member>
-        <member name="M:ProdData.ViewModels.ProdDataViewModel.#ctor(ProductionCore.Interfaces.IPlaybackService)">
+        <member name="F:ProdData.ViewModels.ProdDataViewModel._mediationService">
+            <summary>
+            Defines the _mediationService.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.#ctor(ProductionCore.Interfaces.IPlaybackService,ProductionCore.Interfaces.IMediationService)">
             <summary>
             Initializes a new instance of the <see cref="T:ProdData.ViewModels.ProdDataViewModel"/> class.
             </summary>
             <param name="playbackService">The playbackService<see cref="T:ProductionCore.Interfaces.IPlaybackService"/>.</param>
+            <param name="mediationService">The mediationService<see cref="T:ProductionCore.Interfaces.IMediationService"/>.</param>
         </member>
         <member name="P:ProdData.ViewModels.ProdDataViewModel.PlaybackService">
             <summary>
             Gets the PlaybackService.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdDataViewModel.MediationService">
+            <summary>
+            Gets the MediationService.
             </summary>
         </member>
         <member name="P:ProdData.ViewModels.ProdDataViewModel.OpenProgramSelect">
