@@ -18,14 +18,14 @@
     public class ProdTestGenerator : IModule
     {
         /// <summary>
-        /// Defines the _regionManager.
-        /// </summary>
-        private readonly IRegionManager _regionManager;
-
-        /// <summary>
         /// Defines the FileService.
         /// </summary>
         public FileService FileService;
+
+        /// <summary>
+        /// Defines the _regionManager.
+        /// </summary>
+        private readonly IRegionManager _regionManager;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProdTestGenerator"/> class.

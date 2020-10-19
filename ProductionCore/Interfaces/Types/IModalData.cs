@@ -1,12 +1,13 @@
 ﻿namespace ProductionCore.Interfaces
 {
+    using System.ComponentModel;
     using System.Windows.Media.Imaging;
     using Telerik.Windows.Controls;
 
     /// <summary>
     /// Defines the <see cref="IModalData" />.
     /// </summary>
-    public interface IModalData
+    public interface IModalData : INotifyPropertyChanged
     {
         /// <summary>
         /// Gets or sets a value indicating whether IsError...

@@ -2,7 +2,6 @@
 {
     using System;
     using global::ProductionCore.Interfaces;
-    using Prism.Commands;
     using Prism.Mvvm;
 
     /// <summary>

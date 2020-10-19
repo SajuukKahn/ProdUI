@@ -5,10 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:ProdData.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:prism="http://prismlibrary.com/"
-    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
-    prism:ViewModelLocator.AutoWireViewModel="True"
     Background="#AA000000"
     Visibility="{Binding ModalService.ModalActive, Converter={StaticResource BooleanToVisibilityConverter}}"
     mc:Ignorable="d">
@@ -49,7 +46,7 @@
 
                 <telerik:RadPathButton Command="{Binding Path=Custom}" Foreground="#BBBB00">
                     <StackPanel Orientation="Horizontal">
-                        <telerik:Label Content="{Binding ModalService.ActiveModalData.CustomText}" />
+                        <telerik:Label Content="{Binding ModalService.ActiveModalData.CustomText, Mode=TwoWay}" />
                         <telerik:RadGlyph Glyph="{Binding ModalService.ActiveModalData.CustomGlyph}" />
                     </StackPanel>
                 </telerik:RadPathButton>

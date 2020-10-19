@@ -9,14 +9,14 @@
             Defines the <see cref="T:ProdTestGenerator.ProdTestGenerator" />.
             </summary>
         </member>
-        <member name="F:ProdTestGenerator.ProdTestGenerator._regionManager">
-            <summary>
-            Defines the _regionManager.
-            </summary>
-        </member>
         <member name="F:ProdTestGenerator.ProdTestGenerator.FileService">
             <summary>
             Defines the FileService.
+            </summary>
+        </member>
+        <member name="F:ProdTestGenerator.ProdTestGenerator._regionManager">
+            <summary>
+            Defines the _regionManager.
             </summary>
         </member>
         <member name="M:ProdTestGenerator.ProdTestGenerator.#ctor(Prism.Regions.IRegionManager)">

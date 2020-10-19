@@ -926,6 +926,21 @@
             Defines the <see cref="T:ProdData.ViewModels.ProdModalDialogViewModel" />.
             </summary>
         </member>
+        <member name="F:ProdData.ViewModels.ProdModalDialogViewModel._modalService">
+            <summary>
+            Defines the _modalService.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProdModalDialogViewModel._modalImage">
+            <summary>
+            Defines the _modalImage.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProdModalDialogViewModel._modalInstructions">
+            <summary>
+            Defines the _modalInstructions.
+            </summary>
+        </member>
         <member name="M:ProdData.ViewModels.ProdModalDialogViewModel.#ctor(ProductionCore.Interfaces.IModalService,ProductionCore.Interfaces.IPlaybackService)">
             <summary>
             Initializes a new instance of the <see cref="T:ProdData.ViewModels.ProdModalDialogViewModel"/> class.
@@ -936,6 +951,16 @@
         <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.ModalService">
             <summary>
             Gets the ModalService.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.ModalImage">
+            <summary>
+            Gets or sets the ModalImage.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.ModalInstructions">
+            <summary>
+            Gets or sets the ModalInstructions.
             </summary>
         </member>
         <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.Abort">

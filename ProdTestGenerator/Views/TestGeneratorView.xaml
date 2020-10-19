@@ -50,19 +50,19 @@
             </StackPanel>
         </Button>
 
-        <Button Margin="3" Command="{Binding Path=ThrowError}">
+        <!--<Button Margin="3" Command="{Binding Path=ThrowError}">
             <StackPanel Orientation="Horizontal">
                 <telerik:Label Content="Generic Error" />
                 <telerik:RadGlyph Glyph="{StaticResource GlyphWarning}" />
             </StackPanel>
-        </Button>
+        </Button>-->
 
-        <!--<Button Margin="3" Command="{Binding Path=ThrowCardError}">
+        <Button Margin="3" Command="{Binding Path=ThrowCardError}">
             <StackPanel Orientation="Horizontal">
                 <telerik:Label Content="Throw Card Error" />
                 <telerik:RadGlyph Glyph="{StaticResource GlyphWarning}" />
             </StackPanel>
-        </Button>-->
+        </Button>
 
     </UniformGrid>
 </UserControl>

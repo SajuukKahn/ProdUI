@@ -366,6 +366,11 @@
             PlayAvailable = false;
             PauseAvailable = true;
             ProgramPaused = false;
+
+            if (CurrentCard!.StepModalData != null && CurrentCard!.StepModalData.IsError == false)
+            {
+                _modalService.ShowModal(CurrentCard!.StepModalData);
+            }
         }
 
         /// <summary>
@@ -388,7 +393,6 @@
                 modalData.CanAbort = true;
                 modalData.IsError = true;
                 modalData.Card = CurrentCard;
-
                 _modalService.ShowModal(modalData);
             }
             else
