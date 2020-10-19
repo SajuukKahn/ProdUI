@@ -46,8 +46,8 @@
 
                 <telerik:RadPathButton Command="{Binding Path=Custom}" Foreground="#BBBB00">
                     <StackPanel Orientation="Horizontal">
-                        <telerik:Label Content="{Binding ModalService.ActiveModalData.CustomText, Mode=TwoWay}" />
-                        <telerik:RadGlyph Glyph="{Binding ModalService.ActiveModalData.CustomGlyph}" />
+                        <telerik:Label Content="{Binding ModalService.ActiveModalData.CustomButtonText}" />
+                        <telerik:RadGlyph Glyph="{Binding ModalService.ActiveModalData.CustomButtonGlyph}" />
                     </StackPanel>
                 </telerik:RadPathButton>
 
@@ -70,7 +70,7 @@
                 Padding="15"
                 HorizontalAlignment="Stretch"
                 HorizontalContentAlignment="Center"
-                Content="{Binding ModalService.ActiveModalData.ModalInstructions, FallbackValue=-}"
+                Content="{Binding ModalService.ActiveModalData.Instructions, FallbackValue=-}"
                 DockPanel.Dock="Top"
                 FontSize="24" />
 
@@ -80,7 +80,7 @@
                 Stretch="Uniform">
                 <Grid>
                     <Image Source="{telerik:RadGlyph Glyph={StaticResource GlyphWarning}}" />
-                    <Image Source="{Binding ModalService.ActiveModalData.ImageSource}" />
+                    <Image Source="{Binding ModalService.ActiveModalData.InstructionImage}" />
                 </Grid>
             </Viewbox>
         </DockPanel>

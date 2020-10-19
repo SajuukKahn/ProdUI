@@ -645,9 +645,9 @@
             Defines the <see cref="T:ProductionCore.Services.GlobalCommands" />.
             </summary>
         </member>
-        <member name="F:ProductionCore.Services.GlobalCommands.RequestProgram">
+        <member name="P:ProductionCore.Services.GlobalCommands.RequestProgram">
             <summary>
-            Defines the RequestProgram.
+            Gets or sets defines the RequestProgram.
             </summary>
         </member>
         <member name="T:ProductionCore.Services.MediationService">

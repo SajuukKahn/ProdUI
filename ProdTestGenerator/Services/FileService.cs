@@ -145,7 +145,7 @@
             fiducialCard.StepModalData!.Card = null;
             fiducialCard.StepModalData!.Instructions = "Fiducials Failed, Select an option below";
             fiducialCard.StepModalData!.InstructionImage = image;
-            fiducialCard.StepModalData!.IsError = false;
+            fiducialCard.StepModalData!.IsError = true;
             cards.Add(fiducialCard);
             int randSize = new Random().Next(2, 8);
 
@@ -161,7 +161,7 @@
             surfaceCard.StepModalData!.CanRetry = true;
             surfaceCard.StepModalData!.Card = null;
             surfaceCard.StepModalData!.Instructions = "Surface Height Checks failed, Select an option below";
-            surfaceCard.StepModalData!.IsError = false;
+            surfaceCard.StepModalData!.IsError = true;
             cards.Add(surfaceCard);
 
             randSize = new Random().Next(4, 12);
@@ -190,7 +190,7 @@
                     card.StepModalData!.CanRetry = true;
                     card.StepModalData!.Card = null;
                     card.StepModalData!.Instructions = "Part Presence Check failed, Select an option below";
-                    card.StepModalData!.IsError = false;
+                    card.StepModalData!.IsError = true;
                 }
 
                 cards.Add(card);

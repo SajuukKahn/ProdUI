@@ -1,276 +1,503 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>ProdTestGenerator</name>
+        <name>ProdProgramSelect</name>
     </assembly>
     <members>
-        <member name="T:ProdTestGenerator.ProdTestGenerator">
+        <member name="T:ProdProgramSelect.Extensions.GridViewHeaderMenu">
             <summary>
-            Defines the <see cref="T:ProdTestGenerator.ProdTestGenerator" />.
+            Defines the <see cref="T:ProdProgramSelect.Extensions.GridViewHeaderMenu" />.
             </summary>
         </member>
-        <member name="F:ProdTestGenerator.ProdTestGenerator.FileService">
+        <member name="F:ProdProgramSelect.Extensions.GridViewHeaderMenu.IsEnabledProperty">
             <summary>
-            Defines the FileService.
+            Defines the IsEnabledProperty.
             </summary>
         </member>
-        <member name="F:ProdTestGenerator.ProdTestGenerator._regionManager">
+        <member name="F:ProdProgramSelect.Extensions.GridViewHeaderMenu._grid">
+            <summary>
+            Defines the _grid.
+            </summary>
+        </member>
+        <member name="M:ProdProgramSelect.Extensions.GridViewHeaderMenu.#ctor(Telerik.Windows.Controls.RadGridView)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdProgramSelect.Extensions.GridViewHeaderMenu"/> class.
+            </summary>
+            <param name="grid">The grid<see cref="T:Telerik.Windows.Controls.RadGridView"/>.</param>
+        </member>
+        <member name="M:ProdProgramSelect.Extensions.GridViewHeaderMenu.SetIsEnabled(System.Windows.DependencyObject,System.Boolean)">
+            <summary>
+            The SetIsEnabled.
+            </summary>
+            <param name="dependencyObject">The dependencyObject<see cref="T:System.Windows.DependencyObject"/>.</param>
+            <param name="enabled">The enabled<see cref="T:System.Boolean"/>.</param>
+        </member>
+        <member name="M:ProdProgramSelect.Extensions.GridViewHeaderMenu.GetIsEnabled(System.Windows.DependencyObject)">
+            <summary>
+            The GetIsEnabled.
+            </summary>
+            <param name="dependencyObject">The dependencyObject<see cref="T:System.Windows.DependencyObject"/>.</param>
+            <returns>The <see cref="T:System.Boolean"/>.</returns>
+        </member>
+        <member name="M:ProdProgramSelect.Extensions.GridViewHeaderMenu.OnMenuOpened(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            The OnMenuOpened.
+            </summary>
+            <param name="sender">The sender<see cref="T:System.Object"/>.</param>
+            <param name="e">The e<see cref="T:System.Windows.RoutedEventArgs"/>.</param>
+        </member>
+        <member name="M:ProdProgramSelect.Extensions.GridViewHeaderMenu.OnMenuItemClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            The OnMenuItemClick.
+            </summary>
+            <param name="sender">The sender<see cref="T:System.Object"/>.</param>
+            <param name="e">The e<see cref="T:System.Windows.RoutedEventArgs"/>.</param>
+        </member>
+        <member name="M:ProdProgramSelect.Extensions.GridViewHeaderMenu.OnIsEnabledPropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            The OnIsEnabledPropertyChanged.
+            </summary>
+            <param name="dependencyObject">The dependencyObject<see cref="T:System.Windows.DependencyObject"/>.</param>
+            <param name="e">The e<see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/>.</param>
+        </member>
+        <member name="M:ProdProgramSelect.Extensions.GridViewHeaderMenu.Attach">
+            <summary>
+            The Attach.
+            </summary>
+        </member>
+        <member name="T:ProdProgramSelect.Factories.BarcodeFactory">
+            <summary>
+            Defines the <see cref="T:ProdProgramSelect.Factories.BarcodeFactory" />.
+            </summary>
+        </member>
+        <member name="M:ProdProgramSelect.Factories.BarcodeFactory.Create(System.String,System.Windows.Media.Imaging.BitmapImage)">
+            <summary>
+            The Create.
+            </summary>
+            <param name="barcodeData">The barcodeData<see cref="T:System.String"/>.</param>
+            <param name="barcodeImage">The barcodeImage<see cref="T:System.Windows.Media.Imaging.BitmapImage"/>.</param>
+            <returns>The <see cref="T:ProductionCore.Interfaces.IBarcode"/>.</returns>
+        </member>
+        <member name="M:ProdProgramSelect.Factories.BarcodeFactory.Create">
+            <summary>
+            The Create.
+            </summary>
+            <returns>The <see cref="T:ProductionCore.Interfaces.IBarcode"/>.</returns>
+        </member>
+        <member name="T:ProdProgramSelect.Factories.ProgramDataFactory">
+            <summary>
+            Defines the <see cref="T:ProdProgramSelect.Factories.ProgramDataFactory" />.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.Factories.ProgramDataFactory._barcodeFactory">
+            <summary>
+            Defines the _barcodeFactory.
+            </summary>
+        </member>
+        <member name="M:ProdProgramSelect.Factories.ProgramDataFactory.#ctor(ProductionCore.Interfaces.IBarcodeFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdProgramSelect.Factories.ProgramDataFactory"/> class.
+            </summary>
+            <param name="barcodeFactory">Resolved registered type for <see cref="T:ProductionCore.Interfaces.IBarcodeFactory"/>.</param>
+        </member>
+        <member name="M:ProdProgramSelect.Factories.ProgramDataFactory.Create">
+            <summary>
+            The Create.
+            </summary>
+            <returns>The <see cref="T:ProductionCore.Interfaces.IProgramData"/>.</returns>
+        </member>
+        <member name="T:ProdProgramSelect.Models.Barcode">
+            <summary>
+            Defines the <see cref="T:ProdProgramSelect.Models.Barcode" />.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.Models.Barcode._barcodeData">
+            <summary>
+            Defines the _barcodeData.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.Models.Barcode._barcodeImage">
+            <summary>
+            Defines the _barcodeImage.
+            </summary>
+        </member>
+        <member name="M:ProdProgramSelect.Models.Barcode.#ctor(System.String,System.Windows.Media.Imaging.BitmapImage)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdProgramSelect.Models.Barcode"/> class.
+            </summary>
+            <param name="barcodeData">The barcodeData<see cref="T:System.String"/>.</param>
+            <param name="barcodeImage">The barcodeImage<see cref="T:System.Windows.Media.Imaging.BitmapImage"/>.</param>
+        </member>
+        <member name="P:ProdProgramSelect.Models.Barcode.BarcodeData">
+            <summary>
+            Gets or sets the BarcodeData.
+            </summary>
+        </member>
+        <member name="P:ProdProgramSelect.Models.Barcode.BarcodeImage">
+            <summary>
+            Gets or sets the BarcodeImage.
+            </summary>
+        </member>
+        <member name="T:ProdProgramSelect.Models.ProgramData">
+            <summary>
+            Defines the <see cref="T:ProdProgramSelect.Models.ProgramData" />.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.Models.ProgramData._barcode">
+            <summary>
+            Defines the _barcode.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.Models.ProgramData._autoStartPlayback">
+            <summary>
+            Defines the _autoStartPlayback.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.Models.ProgramData._averageCycleTime">
+            <summary>
+            Defines the _averageCycleTime.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.Models.ProgramData._createdDate">
+            <summary>
+            Defines the _createdDate.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.Models.ProgramData._dimensions">
+            <summary>
+            Defines the _dimensions.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.Models.ProgramData._cycles">
+            <summary>
+            Defines the _cycles.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.Models.ProgramData._isFavorite">
+            <summary>
+            Defines the _isFavorite.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.Models.ProgramData._lastEditDate">
+            <summary>
+            Defines the _lastEditDate.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.Models.ProgramData._productImage">
+            <summary>
+            Defines the _productImage.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.Models.ProgramData._productName">
+            <summary>
+            Defines the _productName.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.Models.ProgramData._programCreator">
+            <summary>
+            Defines the _programCreator.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.Models.ProgramData._programName">
+            <summary>
+            Defines the _programName.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.Models.ProgramData._toolsUsed">
+            <summary>
+            Defines the _toolsUsed.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.Models.ProgramData._userCanStartPlayback">
+            <summary>
+            Defines the _userCanStartPlayback.
+            </summary>
+        </member>
+        <member name="M:ProdProgramSelect.Models.ProgramData.#ctor(ProductionCore.Interfaces.IBarcode)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdProgramSelect.Models.ProgramData"/> class.
+            </summary>
+            <param name="barcode">The barcode<see cref="T:ProductionCore.Interfaces.IBarcode"/>.</param>
+        </member>
+        <member name="P:ProdProgramSelect.Models.ProgramData.AutoStartPlayback">
+            <summary>
+            Gets or sets a value indicating whether AutoStartPlayback.
+            </summary>
+        </member>
+        <member name="P:ProdProgramSelect.Models.ProgramData.AverageCycleTime">
+            <summary>
+            Gets or sets the AverageCycleTime.
+            </summary>
+        </member>
+        <member name="P:ProdProgramSelect.Models.ProgramData.Barcode">
+            <summary>
+            Gets or sets the Barcode.
+            </summary>
+        </member>
+        <member name="P:ProdProgramSelect.Models.ProgramData.CreatedDate">
+            <summary>
+            Gets or sets the CreatedDate.
+            </summary>
+        </member>
+        <member name="P:ProdProgramSelect.Models.ProgramData.Dimensions">
+            <summary>
+            Gets or sets the Dimensions.
+            </summary>
+        </member>
+        <member name="P:ProdProgramSelect.Models.ProgramData.Cycles">
+            <summary>
+            Gets or sets the Cycles.
+            </summary>
+        </member>
+        <member name="P:ProdProgramSelect.Models.ProgramData.IsFavorite">
+            <summary>
+            Gets or sets a value indicating whether IsFavorite.
+            </summary>
+        </member>
+        <member name="P:ProdProgramSelect.Models.ProgramData.LastEditDate">
+            <summary>
+            Gets or sets the LastEditDate.
+            </summary>
+        </member>
+        <member name="P:ProdProgramSelect.Models.ProgramData.ProductImage">
+            <summary>
+            Gets or sets the ProductImage.
+            </summary>
+        </member>
+        <member name="P:ProdProgramSelect.Models.ProgramData.ProductName">
+            <summary>
+            Gets or sets the ProductName.
+            </summary>
+        </member>
+        <member name="P:ProdProgramSelect.Models.ProgramData.ProgramCreator">
+            <summary>
+            Gets or sets the ProgramCreator.
+            </summary>
+        </member>
+        <member name="P:ProdProgramSelect.Models.ProgramData.ProgramName">
+            <summary>
+            Gets or sets the ProgramName.
+            </summary>
+        </member>
+        <member name="P:ProdProgramSelect.Models.ProgramData.ToolsUsed">
+            <summary>
+            Gets or sets the ToolsUsed.
+            </summary>
+        </member>
+        <member name="P:ProdProgramSelect.Models.ProgramData.UserCanStartPlayback">
+            <summary>
+            Gets or sets a value indicating whether UserCanStartPlayback.
+            </summary>
+        </member>
+        <member name="M:ProdProgramSelect.Models.ProgramData.UpdateAverageCycleTime(System.TimeSpan)">
+            <summary>
+            The UpdateAverageCycleTime.
+            </summary>
+            <param name="newestCycleTime">The newestCycleTime<see cref="T:System.TimeSpan"/>.</param>
+        </member>
+        <member name="M:ProdProgramSelect.Models.ProgramData.UpdateLastEditDate">
+            <summary>
+            The UpdateLastEditDate.
+            </summary>
+        </member>
+        <member name="T:ProdProgramSelect.ProdProgramSelect">
+            <summary>
+            Defines the <see cref="T:ProdProgramSelect.ProdProgramSelect" />.
+            </summary>
+        </member>
+        <member name="F:ProdProgramSelect.ProdProgramSelect._regionManager">
             <summary>
             Defines the _regionManager.
             </summary>
         </member>
-        <member name="M:ProdTestGenerator.ProdTestGenerator.#ctor(Prism.Regions.IRegionManager)">
+        <member name="M:ProdProgramSelect.ProdProgramSelect.#ctor(Prism.Regions.IRegionManager)">
             <summary>
-            Initializes a new instance of the <see cref="T:ProdTestGenerator.ProdTestGenerator"/> class.
+            Initializes a new instance of the <see cref="T:ProdProgramSelect.ProdProgramSelect"/> class.
             </summary>
             <param name="regionManager">The regionManager<see cref="T:Prism.Regions.IRegionManager"/>.</param>
         </member>
-        <member name="M:ProdTestGenerator.ProdTestGenerator.OnInitialized(Prism.Ioc.IContainerProvider)">
+        <member name="M:ProdProgramSelect.ProdProgramSelect.OnInitialized(Prism.Ioc.IContainerProvider)">
             <summary>
             The OnInitialized.
             </summary>
             <param name="containerProvider">The containerProvider<see cref="T:Prism.Ioc.IContainerProvider"/>.</param>
         </member>
-        <member name="M:ProdTestGenerator.ProdTestGenerator.RegisterTypes(Prism.Ioc.IContainerRegistry)">
+        <member name="M:ProdProgramSelect.ProdProgramSelect.RegisterTypes(Prism.Ioc.IContainerRegistry)">
             <summary>
             The RegisterTypes.
             </summary>
             <param name="containerRegistry">The containerRegistry<see cref="T:Prism.Ioc.IContainerRegistry"/>.</param>
         </member>
-        <member name="T:ProdTestGenerator.Services.ControllerService">
+        <member name="T:ProdProgramSelect.Services.ProgramDataService">
             <summary>
-            Defines the <see cref="T:ProdTestGenerator.Services.ControllerService" />.
+            Defines the <see cref="T:ProdProgramSelect.Services.ProgramDataService" />.
             </summary>
         </member>
-        <member name="F:ProdTestGenerator.Services.ControllerService._playbackService">
-            <summary>
-            Defines the _playbackService.
-            </summary>
-        </member>
-        <member name="F:ProdTestGenerator.Services.ControllerService._mediationService">
+        <member name="F:ProdProgramSelect.Services.ProgramDataService._mediationService">
             <summary>
             Defines the _mediationService.
             </summary>
         </member>
-        <member name="F:ProdTestGenerator.Services.ControllerService._programCancellationTokenSource">
+        <member name="F:ProdProgramSelect.Services.ProgramDataService._canConfirm">
             <summary>
-            Defines the _programCancellationTokenSource.
+            Defines the _canConfirm.
             </summary>
         </member>
-        <member name="F:ProdTestGenerator.Services.ControllerService._programCancelToken">
+        <member name="F:ProdProgramSelect.Services.ProgramDataService._selectedProgramData">
             <summary>
-            Defines the _programCancelToken.
+            Defines the _selectedProgramData.
             </summary>
         </member>
-        <member name="F:ProdTestGenerator.Services.ControllerService._programIsInProgress">
+        <member name="F:ProdProgramSelect.Services.ProgramDataService._programList">
             <summary>
-            Defines the _programIsInProgress.
+            Defines the _programList.
             </summary>
         </member>
-        <member name="M:ProdTestGenerator.Services.ControllerService.#ctor(ProductionCore.Interfaces.IPlaybackService,ProductionCore.Interfaces.IMediationService)">
+        <member name="M:ProdProgramSelect.Services.ProgramDataService.#ctor(ProductionCore.Interfaces.IMediationService)">
             <summary>
-            Initializes a new instance of the <see cref="T:ProdTestGenerator.Services.ControllerService"/> class.
+            Initializes a new instance of the <see cref="T:ProdProgramSelect.Services.ProgramDataService"/> class.
             </summary>
-            <param name="playbackService">The playbackService<see cref="T:ProductionCore.Interfaces.IPlaybackService"/>.</param>
             <param name="mediationService">The mediationService<see cref="T:ProductionCore.Interfaces.IMediationService"/>.</param>
         </member>
-        <member name="M:ProdTestGenerator.Services.ControllerService.BeginExecution">
+        <member name="P:ProdProgramSelect.Services.ProgramDataService.ProgramList">
             <summary>
-            The BeginExecution.
+            Gets or sets the ProgramList.
             </summary>
         </member>
-        <member name="M:ProdTestGenerator.Services.ControllerService.EndExecution">
+        <member name="P:ProdProgramSelect.Services.ProgramDataService.SelectedProgramData">
             <summary>
-            The EndExecution.
+            Gets or sets the SelectedProgramData.
             </summary>
         </member>
-        <member name="M:ProdTestGenerator.Services.ControllerService.SendAdvance">
+        <member name="P:ProdProgramSelect.Services.ProgramDataService.CanCancel">
             <summary>
-            The SendAdvance.
+            Gets a value indicating whether CanCancel.
             </summary>
         </member>
-        <member name="M:ProdTestGenerator.Services.ControllerService.RunProg">
+        <member name="P:ProdProgramSelect.Services.ProgramDataService.CanConfirm">
             <summary>
-            The RunProg.
+            Gets a value indicating whether CanConfirm.
             </summary>
         </member>
-        <member name="T:ProdTestGenerator.Services.FileService">
+        <member name="M:ProdProgramSelect.Services.ProgramDataService.ProgramSelectClose">
             <summary>
-            Defines the <see cref="T:ProdTestGenerator.Services.FileService" />.
+            The ProgramSelectClose.
             </summary>
         </member>
-        <member name="F:ProdTestGenerator.Services.FileService._playbackService">
+        <member name="M:ProdProgramSelect.Services.ProgramDataService.SetSelectedProgramAsCurrent">
             <summary>
-            Defines the _playbackService.
+            The SetSelectedProgramAsCurrent.
             </summary>
         </member>
-        <member name="F:ProdTestGenerator.Services.FileService._modalService">
+        <member name="M:ProdProgramSelect.Services.ProgramDataService.SetConfirmStatus">
             <summary>
-            Defines the _modalService.
+            The SetConfirmStatus.
             </summary>
         </member>
-        <member name="F:ProdTestGenerator.Services.FileService._mediationService">
+        <member name="T:ProdProgramSelect.ViewModels.ProgramSelectViewModel">
             <summary>
-            Defines the _mediationService.
+            Defines the <see cref="T:ProdProgramSelect.ViewModels.ProgramSelectViewModel" />.
             </summary>
         </member>
-        <member name="F:ProdTestGenerator.Services.FileService._programDataService">
+        <member name="F:ProdProgramSelect.ViewModels.ProgramSelectViewModel._programDataService">
             <summary>
             Defines the _programDataService.
             </summary>
         </member>
-        <member name="F:ProdTestGenerator.Services.FileService._cardFactory">
+        <member name="F:ProdProgramSelect.ViewModels.ProgramSelectViewModel._mediationService">
             <summary>
-            Defines the _cardFactory.
+            Defines the _mediationService.
             </summary>
         </member>
-        <member name="F:ProdTestGenerator.Services.FileService._cardSubStepFactory">
+        <member name="M:ProdProgramSelect.ViewModels.ProgramSelectViewModel.#ctor(ProductionCore.Interfaces.IProgramDataService,ProductionCore.Interfaces.IMediationService)">
             <summary>
-            Defines the _cardSubStepFactory.
+            Initializes a new instance of the <see cref="T:ProdProgramSelect.ViewModels.ProgramSelectViewModel"/> class.
             </summary>
-        </member>
-        <member name="F:ProdTestGenerator.Services.FileService._programDataFactory">
-            <summary>
-            Defines the _programDataFactory.
-            </summary>
-        </member>
-        <member name="F:ProdTestGenerator.Services.FileService._dateSwitch">
-            <summary>
-            Defines the _dateSwitch.
-            </summary>
-        </member>
-        <member name="F:ProdTestGenerator.Services.FileService._lastDate">
-            <summary>
-            Defines the _lastDate.
-            </summary>
-        </member>
-        <member name="M:ProdTestGenerator.Services.FileService.#ctor(ProductionCore.Interfaces.IPlaybackService,ProductionCore.Interfaces.IModalService,ProductionCore.Interfaces.IMediationService,ProductionCore.Interfaces.IProgramDataService,ProductionCore.Interfaces.ICardFactory,ProductionCore.Interfaces.ICardSubStepFactory,ProductionCore.Interfaces.IProgramDataFactory)">
-            <summary>
-            Initializes a new instance of the <see cref="T:ProdTestGenerator.Services.FileService"/> class.
-            </summary>
-            <param name="playbackService">The playbackService<see cref="T:ProductionCore.Interfaces.IPlaybackService"/>.</param>
-            <param name="modalService">The modalService<see cref="T:ProductionCore.Interfaces.IModalService"/>.</param>
-            <param name="mediationService">The mediationService<see cref="T:ProductionCore.Interfaces.IMediationService"/>.</param>
             <param name="programDataService">The programDataService<see cref="T:ProductionCore.Interfaces.IProgramDataService"/>.</param>
-            <param name="cardFactory">The cardFactory<see cref="T:ProductionCore.Interfaces.ICardFactory"/>.</param>
-            <param name="cardSubStepFactory">The cardSubStepFactory<see cref="T:ProductionCore.Interfaces.ICardSubStepFactory"/>.</param>
-            <param name="programDataFactory">The programDataFactory<see cref="T:ProductionCore.Interfaces.IProgramDataFactory"/>.</param>
+            <param name="mediationService">The mediationService<see cref="T:ProductionCore.Interfaces.IMediationService"/>.</param>
         </member>
-        <member name="M:ProdTestGenerator.Services.FileService.LoadProgramSteps">
+        <member name="P:ProdProgramSelect.ViewModels.ProgramSelectViewModel.ProgramDataService">
             <summary>
-            The LoadProgramSteps.
+            Gets the ProgramDataService.
             </summary>
         </member>
-        <member name="M:ProdTestGenerator.Services.FileService.LoadProgramCollection">
+        <member name="P:ProdProgramSelect.ViewModels.ProgramSelectViewModel.MediationService">
             <summary>
-            The LoadProgramCollection.
+            Gets the MediationService.
             </summary>
         </member>
-        <member name="M:ProdTestGenerator.Services.FileService.GenerateRandomProgram">
+        <member name="P:ProdProgramSelect.ViewModels.ProgramSelectViewModel.ConfirmButton">
             <summary>
-            The GenerateRandomProgram.
+            Gets or sets the ConfirmButton.
             </summary>
         </member>
-        <member name="M:ProdTestGenerator.Services.FileService.GenerateRandomProgramCollection">
+        <member name="P:ProdProgramSelect.ViewModels.ProgramSelectViewModel.CancelButton">
             <summary>
-            The GenerateRandomProgramCollection.
+            Gets or sets the CancelButton.
             </summary>
         </member>
-        <member name="M:ProdTestGenerator.Services.FileService.GenerateRandomCycleTimeAverage">
+        <member name="M:ProdProgramSelect.ViewModels.ProgramSelectViewModel.CancelProgramChange">
             <summary>
-            The GenerateRandomCycleTimeAverage.
-            </summary>
-            <returns>The <see cref="T:System.TimeSpan"/>.</returns>
-        </member>
-        <member name="M:ProdTestGenerator.Services.FileService.GenerateRandomDateTime">
-            <summary>
-            The GenerateRandomDateTime.
-            </summary>
-            <returns>The <see cref="T:System.DateTime"/>.</returns>
-        </member>
-        <member name="M:ProdTestGenerator.Services.FileService.GenerateRandomString(System.Int32)">
-            <summary>
-            The GenerateRandomString.
-            </summary>
-            <param name="maxLength">The maxLength<see cref="T:System.Int32"/>.</param>
-            <returns>The <see cref="T:System.String"/>.</returns>
-        </member>
-        <member name="M:ProdTestGenerator.Services.FileService.GenerateRandomTools">
-            <summary>
-            The GenerateRandomTools.
-            </summary>
-            <returns>The <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.</returns>
-        </member>
-        <member name="M:ProdTestGenerator.Services.FileService.ChooseRandomImage">
-            <summary>
-            The ChooseRandomImage.
-            </summary>
-            <returns>The <see cref="T:System.Windows.Media.Imaging.BitmapImage"/>.</returns>
-        </member>
-        <member name="M:ProdTestGenerator.Services.FileService.RandomCoordinates">
-            <summary>
-            The RandomCoordinates.
-            </summary>
-            <returns>The <see cref="T:System.String"/>.</returns>
-        </member>
-        <member name="T:ProdTestGenerator.ViewModels.TestGeneratorViewModel">
-            <summary>
-            Defines the <see cref="T:ProdTestGenerator.ViewModels.TestGeneratorViewModel" />.
+            The CancelProgramChange.
             </summary>
         </member>
-        <member name="F:ProdTestGenerator.ViewModels.TestGeneratorViewModel._playbackService">
+        <member name="M:ProdProgramSelect.ViewModels.ProgramSelectViewModel.CleanInstance">
             <summary>
-            Defines the _playbackService.
+            The CleanInstance.
             </summary>
         </member>
-        <member name="M:ProdTestGenerator.ViewModels.TestGeneratorViewModel.#ctor(ProductionCore.Interfaces.IPlaybackService)">
+        <member name="M:ProdProgramSelect.ViewModels.ProgramSelectViewModel.ConfirmProgramChange">
             <summary>
-            Initializes a new instance of the <see cref="T:ProdTestGenerator.ViewModels.TestGeneratorViewModel"/> class.
-            </summary>
-            <param name="playbackService">The playbackService<see cref="T:ProductionCore.Interfaces.IPlaybackService"/>.</param>
-        </member>
-        <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.PlaybackService">
-            <summary>
-            Gets the PlaybackService.
+            The ConfirmProgramChange.
             </summary>
         </member>
-        <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.ChangeProcessImage">
+        <member name="T:ProdProgramSelect.Views.ProgramSelectView">
             <summary>
-            Gets or sets the ChangeProcessImage.
+            Interaction logic for ProgramSelectView.xaml.
+            </summary>
+            <summary>
+            ProgramSelectView
             </summary>
         </member>
-        <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.PauseButton">
+        <member name="M:ProdProgramSelect.Views.ProgramSelectView.#ctor(ProductionCore.Interfaces.IProgramSelectViewModel)">
             <summary>
-            Gets or sets the PauseButton.
+            Initializes a new instance of the <see cref="T:ProdProgramSelect.Views.ProgramSelectView"/> class.
             </summary>
+            <param name="programSelectViewModel">The programSelectViewModel<see cref="T:ProductionCore.Interfaces.IProgramSelectViewModel"/>.</param>
         </member>
-        <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.StartButton">
-            <summary>
-            Gets or sets the StartButton.
-            </summary>
-        </member>
-        <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.ThrowCardError">
-            <summary>
-            Gets or sets the ThrowCardError.
-            </summary>
-        </member>
-        <member name="T:ProdTestGenerator.Views.TestGeneratorView">
-            <summary>
-            Interaction logic for TestGeneratorView.xaml.
-            </summary>
-            <summary>
-            TestGeneratorView
-            </summary>
-        </member>
-        <member name="M:ProdTestGenerator.Views.TestGeneratorView.#ctor(ProductionCore.Interfaces.ITestGeneratorViewModel)">
-            <summary>
-            Initializes a new instance of the <see cref="T:ProdTestGenerator.Views.TestGeneratorView"/> class.
-            </summary>
-            <param name="testGeneratorViewModel">The testGeneratorViewModel<see cref="T:ProductionCore.Interfaces.ITestGeneratorViewModel"/>.</param>
-        </member>
-        <member name="M:ProdTestGenerator.Views.TestGeneratorView.InitializeComponent">
+        <member name="M:ProdProgramSelect.Views.ProgramSelectView.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
             </summary>
         </member>
     </members>
