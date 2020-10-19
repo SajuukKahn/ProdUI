@@ -78,7 +78,7 @@
                         Margin="3"
                         Command="{Binding Path=CancelButton}"
                         DockPanel.Dock="Left"
-                        IsEnabled="{Binding MediationService.CanCancel}">
+                        IsEnabled="{Binding ProgramDataService.CanCancel}">
                         <StackPanel Orientation="Horizontal">
                             <telerik:Label Content="Cancel" />
                             <telerik:RadGlyph Glyph="{StaticResource GlyphClose}" />

@@ -8,8 +8,8 @@
     public static class GlobalCommands
     {
         /// <summary>
-        /// Defines the RequestProgram.
+        /// Gets or sets defines the RequestProgram.
         /// </summary>
-        public static CompositeCommand RequestProgram = new CompositeCommand();
+        public static CompositeCommand RequestProgram { get; set; } = new CompositeCommand();
     }
 }

@@ -16,11 +16,6 @@
     public class ProdTestGenerator : IModule
     {
         /// <summary>
-        /// Defines the FileService.
-        /// </summary>
-        public FileService FileService;
-
-        /// <summary>
         /// Defines the _regionManager.
         /// </summary>
         private readonly IRegionManager _regionManager;
@@ -33,6 +28,11 @@
         {
             _regionManager = regionManager;
         }
+
+        /// <summary>
+        /// Gets or sets the FileService.
+        /// </summary>
+        public FileService? FileService { get; set; }
 
         /// <summary>
         /// The OnInitialized.

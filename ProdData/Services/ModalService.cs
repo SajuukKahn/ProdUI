@@ -98,21 +98,23 @@
             }
             else
             {
+                ModalActive = true;
                 ActiveModalData = modalData;
             }
 
-            if (ActiveModalData.Card == null)
+            if (ActiveModalData.Card != null)
             {
-                ActiveModalData.Instructions = "The Step \"" + ActiveModalData.Card.StepTitle + "\" Failed at step #" + (ActiveModalData.Card.CardStepIndex + 1).ToString() + Environment.NewLine + "Select an action below:";
-                ActiveModalData.InstructionImage = (BitmapImage)ActiveModalData.Card.StepImage! ?? null;
+                if (ActiveModalData.Card.StepModalData == null)
+                {
+                    ActiveModalData.Instructions = "The Step \"" + ActiveModalData.Card.StepTitle + "\" Failed at step #" + (ActiveModalData.Card.CardStepIndex + 1).ToString() + Environment.NewLine + "Select an action below:";
+                    ActiveModalData.InstructionImage = (BitmapImage)ActiveModalData.Card.StepImage! ?? null;
+                }
             }
 
             if (ActiveModalData.CustomButtonGlyph != null && ActiveModalData.CustomButtonText != null)
             {
                 ActiveModalData.CanCustom = true;
             }
-
-            ModalActive = true;
         }
 
         /// <summary>
