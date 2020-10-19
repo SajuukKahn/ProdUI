@@ -4,21 +4,14 @@
     using System.Collections.ObjectModel;
     using System.Drawing;
     using System.Windows.Media.Imaging;
-    using Prism.Commands;
     using ProductionCore.Interfaces;
     using ProductionCore.Interfaces.Services;
-    using ProductionCore.Services;
 
     /// <summary>
     /// Defines the <see cref="FileService" />.
     /// </summary>
     public class FileService : IFileService
     {
-        /// <summary>
-        /// Defines the _playbackService.
-        /// </summary>
-        private readonly IPlaybackService _playbackService;
-
         /// <summary>
         /// Defines the _modalService.
         /// </summary>
@@ -28,11 +21,6 @@
         /// Defines the _mediationService.
         /// </summary>
         private readonly IMediationService _mediationService;
-
-        /// <summary>
-        /// Defines the _programDataService.
-        /// </summary>
-        private readonly IProgramDataService _programDataService;
 
         /// <summary>
         /// Defines the _cardFactory.
@@ -62,53 +50,45 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="FileService"/> class.
         /// </summary>
-        /// <param name="playbackService">The playbackService<see cref="IPlaybackService"/>.</param>
         /// <param name="modalService">The modalService<see cref="IModalService"/>.</param>
         /// <param name="mediationService">The mediationService<see cref="IMediationService"/>.</param>
-        /// <param name="programDataService">The programDataService<see cref="IProgramDataService"/>.</param>
         /// <param name="cardFactory">The cardFactory<see cref="ICardFactory"/>.</param>
         /// <param name="cardSubStepFactory">The cardSubStepFactory<see cref="ICardSubStepFactory"/>.</param>
         /// <param name="programDataFactory">The programDataFactory<see cref="IProgramDataFactory"/>.</param>
         public FileService(
-            IPlaybackService playbackService,
             IModalService modalService,
             IMediationService mediationService,
-            IProgramDataService programDataService,
             ICardFactory cardFactory,
             ICardSubStepFactory cardSubStepFactory,
             IProgramDataFactory programDataFactory)
         {
-            _playbackService = playbackService;
             _modalService = modalService;
             _mediationService = mediationService;
-            _programDataService = programDataService;
             _cardFactory = cardFactory;
             _cardSubStepFactory = cardSubStepFactory;
             _programDataFactory = programDataFactory;
-            GlobalCommands.RequestProgram.RegisterCommand(new DelegateCommand(LoadProgramSteps));
-            LoadProgramCollection();
         }
 
         /// <summary>
         /// The LoadProgramSteps.
         /// </summary>
-        public void LoadProgramSteps()
+        public ObservableCollection<ICard?> LoadProgramSteps()
         {
-            GenerateRandomProgram();
+            return GenerateRandomProgram();
         }
 
         /// <summary>
         /// The LoadProgramCollection.
         /// </summary>
-        public void LoadProgramCollection()
+        public ObservableCollection<IProgramData> LoadProgramCollection()
         {
-            GenerateRandomProgramCollection();
+            return GenerateRandomProgramCollection();
         }
 
         /// <summary>
         /// The GenerateRandomProgram.
         /// </summary>
-        private void GenerateRandomProgram()
+        private ObservableCollection<ICard?> GenerateRandomProgram()
         {
             string[] titleArray = { "PolyLine 3D", "Area", "Move", "Line", "PolyLine", "Arc", "Spiral", "Rectangular Sprial", "Dot", "Part Presense Check" };
 
@@ -196,14 +176,15 @@
                 cards.Add(card);
             }
 
-            _playbackService.ProgramSteps = cards;
+            return cards;
         }
 
         /// <summary>
         /// The GenerateRandomProgramCollection.
         /// </summary>
-        private void GenerateRandomProgramCollection()
+        private ObservableCollection<IProgramData> GenerateRandomProgramCollection()
         {
+            var programCollection = new ObservableCollection<IProgramData>();
             int randsize = new Random().Next(7, 45);
 
             string[] makernames =
@@ -244,7 +225,7 @@
                     prog.Barcode!.BarcodeImage = new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\BAR" + new Random().Next(1, 4).ToString() + ".bmp", UriKind.RelativeOrAbsolute));
                 }
 
-                _programDataService.ProgramList.Add(prog);
+                programCollection.Add(prog);
             }
 
             IProgramData progA = _programDataFactory.Create();
@@ -260,7 +241,9 @@
             progA.ToolsUsed = GenerateRandomTools();
             progA.UserCanStartPlayback = false;
             progA.AutoStartPlayback = true;
-            _programDataService.ProgramList.Add(progA);
+            programCollection.Add(progA);
+
+            return programCollection;
         }
 
         /// <summary>

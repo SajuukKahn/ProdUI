@@ -3,6 +3,7 @@
     using System.Collections.ObjectModel;
     using Prism.Mvvm;
     using ProductionCore.Interfaces;
+    using ProductionCore.Interfaces.Services;
 
     /// <summary>
     /// Defines the <see cref="ProgramDataService" />.
@@ -13,6 +14,10 @@
         /// Defines the _mediationService.
         /// </summary>
         private readonly IMediationService _mediationService;
+
+        private readonly IFileService _fileService;
+
+        private readonly IPlaybackService _playbackService;
 
         /// <summary>
         /// Defines the _canConfirm.
@@ -33,9 +38,13 @@
         /// Initializes a new instance of the <see cref="ProgramDataService"/> class.
         /// </summary>
         /// <param name="mediationService">The mediationService<see cref="IMediationService"/>.</param>
-        public ProgramDataService(IMediationService mediationService)
+        public ProgramDataService(IMediationService mediationService, IFileService fileService, IPlaybackService playbackService)
         {
             _mediationService = mediationService;
+            _fileService = fileService;
+            _playbackService = playbackService;
+
+            _programList = fileService.LoadProgramCollection();
         }
 
         /// <summary>
@@ -111,6 +120,7 @@
         public void SetSelectedProgramAsCurrent()
         {
             _mediationService.CurrentProgram = SelectedProgramData;
+            _playbackService.ProgramSteps = _fileService.LoadProgramSteps();
         }
 
         /// <summary>
