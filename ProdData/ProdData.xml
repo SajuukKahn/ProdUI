@@ -931,16 +931,6 @@
             Defines the _modalService.
             </summary>
         </member>
-        <member name="F:ProdData.ViewModels.ProdModalDialogViewModel._modalImage">
-            <summary>
-            Defines the _modalImage.
-            </summary>
-        </member>
-        <member name="F:ProdData.ViewModels.ProdModalDialogViewModel._modalInstructions">
-            <summary>
-            Defines the _modalInstructions.
-            </summary>
-        </member>
         <member name="M:ProdData.ViewModels.ProdModalDialogViewModel.#ctor(ProductionCore.Interfaces.IModalService,ProductionCore.Interfaces.IPlaybackService)">
             <summary>
             Initializes a new instance of the <see cref="T:ProdData.ViewModels.ProdModalDialogViewModel"/> class.
@@ -951,16 +941,6 @@
         <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.ModalService">
             <summary>
             Gets the ModalService.
-            </summary>
-        </member>
-        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.ModalImage">
-            <summary>
-            Gets or sets the ModalImage.
-            </summary>
-        </member>
-        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.ModalInstructions">
-            <summary>
-            Gets or sets the ModalInstructions.
             </summary>
         </member>
         <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.Abort">
@@ -1019,36 +999,6 @@
         <member name="M:ProdData.Views.ProdModalDialogView.InitializeComponent">
             <summary>
             InitializeComponent
-            </summary>
-        </member>
-        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
-            <summary>
-            GeneratedInternalTypeHelper
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
-            <summary>
-            CreateInstance
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            GetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            SetPropertyValue
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
-            <summary>
-            CreateDelegate
-            </summary>
-        </member>
-        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
-            <summary>
-            AddEventHandler
             </summary>
         </member>
     </members>

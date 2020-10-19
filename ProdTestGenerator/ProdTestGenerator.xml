@@ -99,11 +99,6 @@
             Defines the <see cref="T:ProdTestGenerator.Services.FileService" />.
             </summary>
         </member>
-        <member name="F:ProdTestGenerator.Services.FileService._playbackService">
-            <summary>
-            Defines the _playbackService.
-            </summary>
-        </member>
         <member name="F:ProdTestGenerator.Services.FileService._modalService">
             <summary>
             Defines the _modalService.
@@ -112,11 +107,6 @@
         <member name="F:ProdTestGenerator.Services.FileService._mediationService">
             <summary>
             Defines the _mediationService.
-            </summary>
-        </member>
-        <member name="F:ProdTestGenerator.Services.FileService._programDataService">
-            <summary>
-            Defines the _programDataService.
             </summary>
         </member>
         <member name="F:ProdTestGenerator.Services.FileService._cardFactory">
@@ -144,14 +134,12 @@
             Defines the _lastDate.
             </summary>
         </member>
-        <member name="M:ProdTestGenerator.Services.FileService.#ctor(ProductionCore.Interfaces.IPlaybackService,ProductionCore.Interfaces.IModalService,ProductionCore.Interfaces.IMediationService,ProductionCore.Interfaces.IProgramDataService,ProductionCore.Interfaces.ICardFactory,ProductionCore.Interfaces.ICardSubStepFactory,ProductionCore.Interfaces.IProgramDataFactory)">
+        <member name="M:ProdTestGenerator.Services.FileService.#ctor(ProductionCore.Interfaces.IModalService,ProductionCore.Interfaces.IMediationService,ProductionCore.Interfaces.ICardFactory,ProductionCore.Interfaces.ICardSubStepFactory,ProductionCore.Interfaces.IProgramDataFactory)">
             <summary>
             Initializes a new instance of the <see cref="T:ProdTestGenerator.Services.FileService"/> class.
             </summary>
-            <param name="playbackService">The playbackService<see cref="T:ProductionCore.Interfaces.IPlaybackService"/>.</param>
             <param name="modalService">The modalService<see cref="T:ProductionCore.Interfaces.IModalService"/>.</param>
             <param name="mediationService">The mediationService<see cref="T:ProductionCore.Interfaces.IMediationService"/>.</param>
-            <param name="programDataService">The programDataService<see cref="T:ProductionCore.Interfaces.IProgramDataService"/>.</param>
             <param name="cardFactory">The cardFactory<see cref="T:ProductionCore.Interfaces.ICardFactory"/>.</param>
             <param name="cardSubStepFactory">The cardSubStepFactory<see cref="T:ProductionCore.Interfaces.ICardSubStepFactory"/>.</param>
             <param name="programDataFactory">The programDataFactory<see cref="T:ProductionCore.Interfaces.IProgramDataFactory"/>.</param>

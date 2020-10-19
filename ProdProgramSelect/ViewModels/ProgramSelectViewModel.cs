@@ -3,7 +3,7 @@
     using Prism.Commands;
     using Prism.Mvvm;
     using ProductionCore.Interfaces;
-    using ProductionCore.Services;
+    using ProductionCore.Interfaces.Services;
 
     /// <summary>
     /// Defines the <see cref="ProgramSelectViewModel" />.
@@ -87,7 +87,6 @@
         private void ConfirmProgramChange()
         {
             ProgramDataService.SetSelectedProgramAsCurrent();
-            GlobalCommands.RequestProgram.Execute(null);
             CleanInstance();
         }
     }

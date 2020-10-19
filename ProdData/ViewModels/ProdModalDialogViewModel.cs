@@ -3,7 +3,6 @@
     using Prism.Commands;
     using Prism.Mvvm;
     using ProductionCore.Interfaces;
-    using System.Windows.Media.Imaging;
 
     /// <summary>
     /// Defines the <see cref="ProdModalDialogViewModel" />.

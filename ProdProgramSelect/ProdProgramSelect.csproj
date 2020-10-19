@@ -9,7 +9,7 @@
 	
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-		<DocumentationFile>C:\Users\Mikey Gunz\Source\Repos\SajuukKahn\ProdUI\ProdTestGenerator\ProdTestGenerator.xml</DocumentationFile>
+		<DocumentationFile>C:\Users\Ryan\Source\Repos\SajuukKahn\ProdUI\ProdProgramSelect\ProdProgramSelect.xml</DocumentationFile>
 	</PropertyGroup>
 
   <ItemGroup>

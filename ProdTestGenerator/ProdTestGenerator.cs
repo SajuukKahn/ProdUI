@@ -13,8 +13,6 @@
     /// Defines the <see cref="ProdTestGenerator" />.
     /// </summary>
     [ModuleDependency("ProductionCore")]
-    [ModuleDependency("ProdProgramSelect")]
-    [ModuleDependency("ProdData")]
     public class ProdTestGenerator : IModule
     {
         /// <summary>
@@ -45,7 +43,6 @@
             IRegion region = _regionManager.Regions["TestRegion"];
             var view = containerProvider.Resolve<TestGeneratorView>();
             region.Add(view);
-            FileService = containerProvider.Resolve<FileService>();
         }
 
         /// <summary>
@@ -56,7 +53,7 @@
         {
             containerRegistry.Register<IControllerService, ControllerService>();
             containerRegistry.Register<ITestGeneratorViewModel, TestGeneratorViewModel>();
-            containerRegistry.RegisterInstance<IFileService>(FileService);
+            containerRegistry.RegisterSingleton<IFileService, FileService>();
         }
     }
 }
