@@ -70,7 +70,7 @@
 
             set
             {
-                SetProperty(ref _modalActive, value, () => { _mediationService.PlaybackPaused = true; });
+                SetProperty(ref _modalActive, value, () => _mediationService.PauseExecution());
             }
         }
 

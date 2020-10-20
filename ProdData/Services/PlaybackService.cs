@@ -1,9 +1,9 @@
 ﻿namespace ProdData.Services
 {
-    using System.Collections.ObjectModel;
-    using System.Windows.Media.Imaging;
     using Prism.Mvvm;
     using ProductionCore.Interfaces;
+    using System.Collections.ObjectModel;
+    using System.Windows.Media.Imaging;
 
     /// <summary>
     /// Defines the <see cref="PlaybackService" />.
@@ -335,10 +335,17 @@
         /// </summary>
         public void Pause()
         {
-            PauseCard();
             ProgramPaused = true;
             PauseAvailable = false;
-            _mediationService.PlaybackPaused = true;
+            _mediationService.PauseExecution();
+        }
+
+        /// <summary>
+        /// The RunningStepPaused.
+        /// </summary>
+        public void RunningStepPaused()
+        {
+            PauseCard();
             PlaybackRunning = false;
             PlayAvailable = true;
             AllowProgramChange = true;
@@ -357,7 +364,7 @@
             if (PlaybackRunning == false)
             {
                 CycleTime?.Start();
-                _mediationService.BeginExecute = true;
+                _mediationService.BeginExecute();
             }
 
             CurrentCard!.StartCard();
@@ -386,6 +393,11 @@
         /// </summary>
         public void RaiseError()
         {
+            if (CurrentCard == null)
+            {
+                return;
+            }
+
             Halt();
             if (CurrentCard!.StepModalData == null)
             {
@@ -439,7 +451,6 @@
         /// </summary>
         private void HandleChangedProgramData()
         {
-            // TODO: This doesn't fire when the collection is updated?
             CurrentCardIndex = 0;
             CurrentCard = _programSteps![0];
             PlayAvailable = _mediationService.CurrentProgram?.UserCanStartPlayback ?? false;
@@ -458,7 +469,7 @@
         {
             Pause();
             CycleTime?.Pause();
-            _mediationService.EndExecute = true;
+            _mediationService.EndExecute();
         }
     }
 }

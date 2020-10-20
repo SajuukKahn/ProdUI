@@ -15,8 +15,14 @@
         /// </summary>
         private readonly IMediationService _mediationService;
 
+        /// <summary>
+        /// Defines the _fileService.
+        /// </summary>
         private readonly IFileService _fileService;
 
+        /// <summary>
+        /// Defines the _playbackService.
+        /// </summary>
         private readonly IPlaybackService _playbackService;
 
         /// <summary>
@@ -38,6 +44,8 @@
         /// Initializes a new instance of the <see cref="ProgramDataService"/> class.
         /// </summary>
         /// <param name="mediationService">The mediationService<see cref="IMediationService"/>.</param>
+        /// <param name="fileService">The fileService<see cref="IFileService"/>.</param>
+        /// <param name="playbackService">The playbackService<see cref="IPlaybackService"/>.</param>
         public ProgramDataService(IMediationService mediationService, IFileService fileService, IPlaybackService playbackService)
         {
             _mediationService = mediationService;

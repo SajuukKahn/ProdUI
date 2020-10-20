@@ -14,5 +14,10 @@
         /// The EndExecution.
         /// </summary>
         void EndExecution();
+
+        /// <summary>
+        /// The PauseExecution.
+        /// </summary>
+        void PauseExecution();
     }
 }

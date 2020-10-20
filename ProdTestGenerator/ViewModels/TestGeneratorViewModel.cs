@@ -1,10 +1,10 @@
 ﻿namespace ProdTestGenerator.ViewModels
 {
-    using System;
-    using System.Windows.Media.Imaging;
     using Prism.Commands;
     using Prism.Mvvm;
     using ProductionCore.Interfaces;
+    using System;
+    using System.Windows.Media.Imaging;
 
     /// <summary>
     /// Defines the <see cref="TestGeneratorViewModel" />.
@@ -23,7 +23,7 @@
         public TestGeneratorViewModel(IPlaybackService playbackService)
         {
             _playbackService = playbackService;
-            StartButton = new DelegateCommand(() => PlaybackService.Play()).ObservesCanExecute(() => PlaybackService.PlayAvailable);
+            StartButton = new DelegateCommand(() => PlaybackService.Play());
             PauseButton = new DelegateCommand(() => PlaybackService.Pause()).ObservesCanExecute(() => PlaybackService.PauseAvailable);
             ChangeProcessImage = new DelegateCommand(() => { PlaybackService.ProductImage = new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\PCB" + new Random().Next(1, 9).ToString() + ".bmp", UriKind.RelativeOrAbsolute)); });
             ThrowCardError = new DelegateCommand(() => PlaybackService.RaiseError());

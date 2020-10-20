@@ -72,6 +72,7 @@
         /// <summary>
         /// The LoadProgramSteps.
         /// </summary>
+        /// <returns>The <see cref="ObservableCollection{ICard}"/>.</returns>
         public ObservableCollection<ICard?> LoadProgramSteps()
         {
             return GenerateRandomProgram();
@@ -80,6 +81,7 @@
         /// <summary>
         /// The LoadProgramCollection.
         /// </summary>
+        /// <returns>The <see cref="ObservableCollection{IProgramData}"/>.</returns>
         public ObservableCollection<IProgramData> LoadProgramCollection()
         {
             return GenerateRandomProgramCollection();
@@ -88,6 +90,7 @@
         /// <summary>
         /// The GenerateRandomProgram.
         /// </summary>
+        /// <returns>The <see cref="ObservableCollection{ICard}"/>.</returns>
         private ObservableCollection<ICard?> GenerateRandomProgram()
         {
             string[] titleArray = { "PolyLine 3D", "Area", "Move", "Line", "PolyLine", "Arc", "Spiral", "Rectangular Sprial", "Dot", "Part Presense Check" };
@@ -182,6 +185,7 @@
         /// <summary>
         /// The GenerateRandomProgramCollection.
         /// </summary>
+        /// <returns>The <see cref="ObservableCollection{IProgramData}"/>.</returns>
         private ObservableCollection<IProgramData> GenerateRandomProgramCollection()
         {
             var programCollection = new ObservableCollection<IProgramData>();

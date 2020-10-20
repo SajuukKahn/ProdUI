@@ -3,7 +3,6 @@
     using Prism.Commands;
     using Prism.Mvvm;
     using ProductionCore.Interfaces;
-    using ProductionCore.Interfaces.Services;
 
     /// <summary>
     /// Defines the <see cref="ProgramSelectViewModel" />.

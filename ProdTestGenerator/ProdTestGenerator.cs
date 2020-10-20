@@ -51,7 +51,7 @@
         /// <param name="containerRegistry">The containerRegistry<see cref="IContainerRegistry"/>.</param>
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.Register<IControllerService, ControllerService>();
+            containerRegistry.RegisterSingleton<IControllerService, ControllerService>();
             containerRegistry.Register<ITestGeneratorViewModel, TestGeneratorViewModel>();
             containerRegistry.RegisterSingleton<IFileService, FileService>();
         }

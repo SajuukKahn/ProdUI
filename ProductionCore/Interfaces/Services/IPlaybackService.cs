@@ -19,22 +19,22 @@
         bool AllowProgramChange { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether ProgramPaused........
+        /// Gets or sets a value indicating whether ProgramPaused.
         /// </summary>
         bool ProgramPaused { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether PauseAvailable....
+        /// Gets or sets a value indicating whether PauseAvailable.
         /// </summary>
         bool PauseAvailable { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether PlayAvailable....
+        /// Gets or sets a value indicating whether PlayAvailable.
         /// </summary>
         bool PlayAvailable { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether PlaybackRunning....
+        /// Gets or sets a value indicating whether PlaybackRunning.
         /// </summary>
         bool PlaybackRunning { get; set; }
 
@@ -78,6 +78,12 @@
         /// The Pause.
         /// </summary>
         void Pause();
+
+        /// <summary>
+        /// Defines the RunningStepPaused.
+        /// </summary>
+        void RunningStepPaused();
+
 
         /// <summary>
         /// The Play.

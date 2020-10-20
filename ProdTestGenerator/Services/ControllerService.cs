@@ -1,6 +1,7 @@
 ﻿namespace ProdTestGenerator.Services
 {
     using System;
+    using System.Diagnostics;
     using System.Threading;
     using System.Threading.Tasks;
     using ProductionCore.Interfaces;
@@ -16,11 +17,6 @@
         private readonly IPlaybackService _playbackService;
 
         /// <summary>
-        /// Defines the _mediationService.
-        /// </summary>
-        private readonly IMediationService _mediationService;
-
-        /// <summary>
         /// Defines the _programCancellationTokenSource.
         /// </summary>
         private CancellationTokenSource? _programCancellationTokenSource;
@@ -31,6 +27,11 @@
         private CancellationToken _programCancelToken;
 
         /// <summary>
+        /// Defines the _pauseComplete.
+        /// </summary>
+        private bool _pauseComplete;
+
+        /// <summary>
         /// Defines the _programIsInProgress.
         /// </summary>
         private bool _programIsInProgress;
@@ -39,18 +40,22 @@
         /// Initializes a new instance of the <see cref="ControllerService"/> class.
         /// </summary>
         /// <param name="playbackService">The playbackService<see cref="IPlaybackService"/>.</param>
-        /// <param name="mediationService">The mediationService<see cref="IMediationService"/>.</param>
-        public ControllerService(IPlaybackService playbackService, IMediationService mediationService)
+        public ControllerService(IPlaybackService playbackService)
         {
             _playbackService = playbackService;
-            _mediationService = mediationService;
         }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether ExecutionPaused.
+        /// </summary>
+        public bool ExecutionPaused { get; set; }
 
         /// <summary>
         /// The BeginExecution.
         /// </summary>
         public void BeginExecution()
         {
+            Debug.WriteLine("Begin Execute called");
             if (_programIsInProgress == false)
             {
                 RunProg();
@@ -69,11 +74,11 @@
         }
 
         /// <summary>
-        /// The SendAdvance.
+        /// The PauseExecution.
         /// </summary>
-        private void SendAdvance()
+        public void PauseExecution()
         {
-            _playbackService.AdvanceStep();
+            ExecutionPaused = true;
         }
 
         /// <summary>
@@ -97,6 +102,7 @@
             var task = Task.Run(
                 () =>
                 {
+                    Debug.WriteLine("Task started");
                     _programIsInProgress = true;
                     while (true)
                     {
@@ -106,17 +112,20 @@
                             return;
                         }
 
-                        if (_mediationService.PlaybackPaused && !_mediationService.PauseComplete)
+                        if (ExecutionPaused && !_pauseComplete)
                         {
-                            _mediationService.PauseComplete = true;
+                            _playbackService.RunningStepPaused();
+                            _pauseComplete = true;
+                            Debug.WriteLine("Pause Complete");
                         }
 
-                        if (!_mediationService.PlaybackPaused)
+                        if (!ExecutionPaused)
                         {
                             Thread.Sleep(TimeSpan.FromSeconds(new Random().Next(2, 5) + new Random().NextDouble()));
-                            if (!_mediationService.PlaybackPaused)
+                            if (!ExecutionPaused)
                             {
-                                SendAdvance();
+                                Debug.WriteLine("Send Advance");
+                                _playbackService.AdvanceStep();
                             }
                         }
                     }

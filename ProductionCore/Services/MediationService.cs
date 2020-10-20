@@ -1,8 +1,8 @@
 ﻿namespace ProductionCore.Services
 {
-    using System;
     using global::ProductionCore.Interfaces;
     using Prism.Mvvm;
+    using System;
 
     /// <summary>
     /// Defines the <see cref="MediationService" />.
@@ -10,98 +10,14 @@
     public class MediationService : BindableBase, IMediationService
     {
         /// <summary>
-        /// Defines the _playbackPaused.
-        /// </summary>
-        private bool _playbackPaused;
-
-        /// <summary>
-        /// Defines the _pauseComplete.
-        /// </summary>
-        private bool _pauseComplete;
-
-        /// <summary>
-        /// Defines the _beginExecute.
-        /// </summary>
-        private bool _beginExecute;
-
-        /// <summary>
         /// Defines the _programRequestShow.
         /// </summary>
         private bool _programRequestShow;
 
         /// <summary>
-        /// Defines the _endExecute.
-        /// </summary>
-        private bool _endExecute;
-
-        /// <summary>
         /// Defines the _currentProgram.
         /// </summary>
         private IProgramData? _currentProgram;
-
-        /// <summary>
-        /// Gets or sets a value indicating whether PlaybackPaused.
-        /// </summary>
-        public bool PlaybackPaused
-        {
-            get
-            {
-                return _playbackPaused;
-            }
-
-            set
-            {
-                SetProperty(ref _playbackPaused, value);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether PauseComplete.
-        /// </summary>
-        public bool PauseComplete
-        {
-            get
-            {
-                return _pauseComplete;
-            }
-
-            set
-            {
-                SetProperty(ref _pauseComplete, value);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether BeginExecute.
-        /// </summary>
-        public bool BeginExecute
-        {
-            get
-            {
-                return _beginExecute;
-            }
-
-            set
-            {
-                SetProperty(ref _beginExecute, value);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether EndExecute.
-        /// </summary>
-        public bool EndExecute
-        {
-            get
-            {
-                return _endExecute;
-            }
-
-            set
-            {
-                SetProperty(ref _endExecute, value);
-            }
-        }
 
         /// <summary>
         /// Gets or sets a value indicating whether ProgramRequestShow.
@@ -116,6 +32,7 @@
             set
             {
                 SetProperty(ref _programRequestShow, value);
+                RaisePropertyChanged(nameof(ProgramRequestShow));
             }
         }
 
@@ -132,6 +49,7 @@
             set
             {
                 SetProperty(ref _currentProgram, value);
+                RaisePropertyChanged(nameof(CurrentProgram));
             }
         }
 
@@ -149,6 +67,27 @@
 
             CurrentProgram!.Cycles++;
             CurrentProgram.AverageCycleTime = default(TimeSpan).Add(CurrentProgram.AverageCycleTime.Add(cycleTime.TimeSpan)).Divide(2);
+        }
+
+        /// <summary>
+        /// The PauseExecution.
+        /// </summary>
+        public void PauseExecution()
+        {
+        }
+
+        /// <summary>
+        /// The BeginExecute.
+        /// </summary>
+        public void BeginExecute()
+        {
+        }
+
+        /// <summary>
+        /// The EndExecute.
+        /// </summary>
+        public void EndExecute()
+        {
         }
     }
 }
