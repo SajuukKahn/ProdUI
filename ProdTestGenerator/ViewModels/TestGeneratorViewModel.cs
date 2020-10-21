@@ -1,10 +1,10 @@
 ﻿namespace ProdTestGenerator.ViewModels
 {
+    using System;
+    using System.Windows.Media.Imaging;
     using Prism.Commands;
     using Prism.Mvvm;
     using ProductionCore.Interfaces;
-    using System;
-    using System.Windows.Media.Imaging;
 
     /// <summary>
     /// Defines the <see cref="TestGeneratorViewModel" />.

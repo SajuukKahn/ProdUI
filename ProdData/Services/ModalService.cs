@@ -11,11 +11,6 @@
     public class ModalService : BindableBase, IModalService
     {
         /// <summary>
-        /// Defines the _mediationService.
-        /// </summary>
-        private readonly IMediationService _mediationService;
-
-        /// <summary>
         /// Defines the _modalFactory.
         /// </summary>
         private readonly IModalFactory _modalFactory;
@@ -34,10 +29,8 @@
         /// Initializes a new instance of the <see cref="ModalService"/> class.
         /// </summary>
         /// <param name="modalFactory">The modalFactory<see cref="IModalFactory"/>.</param>
-        /// <param name="mediationService">The mediationService<see cref="IMediationService"/>.</param>
-        public ModalService(IModalFactory modalFactory, IMediationService mediationService)
+        public ModalService(IModalFactory modalFactory)
         {
-            _mediationService = mediationService;
             _modalFactory = modalFactory;
             _activeModalData = _modalFactory.CreateModalData();
         }
@@ -70,7 +63,7 @@
 
             set
             {
-                SetProperty(ref _modalActive, value, () => _mediationService.PauseExecution());
+                SetProperty(ref _modalActive, value);
             }
         }
 

@@ -135,7 +135,7 @@
             ICard surfaceCard = _cardFactory.Create();
             for (int i = 0; i < randSize; i++)
             {
-                surfaceCard.CardSubSteps?.Add(_cardSubStepFactory.Create("Surface " + (i + 1), RandomCoordinates()));
+                surfaceCard.CardSubSteps?.Add(_cardSubStepFactory.Create("Surface " + (i + 1).ToString(), RandomCoordinates()));
             }
 
             surfaceCard.StepTitle = "Surface Height Check";
@@ -153,11 +153,10 @@
                 int randSteps = new Random().Next(1, 8);
                 string stepTitle = titleArray[new Random().Next(titleArray.Length)];
                 ICard card = _cardFactory.Create();
-                card.CardSubSteps?.Add(_cardSubStepFactory.Create(stepTitle, RandomCoordinates()));
                 card.StepTitle = stepTitle;
                 for (int j = 0; j < randSteps; j++)
                 {
-                    card.CardSubSteps?.Add(_cardSubStepFactory.Create(stepTitle + " " + (j + 1), RandomCoordinates()));
+                    card.CardSubSteps?.Add(_cardSubStepFactory.Create(stepTitle + " " + (j + 1).ToString(), RandomCoordinates()));
                 }
 
                 if (new Random().Next(0, 4) == 1)

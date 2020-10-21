@@ -1,8 +1,8 @@
 ﻿namespace ProductionCore.Services
 {
+    using System;
     using global::ProductionCore.Interfaces;
     using Prism.Mvvm;
-    using System;
 
     /// <summary>
     /// Defines the <see cref="MediationService" />.
@@ -67,27 +67,6 @@
 
             CurrentProgram!.Cycles++;
             CurrentProgram.AverageCycleTime = default(TimeSpan).Add(CurrentProgram.AverageCycleTime.Add(cycleTime.TimeSpan)).Divide(2);
-        }
-
-        /// <summary>
-        /// The PauseExecution.
-        /// </summary>
-        public void PauseExecution()
-        {
-        }
-
-        /// <summary>
-        /// The BeginExecute.
-        /// </summary>
-        public void BeginExecute()
-        {
-        }
-
-        /// <summary>
-        /// The EndExecute.
-        /// </summary>
-        public void EndExecute()
-        {
         }
     }
 }

@@ -18,21 +18,6 @@
         IProgramData? CurrentProgram { get; set; }
 
         /// <summary>
-        /// The PauseExecution.
-        /// </summary>
-        void PauseExecution();
-
-        /// <summary>
-        /// The BeginExecute.
-        /// </summary>
-        void BeginExecute();
-
-        /// <summary>
-        /// The EndExecute.
-        /// </summary>
-        void EndExecute();
-
-        /// <summary>
         /// The SaveProgram.
         /// </summary>
         /// <param name="programSuccessful">The programSuccessful<see cref="bool"/>.</param>

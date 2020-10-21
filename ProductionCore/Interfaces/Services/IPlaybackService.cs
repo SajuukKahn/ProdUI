@@ -1,5 +1,6 @@
 ﻿namespace ProductionCore.Interfaces
 {
+    using System;
     using System.Collections.ObjectModel;
     using System.Windows.Media.Imaging;
 
@@ -9,32 +10,47 @@
     public interface IPlaybackService
     {
         /// <summary>
+        /// Defines the PauseInitiated.
+        /// </summary>
+        event Action PauseInitiated;
+
+        /// <summary>
+        /// Defines the PlayBackInitiated.
+        /// </summary>
+        event Action PlaybackInitiated;
+
+        /// <summary>
+        /// Defines the HaltInitiated.
+        /// </summary>
+        event Action HaltInitiated;
+
+        /// <summary>
         /// Gets or sets the ProgramSteps.
         /// </summary>
         ObservableCollection<ICard?> ProgramSteps { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether AllowProgramChange.
+        /// Gets or sets a value indicating whether AllowProgramChange..
         /// </summary>
         bool AllowProgramChange { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether ProgramPaused.
+        /// Gets or sets a value indicating whether ProgramPaused..
         /// </summary>
         bool ProgramPaused { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether PauseAvailable.
+        /// Gets or sets a value indicating whether PauseAvailable..
         /// </summary>
         bool PauseAvailable { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether PlayAvailable.
+        /// Gets or sets a value indicating whether PlayAvailable..
         /// </summary>
         bool PlayAvailable { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether PlaybackRunning.
+        /// Gets or sets a value indicating whether PlaybackRunning..
         /// </summary>
         bool PlaybackRunning { get; set; }
 
@@ -83,7 +99,6 @@
         /// Defines the RunningStepPaused.
         /// </summary>
         void RunningStepPaused();
-
 
         /// <summary>
         /// The Play.

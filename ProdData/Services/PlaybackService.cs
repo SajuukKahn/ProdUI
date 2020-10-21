@@ -1,9 +1,10 @@
 ﻿namespace ProdData.Services
 {
-    using Prism.Mvvm;
-    using ProductionCore.Interfaces;
+    using System;
     using System.Collections.ObjectModel;
     using System.Windows.Media.Imaging;
+    using Prism.Mvvm;
+    using ProductionCore.Interfaces;
 
     /// <summary>
     /// Defines the <see cref="PlaybackService" />.
@@ -82,6 +83,21 @@
             _modalService = modalService;
             _mediationService = mediationService;
         }
+
+        /// <summary>
+        /// Defines the PauseInitiated.
+        /// </summary>
+        public event Action? PauseInitiated;
+
+        /// <summary>
+        /// Defines the PlayBackInitiated.
+        /// </summary>
+        public event Action? PlaybackInitiated;
+
+        /// <summary>
+        /// Defines the HaltInitiated.
+        /// </summary>
+        public event Action? HaltInitiated;
 
         /// <summary>
         /// Gets or sets the ProgramSteps.
@@ -337,7 +353,7 @@
         {
             ProgramPaused = true;
             PauseAvailable = false;
-            _mediationService.PauseExecution();
+            PauseInitiated!();
         }
 
         /// <summary>
@@ -364,7 +380,7 @@
             if (PlaybackRunning == false)
             {
                 CycleTime?.Start();
-                _mediationService.BeginExecute();
+                PlaybackInitiated!();
             }
 
             CurrentCard!.StartCard();
@@ -429,7 +445,7 @@
 
             CurrentCardIndex = 0;
 
-            if (_programSteps != null && CurrentCard!.StepModalData?.IsError == false)
+            if (_programSteps != null && _mediationService!.CurrentProgram!.AutoStartPlayback && CurrentCard!.StepModalData?.IsError == false)
             {
                 Play();
             }
@@ -469,7 +485,7 @@
         {
             Pause();
             CycleTime?.Pause();
-            _mediationService.EndExecute();
+            HaltInitiated!();
         }
     }
 }

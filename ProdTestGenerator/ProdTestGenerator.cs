@@ -43,6 +43,7 @@
             IRegion region = _regionManager.Regions["TestRegion"];
             var view = containerProvider.Resolve<TestGeneratorView>();
             region.Add(view);
+            containerProvider.Resolve<IControllerService>();
         }
 
         /// <summary>

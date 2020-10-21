@@ -43,6 +43,9 @@
         public ControllerService(IPlaybackService playbackService)
         {
             _playbackService = playbackService;
+            _playbackService.HaltInitiated += new Action(EndExecution);
+            _playbackService.PauseInitiated += new Action(PauseExecution);
+            _playbackService.PlaybackInitiated += new Action(BeginExecution);
         }
 
         /// <summary>
@@ -56,6 +59,7 @@
         public void BeginExecution()
         {
             Debug.WriteLine("Begin Execute called");
+            ExecutionPaused = false;
             if (_programIsInProgress == false)
             {
                 RunProg();
@@ -67,6 +71,7 @@
         /// </summary>
         public void EndExecution()
         {
+            Debug.WriteLine("End Execution");
             if (_programCancellationTokenSource != null)
             {
                 _programCancellationTokenSource.Cancel();
@@ -78,6 +83,7 @@
         /// </summary>
         public void PauseExecution()
         {
+            Debug.WriteLine("Pause Execution");
             ExecutionPaused = true;
         }
 
