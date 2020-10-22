@@ -58,7 +58,6 @@
         /// </summary>
         public void BeginExecution()
         {
-            Debug.WriteLine("Begin Execute called");
             ExecutionPaused = false;
             if (_programIsInProgress == false)
             {
@@ -74,6 +73,7 @@
             Debug.WriteLine("End Execution");
             if (_programCancellationTokenSource != null)
             {
+                Debug.WriteLine("Cancel Is Not Null");
                 _programCancellationTokenSource.Cancel();
             }
         }
@@ -83,7 +83,6 @@
         /// </summary>
         public void PauseExecution()
         {
-            Debug.WriteLine("Pause Execution");
             ExecutionPaused = true;
         }
 
@@ -108,12 +107,13 @@
             var task = Task.Run(
                 () =>
                 {
-                    Debug.WriteLine("Task started");
+                    Debug.WriteLine("Anonymous Task started");
                     _programIsInProgress = true;
                     while (true)
                     {
                         if (_programCancelToken.IsCancellationRequested)
                         {
+                            Debug.WriteLine("Cancellation Requested in Anonymous Task");
                             _programIsInProgress = false;
                             return;
                         }
@@ -122,7 +122,6 @@
                         {
                             _playbackService.RunningStepPaused();
                             _pauseComplete = true;
-                            Debug.WriteLine("Pause Complete");
                         }
 
                         if (!ExecutionPaused)
@@ -130,7 +129,6 @@
                             Thread.Sleep(TimeSpan.FromSeconds(new Random().Next(2, 5) + new Random().NextDouble()));
                             if (!ExecutionPaused)
                             {
-                                Debug.WriteLine("Send Advance");
                                 _playbackService.AdvanceStep();
                             }
                         }

@@ -2,7 +2,11 @@
 {
     using System;
     using System.Collections.ObjectModel;
+    using System.IO;
+    using System.Linq;
+    using System.Windows;
     using System.Windows.Media.Imaging;
+    using Newtonsoft.Json;
     using Prism.Mvvm;
     using ProductionCore.Interfaces;
 
@@ -90,7 +94,7 @@
         public event Action? PauseInitiated;
 
         /// <summary>
-        /// Defines the PlayBackInitiated.
+        /// Defines the PlaybackInitiated.
         /// </summary>
         public event Action? PlaybackInitiated;
 
@@ -436,7 +440,7 @@
         {
             Halt();
             _mediationService.SaveProgram(true, CycleTime);
-
+            SaveProgram();
             CycleTime!.Reset();
             foreach (ICard? card in _programSteps!)
             {
@@ -483,9 +487,28 @@
         /// </summary>
         private void Halt()
         {
+            HaltInitiated!();
             Pause();
             CycleTime?.Pause();
-            HaltInitiated!();
+            PlaybackRunning = false;
+        }
+
+        /// <summary>
+        /// The SaveProgram.
+        /// </summary>
+        private void SaveProgram()
+        {
+            string filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string fileName = filePath + _mediationService.CurrentProgram!.ProgramName +
+                               "Run#" + _mediationService.CurrentProgram!.Cycles + "_Completed" +
+                               DateTime.Now.ToString("yyyy-MM-d--HH-mm-ss") + ".json";
+            ObservableCollection<ICard?> cards = new ObservableCollection<ICard?>();
+            cards = ProgramSteps;
+            // TODO: other thread owns this... need to fix
+
+            var serializedPathData = JsonConvert.SerializeObject(cards, Formatting.Indented, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All });
+            using StreamWriter stream = new StreamWriter(fileName, false);
+            stream.Write(serializedPathData);
         }
     }
 }

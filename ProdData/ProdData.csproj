@@ -32,6 +32,9 @@
     <Reference Include="Microsoft.Xaml.Behaviors">
       <HintPath>..\Lib\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\Lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Prism">
       <HintPath>..\Lib\Prism.dll</HintPath>
     </Reference>

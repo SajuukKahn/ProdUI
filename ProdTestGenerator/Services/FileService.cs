@@ -147,7 +147,7 @@
             surfaceCard.StepModalData!.IsError = true;
             cards.Add(surfaceCard);
 
-            randSize = new Random().Next(4, 12);
+            randSize = new Random().Next(1, 3);
             for (int i = 0; i < randSize; i++)
             {
                 int randSteps = new Random().Next(1, 8);
