@@ -2,9 +2,8 @@
 {
     using System;
     using System.Collections.ObjectModel;
+    using System.Diagnostics;
     using System.IO;
-    using System.Linq;
-    using System.Windows;
     using System.Windows.Media.Imaging;
     using Newtonsoft.Json;
     using Prism.Mvvm;
@@ -99,9 +98,9 @@
         public event Action? PlaybackInitiated;
 
         /// <summary>
-        /// Defines the HaltInitiated.
+        /// Defines the AbortInitiated.
         /// </summary>
-        public event Action? HaltInitiated;
+        public event Action? AbortInitiated;
 
         /// <summary>
         /// Gets or sets the ProgramSteps.
@@ -268,7 +267,10 @@
         /// </summary>
         public void Abort()
         {
-            Halt();
+            Pause();
+            CycleTime?.Pause();
+            PlaybackRunning = false;
+            AbortInitiated!();
 
             CycleTime!.Reset();
             foreach (ICard? card in _programSteps!)
@@ -323,10 +325,14 @@
         }
 
         /// <summary>
-        /// The RetryStep.
+        /// The RetryCard.
         /// </summary>
         public void RetryCard()
         {
+            PlaybackInitiated!();
+            PauseAvailable = true;
+            PlayAvailable = false;
+            PlaybackRunning = true;
             CurrentCard?.RetryCard();
         }
 
@@ -418,7 +424,8 @@
                 return;
             }
 
-            Halt();
+            Pause();
+
             if (CurrentCard!.StepModalData == null)
             {
                 IModalData modalData = _modalService.CreateModalData();
@@ -438,7 +445,9 @@
         /// </summary>
         private void CompleteCycle()
         {
-            Halt();
+            Pause();
+            PauseCard();
+            PlaybackRunning = false;
             _mediationService.SaveProgram(true, CycleTime);
             SaveProgram();
             CycleTime!.Reset();
@@ -483,30 +492,16 @@
         }
 
         /// <summary>
-        /// The Halt.
-        /// </summary>
-        private void Halt()
-        {
-            HaltInitiated!();
-            Pause();
-            CycleTime?.Pause();
-            PlaybackRunning = false;
-        }
-
-        /// <summary>
         /// The SaveProgram.
         /// </summary>
         private void SaveProgram()
         {
-            string filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string filePath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\";
             string fileName = filePath + _mediationService.CurrentProgram!.ProgramName +
-                               "Run#" + _mediationService.CurrentProgram!.Cycles + "_Completed" +
+                               "__Run#" + _mediationService.CurrentProgram!.Cycles + "__" +
                                DateTime.Now.ToString("yyyy-MM-d--HH-mm-ss") + ".json";
-            ObservableCollection<ICard?> cards = new ObservableCollection<ICard?>();
-            cards = ProgramSteps;
-            // TODO: other thread owns this... need to fix
-
-            var serializedPathData = JsonConvert.SerializeObject(cards, Formatting.Indented, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All });
+            Debug.WriteLine(fileName);
+            var serializedPathData = JsonConvert.SerializeObject(ProgramSteps, Formatting.Indented);
             using StreamWriter stream = new StreamWriter(fileName, false);
             stream.Write(serializedPathData);
         }

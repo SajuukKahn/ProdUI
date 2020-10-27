@@ -4,6 +4,7 @@
     using System.Diagnostics;
     using System.Threading;
     using System.Threading.Tasks;
+    using System.Windows;
     using ProductionCore.Interfaces;
 
     /// <summary>
@@ -15,16 +16,6 @@
         /// Defines the _playbackService.
         /// </summary>
         private readonly IPlaybackService _playbackService;
-
-        /// <summary>
-        /// Defines the _programCancellationTokenSource.
-        /// </summary>
-        private CancellationTokenSource? _programCancellationTokenSource;
-
-        /// <summary>
-        /// Defines the _programCancelToken.
-        /// </summary>
-        private CancellationToken _programCancelToken;
 
         /// <summary>
         /// Defines the _pauseComplete.
@@ -43,7 +34,7 @@
         public ControllerService(IPlaybackService playbackService)
         {
             _playbackService = playbackService;
-            _playbackService.HaltInitiated += new Action(EndExecution);
+            _playbackService.AbortInitiated += new Action(EndExecution);
             _playbackService.PauseInitiated += new Action(PauseExecution);
             _playbackService.PlaybackInitiated += new Action(BeginExecution);
         }
@@ -71,11 +62,7 @@
         public void EndExecution()
         {
             Debug.WriteLine("End Execution");
-            if (_programCancellationTokenSource != null)
-            {
-                Debug.WriteLine("Cancel Is Not Null");
-                _programCancellationTokenSource.Cancel();
-            }
+            _programIsInProgress = false;
         }
 
         /// <summary>
@@ -91,49 +78,69 @@
         /// </summary>
         private void RunProg()
         {
-            if (_programCancellationTokenSource == null)
+            int iterate = 0;
+            foreach (ICard? card in _playbackService.ProgramSteps)
             {
-                _programCancellationTokenSource = new CancellationTokenSource();
-                _programCancelToken = _programCancellationTokenSource.Token;
-            }
-            else
-            {
-                _programCancellationTokenSource.Cancel();
-                _programCancellationTokenSource.Dispose();
-                _programCancellationTokenSource = new CancellationTokenSource();
-                _programCancelToken = _programCancellationTokenSource.Token;
+                iterate += card!.CardSubSteps!.Count;
             }
 
-            var task = Task.Run(
+            Debug.WriteLine(iterate.ToString() + "total substeps");
+
+            _programIsInProgress = true;
+            Task.Run(
                 () =>
                 {
+                    int i = 0;
                     Debug.WriteLine("Anonymous Task started");
-                    _programIsInProgress = true;
-                    while (true)
+                    while (EvaluateProgramPosition() && _programIsInProgress)
                     {
-                        if (_programCancelToken.IsCancellationRequested)
+                        if (ExecutionPaused && !_pauseComplete && _programIsInProgress)
                         {
-                            Debug.WriteLine("Cancellation Requested in Anonymous Task");
-                            _programIsInProgress = false;
-                            return;
-                        }
 
-                        if (ExecutionPaused && !_pauseComplete)
-                        {
-                            _playbackService.RunningStepPaused();
+                            Application.Current.Dispatcher.Invoke(() => _playbackService.RunningStepPaused());
                             _pauseComplete = true;
                         }
 
-                        if (!ExecutionPaused)
+                        if (!ExecutionPaused && _programIsInProgress)
                         {
+                            _pauseComplete = false;
                             Thread.Sleep(TimeSpan.FromSeconds(new Random().Next(2, 5) + new Random().NextDouble()));
-                            if (!ExecutionPaused)
+                            if (!ExecutionPaused && _programIsInProgress)
                             {
-                                _playbackService.AdvanceStep();
+                                Application.Current.Dispatcher.Invoke(() => _playbackService.AdvanceStep());
+                                i++;
                             }
                         }
                     }
-                }, _programCancelToken);
+
+                    if (_programIsInProgress)
+                    {
+                        Application.Current.Dispatcher.Invoke(() => _playbackService.AdvanceStep());
+                        _programIsInProgress = false;
+                    }
+
+                    Debug.WriteLine("Anonymous Task complete");
+                });
+        }
+
+        private bool EvaluateProgramPosition()
+        {
+            int i = 0, j = 0;
+            foreach (ICard? card in _playbackService.ProgramSteps)
+            {
+                foreach (ICardSubStep? subStep in card!.CardSubSteps!)
+                {
+                    i++;
+                    if (card! == _playbackService.CurrentCard && subStep! == _playbackService.CurrentCard!.CardSubSteps![_playbackService.CurrentCard!.CardStepIndex])
+                    {
+                        j = i;
+                    }
+                }
+            }
+
+            Debug.WriteLine(i + " | " + j);
+
+            return j != i;
         }
     }
 }

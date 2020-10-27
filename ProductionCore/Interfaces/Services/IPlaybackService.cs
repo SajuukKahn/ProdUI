@@ -20,9 +20,9 @@
         event Action PlaybackInitiated;
 
         /// <summary>
-        /// Defines the HaltInitiated.
+        /// Defines the AbortInitiated.
         /// </summary>
-        event Action HaltInitiated;
+        event Action AbortInitiated;
 
         /// <summary>
         /// Gets or sets the ProgramSteps.
