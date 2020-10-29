@@ -1,33 +1,68 @@
-﻿using Prism.Commands;
-using Prism.Events;
-using Prism.Mvvm;
-using ProductionCore.Concrete;
-using ProductionCore.Events;
-using ProductionCore.Interfaces;
-using System;
-
-namespace ProdTestGenerator.ViewModels
+﻿namespace ProdTestGenerator.ViewModels
 {
-    public class TestGeneratorViewModel : BindableBase
-    {
-        private readonly IEventAggregator _eventAggregator;
+    using System;
+    using System.Windows.Media.Imaging;
+    using Prism.Commands;
+    using Prism.Mvvm;
+    using ProductionCore.Interfaces;
 
-        public TestGeneratorViewModel(IEventAggregator eventAggregator, IProgramDataFactory programDataFactory)
+    /// <summary>
+    /// Defines the <see cref="TestGeneratorViewModel" />.
+    /// </summary>
+    public class TestGeneratorViewModel : BindableBase, ITestGeneratorViewModel
+    {
+        /// <summary>
+        /// Defines the _playbackService.
+        /// </summary>
+        private readonly IPlaybackService _playbackService;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TestGeneratorViewModel"/> class.
+        /// </summary>
+        /// <param name="playbackService">The playbackService<see cref="IPlaybackService"/>.</param>
+        public TestGeneratorViewModel(IPlaybackService playbackService)
         {
-            _eventAggregator = eventAggregator;
-            StartButton = new DelegateCommand(() => _eventAggregator.GetEvent<StartRequest>().Publish());
-            PauseButton = new DelegateCommand(() => _eventAggregator.GetEvent<PauseRequest>().Publish());
-            ChangeProgram = new DelegateCommand(() => _eventAggregator.GetEvent<ProgramDataRequest>().Publish(programDataFactory.Create()));
-            ChangeProcessImage = new DelegateCommand(() => _eventAggregator.GetEvent<ProductImageChangeRequest>().Publish());
-            ThrowCardError = new DelegateCommand(() => _eventAggregator.GetEvent<RaiseError>().Publish());
-            ThrowError = new DelegateCommand(() => _eventAggregator.GetEvent<ModalEvent>().Publish(new ModalData() { CanAbort = true, Instructions = "Generic Error Raised!" + Environment.NewLine + "Must Abort Program." }));
+            _playbackService = playbackService;
+            StartButton = new DelegateCommand(() => PlaybackService.Play(), PlaybackButtonCanExecute);
+            PauseButton = new DelegateCommand(() => PlaybackService.Pause()).ObservesCanExecute(() => PlaybackService.PauseAvailable);
+            ChangeProcessImage = new DelegateCommand(() => { PlaybackService.ProductImage = new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\PCB" + new Random().Next(1, 9).ToString() + ".bmp", UriKind.RelativeOrAbsolute)); });
+            ThrowCardError = new DelegateCommand(() => PlaybackService.RaiseError()).ObservesCanExecute(() => PlaybackService.PlaybackRunning);
         }
 
+        /// <summary>
+        /// Gets the PlaybackService.
+        /// </summary>
+        public IPlaybackService PlaybackService
+        {
+            get
+            {
+                return _playbackService;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the ChangeProcessImage.
+        /// </summary>
         public DelegateCommand ChangeProcessImage { get; set; }
-        public DelegateCommand ChangeProgram { get; set; }
+
+        /// <summary>
+        /// Gets or sets the PauseButton.
+        /// </summary>
         public DelegateCommand PauseButton { get; set; }
+
+        /// <summary>
+        /// Gets or sets the StartButton.
+        /// </summary>
         public DelegateCommand StartButton { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ThrowCardError.
+        /// </summary>
         public DelegateCommand ThrowCardError { get; set; }
-        public DelegateCommand ThrowError { get; set; }
+
+        private bool PlaybackButtonCanExecute()
+        {
+            return !PlaybackService.PauseAvailable;
+        }
     }
 }

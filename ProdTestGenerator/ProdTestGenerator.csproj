@@ -4,14 +4,26 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWpf>true</UseWpf>
 	  <Nullable>enable</Nullable>
+	  <CodeAnalysisRuleSet>../PVA.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <DocumentationFile>C:\Users\Ryan\Source\Repos\SajuukKahn\ProdUI\ProdTestGenerator\ProdTestGenerator.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ProductionCore\ProductionCore.csproj" />
     <ProjectReference Include="..\ProdUI\ProdUI.csproj" />
   </ItemGroup>
+	
+	<ItemGroup>
+		<Analyzer Include="..\Lib\Analyzers\StyleCop.Analyzers.dll" />
+		<Analyzer Include="..\Lib\Analyzers\StyleCop.Analyzers.CodeFixes.dll" />
+	</ItemGroup>
 
-  <ItemGroup>
+
+	<ItemGroup>
     <Reference Include="CommonServiceLocator">
       <HintPath>..\Lib\CommonServiceLocator.dll</HintPath>
     </Reference>

@@ -1,28 +1,49 @@
-﻿using ProductionCore.Concrete;
-using System;
-using System.Windows;
-using System.Windows.Threading;
-using Telerik.Windows.Controls;
-
-namespace ProdData.Extensions
+﻿namespace ProdData.Extensions
 {
+    using System;
+    using System.Windows;
+    using System.Windows.Threading;
+    using ProductionCore.Interfaces;
+    using Telerik.Windows.Controls;
+
+    /// <summary>
+    /// Defines the <see cref="SelectedIndexFromSelectedItem" />.
+    /// </summary>
     public class SelectedIndexFromSelectedItem : DependencyObject
     {
+        /// <summary>
+        /// Defines the SelectedIndexAttached.
+        /// </summary>
         public static readonly DependencyProperty SelectedIndexAttached = DependencyProperty.RegisterAttached("SelectedIndex", typeof(int), typeof(SelectedIndexFromSelectedItem), new PropertyMetadata(0, SelectedIndexAttachedChanged));
 
+        /// <summary>
+        /// The GetSelectedIndex.
+        /// </summary>
+        /// <param name="d">The d<see cref="DependencyObject"/>.</param>
+        /// <returns>The <see cref="int"/>.</returns>
         public static int GetSelectedIndex(DependencyObject d)
         {
             RadCarousel dpo = (RadCarousel)d;
-            Card card = (Card)dpo.CurrentItem;
+            ICard card = (ICard)dpo.CurrentItem;
             var coll = dpo.Items;
             return coll.IndexOf(card);
         }
 
+        /// <summary>
+        /// The SetSelectedIndex.
+        /// </summary>
+        /// <param name="d">The d<see cref="DependencyObject"/>.</param>
+        /// <param name="value">The value<see cref="int"/>.</param>
         public static void SetSelectedIndex(DependencyObject d, int value)
         {
             d.SetValue(SelectedIndexAttached, value);
         }
 
+        /// <summary>
+        /// The SelectedIndexAttachedChanged.
+        /// </summary>
+        /// <param name="d">The d<see cref="DependencyObject"/>.</param>
+        /// <param name="e">The e<see cref="DependencyPropertyChangedEventArgs"/>.</param>
         private static void SelectedIndexAttachedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             int newLocation = (int)e.NewValue;

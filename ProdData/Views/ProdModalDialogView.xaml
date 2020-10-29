@@ -5,12 +5,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:ProdData.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:prism="http://prismlibrary.com/"
-    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
-    prism:ViewModelLocator.AutoWireViewModel="True"
     Background="#AA000000"
-    Visibility="{Binding ModalOpenRequested, Converter={StaticResource BooleanToVisibilityConverter}}"
+    Visibility="{Binding ModalService.ModalActive, Converter={StaticResource BooleanToVisibilityConverter}}"
     mc:Ignorable="d">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -40,28 +37,28 @@
             LastChildFill="True">
 
             <UniformGrid Columns="4" DockPanel.Dock="Bottom">
-                <telerik:RadPathButton Command="{Binding Path=DelegateAbort}" Foreground="#770000">
+                <telerik:RadPathButton Command="{Binding Path=Abort}" Foreground="#770000">
                     <StackPanel Orientation="Horizontal">
                         <telerik:Label Content="Abort" />
                         <telerik:RadGlyph Glyph="{StaticResource GlyphClose}" />
                     </StackPanel>
                 </telerik:RadPathButton>
 
-                <telerik:RadPathButton Command="{Binding Path=DelegateCustom}" Foreground="#BBBB00">
+                <telerik:RadPathButton Command="{Binding Path=Custom}" Foreground="#BBBB00">
                     <StackPanel Orientation="Horizontal">
-                        <telerik:Label Content="{Binding CustomText}" />
-                        <telerik:RadGlyph Glyph="{Binding CustomGlyph}" />
+                        <telerik:Label Content="{Binding ModalService.ActiveModalData.CustomButtonText}" />
+                        <telerik:RadGlyph Glyph="{Binding ModalService.ActiveModalData.CustomButtonGlyph}" />
                     </StackPanel>
                 </telerik:RadPathButton>
 
-                <telerik:RadPathButton Command="{Binding Path=DelegateRetry}" Foreground="#2222DD">
+                <telerik:RadPathButton Command="{Binding Path=Retry}" Foreground="#2222DD">
                     <StackPanel Orientation="Horizontal">
                         <telerik:Label Content="Retry" />
                         <telerik:RadGlyph Glyph="{StaticResource GlyphReset}" />
                     </StackPanel>
                 </telerik:RadPathButton>
 
-                <telerik:RadPathButton Command="{Binding Path=DelegateContinue}" Foreground="#00BB77">
+                <telerik:RadPathButton Command="{Binding Path=Continue}" Foreground="#00BB77">
                     <StackPanel Orientation="Horizontal">
                         <telerik:Label Content="Resume" />
                         <telerik:RadGlyph Glyph="{StaticResource GlyphPlay}" />
@@ -73,7 +70,7 @@
                 Padding="15"
                 HorizontalAlignment="Stretch"
                 HorizontalContentAlignment="Center"
-                Content="{Binding ModalInstructions}"
+                Content="{Binding ModalService.ActiveModalData.Instructions, FallbackValue=-}"
                 DockPanel.Dock="Top"
                 FontSize="24" />
 
@@ -83,7 +80,7 @@
                 Stretch="Uniform">
                 <Grid>
                     <Image Source="{telerik:RadGlyph Glyph={StaticResource GlyphWarning}}" />
-                    <Image Source="{Binding ImageSource}" />
+                    <Image Source="{Binding ModalService.ActiveModalData.InstructionImage}" />
                 </Grid>
             </Viewbox>
         </DockPanel>
