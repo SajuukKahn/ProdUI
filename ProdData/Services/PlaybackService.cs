@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.ObjectModel;
-    using System.Diagnostics;
     using System.IO;
     using System.Windows.Media.Imaging;
     using Newtonsoft.Json;
@@ -268,7 +267,7 @@
         public void Abort()
         {
             Pause();
-            CycleTime?.Pause();
+            CycleTime!.Pause();
             PlaybackRunning = false;
             AbortInitiated!();
 
@@ -279,13 +278,16 @@
             }
 
             CurrentCardIndex = 0;
+            CurrentCard = ProgramSteps[0];
 
-            if (ProgramSteps != null && _mediationService.CurrentProgram != null && CurrentCard!.StepModalData?.IsError == false)
+            if (ProgramSteps != null && _mediationService.CurrentProgram != null && CurrentCard!.StepModalData?.IsError == false && _mediationService.CurrentProgram.AutoStartPlayback == true && _modalService.ModalActive == false)
             {
-                if (_mediationService.CurrentProgram.AutoStartPlayback == true)
-                {
-                    Play();
-                }
+                Play();
+            }
+            else
+            {
+                PlayAvailable = true;
+                AllowProgramChange = true;
             }
         }
 
@@ -294,6 +296,8 @@
         /// </summary>
         public void AdvanceStep()
         {
+            PlayAvailable = false;
+            PauseAvailable = true;
             if (CurrentCard!.IterateSubStep())
             {
                 if (CurrentCard!.StepModalData != null && CurrentCard!.StepModalData!.IsError == false)
@@ -332,7 +336,6 @@
             PlaybackInitiated!();
             PauseAvailable = true;
             PlayAvailable = false;
-            PlaybackRunning = true;
             CurrentCard?.RetryCard();
         }
 
@@ -361,6 +364,12 @@
         /// </summary>
         public void Pause()
         {
+            if (CurrentCard == null)
+            {
+                return;
+            }
+
+            CurrentCard!.StepStatus = "Pausing...";
             ProgramPaused = true;
             PauseAvailable = false;
             PauseInitiated!();
@@ -372,7 +381,6 @@
         public void RunningStepPaused()
         {
             PauseCard();
-            PlaybackRunning = false;
             PlayAvailable = true;
             AllowProgramChange = true;
         }
@@ -390,20 +398,29 @@
             if (PlaybackRunning == false)
             {
                 CycleTime?.Start();
-                PlaybackInitiated!();
             }
 
-            CurrentCard!.StartCard();
             AllowProgramChange = false;
             PlaybackRunning = true;
-            PlayAvailable = false;
-            PauseAvailable = true;
-            ProgramPaused = false;
-
-            if (CurrentCard!.StepModalData != null && CurrentCard!.StepModalData.IsError == false)
+            if (CurrentCard!.StepModalData != null && CurrentCard!.StepModalData!.IsError == false && _modalService.ModalActive == false)
             {
                 _modalService.ShowModal(CurrentCard!.StepModalData);
+                PlaybackInitiated!();
+                ProgramPaused = true;
+                PauseInitiated!();
+                PlayAvailable = false;
+                PauseAvailable = false;
             }
+            else
+            {
+                PlaybackInitiated!();
+                PlayAvailable = false;
+                PauseAvailable = true;
+                ProgramPaused = false;
+            }
+
+            AllowProgramChange = false;
+            CurrentCard!.StartCard();
         }
 
         /// <summary>
@@ -448,6 +465,7 @@
             Pause();
             PauseCard();
             PlaybackRunning = false;
+            ProgramPaused = false;
             _mediationService.SaveProgram(true, CycleTime);
             SaveProgram();
             CycleTime!.Reset();
@@ -461,6 +479,10 @@
             if (_programSteps != null && _mediationService!.CurrentProgram!.AutoStartPlayback && CurrentCard!.StepModalData?.IsError == false)
             {
                 Play();
+            }
+            else
+            {
+                AllowProgramChange = true;
             }
         }
 
@@ -482,12 +504,25 @@
         {
             CurrentCardIndex = 0;
             CurrentCard = _programSteps![0];
+            PlaybackRunning = false;
+            PauseAvailable = false;
+            PlayAvailable = false;
+            ProgramPaused = true;
+            CycleTime!.Pause();
+            CycleTime!.Reset();
             PlayAvailable = _mediationService.CurrentProgram?.UserCanStartPlayback ?? false;
             CurrentCard!.IsActiveStep = true;
             ProductImage = _mediationService.CurrentProgram!.ProductImage;
             if (_mediationService.CurrentProgram.AutoStartPlayback == true)
             {
+                AllowProgramChange = false;
+                PauseAvailable = true;
                 Play();
+            }
+            else
+            {
+                AllowProgramChange = true;
+                PlayAvailable = true;
             }
         }
 
@@ -500,7 +535,6 @@
             string fileName = filePath + _mediationService.CurrentProgram!.ProgramName +
                                "__Run#" + _mediationService.CurrentProgram!.Cycles + "__" +
                                DateTime.Now.ToString("yyyy-MM-d--HH-mm-ss") + ".json";
-            Debug.WriteLine(fileName);
             var serializedPathData = JsonConvert.SerializeObject(ProgramSteps, Formatting.Indented);
             using StreamWriter stream = new StreamWriter(fileName, false);
             stream.Write(serializedPathData);

@@ -130,7 +130,7 @@
             fiducialCard.StepModalData!.InstructionImage = image;
             fiducialCard.StepModalData!.IsError = true;
             cards.Add(fiducialCard);
-            int randSize = new Random().Next(2, 8);
+            int randSize = new Random().Next(1, 8);
 
             ICard surfaceCard = _cardFactory.Create();
             for (int i = 0; i < randSize; i++)
@@ -147,7 +147,7 @@
             surfaceCard.StepModalData!.IsError = true;
             cards.Add(surfaceCard);
 
-            randSize = new Random().Next(1, 3);
+            randSize = new Random().Next(10, 24);
             for (int i = 0; i < randSize; i++)
             {
                 int randSteps = new Random().Next(1, 8);

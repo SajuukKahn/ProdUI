@@ -31,7 +31,7 @@
 
             Continue = new DelegateCommand(() =>
             {
-                playbackService.AdvanceStep();
+                playbackService.Play();
                 ModalService.CloseModal();
             }).ObservesCanExecute(() => ModalService.ActiveModalData!.CanContinue);
 

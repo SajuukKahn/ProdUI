@@ -23,10 +23,10 @@
         public TestGeneratorViewModel(IPlaybackService playbackService)
         {
             _playbackService = playbackService;
-            StartButton = new DelegateCommand(() => PlaybackService.Play());
+            StartButton = new DelegateCommand(() => PlaybackService.Play(), PlaybackButtonCanExecute);
             PauseButton = new DelegateCommand(() => PlaybackService.Pause()).ObservesCanExecute(() => PlaybackService.PauseAvailable);
             ChangeProcessImage = new DelegateCommand(() => { PlaybackService.ProductImage = new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\PCB" + new Random().Next(1, 9).ToString() + ".bmp", UriKind.RelativeOrAbsolute)); });
-            ThrowCardError = new DelegateCommand(() => PlaybackService.RaiseError());
+            ThrowCardError = new DelegateCommand(() => PlaybackService.RaiseError()).ObservesCanExecute(() => PlaybackService.PlaybackRunning);
         }
 
         /// <summary>
@@ -59,5 +59,10 @@
         /// Gets or sets the ThrowCardError.
         /// </summary>
         public DelegateCommand ThrowCardError { get; set; }
+
+        private bool PlaybackButtonCanExecute()
+        {
+            return !PlaybackService.PauseAvailable;
+        }
     }
 }

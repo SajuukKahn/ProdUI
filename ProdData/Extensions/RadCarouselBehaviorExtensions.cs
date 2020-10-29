@@ -20,17 +20,10 @@
         {
             AssociatedObject.IsHitTestVisibleChanged += (s, e) => SnapToCurrentItem(s, e);
             AssociatedObject.PropertyChanged += (s, e) => PropChangedEventHandler(s, e);
-            AssociatedObject.PreviewMouseWheel += (s, e) => CustomScrollWheelBehavior(s, e);
-        }
-
-        /// <summary>
-        /// The CustomScrollWheelBehavior.
-        /// </summary>
-        /// <param name="s">The s<see cref="object"/>.</param>
-        /// <param name="e">The e<see cref="MouseWheelEventArgs"/>.</param>
-        private void CustomScrollWheelBehavior(object s, MouseWheelEventArgs e)
-        {
-            e.Handled = true;
+            AssociatedObject.PreviewMouseWheel += (s, e) => { e.Handled = true; };
+            AssociatedObject.PreviewKeyDown += (s, e) => { e.Handled = true; };
+            AssociatedObject.PreviewKeyUp += (s, e) => { e.Handled = true; };
+            AssociatedObject.PreviewGotKeyboardFocus += (s, e) => { e.Handled = true; };
         }
 
         /// <summary>
@@ -40,10 +33,13 @@
         /// <param name="e">The e<see cref="PropertyChangedEventArgs"/>.</param>
         private void PropChangedEventHandler(object s, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(RadCarousel.CurrentItem) && !s.Equals(null))
+            if (!s.Equals(null))
             {
                 RadCarousel radCarousel = (RadCarousel)s;
-                Dispatcher.BeginInvoke(new Action(() => { radCarousel.FindCarouselPanel().BringDataItemIntoView(radCarousel.CurrentItem); }), DispatcherPriority.Render);
+                if (radCarousel.SelectedItem == null && e.PropertyName == nameof(RadCarousel.CurrentItem))
+                {
+                    Dispatcher.BeginInvoke(new Action(() => { radCarousel.FindCarouselPanel().BringDataItemIntoView(radCarousel.CurrentItem); }), DispatcherPriority.Render);
+                }
             }
         }
 

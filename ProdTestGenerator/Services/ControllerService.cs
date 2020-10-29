@@ -1,7 +1,6 @@
 ﻿namespace ProdTestGenerator.Services
 {
     using System;
-    using System.Diagnostics;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Windows;
@@ -61,7 +60,6 @@
         /// </summary>
         public void EndExecution()
         {
-            Debug.WriteLine("End Execution");
             _programIsInProgress = false;
         }
 
@@ -78,37 +76,29 @@
         /// </summary>
         private void RunProg()
         {
-            int iterate = 0;
-            foreach (ICard? card in _playbackService.ProgramSteps)
-            {
-                iterate += card!.CardSubSteps!.Count;
-            }
-
-            Debug.WriteLine(iterate.ToString() + "total substeps");
-
             _programIsInProgress = true;
             Task.Run(
                 () =>
                 {
-                    int i = 0;
-                    Debug.WriteLine("Anonymous Task started");
                     while (EvaluateProgramPosition() && _programIsInProgress)
                     {
                         if (ExecutionPaused && !_pauseComplete && _programIsInProgress)
                         {
-
                             Application.Current.Dispatcher.Invoke(() => _playbackService.RunningStepPaused());
                             _pauseComplete = true;
                         }
 
                         if (!ExecutionPaused && _programIsInProgress)
                         {
+                            if (!_pauseComplete)
+                            {
+                                Thread.Sleep(TimeSpan.FromSeconds(new Random().Next(2, 5) + new Random().NextDouble()));
+                            }
+
                             _pauseComplete = false;
-                            Thread.Sleep(TimeSpan.FromSeconds(new Random().Next(2, 5) + new Random().NextDouble()));
                             if (!ExecutionPaused && _programIsInProgress)
                             {
                                 Application.Current.Dispatcher.Invoke(() => _playbackService.AdvanceStep());
-                                i++;
                             }
                         }
                     }
@@ -118,8 +108,6 @@
                         Application.Current.Dispatcher.Invoke(() => _playbackService.AdvanceStep());
                         _programIsInProgress = false;
                     }
-
-                    Debug.WriteLine("Anonymous Task complete");
                 });
         }
 
@@ -137,8 +125,6 @@
                     }
                 }
             }
-
-            Debug.WriteLine(i + " | " + j);
 
             return j != i;
         }
