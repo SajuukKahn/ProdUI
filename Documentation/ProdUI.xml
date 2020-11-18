@@ -5,9 +5,7 @@
     </assembly>
     <members>
         <member name="T:ProdUI.App">
-            <summary>
-            Interaction logic for App.xaml.
-            </summary>
+            <inheritdoc/>
             <summary>
             App
             </summary>

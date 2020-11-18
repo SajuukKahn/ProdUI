@@ -3,10 +3,8 @@
     using System.Windows.Controls;
     using ProductionCore.Interfaces;
 
-    /// <summary>
-    /// Interaction logic for TestGeneratorView.xaml.
-    /// </summary>
-    public partial class TestGeneratorView : UserControl
+    /// <inheritdoc/>
+    public partial class TestGeneratorView : UserControl, ITestGeneratorView
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TestGeneratorView"/> class.

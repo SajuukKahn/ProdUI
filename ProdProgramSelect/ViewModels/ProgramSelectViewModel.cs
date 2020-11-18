@@ -4,9 +4,7 @@
     using Prism.Mvvm;
     using ProductionCore.Interfaces;
 
-    /// <summary>
-    /// Defines the <see cref="ProgramSelectViewModel" />.
-    /// </summary>
+    /// <inheritdoc/>
     internal class ProgramSelectViewModel : BindableBase, IProgramSelectViewModel
     {
         /// <summary>
@@ -32,9 +30,7 @@
             CancelButton = new DelegateCommand(CancelProgramChange);
         }
 
-        /// <summary>
-        /// Gets the ProgramDataService.
-        /// </summary>
+        /// <inheritdoc/>
         public IProgramDataService ProgramDataService
         {
             get
@@ -43,9 +39,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets the MediationService.
-        /// </summary>
+        /// <inheritdoc/>
         public IMediationService MediationService
         {
             get
@@ -54,14 +48,10 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the ConfirmButton.
-        /// </summary>
+        /// <inheritdoc/>
         public DelegateCommand ConfirmButton { get; set; }
 
-        /// <summary>
-        /// Gets or sets the CancelButton.
-        /// </summary>
+        /// <inheritdoc/>
         public DelegateCommand CancelButton { get; set; }
 
         /// <summary>

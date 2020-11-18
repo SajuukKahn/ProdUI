@@ -26,21 +26,13 @@
             </summary>
         </member>
         <member name="M:ProdTestGenerator.ProdTestGeneratorModule.OnInitialized(Prism.Ioc.IContainerProvider)">
-            <summary>
-            The OnInitialized.
-            </summary>
-            <param name="containerProvider">The containerProvider<see cref="T:Prism.Ioc.IContainerProvider"/>.</param>
+            <inheritdoc/>
         </member>
         <member name="M:ProdTestGenerator.ProdTestGeneratorModule.RegisterTypes(Prism.Ioc.IContainerRegistry)">
-            <summary>
-            The RegisterTypes.
-            </summary>
-            <param name="containerRegistry">The containerRegistry<see cref="T:Prism.Ioc.IContainerRegistry"/>.</param>
+            <inheritdoc/>
         </member>
         <member name="T:ProdTestGenerator.Services.ControllerService">
-            <summary>
-            Defines the <see cref="T:ProdTestGenerator.Services.ControllerService" />.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="F:ProdTestGenerator.Services.ControllerService._playbackService">
             <summary>
@@ -64,24 +56,16 @@
             <param name="playbackService">The playbackService<see cref="T:ProductionCore.Interfaces.IPlaybackService"/>.</param>
         </member>
         <member name="P:ProdTestGenerator.Services.ControllerService.ExecutionPaused">
-            <summary>
-            Gets or sets a value indicating whether ExecutionPaused.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdTestGenerator.Services.ControllerService.BeginExecution">
-            <summary>
-            The BeginExecution.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdTestGenerator.Services.ControllerService.EndExecution">
-            <summary>
-            The EndExecution.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdTestGenerator.Services.ControllerService.PauseExecution">
-            <summary>
-            The PauseExecution.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdTestGenerator.Services.ControllerService.RunProg">
             <summary>
@@ -89,9 +73,7 @@
             </summary>
         </member>
         <member name="T:ProdTestGenerator.Services.FileService">
-            <summary>
-            Defines the <see cref="T:ProdTestGenerator.Services.FileService" />.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="F:ProdTestGenerator.Services.FileService._modalService">
             <summary>
@@ -139,16 +121,10 @@
             <param name="programDataFactory">The programDataFactory<see cref="T:ProductionCore.Interfaces.IProgramDataFactory"/>.</param>
         </member>
         <member name="M:ProdTestGenerator.Services.FileService.LoadProgramSteps">
-            <summary>
-            The LoadProgramSteps.
-            </summary>
-            <returns>The <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:ProdTestGenerator.Services.FileService.LoadProgramCollection">
-            <summary>
-            The LoadProgramCollection.
-            </summary>
-            <returns>The <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:ProdTestGenerator.Services.FileService.GenerateRandomProgram">
             <summary>
@@ -200,9 +176,7 @@
             <returns>The <see cref="T:System.String"/>.</returns>
         </member>
         <member name="T:ProdTestGenerator.ViewModels.TestGeneratorViewModel">
-            <summary>
-            Defines the <see cref="T:ProdTestGenerator.ViewModels.TestGeneratorViewModel" />.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="F:ProdTestGenerator.ViewModels.TestGeneratorViewModel._playbackService">
             <summary>
@@ -216,34 +190,28 @@
             <param name="playbackService">The playbackService<see cref="T:ProductionCore.Interfaces.IPlaybackService"/>.</param>
         </member>
         <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.PlaybackService">
-            <summary>
-            Gets the PlaybackService.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.ChangeProcessImage">
-            <summary>
-            Gets or sets the ChangeProcessImage.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.PauseButton">
-            <summary>
-            Gets or sets the PauseButton.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.StartButton">
-            <summary>
-            Gets or sets the StartButton.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.ThrowCardError">
+            <inheritdoc/>
+        </member>
+        <member name="M:ProdTestGenerator.ViewModels.TestGeneratorViewModel.PlaybackButtonCanExecute">
             <summary>
-            Gets or sets the ThrowCardError.
+            The PlaybackButtonCanExecute.
             </summary>
+            <returns>True if Not Playback.PauseAvailable.</returns>
         </member>
         <member name="T:ProdTestGenerator.Views.TestGeneratorView">
-            <summary>
-            Interaction logic for TestGeneratorView.xaml.
-            </summary>
+            <inheritdoc/>
             <summary>
             TestGeneratorView
             </summary>

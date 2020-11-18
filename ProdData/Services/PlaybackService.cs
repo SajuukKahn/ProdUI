@@ -8,9 +8,7 @@
     using Prism.Mvvm;
     using ProductionCore.Interfaces;
 
-    /// <summary>
-    /// Defines the <see cref="PlaybackService" />.
-    /// </summary>
+    /// <inheritdoc/>
     public class PlaybackService : BindableBase, IPlaybackService
     {
         /// <summary>
@@ -86,24 +84,16 @@
             _mediationService = mediationService;
         }
 
-        /// <summary>
-        /// Defines the PauseInitiated.
-        /// </summary>
+        /// <inheritdoc/>
         public event Action? PauseInitiated;
 
-        /// <summary>
-        /// Defines the PlaybackInitiated.
-        /// </summary>
+        /// <inheritdoc/>
         public event Action? PlaybackInitiated;
 
-        /// <summary>
-        /// Defines the AbortInitiated.
-        /// </summary>
+        /// <inheritdoc/>
         public event Action? AbortInitiated;
 
-        /// <summary>
-        /// Gets or sets the ProgramSteps.
-        /// </summary>
+        /// <inheritdoc/>
         public ObservableCollection<ICard?> ProgramSteps
         {
             get
@@ -117,9 +107,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether AllowProgramChange.
-        /// </summary>
+        /// <inheritdoc/>
         public bool AllowProgramChange
         {
             get
@@ -133,9 +121,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether ProgramPaused.
-        /// </summary>
+        /// <inheritdoc/>
         public bool ProgramPaused
         {
             get
@@ -149,9 +135,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether PauseAvailable.
-        /// </summary>
+        /// <inheritdoc/>
         public bool PauseAvailable
         {
             get
@@ -165,9 +149,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether PlayAvailable.
-        /// </summary>
+        /// <inheritdoc/>
         public bool PlayAvailable
         {
             get
@@ -181,9 +163,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether PlaybackRunning.
-        /// </summary>
+        /// <inheritdoc/>
         public bool PlaybackRunning
         {
             get
@@ -197,9 +177,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the CurrentCard.
-        /// </summary>
+        /// <inheritdoc/>
         public ICard? CurrentCard
         {
             get
@@ -213,9 +191,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the CurrentCardIndex.
-        /// </summary>
+        /// <inheritdoc/>
         public int CurrentCardIndex
         {
             get
@@ -229,9 +205,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the CycleTime.
-        /// </summary>
+        /// <inheritdoc/>
         public IChronometer? CycleTime
         {
             get
@@ -245,9 +219,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the ProductImage.
-        /// </summary>
+        /// <inheritdoc/>
         public BitmapImage? ProductImage
         {
             get
@@ -261,9 +233,7 @@
             }
         }
 
-        /// <summary>
-        /// The Abort.
-        /// </summary>
+        /// <inheritdoc/>
         public void Abort()
         {
             Pause();
@@ -291,9 +261,7 @@
             }
         }
 
-        /// <summary>
-        /// The AdvanceStep.
-        /// </summary>
+        /// <inheritdoc/>
         public void AdvanceStep()
         {
             PlayAvailable = false;
@@ -316,9 +284,7 @@
             }
         }
 
-        /// <summary>
-        /// The PauseCard.
-        /// </summary>
+        /// <inheritdoc/>
         public void PauseCard()
         {
             if (CurrentCard != null)
@@ -328,9 +294,7 @@
             }
         }
 
-        /// <summary>
-        /// The RetryCard.
-        /// </summary>
+        /// <inheritdoc/>
         public void RetryCard()
         {
             PlaybackInitiated!();
@@ -339,18 +303,13 @@
             CurrentCard?.RetryCard();
         }
 
-        /// <summary>
-        /// The StartCard.
-        /// </summary>
+        /// <inheritdoc/>
         public void PlayCard()
         {
             CurrentCard?.StartCard();
         }
 
-        /// <summary>
-        /// The ModalEvent.
-        /// </summary>
-        /// <param name="modalData">The modalData<see cref="IModalData"/>.</param>
+        /// <inheritdoc/>
         public void ModalEvent(IModalData modalData)
         {
             if (CurrentCard!.StepModalData != null)
@@ -359,9 +318,7 @@
             }
         }
 
-        /// <summary>
-        /// The Pause.
-        /// </summary>
+        /// <inheritdoc/>
         public void Pause()
         {
             if (CurrentCard == null)
@@ -375,9 +332,7 @@
             PauseInitiated!();
         }
 
-        /// <summary>
-        /// The RunningStepPaused.
-        /// </summary>
+        /// <inheritdoc/>
         public void RunningStepPaused()
         {
             PauseCard();
@@ -385,9 +340,7 @@
             AllowProgramChange = true;
         }
 
-        /// <summary>
-        /// The Play.
-        /// </summary>
+        /// <inheritdoc/>
         public void Play()
         {
             if (_mediationService.CurrentProgram == null)
@@ -423,17 +376,13 @@
             CurrentCard!.StartCard();
         }
 
-        /// <summary>
-        /// The RequestProgramChange.
-        /// </summary>
+        /// <inheritdoc/>
         public void RequestProgramChange()
         {
             _mediationService.ProgramRequestShow = true;
         }
 
-        /// <summary>
-        /// The RaiseError.
-        /// </summary>
+        /// <inheritdoc/>
         public void RaiseError()
         {
             if (CurrentCard == null)

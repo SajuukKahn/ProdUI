@@ -3,7 +3,6 @@
     using System;
     using System.ComponentModel;
     using System.Windows;
-    using System.Windows.Input;
     using System.Windows.Threading;
     using Microsoft.Xaml.Behaviors;
     using Telerik.Windows.Controls;
@@ -13,9 +12,7 @@
     /// </summary>
     public class RadCarouselBehaviorExtensions : Behavior<RadCarousel>
     {
-        /// <summary>
-        /// The OnAttached.
-        /// </summary>
+        /// <inheritdoc/>
         protected override void OnAttached()
         {
             AssociatedObject.IsHitTestVisibleChanged += (s, e) => SnapToCurrentItem(s, e);

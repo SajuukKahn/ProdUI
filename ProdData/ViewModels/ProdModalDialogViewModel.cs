@@ -4,9 +4,7 @@
     using Prism.Mvvm;
     using ProductionCore.Interfaces;
 
-    /// <summary>
-    /// Defines the <see cref="ProdModalDialogViewModel" />.
-    /// </summary>
+    /// <inheritdoc/>
     public class ProdModalDialogViewModel : BindableBase, IProdModalDialogViewModel
     {
         /// <summary>
@@ -48,9 +46,7 @@
             }).ObservesCanExecute(() => ModalService.ActiveModalData!.CanCustom);
         }
 
-        /// <summary>
-        /// Gets the ModalService.
-        /// </summary>
+        /// <inheritdoc/>
         public IModalService ModalService
         {
             get
@@ -59,24 +55,16 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the Abort.
-        /// </summary>
+        /// <inheritdoc/>
         public DelegateCommand Abort { get; set; }
 
-        /// <summary>
-        /// Gets or sets the Continue.
-        /// </summary>
+        /// <inheritdoc/>
         public DelegateCommand Continue { get; set; }
 
-        /// <summary>
-        /// Gets or sets the Custom.
-        /// </summary>
+        /// <inheritdoc/>
         public DelegateCommand Custom { get; set; }
 
-        /// <summary>
-        /// Gets or sets the Retry.
-        /// </summary>
+        /// <inheritdoc/>
         public DelegateCommand Retry { get; set; }
     }
 }

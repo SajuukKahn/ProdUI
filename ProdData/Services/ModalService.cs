@@ -5,9 +5,7 @@
     using Prism.Mvvm;
     using ProductionCore.Interfaces;
 
-    /// <summary>
-    /// Defines the <see cref="ModalService" />.
-    /// </summary>
+    /// <inheritdoc/>
     public class ModalService : BindableBase, IModalService
     {
         /// <summary>
@@ -35,9 +33,7 @@
             _activeModalData = _modalFactory.CreateModalData();
         }
 
-        /// <summary>
-        /// Gets or sets the ActiveModalData.
-        /// </summary>
+        /// <inheritdoc/>
         public IModalData ActiveModalData
         {
             get
@@ -51,9 +47,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether ModalActive.
-        /// </summary>
+        /// <inheritdoc/>
         public bool ModalActive
         {
             get
@@ -67,19 +61,13 @@
             }
         }
 
-        /// <summary>
-        /// The CreateModalData.
-        /// </summary>
-        /// <returns>The <see cref="IModalData"/>.</returns>
+        /// <inheritdoc/>
         public IModalData CreateModalData()
         {
             return _modalFactory.CreateModalData();
         }
 
-        /// <summary>
-        /// The ShowModal.
-        /// </summary>
-        /// <param name="modalData">The modalData<see cref="IModalData"/>.</param>
+        /// <inheritdoc/>
         public void ShowModal(IModalData modalData)
         {
             if (modalData == null)
@@ -110,9 +98,7 @@
             }
         }
 
-        /// <summary>
-        /// The CloseModal.
-        /// </summary>
+        /// <inheritdoc/>
         public void CloseModal()
         {
             ModalActive = false;

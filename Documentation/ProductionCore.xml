@@ -91,6 +91,11 @@
             Defines the <see cref="T:ProductionCore.Interfaces.IControllerService" />.
             </summary>
         </member>
+        <member name="P:ProductionCore.Interfaces.IControllerService.ExecutionPaused">
+            <summary>
+            Gets or sets a value indicating whether ExecutionPaused.
+            </summary>
+        </member>
         <member name="M:ProductionCore.Interfaces.IControllerService.BeginExecution">
             <summary>
             The BeginExecution.
@@ -288,9 +293,19 @@
             The RaiseError.
             </summary>
         </member>
+        <member name="M:ProductionCore.Interfaces.IPlaybackService.PauseCard">
+            <summary>
+            The PauseCard.
+            </summary>
+        </member>
         <member name="M:ProductionCore.Interfaces.IPlaybackService.RetryCard">
             <summary>
             The RetryCard.
+            </summary>
+        </member>
+        <member name="M:ProductionCore.Interfaces.IPlaybackService.PlayCard">
+            <summary>
+            The PlayCard.
             </summary>
         </member>
         <member name="T:ProductionCore.Interfaces.IProgramDataService">
@@ -351,6 +366,11 @@
         <member name="P:ProductionCore.Interfaces.ICard.BreakOnError">
             <summary>
             Gets or sets a value indicating whether BreakOnError.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.ICard.CurrentSubStep">
+            <summary>
+            Gets or sets the CurrentSubStep.
             </summary>
         </member>
         <member name="P:ProductionCore.Interfaces.ICard.CardStepIndex">
@@ -625,9 +645,59 @@
             Defines the <see cref="T:ProductionCore.Interfaces.IProdDataViewModel" />.
             </summary>
         </member>
+        <member name="P:ProductionCore.Interfaces.IProdDataViewModel.PlaybackService">
+            <summary>
+            Gets the PlaybackService.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IProdDataViewModel.MediationService">
+            <summary>
+            Gets the MediationService.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IProdDataViewModel.OpenProgramSelect">
+            <summary>
+            Gets or sets the OpenProgramSelect.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IProdDataViewModel.PauseButton">
+            <summary>
+            Gets or sets the PauseButton.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IProdDataViewModel.PlayButton">
+            <summary>
+            Gets or sets the PlayButton.
+            </summary>
+        </member>
         <member name="T:ProductionCore.Interfaces.IProdModalDialogViewModel">
             <summary>
             Defines the <see cref="T:ProductionCore.Interfaces.IProdModalDialogViewModel" />.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IProdModalDialogViewModel.ModalService">
+            <summary>
+            Gets the ModalService.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IProdModalDialogViewModel.Abort">
+            <summary>
+            Gets or sets the Abort.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IProdModalDialogViewModel.Continue">
+            <summary>
+            Gets or sets the Continue.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IProdModalDialogViewModel.Custom">
+            <summary>
+            Gets or sets the Custom.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IProdModalDialogViewModel.Retry">
+            <summary>
+            Gets or sets the Retry.
             </summary>
         </member>
         <member name="T:ProductionCore.Interfaces.IProgramSelectViewModel">
@@ -635,9 +705,74 @@
             Defines the <see cref="T:ProductionCore.Interfaces.IProgramSelectViewModel" />.
             </summary>
         </member>
+        <member name="P:ProductionCore.Interfaces.IProgramSelectViewModel.ProgramDataService">
+            <summary>
+            Gets the ProgramDataService.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IProgramSelectViewModel.MediationService">
+            <summary>
+            Gets the MediationService.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IProgramSelectViewModel.ConfirmButton">
+            <summary>
+            Gets or sets the ConfirmButton.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.IProgramSelectViewModel.CancelButton">
+            <summary>
+            Gets or sets the CancelButton.
+            </summary>
+        </member>
         <member name="T:ProductionCore.Interfaces.ITestGeneratorViewModel">
             <summary>
             Defines the <see cref="T:ProductionCore.Interfaces.ITestGeneratorViewModel" />.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.ITestGeneratorViewModel.PlaybackService">
+            <summary>
+            Gets the PlaybackService.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.ITestGeneratorViewModel.ChangeProcessImage">
+            <summary>
+            Gets or sets the ChangeProcessImage.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.ITestGeneratorViewModel.PauseButton">
+            <summary>
+            Gets or sets the PauseButton.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.ITestGeneratorViewModel.StartButton">
+            <summary>
+            Gets or sets the StartButton.
+            </summary>
+        </member>
+        <member name="P:ProductionCore.Interfaces.ITestGeneratorViewModel.ThrowCardError">
+            <summary>
+            Gets or sets the ThrowCardError.
+            </summary>
+        </member>
+        <member name="T:ProductionCore.Interfaces.IProdDataView">
+            <summary>
+            Interaction logic for ProdData.xaml.
+            </summary>
+        </member>
+        <member name="T:ProductionCore.Interfaces.IProdModalDialogView">
+            <summary>
+            Interaction logic for ProdModalDialog.xaml.
+            </summary>
+        </member>
+        <member name="T:ProductionCore.Interfaces.IProgramSelectView">
+            <summary>
+            Interaction logic for ProgramSelectView.xaml.
+            </summary>
+        </member>
+        <member name="T:ProductionCore.Interfaces.ITestGeneratorView">
+            <summary>
+            Interaction logic for ITestGeneratorView.
             </summary>
         </member>
         <member name="T:ProductionCore.ProductionCoreModule">
@@ -646,16 +781,10 @@
             </summary>
         </member>
         <member name="M:ProductionCore.ProductionCoreModule.OnInitialized(Prism.Ioc.IContainerProvider)">
-            <summary>
-            The OnInitialized.
-            </summary>
-            <param name="containerProvider">The containerProvider<see cref="T:Prism.Ioc.IContainerProvider"/>.</param>
+            <inheritdoc/>
         </member>
         <member name="M:ProductionCore.ProductionCoreModule.RegisterTypes(Prism.Ioc.IContainerRegistry)">
-            <summary>
-            The RegisterTypes.
-            </summary>
-            <param name="containerRegistry">The containerRegistry<see cref="T:Prism.Ioc.IContainerRegistry"/>.</param>
+            <inheritdoc/>
         </member>
         <member name="T:ProductionCore.Services.MediationService">
             <summary>

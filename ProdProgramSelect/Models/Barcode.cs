@@ -4,9 +4,7 @@
     using Prism.Mvvm;
     using ProductionCore.Interfaces;
 
-    /// <summary>
-    /// Defines the <see cref="Barcode" />.
-    /// </summary>
+    /// <inheritdoc/>
     public class Barcode : BindableBase, IBarcode
     {
         /// <summary>
@@ -30,9 +28,7 @@
             _barcodeImage = barcodeImage;
         }
 
-        /// <summary>
-        /// Gets or sets the BarcodeData.
-        /// </summary>
+        /// <inheritdoc/>
         public string? BarcodeData
         {
             get
@@ -46,9 +42,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the BarcodeImage.
-        /// </summary>
+        /// <inheritdoc/>
         public BitmapImage? BarcodeImage
         {
             get

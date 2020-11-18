@@ -5,9 +5,7 @@
     using ProductionCore.Interfaces;
     using Telerik.Windows.Controls;
 
-    /// <summary>
-    /// Defines the <see cref="ModalData" />.
-    /// </summary>
+    /// <inheritdoc/>
     public class ModalData : BindableBase, IModalData
     {
         /// <summary>
@@ -60,9 +58,7 @@
         /// </summary>
         private BitmapImage? _instructionImage;
 
-        /// <summary>
-        /// Gets or sets a value indicating whether IsError.
-        /// </summary>
+        /// <inheritdoc/>
         public bool IsError
         {
             get
@@ -76,9 +72,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether CanAbort.
-        /// </summary>
+        /// <inheritdoc/>
         public bool CanAbort
         {
             get
@@ -92,9 +86,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether CanContinue.
-        /// </summary>
+        /// <inheritdoc/>
         public bool CanContinue
         {
             get
@@ -108,9 +100,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether CanRetry.
-        /// </summary>
+        /// <inheritdoc/>
         public bool CanRetry
         {
             get
@@ -124,9 +114,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether CanCustom.
-        /// </summary>
+        /// <inheritdoc/>
         public bool CanCustom
         {
             get
@@ -140,9 +128,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the Instructions.
-        /// </summary>
+        /// <inheritdoc/>
         public string? Instructions
         {
             get
@@ -156,9 +142,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the InstructionImage.
-        /// </summary>
+        /// <inheritdoc/>
         public BitmapImage? InstructionImage
         {
             get
@@ -172,9 +156,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the Card.
-        /// </summary>
+        /// <inheritdoc/>
         public ICard? Card
         {
             get
@@ -188,9 +170,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the CustomButtonGlyph.
-        /// </summary>
+        /// <inheritdoc/>
         public RadGlyph? CustomButtonGlyph
         {
             get
@@ -204,9 +184,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the CustomButtonText.
-        /// </summary>
+        /// <inheritdoc/>
         public string? CustomButtonText
         {
             get

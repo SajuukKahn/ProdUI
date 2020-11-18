@@ -7,6 +7,7 @@
     using ProdData.Models;
     using ProdData.Services;
     using ProdData.ViewModels;
+    using ProdData.Views;
     using ProductionCore.Interfaces;
 
     /// <summary>
@@ -29,25 +30,14 @@
             _regionManager = regionManager;
         }
 
-        /// <summary>
-        /// The OnInitialized.
-        /// </summary>
-        /// <param name="containerProvider">The containerProvider<see cref="IContainerProvider"/>.</param>
+        /// <inheritdoc/>
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            IRegion region = _regionManager.Regions["ProdDataRegion"];
-            var view1 = containerProvider.Resolve<Views.ProdDataView>();
-            region.Add(view1);
-
-            region = _regionManager.Regions["ProdModalRegion"];
-            var view3 = containerProvider.Resolve<Views.ProdModalDialogView>();
-            region.Add(view3);
+            _regionManager.Regions["ProdDataRegion"].Add(containerProvider.Resolve<IProdDataView>());
+            _regionManager.Regions["ProdModalRegion"].Add(containerProvider.Resolve<IProdModalDialogView>());
         }
 
-        /// <summary>
-        /// The RegisterTypes.
-        /// </summary>
-        /// <param name="containerRegistry">The containerRegistry<see cref="IContainerRegistry"/>.</param>
+        /// <inheritdoc/>
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.Register<ICard, Card>();
@@ -58,6 +48,8 @@
             containerRegistry.Register<ICardSubStepFactory, CardSubStepFactory>();
             containerRegistry.Register<IChronometerFactory, ChronometerFactory>();
             containerRegistry.Register<IModalFactory, ModalFactory>();
+            containerRegistry.Register<IProdDataView, ProdDataView>();
+            containerRegistry.Register<IProdModalDialogView, ProdModalDialogView>();
             containerRegistry.RegisterSingleton<IModalService, ModalService>();
             containerRegistry.RegisterSingleton<IPlaybackService, PlaybackService>();
             containerRegistry.RegisterSingleton<IProdDataViewModel, ProdDataViewModel>();

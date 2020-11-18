@@ -6,9 +6,7 @@
     using System.Windows;
     using ProductionCore.Interfaces;
 
-    /// <summary>
-    /// Defines the <see cref="ControllerService" />.
-    /// </summary>
+    /// <inheritdoc/>
     public class ControllerService : IControllerService
     {
         /// <summary>
@@ -38,14 +36,10 @@
             _playbackService.PlaybackInitiated += new Action(BeginExecution);
         }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether ExecutionPaused.
-        /// </summary>
+        /// <inheritdoc/>
         public bool ExecutionPaused { get; set; }
 
-        /// <summary>
-        /// The BeginExecution.
-        /// </summary>
+        /// <inheritdoc/>
         public void BeginExecution()
         {
             ExecutionPaused = false;
@@ -55,17 +49,13 @@
             }
         }
 
-        /// <summary>
-        /// The EndExecution.
-        /// </summary>
+        /// <inheritdoc/>
         public void EndExecution()
         {
             _programIsInProgress = false;
         }
 
-        /// <summary>
-        /// The PauseExecution.
-        /// </summary>
+        /// <inheritdoc/>
         public void PauseExecution()
         {
             ExecutionPaused = true;

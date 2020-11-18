@@ -6,9 +6,7 @@
     using Prism.Mvvm;
     using ProductionCore.Interfaces;
 
-    /// <summary>
-    /// Defines the <see cref="Chronometer" />.
-    /// </summary>
+    /// <inheritdoc/>
     public class Chronometer : BindableBase, IChronometer
     {
         /// <summary>
@@ -54,9 +52,7 @@
             }, DispatcherPriority.Normal);
         }
 
-        /// <summary>
-        /// Gets or sets the ElapsedTime.
-        /// </summary>
+        /// <inheritdoc/>
         public string? ElapsedTime
         {
             get
@@ -70,9 +66,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the TimeSpan.
-        /// </summary>
+        /// <inheritdoc/>
         public TimeSpan TimeSpan
         {
             get
@@ -86,9 +80,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the StartTime.
-        /// </summary>
+        /// <inheritdoc/>
         public DateTime? StartTime
         {
             get
@@ -124,17 +116,13 @@
             }
         }
 
-        /// <summary>
-        /// The Pause.
-        /// </summary>
+        /// <inheritdoc/>
         public void Pause()
         {
             _stopwatch.Stop();
         }
 
-        /// <summary>
-        /// The Reset.
-        /// </summary>
+        /// <inheritdoc/>
         public void Reset()
         {
             _stopwatch.Reset();
@@ -142,9 +130,7 @@
             ElapsedTime = new TimeSpan(0).ToString("hh\\:mm\\:ss\\.ff");
         }
 
-        /// <summary>
-        /// The Start.
-        /// </summary>
+        /// <inheritdoc/>
         public void Start()
         {
             _stopwatch.Start();

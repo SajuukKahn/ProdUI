@@ -116,8 +116,18 @@
         void RaiseError();
 
         /// <summary>
+        /// The PauseCard.
+        /// </summary>
+        void PauseCard();
+
+        /// <summary>
         /// The RetryCard.
         /// </summary>
         void RetryCard();
+
+        /// <summary>
+        /// The PlayCard.
+        /// </summary>
+        void PlayCard();
     }
 }

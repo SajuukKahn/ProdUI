@@ -14,6 +14,11 @@
         public bool BreakOnError { get; set; }
 
         /// <summary>
+        /// Gets or sets the CurrentSubStep.
+        /// </summary>
+        public ICardSubStep? CurrentSubStep { get; set; }
+
+        /// <summary>
         /// Gets or sets the CardStepIndex.
         /// </summary>
         public int CardStepIndex { get; set; }

@@ -6,9 +6,7 @@
     using Prism.Mvvm;
     using ProductionCore.Interfaces;
 
-    /// <summary>
-    /// Defines the <see cref="TestGeneratorViewModel" />.
-    /// </summary>
+    /// <inheritdoc/>
     public class TestGeneratorViewModel : BindableBase, ITestGeneratorViewModel
     {
         /// <summary>
@@ -29,9 +27,7 @@
             ThrowCardError = new DelegateCommand(() => PlaybackService.RaiseError()).ObservesCanExecute(() => PlaybackService.PlaybackRunning);
         }
 
-        /// <summary>
-        /// Gets the PlaybackService.
-        /// </summary>
+        /// <inheritdoc/>
         public IPlaybackService PlaybackService
         {
             get
@@ -40,26 +36,22 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the ChangeProcessImage.
-        /// </summary>
+        /// <inheritdoc/>
         public DelegateCommand ChangeProcessImage { get; set; }
 
-        /// <summary>
-        /// Gets or sets the PauseButton.
-        /// </summary>
+        /// <inheritdoc/>
         public DelegateCommand PauseButton { get; set; }
 
-        /// <summary>
-        /// Gets or sets the StartButton.
-        /// </summary>
+        /// <inheritdoc/>
         public DelegateCommand StartButton { get; set; }
 
-        /// <summary>
-        /// Gets or sets the ThrowCardError.
-        /// </summary>
+        /// <inheritdoc/>
         public DelegateCommand ThrowCardError { get; set; }
 
+        /// <summary>
+        /// The PlaybackButtonCanExecute.
+        /// </summary>
+        /// <returns>True if Not Playback.PauseAvailable.</returns>
         private bool PlaybackButtonCanExecute()
         {
             return !PlaybackService.PauseAvailable;

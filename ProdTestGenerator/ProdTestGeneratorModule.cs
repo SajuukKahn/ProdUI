@@ -34,24 +34,17 @@
         /// </summary>
         public FileService? FileService { get; set; }
 
-        /// <summary>
-        /// The OnInitialized.
-        /// </summary>
-        /// <param name="containerProvider">The containerProvider<see cref="IContainerProvider"/>.</param>
+        /// <inheritdoc/>
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            IRegion region = _regionManager.Regions["TestRegion"];
-            var view = containerProvider.Resolve<TestGeneratorView>();
-            region.Add(view);
+            _regionManager.Regions["TestRegion"].Add(containerProvider.Resolve<ITestGeneratorView>());
             containerProvider.Resolve<IControllerService>();
         }
 
-        /// <summary>
-        /// The RegisterTypes.
-        /// </summary>
-        /// <param name="containerRegistry">The containerRegistry<see cref="IContainerRegistry"/>.</param>
+        /// <inheritdoc/>
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.Register<ITestGeneratorView, TestGeneratorView>();
             containerRegistry.RegisterSingleton<IControllerService, ControllerService>();
             containerRegistry.Register<ITestGeneratorViewModel, TestGeneratorViewModel>();
             containerRegistry.RegisterSingleton<IFileService, FileService>();

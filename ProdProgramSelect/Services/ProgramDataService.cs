@@ -5,9 +5,7 @@
     using ProductionCore.Interfaces;
     using ProductionCore.Interfaces.Services;
 
-    /// <summary>
-    /// Defines the <see cref="ProgramDataService" />.
-    /// </summary>
+    /// <inheritdoc/>
     public class ProgramDataService : BindableBase, IProgramDataService
     {
         /// <summary>
@@ -55,9 +53,7 @@
             _programList = fileService.LoadProgramCollection();
         }
 
-        /// <summary>
-        /// Gets or sets the ProgramList.
-        /// </summary>
+        /// <inheritdoc/>
         public ObservableCollection<IProgramData> ProgramList
         {
             get
@@ -71,9 +67,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the SelectedProgramData.
-        /// </summary>
+        /// <inheritdoc/>
         public IProgramData? SelectedProgramData
         {
             get
@@ -87,9 +81,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets a value indicating whether CanCancel.
-        /// </summary>
+        /// <inheritdoc/>
         public bool CanCancel
         {
             get
@@ -98,9 +90,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets a value indicating whether CanConfirm.
-        /// </summary>
+        /// <inheritdoc/>
         public bool CanConfirm
         {
             get
@@ -114,17 +104,13 @@
             }
         }
 
-        /// <summary>
-        /// The ProgramSelectClose.
-        /// </summary>
+        /// <inheritdoc/>
         public void ProgramSelectClose()
         {
             _mediationService.ProgramRequestShow = false;
         }
 
-        /// <summary>
-        /// The SetSelectedProgramAsCurrent.
-        /// </summary>
+        /// <inheritdoc/>
         public void SetSelectedProgramAsCurrent()
         {
             _mediationService.CurrentProgram = SelectedProgramData;

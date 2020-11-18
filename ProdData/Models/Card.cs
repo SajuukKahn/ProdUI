@@ -5,9 +5,7 @@
     using Prism.Mvvm;
     using ProductionCore.Interfaces;
 
-    /// <summary>
-    /// Defines the <see cref="Card" />.
-    /// </summary>
+    /// <inheritdoc/>
     public class Card : BindableBase, ICard
     {
         /// <summary>
@@ -74,9 +72,7 @@
             _cardTime = chronometerFactory.Create();
         }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether BreakOnError.
-        /// </summary>
+        /// <inheritdoc/>
         public bool BreakOnError
         {
             get
@@ -90,9 +86,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the CurrentSubStep.
-        /// </summary>
+        /// <inheritdoc/>
         public ICardSubStep? CurrentSubStep
         {
             get
@@ -106,9 +100,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the CardStepIndex.
-        /// </summary>
+        /// <inheritdoc/>
         public int CardStepIndex
         {
             get
@@ -122,9 +114,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the CardSubSteps.
-        /// </summary>
+        /// <inheritdoc/>
         public List<ICardSubStep?>? CardSubSteps
         {
             get
@@ -138,9 +128,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the CardTime.
-        /// </summary>
+        /// <inheritdoc/>
         public IChronometer CardTime
         {
             get
@@ -154,9 +142,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether IsActiveStep.
-        /// </summary>
+        /// <inheritdoc/>
         public bool IsActiveStep
         {
             get
@@ -170,9 +156,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether StepComplete.
-        /// </summary>
+        /// <inheritdoc/>
         public bool StepComplete
         {
             get
@@ -186,9 +170,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the StepImage.
-        /// </summary>
+        /// <inheritdoc/>
         public ImageSource? StepImage
         {
             get
@@ -202,9 +184,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the StepModalData.
-        /// </summary>
+        /// <inheritdoc/>
         public IModalData? StepModalData
         {
             get
@@ -218,9 +198,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the StepStatus.
-        /// </summary>
+        /// <inheritdoc/>
         public string StepStatus
         {
             get
@@ -234,9 +212,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the StepTitle.
-        /// </summary>
+        /// <inheritdoc/>
         public string? StepTitle
         {
             get
@@ -250,9 +226,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets the SubStepCount.
-        /// </summary>
+        /// <inheritdoc/>
         public int SubStepCount
         {
             get
@@ -261,9 +235,7 @@
             }
         }
 
-        /// <summary>
-        /// The StartCard.
-        /// </summary>
+        /// <inheritdoc/>
         public void StartCard()
         {
             IsActiveStep = true;
@@ -271,9 +243,7 @@
             CardTime.Start();
         }
 
-        /// <summary>
-        /// The RetryCard.
-        /// </summary>
+        /// <inheritdoc/>
         public void RetryCard()
         {
             CardStepIndex = 0;
@@ -281,9 +251,7 @@
             CardTime.Start();
         }
 
-        /// <summary>
-        /// The Initialize.
-        /// </summary>
+        /// <inheritdoc/>
         public void Initialize()
         {
             StepStatus = "Waiting";
@@ -293,10 +261,7 @@
             CardStepIndex = 0;
         }
 
-        /// <summary>
-        /// The IterateSubStep.
-        /// </summary>
-        /// <returns>The <see cref="bool"/>.</returns>
+        /// <inheritdoc/>
         public bool IterateSubStep()
         {
             if (CardStepIndex < CardSubSteps?.Count - 1)

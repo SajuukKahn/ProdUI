@@ -66,28 +66,16 @@
             </summary>
         </member>
         <member name="T:ProdProgramSelect.Factories.BarcodeFactory">
-            <summary>
-            Defines the <see cref="T:ProdProgramSelect.Factories.BarcodeFactory" />.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdProgramSelect.Factories.BarcodeFactory.Create(System.String,System.Windows.Media.Imaging.BitmapImage)">
-            <summary>
-            The Create.
-            </summary>
-            <param name="barcodeData">The barcodeData<see cref="T:System.String"/>.</param>
-            <param name="barcodeImage">The barcodeImage<see cref="T:System.Windows.Media.Imaging.BitmapImage"/>.</param>
-            <returns>The <see cref="T:ProductionCore.Interfaces.IBarcode"/>.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:ProdProgramSelect.Factories.BarcodeFactory.Create">
-            <summary>
-            The Create.
-            </summary>
-            <returns>The <see cref="T:ProductionCore.Interfaces.IBarcode"/>.</returns>
+            <inheritdoc/>
         </member>
         <member name="T:ProdProgramSelect.Factories.ProgramDataFactory">
-            <summary>
-            Defines the <see cref="T:ProdProgramSelect.Factories.ProgramDataFactory" />.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="F:ProdProgramSelect.Factories.ProgramDataFactory._barcodeFactory">
             <summary>
@@ -101,15 +89,10 @@
             <param name="barcodeFactory">Resolved registered type for <see cref="T:ProductionCore.Interfaces.IBarcodeFactory"/>.</param>
         </member>
         <member name="M:ProdProgramSelect.Factories.ProgramDataFactory.Create">
-            <summary>
-            The Create.
-            </summary>
-            <returns>The <see cref="T:ProductionCore.Interfaces.IProgramData"/>.</returns>
+            <inheritdoc/>
         </member>
         <member name="T:ProdProgramSelect.Models.Barcode">
-            <summary>
-            Defines the <see cref="T:ProdProgramSelect.Models.Barcode" />.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="F:ProdProgramSelect.Models.Barcode._barcodeData">
             <summary>
@@ -129,19 +112,13 @@
             <param name="barcodeImage">The barcodeImage<see cref="T:System.Windows.Media.Imaging.BitmapImage"/>.</param>
         </member>
         <member name="P:ProdProgramSelect.Models.Barcode.BarcodeData">
-            <summary>
-            Gets or sets the BarcodeData.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdProgramSelect.Models.Barcode.BarcodeImage">
-            <summary>
-            Gets or sets the BarcodeImage.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="T:ProdProgramSelect.Models.ProgramData">
-            <summary>
-            Defines the <see cref="T:ProdProgramSelect.Models.ProgramData" />.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="F:ProdProgramSelect.Models.ProgramData._barcode">
             <summary>
@@ -220,85 +197,52 @@
             <param name="barcode">The barcode<see cref="T:ProductionCore.Interfaces.IBarcode"/>.</param>
         </member>
         <member name="P:ProdProgramSelect.Models.ProgramData.AutoStartPlayback">
-            <summary>
-            Gets or sets a value indicating whether AutoStartPlayback.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdProgramSelect.Models.ProgramData.AverageCycleTime">
-            <summary>
-            Gets or sets the AverageCycleTime.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdProgramSelect.Models.ProgramData.Barcode">
-            <summary>
-            Gets or sets the Barcode.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdProgramSelect.Models.ProgramData.CreatedDate">
-            <summary>
-            Gets or sets the CreatedDate.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdProgramSelect.Models.ProgramData.Dimensions">
-            <summary>
-            Gets or sets the Dimensions.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdProgramSelect.Models.ProgramData.Cycles">
-            <summary>
-            Gets or sets the Cycles.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdProgramSelect.Models.ProgramData.IsFavorite">
-            <summary>
-            Gets or sets a value indicating whether IsFavorite.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdProgramSelect.Models.ProgramData.LastEditDate">
-            <summary>
-            Gets or sets the LastEditDate.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdProgramSelect.Models.ProgramData.ProductImage">
-            <summary>
-            Gets or sets the ProductImage.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdProgramSelect.Models.ProgramData.ProductName">
-            <summary>
-            Gets or sets the ProductName.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdProgramSelect.Models.ProgramData.ProgramCreator">
-            <summary>
-            Gets or sets the ProgramCreator.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdProgramSelect.Models.ProgramData.ProgramName">
-            <summary>
-            Gets or sets the ProgramName.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdProgramSelect.Models.ProgramData.ToolsUsed">
-            <summary>
-            Gets or sets the ToolsUsed.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdProgramSelect.Models.ProgramData.UserCanStartPlayback">
-            <summary>
-            Gets or sets a value indicating whether UserCanStartPlayback.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdProgramSelect.Models.ProgramData.UpdateAverageCycleTime(System.TimeSpan)">
-            <summary>
-            The UpdateAverageCycleTime.
-            </summary>
-            <param name="newestCycleTime">The newestCycleTime<see cref="T:System.TimeSpan"/>.</param>
+            <inheritdoc/>
         </member>
         <member name="M:ProdProgramSelect.Models.ProgramData.UpdateLastEditDate">
-            <summary>
-            The UpdateLastEditDate.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="T:ProdProgramSelect.ProdProgramSelectModule">
             <summary>
@@ -323,9 +267,7 @@
             <inheritdoc/>
         </member>
         <member name="T:ProdProgramSelect.Services.ProgramDataService">
-            <summary>
-            Defines the <see cref="T:ProdProgramSelect.Services.ProgramDataService" />.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="F:ProdProgramSelect.Services.ProgramDataService._mediationService">
             <summary>
@@ -366,34 +308,22 @@
             <param name="playbackService">The playbackService<see cref="T:ProductionCore.Interfaces.IPlaybackService"/>.</param>
         </member>
         <member name="P:ProdProgramSelect.Services.ProgramDataService.ProgramList">
-            <summary>
-            Gets or sets the ProgramList.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdProgramSelect.Services.ProgramDataService.SelectedProgramData">
-            <summary>
-            Gets or sets the SelectedProgramData.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdProgramSelect.Services.ProgramDataService.CanCancel">
-            <summary>
-            Gets a value indicating whether CanCancel.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdProgramSelect.Services.ProgramDataService.CanConfirm">
-            <summary>
-            Gets a value indicating whether CanConfirm.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdProgramSelect.Services.ProgramDataService.ProgramSelectClose">
-            <summary>
-            The ProgramSelectClose.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdProgramSelect.Services.ProgramDataService.SetSelectedProgramAsCurrent">
-            <summary>
-            The SetSelectedProgramAsCurrent.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdProgramSelect.Services.ProgramDataService.SetConfirmStatus">
             <summary>
@@ -401,9 +331,7 @@
             </summary>
         </member>
         <member name="T:ProdProgramSelect.ViewModels.ProgramSelectViewModel">
-            <summary>
-            Defines the <see cref="T:ProdProgramSelect.ViewModels.ProgramSelectViewModel" />.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="F:ProdProgramSelect.ViewModels.ProgramSelectViewModel._programDataService">
             <summary>
@@ -423,24 +351,16 @@
             <param name="mediationService">The mediationService<see cref="T:ProductionCore.Interfaces.IMediationService"/>.</param>
         </member>
         <member name="P:ProdProgramSelect.ViewModels.ProgramSelectViewModel.ProgramDataService">
-            <summary>
-            Gets the ProgramDataService.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdProgramSelect.ViewModels.ProgramSelectViewModel.MediationService">
-            <summary>
-            Gets the MediationService.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdProgramSelect.ViewModels.ProgramSelectViewModel.ConfirmButton">
-            <summary>
-            Gets or sets the ConfirmButton.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdProgramSelect.ViewModels.ProgramSelectViewModel.CancelButton">
-            <summary>
-            Gets or sets the CancelButton.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdProgramSelect.ViewModels.ProgramSelectViewModel.CancelProgramChange">
             <summary>
@@ -458,9 +378,7 @@
             </summary>
         </member>
         <member name="T:ProdProgramSelect.Views.ProgramSelectView">
-            <summary>
-            Interaction logic for ProgramSelectView.xaml.
-            </summary>
+            <inheritdoc/>
             <summary>
             ProgramSelectView
             </summary>

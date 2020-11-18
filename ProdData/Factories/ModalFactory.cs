@@ -3,15 +3,10 @@
     using ProdData.Models;
     using ProductionCore.Interfaces;
 
-    /// <summary>
-    /// Defines the <see cref="ModalFactory" />.
-    /// </summary>
+    /// <inheritdoc/>
     public class ModalFactory : IModalFactory
     {
-        /// <summary>
-        /// The CreateModalData.
-        /// </summary>
-        /// <returns>The <see cref="IModalData"/>.</returns>
+        /// <inheritdoc/>
         public IModalData CreateModalData()
         {
             return new ModalData();

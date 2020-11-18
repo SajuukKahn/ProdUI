@@ -33,9 +33,7 @@
             OpenProgramSelect = new DelegateCommand(() => PlaybackService.RequestProgramChange()).ObservesCanExecute(() => PlaybackService.AllowProgramChange);
         }
 
-        /// <summary>
-        /// Gets the PlaybackService.
-        /// </summary>
+        /// <inheritdoc/>
         public IPlaybackService PlaybackService
         {
             get
@@ -44,9 +42,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets the MediationService.
-        /// </summary>
+        /// <inheritdoc/>
         public IMediationService MediationService
         {
             get
@@ -55,19 +51,13 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the OpenProgramSelect.
-        /// </summary>
+        /// <inheritdoc/>
         public DelegateCommand OpenProgramSelect { get; set; }
 
-        /// <summary>
-        /// Gets or sets the PauseButton.
-        /// </summary>
+        /// <inheritdoc/>
         public DelegateCommand PauseButton { get; set; }
 
-        /// <summary>
-        /// Gets or sets the PlayButton.
-        /// </summary>
+        /// <inheritdoc/>
         public DelegateCommand PlayButton { get; set; }
     }
 }

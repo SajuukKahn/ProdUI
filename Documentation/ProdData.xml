@@ -5,54 +5,22 @@
     </assembly>
     <members>
         <member name="T:ProdData.Converters.MultiValueConverterAddOneToIndex">
-            <summary>
-            Defines the <see cref="T:ProdData.Converters.MultiValueConverterAddOneToIndex" />.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Converters.MultiValueConverterAddOneToIndex.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            The Convert.
-            </summary>
-            <param name="values">The values<see cref="T:System.Object"/>.</param>
-            <param name="targetType">The targetType<see cref="T:System.Type"/>.</param>
-            <param name="parameter">The parameter<see cref="T:System.Object"/>.</param>
-            <param name="culture">The culture<see cref="T:System.Globalization.CultureInfo"/>.</param>
-            <returns>The <see cref="T:System.Object"/>.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Converters.MultiValueConverterAddOneToIndex.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            The ConvertBack.
-            </summary>
-            <param name="value">The value<see cref="T:System.Object"/>.</param>
-            <param name="targetTypes">The targetTypes<see cref="T:System.Type"/>.</param>
-            <param name="parameter">The parameter<see cref="T:System.Object"/>.</param>
-            <param name="culture">The culture<see cref="T:System.Globalization.CultureInfo"/>.</param>
-            <returns>The <see cref="T:System.Object"/>.</returns>
+            <inheritdoc/>
         </member>
         <member name="T:ProdData.Converters.RelativePositionalFix">
-            <summary>
-            Defines the <see cref="T:ProdData.Converters.RelativePositionalFix" />.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Converters.RelativePositionalFix.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            The Convert.
-            </summary>
-            <param name="value">The value<see cref="T:System.Object"/>.</param>
-            <param name="targetType">The targetType<see cref="T:System.Type"/>.</param>
-            <param name="parameter">The parameter<see cref="T:System.Object"/>.</param>
-            <param name="culture">The culture<see cref="T:System.Globalization.CultureInfo"/>.</param>
-            <returns>The <see cref="T:System.Object"/>.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Converters.RelativePositionalFix.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-            <summary>
-            The ConvertBack.
-            </summary>
-            <param name="value">The value<see cref="T:System.Object"/>.</param>
-            <param name="targetType">The targetType<see cref="T:System.Type"/>.</param>
-            <param name="parameter">The parameter<see cref="T:System.Object"/>.</param>
-            <param name="culture">The culture<see cref="T:System.Globalization.CultureInfo"/>.</param>
-            <returns>The <see cref="T:System.Object"/>.</returns>
+            <inheritdoc/>
         </member>
         <member name="T:ProdData.Extensions.ListBoxExtenders">
             <summary>
@@ -98,9 +66,7 @@
             </summary>
         </member>
         <member name="M:ProdData.Extensions.RadCarouselBehaviorExtensions.OnAttached">
-            <summary>
-            The OnAttached.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Extensions.RadCarouselBehaviorExtensions.PropChangedEventHandler(System.Object,System.ComponentModel.PropertyChangedEventArgs)">
             <summary>
@@ -148,9 +114,7 @@
             <param name="e">The e<see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/>.</param>
         </member>
         <member name="T:ProdData.Factories.CardFactory">
-            <summary>
-            Defines the <see cref="T:ProdData.Factories.CardFactory" />.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="F:ProdData.Factories.CardFactory._chronometerFactory">
             <summary>
@@ -164,34 +128,19 @@
             <param name="chronometerFactory">The chronometerFactory<see cref="T:ProductionCore.Interfaces.IChronometerFactory"/>.</param>
         </member>
         <member name="M:ProdData.Factories.CardFactory.Create">
-            <summary>
-            The Create.
-            </summary>
-            <returns>The <see cref="T:ProductionCore.Interfaces.ICard"/>.</returns>
+            <inheritdoc/>
         </member>
         <member name="T:ProdData.Factories.CardSubStepFactory">
-            <summary>
-            Defines the <see cref="T:ProdData.Factories.CardSubStepFactory" />.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Factories.CardSubStepFactory.Create">
-            <summary>
-            The Create.
-            </summary>
-            <returns>The <see cref="T:ProductionCore.Interfaces.ICardSubStep"/>.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Factories.CardSubStepFactory.Create(System.String,System.String[])">
-            <summary>
-            The Create.
-            </summary>
-            <param name="subStepName">The subStepName<see cref="T:System.String"/>.</param>
-            <param name="subStepData">The subStepData<see cref="T:System.String"/>.</param>
-            <returns>The <see cref="T:ProductionCore.Interfaces.ICardSubStep"/>.</returns>
+            <inheritdoc/>
         </member>
         <member name="T:ProdData.Factories.ChronometerFactory">
-            <summary>
-            Defines the <see cref="T:ProdData.Factories.ChronometerFactory" />.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Factories.ChronometerFactory.#ctor">
             <summary>
@@ -199,26 +148,16 @@
             </summary>
         </member>
         <member name="M:ProdData.Factories.ChronometerFactory.Create">
-            <summary>
-            The Create.
-            </summary>
-            <returns>The <see cref="T:ProductionCore.Interfaces.IChronometer"/>.</returns>
+            <inheritdoc/>
         </member>
         <member name="T:ProdData.Factories.ModalFactory">
-            <summary>
-            Defines the <see cref="T:ProdData.Factories.ModalFactory" />.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Factories.ModalFactory.CreateModalData">
-            <summary>
-            The CreateModalData.
-            </summary>
-            <returns>The <see cref="T:ProductionCore.Interfaces.IModalData"/>.</returns>
+            <inheritdoc/>
         </member>
         <member name="T:ProdData.Models.Card">
-            <summary>
-            Defines the <see cref="T:ProdData.Models.Card" />.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="F:ProdData.Models.Card._breakOnError">
             <summary>
@@ -282,85 +221,52 @@
             <param name="chronometerFactory">The chronometerFactory<see cref="T:ProductionCore.Interfaces.IChronometerFactory"/>.</param>
         </member>
         <member name="P:ProdData.Models.Card.BreakOnError">
-            <summary>
-            Gets or sets a value indicating whether BreakOnError.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Models.Card.CurrentSubStep">
-            <summary>
-            Gets or sets the CurrentSubStep.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Models.Card.CardStepIndex">
-            <summary>
-            Gets or sets the CardStepIndex.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Models.Card.CardSubSteps">
-            <summary>
-            Gets or sets the CardSubSteps.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Models.Card.CardTime">
-            <summary>
-            Gets or sets the CardTime.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Models.Card.IsActiveStep">
-            <summary>
-            Gets or sets a value indicating whether IsActiveStep.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Models.Card.StepComplete">
-            <summary>
-            Gets or sets a value indicating whether StepComplete.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Models.Card.StepImage">
-            <summary>
-            Gets or sets the StepImage.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Models.Card.StepModalData">
-            <summary>
-            Gets or sets the StepModalData.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Models.Card.StepStatus">
-            <summary>
-            Gets or sets the StepStatus.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Models.Card.StepTitle">
-            <summary>
-            Gets or sets the StepTitle.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Models.Card.SubStepCount">
-            <summary>
-            Gets the SubStepCount.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Models.Card.StartCard">
-            <summary>
-            The StartCard.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Models.Card.RetryCard">
-            <summary>
-            The RetryCard.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Models.Card.Initialize">
-            <summary>
-            The Initialize.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Models.Card.IterateSubStep">
-            <summary>
-            The IterateSubStep.
-            </summary>
-            <returns>The <see cref="T:System.Boolean"/>.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Models.Card.SetCurrentSubstep">
             <summary>
@@ -373,9 +279,7 @@
             </summary>
         </member>
         <member name="T:ProdData.Models.CardSubStep">
-            <summary>
-            Defines the <see cref="T:ProdData.Models.CardSubStep" />.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Models.CardSubStep.#ctor">
             <summary>
@@ -390,24 +294,16 @@
             <param name="subStepData">The subStepData<see cref="T:System.String"/>.</param>
         </member>
         <member name="P:ProdData.Models.CardSubStep.FullSubStepData">
-            <summary>
-            Gets the FullSubStepData.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Models.CardSubStep.SubStepData">
-            <summary>
-            Gets or sets the SubStepData.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Models.CardSubStep.SubStepName">
-            <summary>
-            Gets or sets the SubStepName.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="T:ProdData.Models.Chronometer">
-            <summary>
-            Defines the <see cref="T:ProdData.Models.Chronometer" />.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="F:ProdData.Models.Chronometer._stopwatch">
             <summary>
@@ -445,34 +341,22 @@
             </summary>
         </member>
         <member name="P:ProdData.Models.Chronometer.ElapsedTime">
-            <summary>
-            Gets or sets the ElapsedTime.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Models.Chronometer.TimeSpan">
-            <summary>
-            Gets or sets the TimeSpan.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Models.Chronometer.StartTime">
-            <summary>
-            Gets or sets the StartTime.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Models.Chronometer.Pause">
-            <summary>
-            The Pause.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Models.Chronometer.Reset">
-            <summary>
-            The Reset.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Models.Chronometer.Start">
-            <summary>
-            The Start.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Models.Chronometer.Timer_Tick(System.Object,System.EventArgs)">
             <summary>
@@ -482,9 +366,7 @@
             <param name="e">The e<see cref="T:System.EventArgs"/>.</param>
         </member>
         <member name="T:ProdData.Models.ModalData">
-            <summary>
-            Defines the <see cref="T:ProdData.Models.ModalData" />.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="F:ProdData.Models.ModalData._isError">
             <summary>
@@ -537,54 +419,34 @@
             </summary>
         </member>
         <member name="P:ProdData.Models.ModalData.IsError">
-            <summary>
-            Gets or sets a value indicating whether IsError.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Models.ModalData.CanAbort">
-            <summary>
-            Gets or sets a value indicating whether CanAbort.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Models.ModalData.CanContinue">
-            <summary>
-            Gets or sets a value indicating whether CanContinue.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Models.ModalData.CanRetry">
-            <summary>
-            Gets or sets a value indicating whether CanRetry.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Models.ModalData.CanCustom">
-            <summary>
-            Gets or sets a value indicating whether CanCustom.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Models.ModalData.Instructions">
-            <summary>
-            Gets or sets the Instructions.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Models.ModalData.InstructionImage">
-            <summary>
-            Gets or sets the InstructionImage.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Models.ModalData.Card">
-            <summary>
-            Gets or sets the Card.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Models.ModalData.CustomButtonGlyph">
-            <summary>
-            Gets or sets the CustomButtonGlyph.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Models.ModalData.CustomButtonText">
-            <summary>
-            Gets or sets the CustomButtonText.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="T:ProdData.ProdDataModule">
             <summary>
@@ -603,21 +465,13 @@
             <param name="regionManager">The regionManager<see cref="T:Prism.Regions.IRegionManager"/>.</param>
         </member>
         <member name="M:ProdData.ProdDataModule.OnInitialized(Prism.Ioc.IContainerProvider)">
-            <summary>
-            The OnInitialized.
-            </summary>
-            <param name="containerProvider">The containerProvider<see cref="T:Prism.Ioc.IContainerProvider"/>.</param>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.ProdDataModule.RegisterTypes(Prism.Ioc.IContainerRegistry)">
-            <summary>
-            The RegisterTypes.
-            </summary>
-            <param name="containerRegistry">The containerRegistry<see cref="T:Prism.Ioc.IContainerRegistry"/>.</param>
+            <inheritdoc/>
         </member>
         <member name="T:ProdData.Services.ModalService">
-            <summary>
-            Defines the <see cref="T:ProdData.Services.ModalService" />.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="F:ProdData.Services.ModalService._modalFactory">
             <summary>
@@ -641,36 +495,22 @@
             <param name="modalFactory">The modalFactory<see cref="T:ProductionCore.Interfaces.IModalFactory"/>.</param>
         </member>
         <member name="P:ProdData.Services.ModalService.ActiveModalData">
-            <summary>
-            Gets or sets the ActiveModalData.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Services.ModalService.ModalActive">
-            <summary>
-            Gets or sets a value indicating whether ModalActive.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Services.ModalService.CreateModalData">
-            <summary>
-            The CreateModalData.
-            </summary>
-            <returns>The <see cref="T:ProductionCore.Interfaces.IModalData"/>.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Services.ModalService.ShowModal(ProductionCore.Interfaces.IModalData)">
-            <summary>
-            The ShowModal.
-            </summary>
-            <param name="modalData">The modalData<see cref="T:ProductionCore.Interfaces.IModalData"/>.</param>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Services.ModalService.CloseModal">
-            <summary>
-            The CloseModal.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="T:ProdData.Services.PlaybackService">
-            <summary>
-            Defines the <see cref="T:ProdData.Services.PlaybackService" />.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="F:ProdData.Services.PlaybackService._modalService">
             <summary>
@@ -741,125 +581,76 @@
             <param name="mediationService">The mediationService<see cref="T:ProductionCore.Interfaces.IMediationService"/>.</param>
         </member>
         <member name="E:ProdData.Services.PlaybackService.PauseInitiated">
-            <summary>
-            Defines the PauseInitiated.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="E:ProdData.Services.PlaybackService.PlaybackInitiated">
-            <summary>
-            Defines the PlaybackInitiated.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="E:ProdData.Services.PlaybackService.AbortInitiated">
-            <summary>
-            Defines the AbortInitiated.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Services.PlaybackService.ProgramSteps">
-            <summary>
-            Gets or sets the ProgramSteps.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Services.PlaybackService.AllowProgramChange">
-            <summary>
-            Gets or sets a value indicating whether AllowProgramChange.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Services.PlaybackService.ProgramPaused">
-            <summary>
-            Gets or sets a value indicating whether ProgramPaused.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Services.PlaybackService.PauseAvailable">
-            <summary>
-            Gets or sets a value indicating whether PauseAvailable.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Services.PlaybackService.PlayAvailable">
-            <summary>
-            Gets or sets a value indicating whether PlayAvailable.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Services.PlaybackService.PlaybackRunning">
-            <summary>
-            Gets or sets a value indicating whether PlaybackRunning.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Services.PlaybackService.CurrentCard">
-            <summary>
-            Gets or sets the CurrentCard.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Services.PlaybackService.CurrentCardIndex">
-            <summary>
-            Gets or sets the CurrentCardIndex.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Services.PlaybackService.CycleTime">
-            <summary>
-            Gets or sets the CycleTime.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.Services.PlaybackService.ProductImage">
-            <summary>
-            Gets or sets the ProductImage.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Services.PlaybackService.Abort">
-            <summary>
-            The Abort.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Services.PlaybackService.AdvanceStep">
-            <summary>
-            The AdvanceStep.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Services.PlaybackService.PauseCard">
-            <summary>
-            The PauseCard.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Services.PlaybackService.RetryCard">
-            <summary>
-            The RetryCard.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Services.PlaybackService.PlayCard">
-            <summary>
-            The StartCard.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Services.PlaybackService.ModalEvent(ProductionCore.Interfaces.IModalData)">
-            <summary>
-            The ModalEvent.
-            </summary>
-            <param name="modalData">The modalData<see cref="T:ProductionCore.Interfaces.IModalData"/>.</param>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Services.PlaybackService.Pause">
-            <summary>
-            The Pause.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Services.PlaybackService.RunningStepPaused">
-            <summary>
-            The RunningStepPaused.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Services.PlaybackService.Play">
-            <summary>
-            The Play.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Services.PlaybackService.RequestProgramChange">
-            <summary>
-            The RequestProgramChange.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Services.PlaybackService.RaiseError">
-            <summary>
-            The RaiseError.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:ProdData.Services.PlaybackService.CompleteCycle">
             <summary>
@@ -904,34 +695,22 @@
             <param name="mediationService">The mediationService<see cref="T:ProductionCore.Interfaces.IMediationService"/>.</param>
         </member>
         <member name="P:ProdData.ViewModels.ProdDataViewModel.PlaybackService">
-            <summary>
-            Gets the PlaybackService.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.ViewModels.ProdDataViewModel.MediationService">
-            <summary>
-            Gets the MediationService.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.ViewModels.ProdDataViewModel.OpenProgramSelect">
-            <summary>
-            Gets or sets the OpenProgramSelect.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.ViewModels.ProdDataViewModel.PauseButton">
-            <summary>
-            Gets or sets the PauseButton.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.ViewModels.ProdDataViewModel.PlayButton">
-            <summary>
-            Gets or sets the PlayButton.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="T:ProdData.ViewModels.ProdModalDialogViewModel">
-            <summary>
-            Defines the <see cref="T:ProdData.ViewModels.ProdModalDialogViewModel" />.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="F:ProdData.ViewModels.ProdModalDialogViewModel._modalService">
             <summary>
@@ -946,34 +725,22 @@
             <param name="playbackService">The playbackService<see cref="T:ProductionCore.Interfaces.IPlaybackService"/>.</param>
         </member>
         <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.ModalService">
-            <summary>
-            Gets the ModalService.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.Abort">
-            <summary>
-            Gets or sets the Abort.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.Continue">
-            <summary>
-            Gets or sets the Continue.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.Custom">
-            <summary>
-            Gets or sets the Custom.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.Retry">
-            <summary>
-            Gets or sets the Retry.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="T:ProdData.Views.ProdDataView">
-            <summary>
-            Interaction logic for ProdData.xaml.
-            </summary>
+            <inheritdoc/>
             <summary>
             ProdDataView
             </summary>
@@ -990,9 +757,7 @@
             </summary>
         </member>
         <member name="T:ProdData.Views.ProdModalDialogView">
-            <summary>
-            Interaction logic for ProdModalDialog.xaml.
-            </summary>
+            <inheritdoc/>
             <summary>
             ProdModalDialogView
             </summary>

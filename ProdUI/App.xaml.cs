@@ -7,9 +7,7 @@
     using ProdUI.Views;
     using Telerik.Windows.Controls;
 
-    /// <summary>
-    /// Interaction logic for App.xaml.
-    /// </summary>
+    /// <inheritdoc/>
     public partial class App : PrismApplication
     {
         /// <inheritdoc/>

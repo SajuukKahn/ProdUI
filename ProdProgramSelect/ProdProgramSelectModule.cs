@@ -7,6 +7,7 @@
     using ProdProgramSelect.Models;
     using ProdProgramSelect.Services;
     using ProdProgramSelect.ViewModels;
+    using ProdProgramSelect.Views;
     using ProductionCore.Interfaces;
 
     /// <summary>
@@ -33,9 +34,7 @@
         /// <inheritdoc/>
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            IRegion region = _regionManager.Regions["ProgramSelectRegion"];
-            var view = containerProvider.Resolve<Views.ProgramSelectView>();
-            region.Add(view);
+            _regionManager.Regions["ProgramSelectRegion"].Add(containerProvider.Resolve<IProgramSelectView>());
         }
 
         /// <inheritdoc/>
@@ -45,6 +44,7 @@
             containerRegistry.Register<IProgramData, ProgramData>();
             containerRegistry.Register<IBarcodeFactory, BarcodeFactory>();
             containerRegistry.Register<IProgramDataFactory, ProgramDataFactory>();
+            containerRegistry.Register<IProgramSelectView, ProgramSelectView>();
             containerRegistry.RegisterSingleton<IProgramDataService, ProgramDataService>();
             containerRegistry.RegisterSingleton<IProgramSelectViewModel, ProgramSelectViewModel>();
         }

@@ -3,9 +3,7 @@
     using ProdData.Models;
     using ProductionCore.Interfaces;
 
-    /// <summary>
-    /// Defines the <see cref="CardFactory" />.
-    /// </summary>
+    /// <inheritdoc/>
     public class CardFactory : ICardFactory
     {
         /// <summary>
@@ -22,10 +20,7 @@
             _chronometerFactory = chronometerFactory;
         }
 
-        /// <summary>
-        /// The Create.
-        /// </summary>
-        /// <returns>The <see cref="ICard"/>.</returns>
+        /// <inheritdoc/>
         public ICard Create()
         {
             return new Card(_chronometerFactory);
