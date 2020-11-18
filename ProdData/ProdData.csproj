@@ -4,16 +4,23 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
 	  <Nullable>enable</Nullable>
-	  <CodeAnalysisRuleSet>../PVA.ruleset</CodeAnalysisRuleSet>
+	  <CodeAnalysisRuleSet>..\PVA.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+  <!--<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>C:\Users\Ryan\Source\Repos\SajuukKahn\ProdUI\ProdData\ProdData.xml</DocumentationFile>
-  </PropertyGroup>
+  </PropertyGroup>-->
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DocumentationFile>
+			$(MSBuildThisFileDirectory)\bin\$(Configuration)\$(TargetFramework)\ProdData.xml
+		</DocumentationFile>
+	</PropertyGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="xcopy &quot;$(TargetDir)$(TargetName)*$(TargetExt)&quot; &quot;$(SolutionDir)$(SolutionName)\bin\Debug\netcoreapp3.1\Modules\&quot; /Y /S" />
   </Target>
+	
 
   <ItemGroup>
     <ProjectReference Include="..\ProductionCore\ProductionCore.csproj" />

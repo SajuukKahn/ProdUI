@@ -1,8 +1,8 @@
 ﻿namespace ProductionCore.Services
 {
     using System;
-    using global::ProductionCore.Interfaces;
     using Prism.Mvvm;
+    using ProductionCore.Interfaces;
 
     /// <summary>
     /// Defines the <see cref="MediationService" />.

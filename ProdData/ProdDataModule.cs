@@ -1,19 +1,19 @@
 ﻿namespace ProdData
 {
-    using global::ProdData.Factories;
-    using global::ProdData.Models;
-    using global::ProdData.Services;
-    using global::ProdData.ViewModels;
     using Prism.Ioc;
     using Prism.Modularity;
     using Prism.Regions;
+    using ProdData.Factories;
+    using ProdData.Models;
+    using ProdData.Services;
+    using ProdData.ViewModels;
     using ProductionCore.Interfaces;
 
     /// <summary>
-    /// Defines the <see cref="ProdData" />.
+    /// Defines the <see cref="ProdDataModule" />.
     /// </summary>
     [ModuleDependency("ProductionCore")]
-    public class ProdData : IModule
+    public class ProdDataModule : IModule
     {
         /// <summary>
         /// Defines the _regionManager.
@@ -21,10 +21,10 @@
         private readonly IRegionManager _regionManager;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProdData"/> class.
+        /// Initializes a new instance of the <see cref="ProdDataModule"/> class.
         /// </summary>
         /// <param name="regionManager">The regionManager<see cref="IRegionManager"/>.</param>
-        public ProdData(IRegionManager regionManager)
+        public ProdDataModule(IRegionManager regionManager)
         {
             _regionManager = regionManager;
         }

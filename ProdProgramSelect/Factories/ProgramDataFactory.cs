@@ -1,6 +1,6 @@
 ﻿namespace ProdProgramSelect.Factories
 {
-    using global::ProdProgramSelect.Models;
+    using ProdProgramSelect.Models;
     using ProductionCore.Interfaces;
 
     /// <summary>

@@ -1,20 +1,20 @@
 ﻿namespace ProdProgramSelect
 {
-    using global::ProdProgramSelect.Factories;
-    using global::ProdProgramSelect.Models;
-    using global::ProdProgramSelect.Services;
-    using global::ProdProgramSelect.ViewModels;
     using Prism.Ioc;
     using Prism.Modularity;
     using Prism.Regions;
+    using ProdProgramSelect.Factories;
+    using ProdProgramSelect.Models;
+    using ProdProgramSelect.Services;
+    using ProdProgramSelect.ViewModels;
     using ProductionCore.Interfaces;
 
     /// <summary>
-    /// Defines the <see cref="ProdProgramSelect" />.
+    /// Defines the <see cref="ProdProgramSelectModule" />.
     /// </summary>
     [ModuleDependency("ProductionCore")]
     [ModuleDependency("ProdTestGenerator")]
-    public class ProdProgramSelect : IModule
+    public class ProdProgramSelectModule : IModule
     {
         /// <summary>
         /// Defines the _regionManager.
@@ -22,18 +22,15 @@
         private readonly IRegionManager _regionManager;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProdProgramSelect"/> class.
+        /// Initializes a new instance of the <see cref="ProdProgramSelectModule"/> class.
         /// </summary>
         /// <param name="regionManager">The regionManager<see cref="IRegionManager"/>.</param>
-        public ProdProgramSelect(IRegionManager regionManager)
+        public ProdProgramSelectModule(IRegionManager regionManager)
         {
             _regionManager = regionManager;
         }
 
-        /// <summary>
-        /// The OnInitialized.
-        /// </summary>
-        /// <param name="containerProvider">The containerProvider<see cref="IContainerProvider"/>.</param>
+        /// <inheritdoc/>
         public void OnInitialized(IContainerProvider containerProvider)
         {
             IRegion region = _regionManager.Regions["ProgramSelectRegion"];
@@ -41,10 +38,7 @@
             region.Add(view);
         }
 
-        /// <summary>
-        /// The RegisterTypes.
-        /// </summary>
-        /// <param name="containerRegistry">The containerRegistry<see cref="IContainerRegistry"/>.</param>
+        /// <inheritdoc/>
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.Register<IBarcode, Barcode>();

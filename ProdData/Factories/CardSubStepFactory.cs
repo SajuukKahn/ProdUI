@@ -1,6 +1,6 @@
 ﻿namespace ProdData.Factories
 {
-    using global::ProdData.Models;
+    using ProdData.Models;
     using ProductionCore.Interfaces;
 
     /// <summary>

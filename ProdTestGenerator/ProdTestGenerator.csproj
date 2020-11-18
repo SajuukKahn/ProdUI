@@ -4,13 +4,20 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWpf>true</UseWpf>
 	  <Nullable>enable</Nullable>
-	  <CodeAnalysisRuleSet>../PVA.ruleset</CodeAnalysisRuleSet>
+	  <CodeAnalysisRuleSet>..\PVA.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+  <!--<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <DocumentationFile>C:\Users\Ryan\Source\Repos\SajuukKahn\ProdUI\ProdTestGenerator\ProdTestGenerator.xml</DocumentationFile>
-  </PropertyGroup>
+  </PropertyGroup>-->
+
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DocumentationFile>
+			$(MSBuildThisFileDirectory)\bin\$(Configuration)\$(TargetFramework)\ProdTestGenerator.xml
+		</DocumentationFile>
+	</PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ProductionCore\ProductionCore.csproj" />

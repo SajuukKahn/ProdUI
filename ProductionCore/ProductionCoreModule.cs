@@ -1,14 +1,14 @@
 ﻿namespace ProductionCore
 {
-    using global::ProductionCore.Interfaces;
-    using global::ProductionCore.Services;
     using Prism.Ioc;
     using Prism.Modularity;
+    using ProductionCore.Interfaces;
+    using ProductionCore.Services;
 
     /// <summary>
-    /// Defines the <see cref="ProductionCore" />.
+    /// Defines the <see cref="ProductionCoreModule" />.
     /// </summary>
-    public class ProductionCore : IModule
+    public class ProductionCoreModule : IModule
     {
         /// <summary>
         /// The OnInitialized.
