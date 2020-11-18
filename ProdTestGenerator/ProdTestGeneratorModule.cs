@@ -12,7 +12,7 @@
     /// <summary>
     /// Defines the <see cref="ProdTestGeneratorModule" />.
     /// </summary>
-    [ModuleDependency("ProductionCore")]
+    [ModuleDependency(nameof(ProductionCore.ProductionCoreModule))]
     public class ProdTestGeneratorModule : IModule
     {
         /// <summary>
@@ -43,6 +43,7 @@
             IRegion region = _regionManager.Regions["TestRegion"];
             var view = containerProvider.Resolve<TestGeneratorView>();
             region.Add(view);
+            containerProvider.Resolve<IControllerService>();
         }
 
         /// <summary>
@@ -51,7 +52,7 @@
         /// <param name="containerRegistry">The containerRegistry<see cref="IContainerRegistry"/>.</param>
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterSingleton<IControllerService, ControllerService>(); // MAC: Controllerservice - why remove?
+            containerRegistry.RegisterSingleton<IControllerService, ControllerService>();
             containerRegistry.Register<ITestGeneratorViewModel, TestGeneratorViewModel>();
             containerRegistry.RegisterSingleton<IFileService, FileService>();
         }

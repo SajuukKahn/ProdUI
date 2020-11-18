@@ -12,7 +12,7 @@
     /// <summary>
     /// Defines the <see cref="ProdDataModule" />.
     /// </summary>
-    [ModuleDependency("ProductionCore")]
+    [ModuleDependency(nameof(ProductionCore.ProductionCoreModule))]
     public class ProdDataModule : IModule
     {
         /// <summary>

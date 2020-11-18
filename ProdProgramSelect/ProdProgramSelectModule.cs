@@ -12,8 +12,8 @@
     /// <summary>
     /// Defines the <see cref="ProdProgramSelectModule" />.
     /// </summary>
-    [ModuleDependency("ProductionCore")]
-    [ModuleDependency("ProdTestGenerator")]
+    [ModuleDependency(nameof(ProductionCore.ProductionCoreModule))]
+    [ModuleDependency("ProdTestGeneratorModule")]
     public class ProdProgramSelectModule : IModule
     {
         /// <summary>
