@@ -9,15 +9,11 @@
 	  <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <!--<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\Users\Ryan\Source\Repos\SajuukKahn\ProdUI\ProdUI\ProdUI.xml</DocumentationFile>
-  </PropertyGroup>-->
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DocumentationFile>
-			$(MSBuildThisFileDirectory)\bin\$(Configuration)\$(TargetFramework)\ProdUI.xml
-		</DocumentationFile>
-	</PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>1701;1702;1011</NoWarn>
+    <DocumentationFile>..\Documentation\ProdUI.xml</DocumentationFile>
+  </PropertyGroup>
 	
   <ItemGroup>
     <Compile Remove="Lib\**" />

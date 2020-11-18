@@ -13,7 +13,6 @@
         /// <summary>
         /// Gets or sets the SubStepData.
         /// </summary>
-        #pragma warning disable SA1011 // ClosingSquareBracketsMustBeSpacedCorrectly
         string[]? SubStepData { get; set; }
 
         /// <summary>

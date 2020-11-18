@@ -6,19 +6,10 @@
     <UseWPF>true</UseWPF>
 	  <CodeAnalysisRuleSet>..\PVA.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-	
-	<!--<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-		<DocumentationFile>C:\Users\Ryan\Source\Repos\SajuukKahn\ProdUI\ProdProgramSelect\ProdProgramSelect.xml</DocumentationFile>
-	</PropertyGroup>-->
 
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DocumentationFile>
-			$(MSBuildThisFileDirectory)\bin\$(Configuration)\$(TargetFramework)\ProdProgramSelect.xml
-		</DocumentationFile>
-	</PropertyGroup>
-
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>..\Documentation\ProdProgramSelect.xml</DocumentationFile>
+  </PropertyGroup>
 
 	<ItemGroup>
     <ProjectReference Include="..\ProductionCore\ProductionCore.csproj" />

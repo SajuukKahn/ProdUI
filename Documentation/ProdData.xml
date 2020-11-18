@@ -1,0 +1,1012 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ProdData</name>
+    </assembly>
+    <members>
+        <member name="T:ProdData.Converters.MultiValueConverterAddOneToIndex">
+            <summary>
+            Defines the <see cref="T:ProdData.Converters.MultiValueConverterAddOneToIndex" />.
+            </summary>
+        </member>
+        <member name="M:ProdData.Converters.MultiValueConverterAddOneToIndex.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            The Convert.
+            </summary>
+            <param name="values">The values<see cref="T:System.Object"/>.</param>
+            <param name="targetType">The targetType<see cref="T:System.Type"/>.</param>
+            <param name="parameter">The parameter<see cref="T:System.Object"/>.</param>
+            <param name="culture">The culture<see cref="T:System.Globalization.CultureInfo"/>.</param>
+            <returns>The <see cref="T:System.Object"/>.</returns>
+        </member>
+        <member name="M:ProdData.Converters.MultiValueConverterAddOneToIndex.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            The ConvertBack.
+            </summary>
+            <param name="value">The value<see cref="T:System.Object"/>.</param>
+            <param name="targetTypes">The targetTypes<see cref="T:System.Type"/>.</param>
+            <param name="parameter">The parameter<see cref="T:System.Object"/>.</param>
+            <param name="culture">The culture<see cref="T:System.Globalization.CultureInfo"/>.</param>
+            <returns>The <see cref="T:System.Object"/>.</returns>
+        </member>
+        <member name="T:ProdData.Converters.RelativePositionalFix">
+            <summary>
+            Defines the <see cref="T:ProdData.Converters.RelativePositionalFix" />.
+            </summary>
+        </member>
+        <member name="M:ProdData.Converters.RelativePositionalFix.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            The Convert.
+            </summary>
+            <param name="value">The value<see cref="T:System.Object"/>.</param>
+            <param name="targetType">The targetType<see cref="T:System.Type"/>.</param>
+            <param name="parameter">The parameter<see cref="T:System.Object"/>.</param>
+            <param name="culture">The culture<see cref="T:System.Globalization.CultureInfo"/>.</param>
+            <returns>The <see cref="T:System.Object"/>.</returns>
+        </member>
+        <member name="M:ProdData.Converters.RelativePositionalFix.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            The ConvertBack.
+            </summary>
+            <param name="value">The value<see cref="T:System.Object"/>.</param>
+            <param name="targetType">The targetType<see cref="T:System.Type"/>.</param>
+            <param name="parameter">The parameter<see cref="T:System.Object"/>.</param>
+            <param name="culture">The culture<see cref="T:System.Globalization.CultureInfo"/>.</param>
+            <returns>The <see cref="T:System.Object"/>.</returns>
+        </member>
+        <member name="T:ProdData.Extensions.ListBoxExtenders">
+            <summary>
+            Defines the <see cref="T:ProdData.Extensions.ListBoxExtenders" />.
+            </summary>
+        </member>
+        <member name="F:ProdData.Extensions.ListBoxExtenders.AutoScrollToCurrentItemProperty">
+            <summary>
+            Defines the AutoScrollToCurrentItemProperty.
+            </summary>
+        </member>
+        <member name="M:ProdData.Extensions.ListBoxExtenders.GetAutoScrollToCurrentItem(System.Windows.DependencyObject)">
+            <summary>
+            The GetAutoScrollToCurrentItem.
+            </summary>
+            <param name="obj">The obj<see cref="T:System.Windows.DependencyObject"/>.</param>
+            <returns>The <see cref="T:System.Boolean"/>.</returns>
+        </member>
+        <member name="M:ProdData.Extensions.ListBoxExtenders.OnAutoScrollToCurrentItem(System.Windows.Controls.ListBox,System.Int32)">
+            <summary>
+            The OnAutoScrollToCurrentItem.
+            </summary>
+            <param name="listBox">The listBox<see cref="T:System.Windows.Controls.ListBox"/>.</param>
+            <param name="index">The index<see cref="T:System.Int32"/>.</param>
+        </member>
+        <member name="M:ProdData.Extensions.ListBoxExtenders.OnAutoScrollToCurrentItemChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            The OnAutoScrollToCurrentItemChanged.
+            </summary>
+            <param name="s">The s<see cref="T:System.Windows.DependencyObject"/>.</param>
+            <param name="e">The e<see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/>.</param>
+        </member>
+        <member name="M:ProdData.Extensions.ListBoxExtenders.SetAutoScrollToCurrentItem(System.Windows.DependencyObject,System.Boolean)">
+            <summary>
+            The SetAutoScrollToCurrentItem.
+            </summary>
+            <param name="obj">The obj<see cref="T:System.Windows.DependencyObject"/>.</param>
+            <param name="value">The value<see cref="T:System.Boolean"/>.</param>
+        </member>
+        <member name="T:ProdData.Extensions.RadCarouselBehaviorExtensions">
+            <summary>
+            Defines the <see cref="T:ProdData.Extensions.RadCarouselBehaviorExtensions" />.
+            </summary>
+        </member>
+        <member name="M:ProdData.Extensions.RadCarouselBehaviorExtensions.OnAttached">
+            <summary>
+            The OnAttached.
+            </summary>
+        </member>
+        <member name="M:ProdData.Extensions.RadCarouselBehaviorExtensions.PropChangedEventHandler(System.Object,System.ComponentModel.PropertyChangedEventArgs)">
+            <summary>
+            The PropChangedEventHandler.
+            </summary>
+            <param name="s">The s<see cref="T:System.Object"/>.</param>
+            <param name="e">The e<see cref="T:System.ComponentModel.PropertyChangedEventArgs"/>.</param>
+        </member>
+        <member name="M:ProdData.Extensions.RadCarouselBehaviorExtensions.SnapToCurrentItem(System.Object,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            The SnapToCurrentItem.
+            </summary>
+            <param name="s">The s<see cref="T:System.Object"/>.</param>
+            <param name="e">The e<see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/>.</param>
+        </member>
+        <member name="T:ProdData.Extensions.SelectedIndexFromSelectedItem">
+            <summary>
+            Defines the <see cref="T:ProdData.Extensions.SelectedIndexFromSelectedItem" />.
+            </summary>
+        </member>
+        <member name="F:ProdData.Extensions.SelectedIndexFromSelectedItem.SelectedIndexAttached">
+            <summary>
+            Defines the SelectedIndexAttached.
+            </summary>
+        </member>
+        <member name="M:ProdData.Extensions.SelectedIndexFromSelectedItem.GetSelectedIndex(System.Windows.DependencyObject)">
+            <summary>
+            The GetSelectedIndex.
+            </summary>
+            <param name="d">The d<see cref="T:System.Windows.DependencyObject"/>.</param>
+            <returns>The <see cref="T:System.Int32"/>.</returns>
+        </member>
+        <member name="M:ProdData.Extensions.SelectedIndexFromSelectedItem.SetSelectedIndex(System.Windows.DependencyObject,System.Int32)">
+            <summary>
+            The SetSelectedIndex.
+            </summary>
+            <param name="d">The d<see cref="T:System.Windows.DependencyObject"/>.</param>
+            <param name="value">The value<see cref="T:System.Int32"/>.</param>
+        </member>
+        <member name="M:ProdData.Extensions.SelectedIndexFromSelectedItem.SelectedIndexAttachedChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            The SelectedIndexAttachedChanged.
+            </summary>
+            <param name="d">The d<see cref="T:System.Windows.DependencyObject"/>.</param>
+            <param name="e">The e<see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/>.</param>
+        </member>
+        <member name="T:ProdData.Factories.CardFactory">
+            <summary>
+            Defines the <see cref="T:ProdData.Factories.CardFactory" />.
+            </summary>
+        </member>
+        <member name="F:ProdData.Factories.CardFactory._chronometerFactory">
+            <summary>
+            Defines the _chronometerFactory.
+            </summary>
+        </member>
+        <member name="M:ProdData.Factories.CardFactory.#ctor(ProductionCore.Interfaces.IChronometerFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdData.Factories.CardFactory"/> class.
+            </summary>
+            <param name="chronometerFactory">The chronometerFactory<see cref="T:ProductionCore.Interfaces.IChronometerFactory"/>.</param>
+        </member>
+        <member name="M:ProdData.Factories.CardFactory.Create">
+            <summary>
+            The Create.
+            </summary>
+            <returns>The <see cref="T:ProductionCore.Interfaces.ICard"/>.</returns>
+        </member>
+        <member name="T:ProdData.Factories.CardSubStepFactory">
+            <summary>
+            Defines the <see cref="T:ProdData.Factories.CardSubStepFactory" />.
+            </summary>
+        </member>
+        <member name="M:ProdData.Factories.CardSubStepFactory.Create">
+            <summary>
+            The Create.
+            </summary>
+            <returns>The <see cref="T:ProductionCore.Interfaces.ICardSubStep"/>.</returns>
+        </member>
+        <member name="M:ProdData.Factories.CardSubStepFactory.Create(System.String,System.String[])">
+            <summary>
+            The Create.
+            </summary>
+            <param name="subStepName">The subStepName<see cref="T:System.String"/>.</param>
+            <param name="subStepData">The subStepData<see cref="T:System.String"/>.</param>
+            <returns>The <see cref="T:ProductionCore.Interfaces.ICardSubStep"/>.</returns>
+        </member>
+        <member name="T:ProdData.Factories.ChronometerFactory">
+            <summary>
+            Defines the <see cref="T:ProdData.Factories.ChronometerFactory" />.
+            </summary>
+        </member>
+        <member name="M:ProdData.Factories.ChronometerFactory.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdData.Factories.ChronometerFactory"/> class.
+            </summary>
+        </member>
+        <member name="M:ProdData.Factories.ChronometerFactory.Create">
+            <summary>
+            The Create.
+            </summary>
+            <returns>The <see cref="T:ProductionCore.Interfaces.IChronometer"/>.</returns>
+        </member>
+        <member name="T:ProdData.Factories.ModalFactory">
+            <summary>
+            Defines the <see cref="T:ProdData.Factories.ModalFactory" />.
+            </summary>
+        </member>
+        <member name="M:ProdData.Factories.ModalFactory.CreateModalData">
+            <summary>
+            The CreateModalData.
+            </summary>
+            <returns>The <see cref="T:ProductionCore.Interfaces.IModalData"/>.</returns>
+        </member>
+        <member name="T:ProdData.Models.Card">
+            <summary>
+            Defines the <see cref="T:ProdData.Models.Card" />.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.Card._breakOnError">
+            <summary>
+            Defines the _breakOnError.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.Card._cardStepIndex">
+            <summary>
+            Defines the _cardStepIndex.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.Card._cardSubSteps">
+            <summary>
+            Defines the _cardSubSteps.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.Card._cardTime">
+            <summary>
+            Defines the _cardTime.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.Card._isActiveStep">
+            <summary>
+            Defines the _isActiveStep.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.Card._stepComplete">
+            <summary>
+            Defines the _stepComplete.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.Card._stepImage">
+            <summary>
+            Defines the _stepImage.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.Card._stepModalData">
+            <summary>
+            Defines the _stepModalData.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.Card._currentSubStep">
+            <summary>
+            Defines the _currentSubStep.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.Card._stepStatus">
+            <summary>
+            Defines the _stepStatus.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.Card._stepTitle">
+            <summary>
+            Defines the _stepTitle.
+            </summary>
+        </member>
+        <member name="M:ProdData.Models.Card.#ctor(ProductionCore.Interfaces.IChronometerFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdData.Models.Card"/> class.
+            </summary>
+            <param name="chronometerFactory">The chronometerFactory<see cref="T:ProductionCore.Interfaces.IChronometerFactory"/>.</param>
+        </member>
+        <member name="P:ProdData.Models.Card.BreakOnError">
+            <summary>
+            Gets or sets a value indicating whether BreakOnError.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.Card.CurrentSubStep">
+            <summary>
+            Gets or sets the CurrentSubStep.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.Card.CardStepIndex">
+            <summary>
+            Gets or sets the CardStepIndex.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.Card.CardSubSteps">
+            <summary>
+            Gets or sets the CardSubSteps.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.Card.CardTime">
+            <summary>
+            Gets or sets the CardTime.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.Card.IsActiveStep">
+            <summary>
+            Gets or sets a value indicating whether IsActiveStep.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.Card.StepComplete">
+            <summary>
+            Gets or sets a value indicating whether StepComplete.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.Card.StepImage">
+            <summary>
+            Gets or sets the StepImage.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.Card.StepModalData">
+            <summary>
+            Gets or sets the StepModalData.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.Card.StepStatus">
+            <summary>
+            Gets or sets the StepStatus.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.Card.StepTitle">
+            <summary>
+            Gets or sets the StepTitle.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.Card.SubStepCount">
+            <summary>
+            Gets the SubStepCount.
+            </summary>
+        </member>
+        <member name="M:ProdData.Models.Card.StartCard">
+            <summary>
+            The StartCard.
+            </summary>
+        </member>
+        <member name="M:ProdData.Models.Card.RetryCard">
+            <summary>
+            The RetryCard.
+            </summary>
+        </member>
+        <member name="M:ProdData.Models.Card.Initialize">
+            <summary>
+            The Initialize.
+            </summary>
+        </member>
+        <member name="M:ProdData.Models.Card.IterateSubStep">
+            <summary>
+            The IterateSubStep.
+            </summary>
+            <returns>The <see cref="T:System.Boolean"/>.</returns>
+        </member>
+        <member name="M:ProdData.Models.Card.SetCurrentSubstep">
+            <summary>
+            The SetCurrentSubstep.
+            </summary>
+        </member>
+        <member name="M:ProdData.Models.Card.SetCardStepIndex">
+            <summary>
+            The SetCardStepIndex.
+            </summary>
+        </member>
+        <member name="T:ProdData.Models.CardSubStep">
+            <summary>
+            Defines the <see cref="T:ProdData.Models.CardSubStep" />.
+            </summary>
+        </member>
+        <member name="M:ProdData.Models.CardSubStep.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdData.Models.CardSubStep"/> class.
+            </summary>
+        </member>
+        <member name="M:ProdData.Models.CardSubStep.#ctor(System.String,System.String[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdData.Models.CardSubStep"/> class.
+            </summary>
+            <param name="subStepName">The subStepName<see cref="T:System.String"/>.</param>
+            <param name="subStepData">The subStepData<see cref="T:System.String"/>.</param>
+        </member>
+        <member name="P:ProdData.Models.CardSubStep.FullSubStepData">
+            <summary>
+            Gets the FullSubStepData.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.CardSubStep.SubStepData">
+            <summary>
+            Gets or sets the SubStepData.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.CardSubStep.SubStepName">
+            <summary>
+            Gets or sets the SubStepName.
+            </summary>
+        </member>
+        <member name="T:ProdData.Models.Chronometer">
+            <summary>
+            Defines the <see cref="T:ProdData.Models.Chronometer" />.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.Chronometer._stopwatch">
+            <summary>
+            Defines the _stopwatch.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.Chronometer._dispatcherTimer">
+            <summary>
+            Defines the _dispatcherTimer.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.Chronometer._timeSpan">
+            <summary>
+            Defines the _timeSpan.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.Chronometer._elapsedTime">
+            <summary>
+            Defines the _elapsedTime.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.Chronometer._startTime">
+            <summary>
+            Defines the _startTime.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.Chronometer._timeDifference">
+            <summary>
+            Defines the _timeDifference.
+            </summary>
+        </member>
+        <member name="M:ProdData.Models.Chronometer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdData.Models.Chronometer"/> class.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.Chronometer.ElapsedTime">
+            <summary>
+            Gets or sets the ElapsedTime.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.Chronometer.TimeSpan">
+            <summary>
+            Gets or sets the TimeSpan.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.Chronometer.StartTime">
+            <summary>
+            Gets or sets the StartTime.
+            </summary>
+        </member>
+        <member name="M:ProdData.Models.Chronometer.Pause">
+            <summary>
+            The Pause.
+            </summary>
+        </member>
+        <member name="M:ProdData.Models.Chronometer.Reset">
+            <summary>
+            The Reset.
+            </summary>
+        </member>
+        <member name="M:ProdData.Models.Chronometer.Start">
+            <summary>
+            The Start.
+            </summary>
+        </member>
+        <member name="M:ProdData.Models.Chronometer.Timer_Tick(System.Object,System.EventArgs)">
+            <summary>
+            The Timer_Tick.
+            </summary>
+            <param name="sender">The sender<see cref="T:System.Object"/>.</param>
+            <param name="e">The e<see cref="T:System.EventArgs"/>.</param>
+        </member>
+        <member name="T:ProdData.Models.ModalData">
+            <summary>
+            Defines the <see cref="T:ProdData.Models.ModalData" />.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ModalData._isError">
+            <summary>
+            Defines the _isError.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ModalData._canAbort">
+            <summary>
+            Defines the _canAbort.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ModalData._canContinue">
+            <summary>
+            Defines the _canContinue.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ModalData._canRetry">
+            <summary>
+            Defines the _canRetry.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ModalData._canCustom">
+            <summary>
+            Defines the _canCustom.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ModalData._card">
+            <summary>
+            Defines the _card.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ModalData._instructions">
+            <summary>
+            Defines the _instructions.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ModalData._customButtonGlyph">
+            <summary>
+            Defines the _customButtonGlyph.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ModalData._customButtonText">
+            <summary>
+            Defines the _customButtonText.
+            </summary>
+        </member>
+        <member name="F:ProdData.Models.ModalData._instructionImage">
+            <summary>
+            Defines the _instructionImage.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.ModalData.IsError">
+            <summary>
+            Gets or sets a value indicating whether IsError.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.ModalData.CanAbort">
+            <summary>
+            Gets or sets a value indicating whether CanAbort.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.ModalData.CanContinue">
+            <summary>
+            Gets or sets a value indicating whether CanContinue.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.ModalData.CanRetry">
+            <summary>
+            Gets or sets a value indicating whether CanRetry.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.ModalData.CanCustom">
+            <summary>
+            Gets or sets a value indicating whether CanCustom.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.ModalData.Instructions">
+            <summary>
+            Gets or sets the Instructions.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.ModalData.InstructionImage">
+            <summary>
+            Gets or sets the InstructionImage.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.ModalData.Card">
+            <summary>
+            Gets or sets the Card.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.ModalData.CustomButtonGlyph">
+            <summary>
+            Gets or sets the CustomButtonGlyph.
+            </summary>
+        </member>
+        <member name="P:ProdData.Models.ModalData.CustomButtonText">
+            <summary>
+            Gets or sets the CustomButtonText.
+            </summary>
+        </member>
+        <member name="T:ProdData.ProdDataModule">
+            <summary>
+            Defines the <see cref="T:ProdData.ProdDataModule" />.
+            </summary>
+        </member>
+        <member name="F:ProdData.ProdDataModule._regionManager">
+            <summary>
+            Defines the _regionManager.
+            </summary>
+        </member>
+        <member name="M:ProdData.ProdDataModule.#ctor(Prism.Regions.IRegionManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdData.ProdDataModule"/> class.
+            </summary>
+            <param name="regionManager">The regionManager<see cref="T:Prism.Regions.IRegionManager"/>.</param>
+        </member>
+        <member name="M:ProdData.ProdDataModule.OnInitialized(Prism.Ioc.IContainerProvider)">
+            <summary>
+            The OnInitialized.
+            </summary>
+            <param name="containerProvider">The containerProvider<see cref="T:Prism.Ioc.IContainerProvider"/>.</param>
+        </member>
+        <member name="M:ProdData.ProdDataModule.RegisterTypes(Prism.Ioc.IContainerRegistry)">
+            <summary>
+            The RegisterTypes.
+            </summary>
+            <param name="containerRegistry">The containerRegistry<see cref="T:Prism.Ioc.IContainerRegistry"/>.</param>
+        </member>
+        <member name="T:ProdData.Services.ModalService">
+            <summary>
+            Defines the <see cref="T:ProdData.Services.ModalService" />.
+            </summary>
+        </member>
+        <member name="F:ProdData.Services.ModalService._modalFactory">
+            <summary>
+            Defines the _modalFactory.
+            </summary>
+        </member>
+        <member name="F:ProdData.Services.ModalService._modalActive">
+            <summary>
+            Defines the _modalActive.
+            </summary>
+        </member>
+        <member name="F:ProdData.Services.ModalService._activeModalData">
+            <summary>
+            Defines the _activeModalData.
+            </summary>
+        </member>
+        <member name="M:ProdData.Services.ModalService.#ctor(ProductionCore.Interfaces.IModalFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdData.Services.ModalService"/> class.
+            </summary>
+            <param name="modalFactory">The modalFactory<see cref="T:ProductionCore.Interfaces.IModalFactory"/>.</param>
+        </member>
+        <member name="P:ProdData.Services.ModalService.ActiveModalData">
+            <summary>
+            Gets or sets the ActiveModalData.
+            </summary>
+        </member>
+        <member name="P:ProdData.Services.ModalService.ModalActive">
+            <summary>
+            Gets or sets a value indicating whether ModalActive.
+            </summary>
+        </member>
+        <member name="M:ProdData.Services.ModalService.CreateModalData">
+            <summary>
+            The CreateModalData.
+            </summary>
+            <returns>The <see cref="T:ProductionCore.Interfaces.IModalData"/>.</returns>
+        </member>
+        <member name="M:ProdData.Services.ModalService.ShowModal(ProductionCore.Interfaces.IModalData)">
+            <summary>
+            The ShowModal.
+            </summary>
+            <param name="modalData">The modalData<see cref="T:ProductionCore.Interfaces.IModalData"/>.</param>
+        </member>
+        <member name="M:ProdData.Services.ModalService.CloseModal">
+            <summary>
+            The CloseModal.
+            </summary>
+        </member>
+        <member name="T:ProdData.Services.PlaybackService">
+            <summary>
+            Defines the <see cref="T:ProdData.Services.PlaybackService" />.
+            </summary>
+        </member>
+        <member name="F:ProdData.Services.PlaybackService._modalService">
+            <summary>
+            Defines the _modalService.
+            </summary>
+        </member>
+        <member name="F:ProdData.Services.PlaybackService._mediationService">
+            <summary>
+            Defines the _mediationService.
+            </summary>
+        </member>
+        <member name="F:ProdData.Services.PlaybackService._programSteps">
+            <summary>
+            Defines the _programSteps.
+            </summary>
+        </member>
+        <member name="F:ProdData.Services.PlaybackService._allowProgramChange">
+            <summary>
+            Defines the _allowProgramChange.
+            </summary>
+        </member>
+        <member name="F:ProdData.Services.PlaybackService._programPaused">
+            <summary>
+            Defines the _programPaused.
+            </summary>
+        </member>
+        <member name="F:ProdData.Services.PlaybackService._pauseAvailable">
+            <summary>
+            Defines the _pauseAvailable.
+            </summary>
+        </member>
+        <member name="F:ProdData.Services.PlaybackService._playAvailable">
+            <summary>
+            Defines the _playAvailable.
+            </summary>
+        </member>
+        <member name="F:ProdData.Services.PlaybackService._playbackRunning">
+            <summary>
+            Defines the _playbackRunning.
+            </summary>
+        </member>
+        <member name="F:ProdData.Services.PlaybackService._currentCard">
+            <summary>
+            Defines the _currentCard.
+            </summary>
+        </member>
+        <member name="F:ProdData.Services.PlaybackService._currentCardIndex">
+            <summary>
+            Defines the _currentCardIndex.
+            </summary>
+        </member>
+        <member name="F:ProdData.Services.PlaybackService._cycleTime">
+            <summary>
+            Defines the _cycleTime.
+            </summary>
+        </member>
+        <member name="F:ProdData.Services.PlaybackService._productImage">
+            <summary>
+            Defines the _productImage.
+            </summary>
+        </member>
+        <member name="M:ProdData.Services.PlaybackService.#ctor(ProductionCore.Interfaces.IChronometerFactory,ProductionCore.Interfaces.IModalService,ProductionCore.Interfaces.IMediationService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdData.Services.PlaybackService"/> class.
+            </summary>
+            <param name="chronometerFactory">The chronometerFactory<see cref="T:ProductionCore.Interfaces.IChronometerFactory"/>.</param>
+            <param name="modalService">The modalService<see cref="T:ProductionCore.Interfaces.IModalService"/>.</param>
+            <param name="mediationService">The mediationService<see cref="T:ProductionCore.Interfaces.IMediationService"/>.</param>
+        </member>
+        <member name="E:ProdData.Services.PlaybackService.PauseInitiated">
+            <summary>
+            Defines the PauseInitiated.
+            </summary>
+        </member>
+        <member name="E:ProdData.Services.PlaybackService.PlaybackInitiated">
+            <summary>
+            Defines the PlaybackInitiated.
+            </summary>
+        </member>
+        <member name="E:ProdData.Services.PlaybackService.AbortInitiated">
+            <summary>
+            Defines the AbortInitiated.
+            </summary>
+        </member>
+        <member name="P:ProdData.Services.PlaybackService.ProgramSteps">
+            <summary>
+            Gets or sets the ProgramSteps.
+            </summary>
+        </member>
+        <member name="P:ProdData.Services.PlaybackService.AllowProgramChange">
+            <summary>
+            Gets or sets a value indicating whether AllowProgramChange.
+            </summary>
+        </member>
+        <member name="P:ProdData.Services.PlaybackService.ProgramPaused">
+            <summary>
+            Gets or sets a value indicating whether ProgramPaused.
+            </summary>
+        </member>
+        <member name="P:ProdData.Services.PlaybackService.PauseAvailable">
+            <summary>
+            Gets or sets a value indicating whether PauseAvailable.
+            </summary>
+        </member>
+        <member name="P:ProdData.Services.PlaybackService.PlayAvailable">
+            <summary>
+            Gets or sets a value indicating whether PlayAvailable.
+            </summary>
+        </member>
+        <member name="P:ProdData.Services.PlaybackService.PlaybackRunning">
+            <summary>
+            Gets or sets a value indicating whether PlaybackRunning.
+            </summary>
+        </member>
+        <member name="P:ProdData.Services.PlaybackService.CurrentCard">
+            <summary>
+            Gets or sets the CurrentCard.
+            </summary>
+        </member>
+        <member name="P:ProdData.Services.PlaybackService.CurrentCardIndex">
+            <summary>
+            Gets or sets the CurrentCardIndex.
+            </summary>
+        </member>
+        <member name="P:ProdData.Services.PlaybackService.CycleTime">
+            <summary>
+            Gets or sets the CycleTime.
+            </summary>
+        </member>
+        <member name="P:ProdData.Services.PlaybackService.ProductImage">
+            <summary>
+            Gets or sets the ProductImage.
+            </summary>
+        </member>
+        <member name="M:ProdData.Services.PlaybackService.Abort">
+            <summary>
+            The Abort.
+            </summary>
+        </member>
+        <member name="M:ProdData.Services.PlaybackService.AdvanceStep">
+            <summary>
+            The AdvanceStep.
+            </summary>
+        </member>
+        <member name="M:ProdData.Services.PlaybackService.PauseCard">
+            <summary>
+            The PauseCard.
+            </summary>
+        </member>
+        <member name="M:ProdData.Services.PlaybackService.RetryCard">
+            <summary>
+            The RetryCard.
+            </summary>
+        </member>
+        <member name="M:ProdData.Services.PlaybackService.PlayCard">
+            <summary>
+            The StartCard.
+            </summary>
+        </member>
+        <member name="M:ProdData.Services.PlaybackService.ModalEvent(ProductionCore.Interfaces.IModalData)">
+            <summary>
+            The ModalEvent.
+            </summary>
+            <param name="modalData">The modalData<see cref="T:ProductionCore.Interfaces.IModalData"/>.</param>
+        </member>
+        <member name="M:ProdData.Services.PlaybackService.Pause">
+            <summary>
+            The Pause.
+            </summary>
+        </member>
+        <member name="M:ProdData.Services.PlaybackService.RunningStepPaused">
+            <summary>
+            The RunningStepPaused.
+            </summary>
+        </member>
+        <member name="M:ProdData.Services.PlaybackService.Play">
+            <summary>
+            The Play.
+            </summary>
+        </member>
+        <member name="M:ProdData.Services.PlaybackService.RequestProgramChange">
+            <summary>
+            The RequestProgramChange.
+            </summary>
+        </member>
+        <member name="M:ProdData.Services.PlaybackService.RaiseError">
+            <summary>
+            The RaiseError.
+            </summary>
+        </member>
+        <member name="M:ProdData.Services.PlaybackService.CompleteCycle">
+            <summary>
+            The CompleteCycle.
+            </summary>
+        </member>
+        <member name="M:ProdData.Services.PlaybackService.SetCurrentCard">
+            <summary>
+            The SetCurrentCard.
+            </summary>
+        </member>
+        <member name="M:ProdData.Services.PlaybackService.HandleChangedProgramData">
+            <summary>
+            The HandleChangedProgramData.
+            </summary>
+        </member>
+        <member name="M:ProdData.Services.PlaybackService.SaveProgram">
+            <summary>
+            The SaveProgram.
+            </summary>
+        </member>
+        <member name="T:ProdData.ViewModels.ProdDataViewModel">
+            <summary>
+            Defines the <see cref="T:ProdData.ViewModels.ProdDataViewModel" />.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProdDataViewModel._playbackService">
+            <summary>
+            Defines the _playbackService.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProdDataViewModel._mediationService">
+            <summary>
+            Defines the _mediationService.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.#ctor(ProductionCore.Interfaces.IPlaybackService,ProductionCore.Interfaces.IMediationService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdData.ViewModels.ProdDataViewModel"/> class.
+            </summary>
+            <param name="playbackService">The playbackService<see cref="T:ProductionCore.Interfaces.IPlaybackService"/>.</param>
+            <param name="mediationService">The mediationService<see cref="T:ProductionCore.Interfaces.IMediationService"/>.</param>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdDataViewModel.PlaybackService">
+            <summary>
+            Gets the PlaybackService.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdDataViewModel.MediationService">
+            <summary>
+            Gets the MediationService.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdDataViewModel.OpenProgramSelect">
+            <summary>
+            Gets or sets the OpenProgramSelect.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdDataViewModel.PauseButton">
+            <summary>
+            Gets or sets the PauseButton.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdDataViewModel.PlayButton">
+            <summary>
+            Gets or sets the PlayButton.
+            </summary>
+        </member>
+        <member name="T:ProdData.ViewModels.ProdModalDialogViewModel">
+            <summary>
+            Defines the <see cref="T:ProdData.ViewModels.ProdModalDialogViewModel" />.
+            </summary>
+        </member>
+        <member name="F:ProdData.ViewModels.ProdModalDialogViewModel._modalService">
+            <summary>
+            Defines the _modalService.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdModalDialogViewModel.#ctor(ProductionCore.Interfaces.IModalService,ProductionCore.Interfaces.IPlaybackService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdData.ViewModels.ProdModalDialogViewModel"/> class.
+            </summary>
+            <param name="modalService">The modalService<see cref="T:ProductionCore.Interfaces.IModalService"/>.</param>
+            <param name="playbackService">The playbackService<see cref="T:ProductionCore.Interfaces.IPlaybackService"/>.</param>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.ModalService">
+            <summary>
+            Gets the ModalService.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.Abort">
+            <summary>
+            Gets or sets the Abort.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.Continue">
+            <summary>
+            Gets or sets the Continue.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.Custom">
+            <summary>
+            Gets or sets the Custom.
+            </summary>
+        </member>
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.Retry">
+            <summary>
+            Gets or sets the Retry.
+            </summary>
+        </member>
+        <member name="T:ProdData.Views.ProdDataView">
+            <summary>
+            Interaction logic for ProdData.xaml.
+            </summary>
+            <summary>
+            ProdDataView
+            </summary>
+        </member>
+        <member name="M:ProdData.Views.ProdDataView.#ctor(ProductionCore.Interfaces.IProdDataViewModel)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdData.Views.ProdDataView"/> class.
+            </summary>
+            <param name="prodDataViewModel">The prodDataViewModel<see cref="T:ProductionCore.Interfaces.IProdDataViewModel"/>.</param>
+        </member>
+        <member name="M:ProdData.Views.ProdDataView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:ProdData.Views.ProdModalDialogView">
+            <summary>
+            Interaction logic for ProdModalDialog.xaml.
+            </summary>
+            <summary>
+            ProdModalDialogView
+            </summary>
+        </member>
+        <member name="M:ProdData.Views.ProdModalDialogView.#ctor(ProductionCore.Interfaces.IProdModalDialogViewModel)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdData.Views.ProdModalDialogView"/> class.
+            </summary>
+            <param name="prodModalDialogViewModel">The prodModalDialogViewModel<see cref="T:ProductionCore.Interfaces.IProdModalDialogViewModel"/>.</param>
+        </member>
+        <member name="M:ProdData.Views.ProdModalDialogView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+    </members>
+</doc>

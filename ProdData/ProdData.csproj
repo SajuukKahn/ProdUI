@@ -7,15 +7,10 @@
 	  <CodeAnalysisRuleSet>..\PVA.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
-  <!--<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\Users\Ryan\Source\Repos\SajuukKahn\ProdUI\ProdData\ProdData.xml</DocumentationFile>
-  </PropertyGroup>-->
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DocumentationFile>
-			$(MSBuildThisFileDirectory)\bin\$(Configuration)\$(TargetFramework)\ProdData.xml
-		</DocumentationFile>
-	</PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;SA1011</NoWarn>
+    <DocumentationFile>..\Documentation\ProdData.xml</DocumentationFile>
+  </PropertyGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="xcopy &quot;$(TargetDir)$(TargetName)*$(TargetExt)&quot; &quot;$(SolutionDir)$(SolutionName)\bin\Debug\netcoreapp3.1\Modules\&quot; /Y /S" />
