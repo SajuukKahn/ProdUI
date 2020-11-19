@@ -51,7 +51,12 @@
             if (!d.Equals(null))
             {
                 RadCarousel radCarousel = (RadCarousel)d;
-                Application.Current.Dispatcher.BeginInvoke(new Action(() => { radCarousel!.CurrentItem = radCarousel.Items[newLocation]; }), DispatcherPriority.Render);
+                Application.Current.Dispatcher.BeginInvoke(
+                    new Action(() =>
+                    {
+                        radCarousel!.CurrentItem = radCarousel.Items[newLocation];
+                        radCarousel!.SelectedItem = radCarousel!.CurrentItem;
+                    }), DispatcherPriority.Render);
                 if (newLocation == 0)
                 {
                     Application.Current.Dispatcher.BeginInvoke(new Action(() => { radCarousel!.BringDataItemIntoView(radCarousel.CurrentItem); }), DispatcherPriority.Render);
