@@ -7,38 +7,33 @@
     using ProdUI.Views;
     using Telerik.Windows.Controls;
 
-    /// <summary>
-    /// Interaction logic for App.xaml.
-    /// </summary>
+    /// <inheritdoc/>
     public partial class App : PrismApplication
     {
-        /// <summary>
-        /// The CreateShell.
-        /// </summary>
-        /// <returns>The <see cref="Window"/>.</returns>
+        /// <inheritdoc/>
         protected override Window CreateShell()
         {
             return Container.Resolve<ProdUIView>();
         }
 
-        /// <summary>
-        /// The RegisterTypes.
-        /// </summary>
-        /// <param name="containerRegistry">The containerRegistry<see cref="IContainerRegistry"/>.</param>
+        /// <inheritdoc/>
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            MaterialPalette.Palette.FontSizeS = 10;
-            MaterialPalette.Palette.FontSize = 12;
-            MaterialPalette.Palette.FontSizeL = 16;
         }
 
-        /// <summary>
-        /// The CreateModuleCatalog.
-        /// </summary>
-        /// <returns>The <see cref="IModuleCatalog"/>.</returns>
+        /// <inheritdoc/>
         protected override IModuleCatalog CreateModuleCatalog()
         {
             return new DirectoryModuleCatalog() { ModulePath = @".\Modules" };
+        }
+
+        /// <inheritdoc/>
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+            MaterialPalette.Palette.FontSizeS = 10;
+            MaterialPalette.Palette.FontSize = 12;
+            MaterialPalette.Palette.FontSizeL = 16;
         }
     }
 }

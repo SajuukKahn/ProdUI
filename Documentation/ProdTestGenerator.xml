@@ -1,0 +1,251 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ProdTestGenerator</name>
+    </assembly>
+    <members>
+        <member name="T:ProdTestGenerator.ProdTestGeneratorModule">
+            <summary>
+            Defines the <see cref="T:ProdTestGenerator.ProdTestGeneratorModule" />.
+            </summary>
+        </member>
+        <member name="F:ProdTestGenerator.ProdTestGeneratorModule._regionManager">
+            <summary>
+            Defines the _regionManager.
+            </summary>
+        </member>
+        <member name="M:ProdTestGenerator.ProdTestGeneratorModule.#ctor(Prism.Regions.IRegionManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdTestGenerator.ProdTestGeneratorModule"/> class.
+            </summary>
+            <param name="regionManager">The regionManager<see cref="T:Prism.Regions.IRegionManager"/>.</param>
+        </member>
+        <member name="P:ProdTestGenerator.ProdTestGeneratorModule.FileService">
+            <summary>
+            Gets or sets the FileService.
+            </summary>
+        </member>
+        <member name="M:ProdTestGenerator.ProdTestGeneratorModule.OnInitialized(Prism.Ioc.IContainerProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:ProdTestGenerator.ProdTestGeneratorModule.RegisterTypes(Prism.Ioc.IContainerRegistry)">
+            <inheritdoc/>
+        </member>
+        <member name="T:ProdTestGenerator.Services.ControllerService">
+            <inheritdoc/>
+        </member>
+        <member name="F:ProdTestGenerator.Services.ControllerService._playbackService">
+            <summary>
+            Defines the _playbackService.
+            </summary>
+        </member>
+        <member name="F:ProdTestGenerator.Services.ControllerService._pauseComplete">
+            <summary>
+            Defines the _pauseComplete.
+            </summary>
+        </member>
+        <member name="F:ProdTestGenerator.Services.ControllerService._programIsInProgress">
+            <summary>
+            Defines the _programIsInProgress.
+            </summary>
+        </member>
+        <member name="M:ProdTestGenerator.Services.ControllerService.#ctor(ProdCore.Interfaces.IPlaybackService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdTestGenerator.Services.ControllerService"/> class.
+            </summary>
+            <param name="playbackService">The playbackService<see cref="T:ProdCore.Interfaces.IPlaybackService"/>.</param>
+        </member>
+        <member name="P:ProdTestGenerator.Services.ControllerService.ExecutionPaused">
+            <inheritdoc/>
+        </member>
+        <member name="M:ProdTestGenerator.Services.ControllerService.BeginExecution">
+            <inheritdoc/>
+        </member>
+        <member name="M:ProdTestGenerator.Services.ControllerService.EndExecution">
+            <inheritdoc/>
+        </member>
+        <member name="M:ProdTestGenerator.Services.ControllerService.PauseExecution">
+            <inheritdoc/>
+        </member>
+        <member name="M:ProdTestGenerator.Services.ControllerService.RunProg">
+            <summary>
+            The RunProg.
+            </summary>
+        </member>
+        <member name="T:ProdTestGenerator.Services.FileService">
+            <inheritdoc/>
+        </member>
+        <member name="F:ProdTestGenerator.Services.FileService._modalService">
+            <summary>
+            Defines the _modalService.
+            </summary>
+        </member>
+        <member name="F:ProdTestGenerator.Services.FileService._mediationService">
+            <summary>
+            Defines the _mediationService.
+            </summary>
+        </member>
+        <member name="F:ProdTestGenerator.Services.FileService._cardFactory">
+            <summary>
+            Defines the _cardFactory.
+            </summary>
+        </member>
+        <member name="F:ProdTestGenerator.Services.FileService._cardSubStepFactory">
+            <summary>
+            Defines the _cardSubStepFactory.
+            </summary>
+        </member>
+        <member name="F:ProdTestGenerator.Services.FileService._programDataFactory">
+            <summary>
+            Defines the _programDataFactory.
+            </summary>
+        </member>
+        <member name="F:ProdTestGenerator.Services.FileService._dateSwitch">
+            <summary>
+            Defines the _dateSwitch.
+            </summary>
+        </member>
+        <member name="F:ProdTestGenerator.Services.FileService._lastDate">
+            <summary>
+            Defines the _lastDate.
+            </summary>
+        </member>
+        <member name="M:ProdTestGenerator.Services.FileService.#ctor(ProdCore.Interfaces.IModalService,ProdCore.Interfaces.IMediationService,ProdCore.Interfaces.ICardFactory,ProdCore.Interfaces.ICardSubStepFactory,ProdCore.Interfaces.IProgramDataFactory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdTestGenerator.Services.FileService"/> class.
+            </summary>
+            <param name="modalService">The modalService<see cref="T:ProdCore.Interfaces.IModalService"/>.</param>
+            <param name="mediationService">The mediationService<see cref="T:ProdCore.Interfaces.IMediationService"/>.</param>
+            <param name="cardFactory">The cardFactory<see cref="T:ProdCore.Interfaces.ICardFactory"/>.</param>
+            <param name="cardSubStepFactory">The cardSubStepFactory<see cref="T:ProdCore.Interfaces.ICardSubStepFactory"/>.</param>
+            <param name="programDataFactory">The programDataFactory<see cref="T:ProdCore.Interfaces.IProgramDataFactory"/>.</param>
+        </member>
+        <member name="M:ProdTestGenerator.Services.FileService.LoadProgramSteps">
+            <inheritdoc/>
+        </member>
+        <member name="M:ProdTestGenerator.Services.FileService.LoadProgramCollection">
+            <inheritdoc/>
+        </member>
+        <member name="M:ProdTestGenerator.Services.FileService.GenerateRandomProgram">
+            <summary>
+            The GenerateRandomProgram.
+            </summary>
+            <returns>The <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.</returns>
+        </member>
+        <member name="M:ProdTestGenerator.Services.FileService.GenerateRandomProgramCollection">
+            <summary>
+            The GenerateRandomProgramCollection.
+            </summary>
+            <returns>The <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.</returns>
+        </member>
+        <member name="M:ProdTestGenerator.Services.FileService.GenerateRandomCycleTimeAverage">
+            <summary>
+            The GenerateRandomCycleTimeAverage.
+            </summary>
+            <returns>The <see cref="T:System.TimeSpan"/>.</returns>
+        </member>
+        <member name="M:ProdTestGenerator.Services.FileService.GenerateRandomDateTime">
+            <summary>
+            The GenerateRandomDateTime.
+            </summary>
+            <returns>The <see cref="T:System.DateTime"/>.</returns>
+        </member>
+        <member name="M:ProdTestGenerator.Services.FileService.GenerateRandomString(System.Int32)">
+            <summary>
+            The GenerateRandomString.
+            </summary>
+            <param name="maxLength">The maxLength<see cref="T:System.Int32"/>.</param>
+            <returns>The <see cref="T:System.String"/>.</returns>
+        </member>
+        <member name="M:ProdTestGenerator.Services.FileService.GenerateRandomTools">
+            <summary>
+            The GenerateRandomTools.
+            </summary>
+            <returns>The <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>.</returns>
+        </member>
+        <member name="M:ProdTestGenerator.Services.FileService.ChooseRandomImage">
+            <summary>
+            The ChooseRandomImage.
+            </summary>
+            <returns>The <see cref="T:System.Windows.Media.Imaging.BitmapImage"/>.</returns>
+        </member>
+        <member name="M:ProdTestGenerator.Services.FileService.RandomCoordinates">
+            <summary>
+            The RandomCoordinates.
+            </summary>
+            <returns>The <see cref="T:System.String"/>.</returns>
+        </member>
+        <member name="T:ProdTestGenerator.ViewModels.TestGeneratorViewModel">
+            <inheritdoc/>
+        </member>
+        <member name="F:ProdTestGenerator.ViewModels.TestGeneratorViewModel._playbackService">
+            <summary>
+            Defines the _playbackService.
+            </summary>
+        </member>
+        <member name="M:ProdTestGenerator.ViewModels.TestGeneratorViewModel.#ctor(ProdCore.Interfaces.IPlaybackService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdTestGenerator.ViewModels.TestGeneratorViewModel"/> class.
+            </summary>
+            <param name="playbackService">The playbackService<see cref="T:ProdCore.Interfaces.IPlaybackService"/>.</param>
+        </member>
+        <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.PlaybackService">
+            <inheritdoc/>
+        </member>
+        <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.ChangeProcessImageCommand">
+            <inheritdoc/>
+        </member>
+        <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.PauseCommand">
+            <inheritdoc/>
+        </member>
+        <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.StartCommand">
+            <inheritdoc/>
+        </member>
+        <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.ThrowCardErrorCommand">
+            <inheritdoc/>
+        </member>
+        <member name="M:ProdTestGenerator.ViewModels.TestGeneratorViewModel.PlaybackButtonCanExecute">
+            <summary>
+            The PlaybackButtonCanExecute.
+            </summary>
+            <returns>True if Not Playback.PauseAvailable.</returns>
+        </member>
+        <member name="M:ProdTestGenerator.ViewModels.TestGeneratorViewModel.ThrowCardError">
+            <summary>
+            The ThrowCardErrorCommand Method.
+            </summary>
+        </member>
+        <member name="M:ProdTestGenerator.ViewModels.TestGeneratorViewModel.ChangeProcessImage">
+            <summary>
+            The ChangeProcessImageCommand Method.
+            </summary>
+        </member>
+        <member name="M:ProdTestGenerator.ViewModels.TestGeneratorViewModel.Pause">
+            <summary>
+            The PauseCommand Method.
+            </summary>
+        </member>
+        <member name="M:ProdTestGenerator.ViewModels.TestGeneratorViewModel.Start">
+            <summary>
+            The StartCommand Method.
+            </summary>
+        </member>
+        <member name="T:ProdTestGenerator.Views.TestGeneratorView">
+            <inheritdoc/>
+            <summary>
+            TestGeneratorView
+            </summary>
+        </member>
+        <member name="M:ProdTestGenerator.Views.TestGeneratorView.#ctor(ProdCore.Interfaces.ITestGeneratorViewModel)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProdTestGenerator.Views.TestGeneratorView"/> class.
+            </summary>
+            <param name="testGeneratorViewModel">The testGeneratorViewModel<see cref="T:ProdCore.Interfaces.ITestGeneratorViewModel"/>.</param>
+        </member>
+        <member name="M:ProdTestGenerator.Views.TestGeneratorView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+    </members>
+</doc>

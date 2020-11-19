@@ -1,11 +1,9 @@
 ﻿namespace ProdData.Factories
 {
-    using global::ProdData.Models;
-    using ProductionCore.Interfaces;
+    using ProdData.Models;
+    using ProdCore.Interfaces;
 
-    /// <summary>
-    /// Defines the <see cref="ChronometerFactory" />.
-    /// </summary>
+    /// <inheritdoc/>
     public class ChronometerFactory : IChronometerFactory
     {
         /// <summary>
@@ -15,10 +13,7 @@
         {
         }
 
-        /// <summary>
-        /// The Create.
-        /// </summary>
-        /// <returns>The <see cref="IChronometer"/>.</returns>
+        /// <inheritdoc/>
         public IChronometer Create()
         {
             return new Chronometer();

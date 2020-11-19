@@ -5,11 +5,9 @@
     using System.Drawing;
     using System.Windows.Media.Imaging;
     using Prism.Mvvm;
-    using ProductionCore.Interfaces;
+    using ProdCore.Interfaces;
 
-    /// <summary>
-    /// Defines the <see cref="ProgramData" />.
-    /// </summary>
+    /// <inheritdoc/>
     public class ProgramData : BindableBase, IProgramData
     {
         /// <summary>
@@ -91,9 +89,7 @@
             _barcode = barcode;
         }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether AutoStartPlayback.
-        /// </summary>
+        /// <inheritdoc/>
         public bool AutoStartPlayback
         {
             get
@@ -107,9 +103,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the AverageCycleTime.
-        /// </summary>
+        /// <inheritdoc/>
         public TimeSpan AverageCycleTime
         {
             get
@@ -123,9 +117,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the Barcode.
-        /// </summary>
+        /// <inheritdoc/>
         public IBarcode? Barcode
         {
             get
@@ -139,9 +131,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the CreatedDate.
-        /// </summary>
+        /// <inheritdoc/>
         public DateTime CreatedDate
         {
             get
@@ -155,9 +145,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the Dimensions.
-        /// </summary>
+        /// <inheritdoc/>
         public Size Dimensions
         {
             get
@@ -171,9 +159,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the Cycles.
-        /// </summary>
+        /// <inheritdoc/>
         public long Cycles
         {
             get
@@ -187,9 +173,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether IsFavorite.
-        /// </summary>
+        /// <inheritdoc/>
         public bool IsFavorite
         {
             get
@@ -203,9 +187,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the LastEditDate.
-        /// </summary>
+        /// <inheritdoc/>
         public DateTime LastEditDate
         {
             get
@@ -219,9 +201,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the ProductImage.
-        /// </summary>
+        /// <inheritdoc/>
         public BitmapImage? ProductImage
         {
             get
@@ -235,9 +215,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the ProductName.
-        /// </summary>
+        /// <inheritdoc/>
         public string? ProductName
         {
             get
@@ -251,9 +229,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the ProgramCreator.
-        /// </summary>
+        /// <inheritdoc/>
         public string? ProgramCreator
         {
             get
@@ -267,9 +243,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the ProgramName.
-        /// </summary>
+        /// <inheritdoc/>
         public string? ProgramName
         {
             get
@@ -283,9 +257,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the ToolsUsed.
-        /// </summary>
+        /// <inheritdoc/>
         public ObservableCollection<string> ToolsUsed
         {
             get
@@ -299,9 +271,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether UserCanStartPlayback.
-        /// </summary>
+        /// <inheritdoc/>
         public bool UserCanStartPlayback
         {
             get
@@ -315,18 +285,13 @@
             }
         }
 
-        /// <summary>
-        /// The UpdateAverageCycleTime.
-        /// </summary>
-        /// <param name="newestCycleTime">The newestCycleTime<see cref="TimeSpan"/>.</param>
+        /// <inheritdoc/>
         public void UpdateAverageCycleTime(TimeSpan newestCycleTime)
         {
             AverageCycleTime = default(TimeSpan).Add(AverageCycleTime.Add(newestCycleTime)).Divide(2);
         }
 
-        /// <summary>
-        /// The UpdateLastEditDate.
-        /// </summary>
+        /// <inheritdoc/>
         public void UpdateLastEditDate()
         {
             LastEditDate = DateTime.Now;

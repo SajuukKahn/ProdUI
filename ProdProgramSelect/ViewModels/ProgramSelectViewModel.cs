@@ -2,11 +2,9 @@
 {
     using Prism.Commands;
     using Prism.Mvvm;
-    using ProductionCore.Interfaces;
+    using ProdCore.Interfaces;
 
-    /// <summary>
-    /// Defines the <see cref="ProgramSelectViewModel" />.
-    /// </summary>
+    /// <inheritdoc/>
     internal class ProgramSelectViewModel : BindableBase, IProgramSelectViewModel
     {
         /// <summary>
@@ -28,13 +26,11 @@
         {
             _programDataService = programDataService;
             _mediationService = mediationService;
-            ConfirmButton = new DelegateCommand(ConfirmProgramChange).ObservesCanExecute(() => ProgramDataService.CanConfirm);
-            CancelButton = new DelegateCommand(CancelProgramChange);
+            ConfirmCommand = new DelegateCommand(Confirm).ObservesCanExecute(() => ProgramDataService.CanConfirm);
+            CancelCommand = new DelegateCommand(Cancel);
         }
 
-        /// <summary>
-        /// Gets the ProgramDataService.
-        /// </summary>
+        /// <inheritdoc/>
         public IProgramDataService ProgramDataService
         {
             get
@@ -43,9 +39,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets the MediationService.
-        /// </summary>
+        /// <inheritdoc/>
         public IMediationService MediationService
         {
             get
@@ -54,20 +48,16 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the ConfirmButton.
-        /// </summary>
-        public DelegateCommand ConfirmButton { get; set; }
+        /// <inheritdoc/>
+        public DelegateCommand ConfirmCommand { get; set; }
 
-        /// <summary>
-        /// Gets or sets the CancelButton.
-        /// </summary>
-        public DelegateCommand CancelButton { get; set; }
+        /// <inheritdoc/>
+        public DelegateCommand CancelCommand { get; set; }
 
         /// <summary>
         /// The CancelProgramChange.
         /// </summary>
-        private void CancelProgramChange()
+        private void Cancel()
         {
             CleanInstance();
         }
@@ -83,7 +73,7 @@
         /// <summary>
         /// The ConfirmProgramChange.
         /// </summary>
-        private void ConfirmProgramChange()
+        private void Confirm()
         {
             ProgramDataService.SetSelectedProgramAsCurrent();
             CleanInstance();

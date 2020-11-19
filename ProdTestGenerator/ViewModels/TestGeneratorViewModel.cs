@@ -4,11 +4,9 @@
     using System.Windows.Media.Imaging;
     using Prism.Commands;
     using Prism.Mvvm;
-    using ProductionCore.Interfaces;
+    using ProdCore.Interfaces;
 
-    /// <summary>
-    /// Defines the <see cref="TestGeneratorViewModel" />.
-    /// </summary>
+    /// <inheritdoc/>
     public class TestGeneratorViewModel : BindableBase, ITestGeneratorViewModel
     {
         /// <summary>
@@ -23,15 +21,13 @@
         public TestGeneratorViewModel(IPlaybackService playbackService)
         {
             _playbackService = playbackService;
-            StartButton = new DelegateCommand(() => PlaybackService.Play(), PlaybackButtonCanExecute);
-            PauseButton = new DelegateCommand(() => PlaybackService.Pause()).ObservesCanExecute(() => PlaybackService.PauseAvailable);
-            ChangeProcessImage = new DelegateCommand(() => { PlaybackService.ProductImage = new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\PCB" + new Random().Next(1, 9).ToString() + ".bmp", UriKind.RelativeOrAbsolute)); });
-            ThrowCardError = new DelegateCommand(() => PlaybackService.RaiseError()).ObservesCanExecute(() => PlaybackService.PlaybackRunning);
+            StartCommand = new DelegateCommand(Start, PlaybackButtonCanExecute);
+            PauseCommand = new DelegateCommand(Pause).ObservesCanExecute(() => PlaybackService.PauseAvailable);
+            ChangeProcessImageCommand = new DelegateCommand(ChangeProcessImage);
+            ThrowCardErrorCommand = new DelegateCommand(ThrowCardError).ObservesCanExecute(() => PlaybackService.PlaybackRunning);
         }
 
-        /// <summary>
-        /// Gets the PlaybackService.
-        /// </summary>
+        /// <inheritdoc/>
         public IPlaybackService PlaybackService
         {
             get
@@ -40,29 +36,57 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the ChangeProcessImage.
-        /// </summary>
-        public DelegateCommand ChangeProcessImage { get; set; }
+        /// <inheritdoc/>
+        public DelegateCommand ChangeProcessImageCommand { get; set; }
+
+        /// <inheritdoc/>
+        public DelegateCommand PauseCommand { get; set; }
+
+        /// <inheritdoc/>
+        public DelegateCommand StartCommand { get; set; }
+
+        /// <inheritdoc/>
+        public DelegateCommand ThrowCardErrorCommand { get; set; }
 
         /// <summary>
-        /// Gets or sets the PauseButton.
+        /// The PlaybackButtonCanExecute.
         /// </summary>
-        public DelegateCommand PauseButton { get; set; }
-
-        /// <summary>
-        /// Gets or sets the StartButton.
-        /// </summary>
-        public DelegateCommand StartButton { get; set; }
-
-        /// <summary>
-        /// Gets or sets the ThrowCardError.
-        /// </summary>
-        public DelegateCommand ThrowCardError { get; set; }
-
+        /// <returns>True if Not Playback.PauseAvailable.</returns>
         private bool PlaybackButtonCanExecute()
         {
             return !PlaybackService.PauseAvailable;
+        }
+
+        /// <summary>
+        /// The ThrowCardErrorCommand Method.
+        /// </summary>
+        private void ThrowCardError()
+        {
+            PlaybackService.RaiseError();
+        }
+
+        /// <summary>
+        /// The ChangeProcessImageCommand Method.
+        /// </summary>
+        private void ChangeProcessImage()
+        {
+            PlaybackService.ProductImage = new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Modules\\TestImages\\PCB" + new Random().Next(1, 9).ToString() + ".bmp", UriKind.RelativeOrAbsolute));
+        }
+
+        /// <summary>
+        /// The PauseCommand Method.
+        /// </summary>
+        private void Pause()
+        {
+            PlaybackService.Pause();
+        }
+
+        /// <summary>
+        /// The StartCommand Method.
+        /// </summary>
+        private void Start()
+        {
+            PlaybackService.Play();
         }
     }
 }

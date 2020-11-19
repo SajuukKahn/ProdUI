@@ -1,12 +1,10 @@
 ﻿namespace ProdData.Views
 {
     using System.Windows.Controls;
-    using ProductionCore.Interfaces;
+    using ProdCore.Interfaces;
 
-    /// <summary>
-    /// Interaction logic for ProdModalDialog.xaml.
-    /// </summary>
-    public partial class ProdModalDialogView : UserControl
+    /// <inheritdoc/>
+    public partial class ProdModalDialogView : UserControl, IProdModalDialogView
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ProdModalDialogView"/> class.

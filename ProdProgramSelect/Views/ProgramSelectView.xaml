@@ -74,9 +74,9 @@
 
                 <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
                     <Button
-                        x:Name="CancelButton"
+                        x:Name="CancelCommand"
                         Margin="3"
-                        Command="{Binding Path=CancelButton}"
+                        Command="{Binding Path=CancelCommand}"
                         DockPanel.Dock="Left"
                         IsEnabled="{Binding ProgramDataService.CanCancel}">
                         <StackPanel Orientation="Horizontal">
@@ -85,9 +85,9 @@
                         </StackPanel>
                     </Button>
                     <Button
-                        x:Name="ConfirmButton"
+                        x:Name="ConfirmCommand"
                         Margin="3"
-                        Command="{Binding Path=ConfirmButton}"
+                        Command="{Binding Path=ConfirmCommand}"
                         DockPanel.Dock="Right">
                         <StackPanel Orientation="Horizontal">
                             <telerik:Label Content="Confirm" />

@@ -1,10 +1,8 @@
 ﻿namespace ProdData.Models
 {
-    using ProductionCore.Interfaces;
+    using ProdCore.Interfaces;
 
-    /// <summary>
-    /// Defines the <see cref="CardSubStep" />.
-    /// </summary>
+    /// <inheritdoc/>
     public class CardSubStep : ICardSubStep
     {
         /// <summary>
@@ -25,9 +23,7 @@
             SubStepData = subStepData;
         }
 
-        /// <summary>
-        /// Gets the FullSubStepData.
-        /// </summary>
+        /// <inheritdoc/>
         public string FullSubStepData
         {
             get
@@ -41,14 +37,10 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the SubStepData.
-        /// </summary>
+        /// <inheritdoc/>
         public string[]? SubStepData { get; set; }
 
-        /// <summary>
-        /// Gets or sets the SubStepName.
-        /// </summary>
+        /// <inheritdoc/>
         public string? SubStepName { get; set; }
     }
 }

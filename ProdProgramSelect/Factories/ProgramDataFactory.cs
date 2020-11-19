@@ -1,11 +1,9 @@
 ﻿namespace ProdProgramSelect.Factories
 {
-    using global::ProdProgramSelect.Models;
-    using ProductionCore.Interfaces;
+    using ProdProgramSelect.Models;
+    using ProdCore.Interfaces;
 
-    /// <summary>
-    /// Defines the <see cref="ProgramDataFactory" />.
-    /// </summary>
+    /// <inheritdoc/>
     public class ProgramDataFactory : IProgramDataFactory
     {
         /// <summary>
@@ -22,10 +20,7 @@
             _barcodeFactory = barcodeFactory;
         }
 
-        /// <summary>
-        /// The Create.
-        /// </summary>
-        /// <returns>The <see cref="IProgramData"/>.</returns>
+        /// <inheritdoc/>
         public IProgramData Create()
         {
             return new ProgramData(_barcodeFactory.Create());

@@ -2,7 +2,7 @@
 {
     using Prism.Commands;
     using Prism.Mvvm;
-    using ProductionCore.Interfaces;
+    using ProdCore.Interfaces;
 
     /// <summary>
     /// Defines the <see cref="ProdDataViewModel" />.
@@ -28,14 +28,12 @@
         {
             _playbackService = playbackService;
             _mediationService = mediationService;
-            PlayButton = new DelegateCommand(() => PlaybackService.Play()).ObservesCanExecute(() => PlaybackService.PlayAvailable);
-            PauseButton = new DelegateCommand(() => PlaybackService.Pause()).ObservesCanExecute(() => PlaybackService.PauseAvailable);
-            OpenProgramSelect = new DelegateCommand(() => PlaybackService.RequestProgramChange()).ObservesCanExecute(() => PlaybackService.AllowProgramChange);
+            PlayCommand = new DelegateCommand(Play).ObservesCanExecute(() => PlaybackService.PlayAvailable);
+            PauseCommand = new DelegateCommand(Pause).ObservesCanExecute(() => PlaybackService.PauseAvailable);
+            ProgramSelectCommand = new DelegateCommand(ProgramSelect).ObservesCanExecute(() => PlaybackService.AllowProgramChange);
         }
 
-        /// <summary>
-        /// Gets the PlaybackService.
-        /// </summary>
+        /// <inheritdoc/>
         public IPlaybackService PlaybackService
         {
             get
@@ -44,9 +42,7 @@
             }
         }
 
-        /// <summary>
-        /// Gets the MediationService.
-        /// </summary>
+        /// <inheritdoc/>
         public IMediationService MediationService
         {
             get
@@ -55,19 +51,37 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets the OpenProgramSelect.
-        /// </summary>
-        public DelegateCommand OpenProgramSelect { get; set; }
+        /// <inheritdoc/>
+        public DelegateCommand ProgramSelectCommand { get; set; }
+
+        /// <inheritdoc/>
+        public DelegateCommand PauseCommand { get; set; }
+
+        /// <inheritdoc/>
+        public DelegateCommand PlayCommand { get; set; }
 
         /// <summary>
-        /// Gets or sets the PauseButton.
+        /// The ProgramSelectCommand Method call.
         /// </summary>
-        public DelegateCommand PauseButton { get; set; }
+        private void ProgramSelect()
+        {
+            PlaybackService.RequestProgramChange();
+        }
 
         /// <summary>
-        /// Gets or sets the PlayButton.
+        /// The PauseCommand Method call.
         /// </summary>
-        public DelegateCommand PlayButton { get; set; }
+        private void Pause()
+        {
+            PlaybackService.Pause();
+        }
+
+        /// <summary>
+        /// The PlayCommand Method call.
+        /// </summary>
+        private void Play()
+        {
+            PlaybackService.Play();
+        }
     }
 }

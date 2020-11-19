@@ -4,12 +4,10 @@
     using System.Collections.ObjectModel;
     using System.Drawing;
     using System.Windows.Media.Imaging;
-    using ProductionCore.Interfaces;
-    using ProductionCore.Interfaces.Services;
+    using ProdCore.Interfaces;
+    using ProdCore.Interfaces.Services;
 
-    /// <summary>
-    /// Defines the <see cref="FileService" />.
-    /// </summary>
+    /// <inheritdoc/>
     public class FileService : IFileService
     {
         /// <summary>
@@ -69,19 +67,13 @@
             _programDataFactory = programDataFactory;
         }
 
-        /// <summary>
-        /// The LoadProgramSteps.
-        /// </summary>
-        /// <returns>The <see cref="ObservableCollection{ICard}"/>.</returns>
+        /// <inheritdoc/>
         public ObservableCollection<ICard?> LoadProgramSteps()
         {
             return GenerateRandomProgram();
         }
 
-        /// <summary>
-        /// The LoadProgramCollection.
-        /// </summary>
-        /// <returns>The <see cref="ObservableCollection{IProgramData}"/>.</returns>
+        /// <inheritdoc/>
         public ObservableCollection<IProgramData> LoadProgramCollection()
         {
             return GenerateRandomProgramCollection();

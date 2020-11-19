@@ -4,17 +4,15 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
 	  <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
-	  <CodeAnalysisRuleSet>../PVA.ruleset</CodeAnalysisRuleSet>
+	  <CodeAnalysisRuleSet>..\PVA.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-	
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-		<DocumentationFile>C:\Users\Ryan\Source\Repos\SajuukKahn\ProdUI\ProdProgramSelect\ProdProgramSelect.xml</DocumentationFile>
-	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ProductionCore\ProductionCore.csproj" />
-    <ProjectReference Include="..\ProdUI\ProdUI.csproj" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>..\Documentation\ProdProgramSelect.xml</DocumentationFile>
+  </PropertyGroup>
+
+	<ItemGroup>
+    <ProjectReference Include="..\ProdCore\ProdCore.csproj" />
   </ItemGroup>
 
 	<ItemGroup>

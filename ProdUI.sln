@@ -9,9 +9,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProdData", "ProdData\ProdDa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProdTestGenerator", "ProdTestGenerator\ProdTestGenerator.csproj", "{B43081F5-A965-4EA3-9973-707CA2E7EEB0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductionCore", "ProductionCore\ProductionCore.csproj", "{18539E67-F175-4571-8E75-D84811CE8703}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProdCore", "ProdCore\ProdCore.csproj", "{18539E67-F175-4571-8E75-D84811CE8703}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProdProgramSelect", "ProdProgramSelect\ProdProgramSelect.csproj", "{2191D4F3-D6B5-4499-B577-60D65BD29A61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProdProgramSelect", "ProdProgramSelect\ProdProgramSelect.csproj", "{2191D4F3-D6B5-4499-B577-60D65BD29A61}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_internal", "_internal", "{E9BD985A-27D9-4EA5-B0A2-37840A8EA806}"
+	ProjectSection(SolutionItems) = preProject
+		cleanup.bat = cleanup.bat
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
