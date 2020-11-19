@@ -4,7 +4,7 @@
     using System.Diagnostics;
     using System.Windows.Threading;
     using Prism.Mvvm;
-    using ProductionCore.Interfaces;
+    using ProdCore.Interfaces;
 
     /// <inheritdoc/>
     public class Chronometer : BindableBase, IChronometer

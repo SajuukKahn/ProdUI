@@ -2,7 +2,7 @@
 {
     using Prism.Commands;
     using Prism.Mvvm;
-    using ProductionCore.Interfaces;
+    using ProdCore.Interfaces;
 
     /// <summary>
     /// Defines the <see cref="ProdDataViewModel" />.

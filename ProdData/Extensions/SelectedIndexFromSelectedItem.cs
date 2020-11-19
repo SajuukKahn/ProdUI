@@ -3,7 +3,7 @@
     using System;
     using System.Windows;
     using System.Windows.Threading;
-    using ProductionCore.Interfaces;
+    using ProdCore.Interfaces;
     using Telerik.Windows.Controls;
 
     /// <summary>

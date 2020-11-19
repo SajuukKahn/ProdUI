@@ -5,7 +5,7 @@
     using System.Drawing;
     using System.Windows.Media.Imaging;
     using Prism.Mvvm;
-    using ProductionCore.Interfaces;
+    using ProdCore.Interfaces;
 
     /// <inheritdoc/>
     public class ProgramData : BindableBase, IProgramData

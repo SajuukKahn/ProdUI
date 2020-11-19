@@ -4,8 +4,8 @@
     using System.Collections.ObjectModel;
     using System.Drawing;
     using System.Windows.Media.Imaging;
-    using ProductionCore.Interfaces;
-    using ProductionCore.Interfaces.Services;
+    using ProdCore.Interfaces;
+    using ProdCore.Interfaces.Services;
 
     /// <inheritdoc/>
     public class FileService : IFileService

@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Windows.Media;
     using Prism.Mvvm;
-    using ProductionCore.Interfaces;
+    using ProdCore.Interfaces;
 
     /// <inheritdoc/>
     public class Card : BindableBase, ICard

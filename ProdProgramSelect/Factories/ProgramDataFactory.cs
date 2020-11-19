@@ -1,7 +1,7 @@
 ﻿namespace ProdProgramSelect.Factories
 {
     using ProdProgramSelect.Models;
-    using ProductionCore.Interfaces;
+    using ProdCore.Interfaces;
 
     /// <inheritdoc/>
     public class ProgramDataFactory : IProgramDataFactory

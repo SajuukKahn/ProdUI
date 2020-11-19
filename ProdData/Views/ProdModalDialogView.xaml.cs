@@ -1,7 +1,7 @@
 ﻿namespace ProdData.Views
 {
     using System.Windows.Controls;
-    using ProductionCore.Interfaces;
+    using ProdCore.Interfaces;
 
     /// <inheritdoc/>
     public partial class ProdModalDialogView : UserControl, IProdModalDialogView

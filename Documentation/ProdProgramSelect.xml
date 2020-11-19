@@ -82,11 +82,11 @@
             Defines the _barcodeFactory.
             </summary>
         </member>
-        <member name="M:ProdProgramSelect.Factories.ProgramDataFactory.#ctor(ProductionCore.Interfaces.IBarcodeFactory)">
+        <member name="M:ProdProgramSelect.Factories.ProgramDataFactory.#ctor(ProdCore.Interfaces.IBarcodeFactory)">
             <summary>
             Initializes a new instance of the <see cref="T:ProdProgramSelect.Factories.ProgramDataFactory"/> class.
             </summary>
-            <param name="barcodeFactory">Resolved registered type for <see cref="T:ProductionCore.Interfaces.IBarcodeFactory"/>.</param>
+            <param name="barcodeFactory">Resolved registered type for <see cref="T:ProdCore.Interfaces.IBarcodeFactory"/>.</param>
         </member>
         <member name="M:ProdProgramSelect.Factories.ProgramDataFactory.Create">
             <inheritdoc/>
@@ -190,11 +190,11 @@
             Defines the _userCanStartPlayback.
             </summary>
         </member>
-        <member name="M:ProdProgramSelect.Models.ProgramData.#ctor(ProductionCore.Interfaces.IBarcode)">
+        <member name="M:ProdProgramSelect.Models.ProgramData.#ctor(ProdCore.Interfaces.IBarcode)">
             <summary>
             Initializes a new instance of the <see cref="T:ProdProgramSelect.Models.ProgramData"/> class.
             </summary>
-            <param name="barcode">The barcode<see cref="T:ProductionCore.Interfaces.IBarcode"/>.</param>
+            <param name="barcode">The barcode<see cref="T:ProdCore.Interfaces.IBarcode"/>.</param>
         </member>
         <member name="P:ProdProgramSelect.Models.ProgramData.AutoStartPlayback">
             <inheritdoc/>
@@ -299,13 +299,13 @@
             Defines the _programList.
             </summary>
         </member>
-        <member name="M:ProdProgramSelect.Services.ProgramDataService.#ctor(ProductionCore.Interfaces.IMediationService,ProductionCore.Interfaces.Services.IFileService,ProductionCore.Interfaces.IPlaybackService)">
+        <member name="M:ProdProgramSelect.Services.ProgramDataService.#ctor(ProdCore.Interfaces.IMediationService,ProdCore.Interfaces.Services.IFileService,ProdCore.Interfaces.IPlaybackService)">
             <summary>
             Initializes a new instance of the <see cref="T:ProdProgramSelect.Services.ProgramDataService"/> class.
             </summary>
-            <param name="mediationService">The mediationService<see cref="T:ProductionCore.Interfaces.IMediationService"/>.</param>
-            <param name="fileService">The fileService<see cref="T:ProductionCore.Interfaces.Services.IFileService"/>.</param>
-            <param name="playbackService">The playbackService<see cref="T:ProductionCore.Interfaces.IPlaybackService"/>.</param>
+            <param name="mediationService">The mediationService<see cref="T:ProdCore.Interfaces.IMediationService"/>.</param>
+            <param name="fileService">The fileService<see cref="T:ProdCore.Interfaces.Services.IFileService"/>.</param>
+            <param name="playbackService">The playbackService<see cref="T:ProdCore.Interfaces.IPlaybackService"/>.</param>
         </member>
         <member name="P:ProdProgramSelect.Services.ProgramDataService.ProgramList">
             <inheritdoc/>
@@ -343,12 +343,12 @@
             Defines the _mediationService.
             </summary>
         </member>
-        <member name="M:ProdProgramSelect.ViewModels.ProgramSelectViewModel.#ctor(ProductionCore.Interfaces.IProgramDataService,ProductionCore.Interfaces.IMediationService)">
+        <member name="M:ProdProgramSelect.ViewModels.ProgramSelectViewModel.#ctor(ProdCore.Interfaces.IProgramDataService,ProdCore.Interfaces.IMediationService)">
             <summary>
             Initializes a new instance of the <see cref="T:ProdProgramSelect.ViewModels.ProgramSelectViewModel"/> class.
             </summary>
-            <param name="programDataService">The programDataService<see cref="T:ProductionCore.Interfaces.IProgramDataService"/>.</param>
-            <param name="mediationService">The mediationService<see cref="T:ProductionCore.Interfaces.IMediationService"/>.</param>
+            <param name="programDataService">The programDataService<see cref="T:ProdCore.Interfaces.IProgramDataService"/>.</param>
+            <param name="mediationService">The mediationService<see cref="T:ProdCore.Interfaces.IMediationService"/>.</param>
         </member>
         <member name="P:ProdProgramSelect.ViewModels.ProgramSelectViewModel.ProgramDataService">
             <inheritdoc/>
@@ -383,11 +383,11 @@
             ProgramSelectView
             </summary>
         </member>
-        <member name="M:ProdProgramSelect.Views.ProgramSelectView.#ctor(ProductionCore.Interfaces.IProgramSelectViewModel)">
+        <member name="M:ProdProgramSelect.Views.ProgramSelectView.#ctor(ProdCore.Interfaces.IProgramSelectViewModel)">
             <summary>
             Initializes a new instance of the <see cref="T:ProdProgramSelect.Views.ProgramSelectView"/> class.
             </summary>
-            <param name="programSelectViewModel">The programSelectViewModel<see cref="T:ProductionCore.Interfaces.IProgramSelectViewModel"/>.</param>
+            <param name="programSelectViewModel">The programSelectViewModel<see cref="T:ProdCore.Interfaces.IProgramSelectViewModel"/>.</param>
         </member>
         <member name="M:ProdProgramSelect.Views.ProgramSelectView.InitializeComponent">
             <summary>

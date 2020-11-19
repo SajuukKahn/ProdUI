@@ -2,7 +2,7 @@
 {
     using System.Windows.Media.Imaging;
     using ProdProgramSelect.Models;
-    using ProductionCore.Interfaces;
+    using ProdCore.Interfaces;
 
     /// <inheritdoc/>
     public class BarcodeFactory : IBarcodeFactory

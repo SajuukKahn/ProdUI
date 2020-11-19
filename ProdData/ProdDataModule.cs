@@ -8,13 +8,12 @@
     using ProdData.Services;
     using ProdData.ViewModels;
     using ProdData.Views;
-    using ProductionCore.Interfaces;
-    using ProdUI.Constants;
+    using ProdCore.Interfaces;
 
     /// <summary>
     /// Defines the <see cref="ProdDataModule" />.
     /// </summary>
-    [ModuleDependency(nameof(ProductionCore.ProductionCoreModule))]
+    [ModuleDependency(nameof(ProdCore.ProdCoreModule))]
     public class ProdDataModule : IModule
     {
         /// <summary>
@@ -34,8 +33,8 @@
         /// <inheritdoc/>
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            _regionManager.Regions[ShellRegionNames.ShellProdDataRegion].Add(containerProvider.Resolve<IProdDataView>());
-            _regionManager.Regions[ShellRegionNames.ShellProdModalRegion].Add(containerProvider.Resolve<IProdModalDialogView>());
+            _regionManager.Regions["ShellProdDataRegion"].Add(containerProvider.Resolve<IProdDataView>());
+            _regionManager.Regions["ShellProdModalRegion"].Add(containerProvider.Resolve<IProdModalDialogView>());
         }
 
         /// <inheritdoc/>

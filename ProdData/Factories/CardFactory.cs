@@ -1,7 +1,7 @@
 ﻿namespace ProdData.Factories
 {
     using ProdData.Models;
-    using ProductionCore.Interfaces;
+    using ProdCore.Interfaces;
 
     /// <inheritdoc/>
     public class CardFactory : ICardFactory

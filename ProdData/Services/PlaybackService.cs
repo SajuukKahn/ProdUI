@@ -6,7 +6,7 @@
     using System.Windows.Media.Imaging;
     using Newtonsoft.Json;
     using Prism.Mvvm;
-    using ProductionCore.Interfaces;
+    using ProdCore.Interfaces;
 
     /// <inheritdoc/>
     public class PlaybackService : BindableBase, IPlaybackService

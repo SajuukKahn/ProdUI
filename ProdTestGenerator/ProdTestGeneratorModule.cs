@@ -6,14 +6,13 @@
     using ProdTestGenerator.Services;
     using ProdTestGenerator.ViewModels;
     using ProdTestGenerator.Views;
-    using ProductionCore.Interfaces;
-    using ProductionCore.Interfaces.Services;
-    using ProdUI.Constants;
+    using ProdCore.Interfaces;
+    using ProdCore.Interfaces.Services;
 
     /// <summary>
     /// Defines the <see cref="ProdTestGeneratorModule" />.
     /// </summary>
-    [ModuleDependency(nameof(ProductionCore.ProductionCoreModule))]
+    [ModuleDependency(nameof(ProdCore.ProdCoreModule))]
     public class ProdTestGeneratorModule : IModule
     {
         /// <summary>
@@ -38,7 +37,7 @@
         /// <inheritdoc/>
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            _regionManager.Regions[ShellRegionNames.ShellProdTestRegion].Add(containerProvider.Resolve<ITestGeneratorView>());
+            _regionManager.Regions["ShellProdTestRegion"].Add(containerProvider.Resolve<ITestGeneratorView>());
             containerProvider.Resolve<IControllerService>();
         }
 

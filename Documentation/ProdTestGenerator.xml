@@ -49,11 +49,11 @@
             Defines the _programIsInProgress.
             </summary>
         </member>
-        <member name="M:ProdTestGenerator.Services.ControllerService.#ctor(ProductionCore.Interfaces.IPlaybackService)">
+        <member name="M:ProdTestGenerator.Services.ControllerService.#ctor(ProdCore.Interfaces.IPlaybackService)">
             <summary>
             Initializes a new instance of the <see cref="T:ProdTestGenerator.Services.ControllerService"/> class.
             </summary>
-            <param name="playbackService">The playbackService<see cref="T:ProductionCore.Interfaces.IPlaybackService"/>.</param>
+            <param name="playbackService">The playbackService<see cref="T:ProdCore.Interfaces.IPlaybackService"/>.</param>
         </member>
         <member name="P:ProdTestGenerator.Services.ControllerService.ExecutionPaused">
             <inheritdoc/>
@@ -110,15 +110,15 @@
             Defines the _lastDate.
             </summary>
         </member>
-        <member name="M:ProdTestGenerator.Services.FileService.#ctor(ProductionCore.Interfaces.IModalService,ProductionCore.Interfaces.IMediationService,ProductionCore.Interfaces.ICardFactory,ProductionCore.Interfaces.ICardSubStepFactory,ProductionCore.Interfaces.IProgramDataFactory)">
+        <member name="M:ProdTestGenerator.Services.FileService.#ctor(ProdCore.Interfaces.IModalService,ProdCore.Interfaces.IMediationService,ProdCore.Interfaces.ICardFactory,ProdCore.Interfaces.ICardSubStepFactory,ProdCore.Interfaces.IProgramDataFactory)">
             <summary>
             Initializes a new instance of the <see cref="T:ProdTestGenerator.Services.FileService"/> class.
             </summary>
-            <param name="modalService">The modalService<see cref="T:ProductionCore.Interfaces.IModalService"/>.</param>
-            <param name="mediationService">The mediationService<see cref="T:ProductionCore.Interfaces.IMediationService"/>.</param>
-            <param name="cardFactory">The cardFactory<see cref="T:ProductionCore.Interfaces.ICardFactory"/>.</param>
-            <param name="cardSubStepFactory">The cardSubStepFactory<see cref="T:ProductionCore.Interfaces.ICardSubStepFactory"/>.</param>
-            <param name="programDataFactory">The programDataFactory<see cref="T:ProductionCore.Interfaces.IProgramDataFactory"/>.</param>
+            <param name="modalService">The modalService<see cref="T:ProdCore.Interfaces.IModalService"/>.</param>
+            <param name="mediationService">The mediationService<see cref="T:ProdCore.Interfaces.IMediationService"/>.</param>
+            <param name="cardFactory">The cardFactory<see cref="T:ProdCore.Interfaces.ICardFactory"/>.</param>
+            <param name="cardSubStepFactory">The cardSubStepFactory<see cref="T:ProdCore.Interfaces.ICardSubStepFactory"/>.</param>
+            <param name="programDataFactory">The programDataFactory<see cref="T:ProdCore.Interfaces.IProgramDataFactory"/>.</param>
         </member>
         <member name="M:ProdTestGenerator.Services.FileService.LoadProgramSteps">
             <inheritdoc/>
@@ -183,11 +183,11 @@
             Defines the _playbackService.
             </summary>
         </member>
-        <member name="M:ProdTestGenerator.ViewModels.TestGeneratorViewModel.#ctor(ProductionCore.Interfaces.IPlaybackService)">
+        <member name="M:ProdTestGenerator.ViewModels.TestGeneratorViewModel.#ctor(ProdCore.Interfaces.IPlaybackService)">
             <summary>
             Initializes a new instance of the <see cref="T:ProdTestGenerator.ViewModels.TestGeneratorViewModel"/> class.
             </summary>
-            <param name="playbackService">The playbackService<see cref="T:ProductionCore.Interfaces.IPlaybackService"/>.</param>
+            <param name="playbackService">The playbackService<see cref="T:ProdCore.Interfaces.IPlaybackService"/>.</param>
         </member>
         <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.PlaybackService">
             <inheritdoc/>
@@ -236,11 +236,11 @@
             TestGeneratorView
             </summary>
         </member>
-        <member name="M:ProdTestGenerator.Views.TestGeneratorView.#ctor(ProductionCore.Interfaces.ITestGeneratorViewModel)">
+        <member name="M:ProdTestGenerator.Views.TestGeneratorView.#ctor(ProdCore.Interfaces.ITestGeneratorViewModel)">
             <summary>
             Initializes a new instance of the <see cref="T:ProdTestGenerator.Views.TestGeneratorView"/> class.
             </summary>
-            <param name="testGeneratorViewModel">The testGeneratorViewModel<see cref="T:ProductionCore.Interfaces.ITestGeneratorViewModel"/>.</param>
+            <param name="testGeneratorViewModel">The testGeneratorViewModel<see cref="T:ProdCore.Interfaces.ITestGeneratorViewModel"/>.</param>
         </member>
         <member name="M:ProdTestGenerator.Views.TestGeneratorView.InitializeComponent">
             <summary>

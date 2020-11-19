@@ -121,11 +121,11 @@
             Defines the _chronometerFactory.
             </summary>
         </member>
-        <member name="M:ProdData.Factories.CardFactory.#ctor(ProductionCore.Interfaces.IChronometerFactory)">
+        <member name="M:ProdData.Factories.CardFactory.#ctor(ProdCore.Interfaces.IChronometerFactory)">
             <summary>
             Initializes a new instance of the <see cref="T:ProdData.Factories.CardFactory"/> class.
             </summary>
-            <param name="chronometerFactory">The chronometerFactory<see cref="T:ProductionCore.Interfaces.IChronometerFactory"/>.</param>
+            <param name="chronometerFactory">The chronometerFactory<see cref="T:ProdCore.Interfaces.IChronometerFactory"/>.</param>
         </member>
         <member name="M:ProdData.Factories.CardFactory.Create">
             <inheritdoc/>
@@ -214,11 +214,11 @@
             Defines the _stepTitle.
             </summary>
         </member>
-        <member name="M:ProdData.Models.Card.#ctor(ProductionCore.Interfaces.IChronometerFactory)">
+        <member name="M:ProdData.Models.Card.#ctor(ProdCore.Interfaces.IChronometerFactory)">
             <summary>
             Initializes a new instance of the <see cref="T:ProdData.Models.Card"/> class.
             </summary>
-            <param name="chronometerFactory">The chronometerFactory<see cref="T:ProductionCore.Interfaces.IChronometerFactory"/>.</param>
+            <param name="chronometerFactory">The chronometerFactory<see cref="T:ProdCore.Interfaces.IChronometerFactory"/>.</param>
         </member>
         <member name="P:ProdData.Models.Card.BreakOnError">
             <inheritdoc/>
@@ -488,11 +488,11 @@
             Defines the _activeModalData.
             </summary>
         </member>
-        <member name="M:ProdData.Services.ModalService.#ctor(ProductionCore.Interfaces.IModalFactory)">
+        <member name="M:ProdData.Services.ModalService.#ctor(ProdCore.Interfaces.IModalFactory)">
             <summary>
             Initializes a new instance of the <see cref="T:ProdData.Services.ModalService"/> class.
             </summary>
-            <param name="modalFactory">The modalFactory<see cref="T:ProductionCore.Interfaces.IModalFactory"/>.</param>
+            <param name="modalFactory">The modalFactory<see cref="T:ProdCore.Interfaces.IModalFactory"/>.</param>
         </member>
         <member name="P:ProdData.Services.ModalService.ActiveModalData">
             <inheritdoc/>
@@ -503,7 +503,7 @@
         <member name="M:ProdData.Services.ModalService.CreateModalData">
             <inheritdoc/>
         </member>
-        <member name="M:ProdData.Services.ModalService.ShowModal(ProductionCore.Interfaces.IModalData)">
+        <member name="M:ProdData.Services.ModalService.ShowModal(ProdCore.Interfaces.IModalData)">
             <inheritdoc/>
         </member>
         <member name="M:ProdData.Services.ModalService.CloseModal">
@@ -572,13 +572,13 @@
             Defines the _productImage.
             </summary>
         </member>
-        <member name="M:ProdData.Services.PlaybackService.#ctor(ProductionCore.Interfaces.IChronometerFactory,ProductionCore.Interfaces.IModalService,ProductionCore.Interfaces.IMediationService)">
+        <member name="M:ProdData.Services.PlaybackService.#ctor(ProdCore.Interfaces.IChronometerFactory,ProdCore.Interfaces.IModalService,ProdCore.Interfaces.IMediationService)">
             <summary>
             Initializes a new instance of the <see cref="T:ProdData.Services.PlaybackService"/> class.
             </summary>
-            <param name="chronometerFactory">The chronometerFactory<see cref="T:ProductionCore.Interfaces.IChronometerFactory"/>.</param>
-            <param name="modalService">The modalService<see cref="T:ProductionCore.Interfaces.IModalService"/>.</param>
-            <param name="mediationService">The mediationService<see cref="T:ProductionCore.Interfaces.IMediationService"/>.</param>
+            <param name="chronometerFactory">The chronometerFactory<see cref="T:ProdCore.Interfaces.IChronometerFactory"/>.</param>
+            <param name="modalService">The modalService<see cref="T:ProdCore.Interfaces.IModalService"/>.</param>
+            <param name="mediationService">The mediationService<see cref="T:ProdCore.Interfaces.IMediationService"/>.</param>
         </member>
         <member name="E:ProdData.Services.PlaybackService.PauseInitiated">
             <inheritdoc/>
@@ -634,7 +634,7 @@
         <member name="M:ProdData.Services.PlaybackService.PlayCard">
             <inheritdoc/>
         </member>
-        <member name="M:ProdData.Services.PlaybackService.ModalEvent(ProductionCore.Interfaces.IModalData)">
+        <member name="M:ProdData.Services.PlaybackService.ModalEvent(ProdCore.Interfaces.IModalData)">
             <inheritdoc/>
         </member>
         <member name="M:ProdData.Services.PlaybackService.Pause">
@@ -687,12 +687,12 @@
             Defines the _mediationService.
             </summary>
         </member>
-        <member name="M:ProdData.ViewModels.ProdDataViewModel.#ctor(ProductionCore.Interfaces.IPlaybackService,ProductionCore.Interfaces.IMediationService)">
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.#ctor(ProdCore.Interfaces.IPlaybackService,ProdCore.Interfaces.IMediationService)">
             <summary>
             Initializes a new instance of the <see cref="T:ProdData.ViewModels.ProdDataViewModel"/> class.
             </summary>
-            <param name="playbackService">The playbackService<see cref="T:ProductionCore.Interfaces.IPlaybackService"/>.</param>
-            <param name="mediationService">The mediationService<see cref="T:ProductionCore.Interfaces.IMediationService"/>.</param>
+            <param name="playbackService">The playbackService<see cref="T:ProdCore.Interfaces.IPlaybackService"/>.</param>
+            <param name="mediationService">The mediationService<see cref="T:ProdCore.Interfaces.IMediationService"/>.</param>
         </member>
         <member name="P:ProdData.ViewModels.ProdDataViewModel.PlaybackService">
             <inheritdoc/>
@@ -732,12 +732,12 @@
             Defines the _modalService.
             </summary>
         </member>
-        <member name="M:ProdData.ViewModels.ProdModalDialogViewModel.#ctor(ProductionCore.Interfaces.IModalService,ProductionCore.Interfaces.IPlaybackService)">
+        <member name="M:ProdData.ViewModels.ProdModalDialogViewModel.#ctor(ProdCore.Interfaces.IModalService,ProdCore.Interfaces.IPlaybackService)">
             <summary>
             Initializes a new instance of the <see cref="T:ProdData.ViewModels.ProdModalDialogViewModel"/> class.
             </summary>
-            <param name="modalService">The modalService<see cref="T:ProductionCore.Interfaces.IModalService"/>.</param>
-            <param name="playbackService">The playbackService<see cref="T:ProductionCore.Interfaces.IPlaybackService"/>.</param>
+            <param name="modalService">The modalService<see cref="T:ProdCore.Interfaces.IModalService"/>.</param>
+            <param name="playbackService">The playbackService<see cref="T:ProdCore.Interfaces.IPlaybackService"/>.</param>
         </member>
         <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.ModalService">
             <inheritdoc/>
@@ -780,11 +780,11 @@
             ProdDataView
             </summary>
         </member>
-        <member name="M:ProdData.Views.ProdDataView.#ctor(ProductionCore.Interfaces.IProdDataViewModel)">
+        <member name="M:ProdData.Views.ProdDataView.#ctor(ProdCore.Interfaces.IProdDataViewModel)">
             <summary>
             Initializes a new instance of the <see cref="T:ProdData.Views.ProdDataView"/> class.
             </summary>
-            <param name="prodDataViewModel">The prodDataViewModel<see cref="T:ProductionCore.Interfaces.IProdDataViewModel"/>.</param>
+            <param name="prodDataViewModel">The prodDataViewModel<see cref="T:ProdCore.Interfaces.IProdDataViewModel"/>.</param>
         </member>
         <member name="M:ProdData.Views.ProdDataView.InitializeComponent">
             <summary>
@@ -797,11 +797,11 @@
             ProdModalDialogView
             </summary>
         </member>
-        <member name="M:ProdData.Views.ProdModalDialogView.#ctor(ProductionCore.Interfaces.IProdModalDialogViewModel)">
+        <member name="M:ProdData.Views.ProdModalDialogView.#ctor(ProdCore.Interfaces.IProdModalDialogViewModel)">
             <summary>
             Initializes a new instance of the <see cref="T:ProdData.Views.ProdModalDialogView"/> class.
             </summary>
-            <param name="prodModalDialogViewModel">The prodModalDialogViewModel<see cref="T:ProductionCore.Interfaces.IProdModalDialogViewModel"/>.</param>
+            <param name="prodModalDialogViewModel">The prodModalDialogViewModel<see cref="T:ProdCore.Interfaces.IProdModalDialogViewModel"/>.</param>
         </member>
         <member name="M:ProdData.Views.ProdModalDialogView.InitializeComponent">
             <summary>

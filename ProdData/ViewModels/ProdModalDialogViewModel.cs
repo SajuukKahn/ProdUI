@@ -2,8 +2,7 @@
 {
     using Prism.Commands;
     using Prism.Mvvm;
-    using ProductionCore.Interfaces;
-    using System;
+    using ProdCore.Interfaces;
 
     /// <inheritdoc/>
     public class ProdModalDialogViewModel : BindableBase, IProdModalDialogViewModel

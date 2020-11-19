@@ -1,6 +1,6 @@
 ﻿namespace ProdData.Models
 {
-    using ProductionCore.Interfaces;
+    using ProdCore.Interfaces;
 
     /// <inheritdoc/>
     public class CardSubStep : ICardSubStep

@@ -4,7 +4,7 @@
     using System.Windows.Media.Imaging;
     using Prism.Commands;
     using Prism.Mvvm;
-    using ProductionCore.Interfaces;
+    using ProdCore.Interfaces;
 
     /// <inheritdoc/>
     public class TestGeneratorViewModel : BindableBase, ITestGeneratorViewModel
@@ -88,6 +88,5 @@
         {
             PlaybackService.Play();
         }
-
     }
 }

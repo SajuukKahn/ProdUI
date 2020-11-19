@@ -8,13 +8,12 @@
     using ProdProgramSelect.Services;
     using ProdProgramSelect.ViewModels;
     using ProdProgramSelect.Views;
-    using ProductionCore.Interfaces;
-    using ProdUI.Constants;
+    using ProdCore.Interfaces;
 
     /// <summary>
     /// Defines the <see cref="ProdProgramSelectModule" />.
     /// </summary>
-    [ModuleDependency(nameof(ProductionCore.ProductionCoreModule))]
+    [ModuleDependency(nameof(ProdCore.ProdCoreModule))]
     [ModuleDependency("ProdTestGeneratorModule")]
     public class ProdProgramSelectModule : IModule
     {
@@ -35,7 +34,7 @@
         /// <inheritdoc/>
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            _regionManager.Regions[ShellRegionNames.ShellProgramSelectRegion].Add(containerProvider.Resolve<IProgramSelectView>());
+            _regionManager.Regions["ShellProgramSelectRegion"].Add(containerProvider.Resolve<IProgramSelectView>());
         }
 
         /// <inheritdoc/>
