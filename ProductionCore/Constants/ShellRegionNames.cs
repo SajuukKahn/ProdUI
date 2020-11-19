@@ -1,4 +1,4 @@
-﻿namespace ProdUI.Constants
+﻿namespace ProductionCore.Constants
 {
     /// <summary>
     /// Defines the Region names used.

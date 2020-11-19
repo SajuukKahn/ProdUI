@@ -15,16 +15,14 @@
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="xcopy &quot;$(TargetDir)$(TargetName)*$(TargetExt)&quot; &quot;$(SolutionDir)$(SolutionName)\bin\Debug\netcoreapp3.1\Modules\&quot; /Y /S" />
   </Target>
-	
-
-  <ItemGroup>
-    <ProjectReference Include="..\ProductionCore\ProductionCore.csproj" />
-    <ProjectReference Include="..\ProdUI\ProdUI.csproj" />
-  </ItemGroup>
 
 	<ItemGroup>
 		<Analyzer Include="..\Lib\Analyzers\StyleCop.Analyzers.dll" />
 		<Analyzer Include="..\Lib\Analyzers\StyleCop.Analyzers.CodeFixes.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\ProductionCore\ProductionCore.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

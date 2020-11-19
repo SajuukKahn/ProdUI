@@ -6,9 +6,9 @@
     using ProdTestGenerator.Services;
     using ProdTestGenerator.ViewModels;
     using ProdTestGenerator.Views;
+    using ProductionCore.Constants;
     using ProductionCore.Interfaces;
     using ProductionCore.Interfaces.Services;
-    using ProdUI.Constants;
 
     /// <summary>
     /// Defines the <see cref="ProdTestGeneratorModule" />.

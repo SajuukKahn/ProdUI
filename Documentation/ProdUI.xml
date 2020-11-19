@@ -10,9 +10,6 @@
             App
             </summary>
         </member>
-        <member name="M:ProdUI.App.CreateShell">
-            <inheritdoc/>
-        </member>
         <member name="M:ProdUI.App.RegisterTypes(Prism.Ioc.IContainerRegistry)">
             <inheritdoc/>
         </member>
@@ -30,31 +27,6 @@
         <member name="M:ProdUI.App.Main">
             <summary>
             Application Entry Point.
-            </summary>
-        </member>
-        <member name="T:ProdUI.Constants.ShellRegionNames">
-            <summary>
-            Defines the Region names used.
-            </summary>
-        </member>
-        <member name="F:ProdUI.Constants.ShellRegionNames.ShellProdDataRegion">
-            <summary>
-            The ProdDataRegion.
-            </summary>
-        </member>
-        <member name="F:ProdUI.Constants.ShellRegionNames.ShellProgramSelectRegion">
-            <summary>
-            The ProgramSelectRegion.
-            </summary>
-        </member>
-        <member name="F:ProdUI.Constants.ShellRegionNames.ShellProdModalRegion">
-            <summary>
-            The ProdModalRegion.
-            </summary>
-        </member>
-        <member name="F:ProdUI.Constants.ShellRegionNames.ShellProdTestRegion">
-            <summary>
-            The ProdTestRegion.
             </summary>
         </member>
         <member name="T:ProdUI.Views.ProdUIView">

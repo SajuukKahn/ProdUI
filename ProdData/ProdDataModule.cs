@@ -8,8 +8,8 @@
     using ProdData.Services;
     using ProdData.ViewModels;
     using ProdData.Views;
+    using ProductionCore.Constants;
     using ProductionCore.Interfaces;
-    using ProdUI.Constants;
 
     /// <summary>
     /// Defines the <see cref="ProdDataModule" />.
