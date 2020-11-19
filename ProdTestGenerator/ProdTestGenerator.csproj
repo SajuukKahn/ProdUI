@@ -10,14 +10,15 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>..\Documentation\ProdTestGenerator.xml</DocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProductionCore\ProductionCore.csproj" />
+    <ProjectReference Include="..\ProdUI\ProdUI.csproj" />
+  </ItemGroup>
 	
 	<ItemGroup>
 		<Analyzer Include="..\Lib\Analyzers\StyleCop.Analyzers.dll" />
 		<Analyzer Include="..\Lib\Analyzers\StyleCop.Analyzers.CodeFixes.dll" />
-	</ItemGroup>
-	
-	<ItemGroup>
-	  <ProjectReference Include="..\ProductionCore\ProductionCore.csproj" />
 	</ItemGroup>
 
 

@@ -4,31 +4,6 @@
         <name>ProductionCore</name>
     </assembly>
     <members>
-        <member name="T:ProductionCore.Constants.ShellRegionNames">
-            <summary>
-            Defines the Region names used.
-            </summary>
-        </member>
-        <member name="F:ProductionCore.Constants.ShellRegionNames.ShellProdDataRegion">
-            <summary>
-            The ProdDataRegion.
-            </summary>
-        </member>
-        <member name="F:ProductionCore.Constants.ShellRegionNames.ShellProgramSelectRegion">
-            <summary>
-            The ProgramSelectRegion.
-            </summary>
-        </member>
-        <member name="F:ProductionCore.Constants.ShellRegionNames.ShellProdModalRegion">
-            <summary>
-            The ProdModalRegion.
-            </summary>
-        </member>
-        <member name="F:ProductionCore.Constants.ShellRegionNames.ShellProdTestRegion">
-            <summary>
-            The ProdTestRegion.
-            </summary>
-        </member>
         <member name="T:ProductionCore.Interfaces.IBarcodeFactory">
             <summary>
             Defines the <see cref="T:ProductionCore.Interfaces.IBarcodeFactory" />.

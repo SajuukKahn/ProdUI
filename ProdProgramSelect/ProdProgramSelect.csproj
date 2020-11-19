@@ -12,12 +12,13 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<Analyzer Include="..\Lib\Analyzers\StyleCop.Analyzers.dll" />
-		<Analyzer Include="..\Lib\Analyzers\StyleCop.Analyzers.CodeFixes.dll" />
-	</ItemGroup>
+    <ProjectReference Include="..\ProductionCore\ProductionCore.csproj" />
+    <ProjectReference Include="..\ProdUI\ProdUI.csproj" />
+  </ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\ProductionCore\ProductionCore.csproj" />
+		<Analyzer Include="..\Lib\Analyzers\StyleCop.Analyzers.dll" />
+		<Analyzer Include="..\Lib\Analyzers\StyleCop.Analyzers.CodeFixes.dll" />
 	</ItemGroup>
 
   <ItemGroup>

@@ -8,8 +8,8 @@
     using ProdProgramSelect.Services;
     using ProdProgramSelect.ViewModels;
     using ProdProgramSelect.Views;
-    using ProductionCore.Constants;
     using ProductionCore.Interfaces;
+    using ProdUI.Constants;
 
     /// <summary>
     /// Defines the <see cref="ProdProgramSelectModule" />.
