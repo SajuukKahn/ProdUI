@@ -700,14 +700,29 @@
         <member name="P:ProdData.ViewModels.ProdDataViewModel.MediationService">
             <inheritdoc/>
         </member>
-        <member name="P:ProdData.ViewModels.ProdDataViewModel.OpenProgramSelect">
+        <member name="P:ProdData.ViewModels.ProdDataViewModel.ProgramSelectCommand">
             <inheritdoc/>
         </member>
-        <member name="P:ProdData.ViewModels.ProdDataViewModel.PauseButton">
+        <member name="P:ProdData.ViewModels.ProdDataViewModel.PauseCommand">
             <inheritdoc/>
         </member>
-        <member name="P:ProdData.ViewModels.ProdDataViewModel.PlayButton">
+        <member name="P:ProdData.ViewModels.ProdDataViewModel.PlayCommand">
             <inheritdoc/>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.ProgramSelect">
+            <summary>
+            The ProgramSelectCommand Method call.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.Pause">
+            <summary>
+            The PauseCommand Method call.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdDataViewModel.Play">
+            <summary>
+            The PlayCommand Method call.
+            </summary>
         </member>
         <member name="T:ProdData.ViewModels.ProdModalDialogViewModel">
             <inheritdoc/>
@@ -727,17 +742,37 @@
         <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.ModalService">
             <inheritdoc/>
         </member>
-        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.Abort">
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.AbortCommand">
             <inheritdoc/>
         </member>
-        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.Continue">
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.ContinueCommand">
             <inheritdoc/>
         </member>
-        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.Custom">
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.CustomCommand">
             <inheritdoc/>
         </member>
-        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.Retry">
+        <member name="P:ProdData.ViewModels.ProdModalDialogViewModel.RetryCommand">
             <inheritdoc/>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdModalDialogViewModel.Custom">
+            <summary>
+            The CustomCommand Method.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdModalDialogViewModel.Retry">
+            <summary>
+            The RetryCommand Method.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdModalDialogViewModel.Continue">
+            <summary>
+            The ContinueCommand Method.
+            </summary>
+        </member>
+        <member name="M:ProdData.ViewModels.ProdModalDialogViewModel.Abort">
+            <summary>
+            The AbortCommand Method.
+            </summary>
         </member>
         <member name="T:ProdData.Views.ProdDataView">
             <inheritdoc/>

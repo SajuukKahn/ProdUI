@@ -8,6 +8,7 @@
     using ProdTestGenerator.Views;
     using ProductionCore.Interfaces;
     using ProductionCore.Interfaces.Services;
+    using ProdUI.Constants;
 
     /// <summary>
     /// Defines the <see cref="ProdTestGeneratorModule" />.
@@ -37,7 +38,7 @@
         /// <inheritdoc/>
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            _regionManager.Regions["TestRegion"].Add(containerProvider.Resolve<ITestGeneratorView>());
+            _regionManager.Regions[ShellRegionNames.ShellProdTestRegion].Add(containerProvider.Resolve<ITestGeneratorView>());
             containerProvider.Resolve<IControllerService>();
         }
 

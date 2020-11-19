@@ -192,16 +192,16 @@
         <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.PlaybackService">
             <inheritdoc/>
         </member>
-        <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.ChangeProcessImage">
+        <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.ChangeProcessImageCommand">
             <inheritdoc/>
         </member>
-        <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.PauseButton">
+        <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.PauseCommand">
             <inheritdoc/>
         </member>
-        <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.StartButton">
+        <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.StartCommand">
             <inheritdoc/>
         </member>
-        <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.ThrowCardError">
+        <member name="P:ProdTestGenerator.ViewModels.TestGeneratorViewModel.ThrowCardErrorCommand">
             <inheritdoc/>
         </member>
         <member name="M:ProdTestGenerator.ViewModels.TestGeneratorViewModel.PlaybackButtonCanExecute">
@@ -209,6 +209,26 @@
             The PlaybackButtonCanExecute.
             </summary>
             <returns>True if Not Playback.PauseAvailable.</returns>
+        </member>
+        <member name="M:ProdTestGenerator.ViewModels.TestGeneratorViewModel.ThrowCardError">
+            <summary>
+            The ThrowCardErrorCommand Method.
+            </summary>
+        </member>
+        <member name="M:ProdTestGenerator.ViewModels.TestGeneratorViewModel.ChangeProcessImage">
+            <summary>
+            The ChangeProcessImageCommand Method.
+            </summary>
+        </member>
+        <member name="M:ProdTestGenerator.ViewModels.TestGeneratorViewModel.Pause">
+            <summary>
+            The PauseCommand Method.
+            </summary>
+        </member>
+        <member name="M:ProdTestGenerator.ViewModels.TestGeneratorViewModel.Start">
+            <summary>
+            The StartCommand Method.
+            </summary>
         </member>
         <member name="T:ProdTestGenerator.Views.TestGeneratorView">
             <inheritdoc/>

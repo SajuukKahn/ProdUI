@@ -655,19 +655,19 @@
             Gets the MediationService.
             </summary>
         </member>
-        <member name="P:ProductionCore.Interfaces.IProdDataViewModel.OpenProgramSelect">
+        <member name="P:ProductionCore.Interfaces.IProdDataViewModel.ProgramSelectCommand">
             <summary>
-            Gets or sets the OpenProgramSelect.
+            Gets or sets the ProgramSelectCommand.
             </summary>
         </member>
-        <member name="P:ProductionCore.Interfaces.IProdDataViewModel.PauseButton">
+        <member name="P:ProductionCore.Interfaces.IProdDataViewModel.PauseCommand">
             <summary>
-            Gets or sets the PauseButton.
+            Gets or sets the PauseCommand.
             </summary>
         </member>
-        <member name="P:ProductionCore.Interfaces.IProdDataViewModel.PlayButton">
+        <member name="P:ProductionCore.Interfaces.IProdDataViewModel.PlayCommand">
             <summary>
-            Gets or sets the PlayButton.
+            Gets or sets the PlayCommand.
             </summary>
         </member>
         <member name="T:ProductionCore.Interfaces.IProdModalDialogViewModel">
@@ -680,22 +680,22 @@
             Gets the ModalService.
             </summary>
         </member>
-        <member name="P:ProductionCore.Interfaces.IProdModalDialogViewModel.Abort">
+        <member name="P:ProductionCore.Interfaces.IProdModalDialogViewModel.AbortCommand">
             <summary>
             Gets or sets the Abort.
             </summary>
         </member>
-        <member name="P:ProductionCore.Interfaces.IProdModalDialogViewModel.Continue">
+        <member name="P:ProductionCore.Interfaces.IProdModalDialogViewModel.ContinueCommand">
             <summary>
             Gets or sets the Continue.
             </summary>
         </member>
-        <member name="P:ProductionCore.Interfaces.IProdModalDialogViewModel.Custom">
+        <member name="P:ProductionCore.Interfaces.IProdModalDialogViewModel.CustomCommand">
             <summary>
             Gets or sets the Custom.
             </summary>
         </member>
-        <member name="P:ProductionCore.Interfaces.IProdModalDialogViewModel.Retry">
+        <member name="P:ProductionCore.Interfaces.IProdModalDialogViewModel.RetryCommand">
             <summary>
             Gets or sets the Retry.
             </summary>
@@ -715,14 +715,14 @@
             Gets the MediationService.
             </summary>
         </member>
-        <member name="P:ProductionCore.Interfaces.IProgramSelectViewModel.ConfirmButton">
+        <member name="P:ProductionCore.Interfaces.IProgramSelectViewModel.ConfirmCommand">
             <summary>
-            Gets or sets the ConfirmButton.
+            Gets or sets the ConfirmCommand.
             </summary>
         </member>
-        <member name="P:ProductionCore.Interfaces.IProgramSelectViewModel.CancelButton">
+        <member name="P:ProductionCore.Interfaces.IProgramSelectViewModel.CancelCommand">
             <summary>
-            Gets or sets the CancelButton.
+            Gets or sets the CancelCommand.
             </summary>
         </member>
         <member name="T:ProductionCore.Interfaces.ITestGeneratorViewModel">
@@ -735,24 +735,24 @@
             Gets the PlaybackService.
             </summary>
         </member>
-        <member name="P:ProductionCore.Interfaces.ITestGeneratorViewModel.ChangeProcessImage">
+        <member name="P:ProductionCore.Interfaces.ITestGeneratorViewModel.ChangeProcessImageCommand">
             <summary>
-            Gets or sets the ChangeProcessImage.
+            Gets or sets the ChangeProcessImageCommand.
             </summary>
         </member>
-        <member name="P:ProductionCore.Interfaces.ITestGeneratorViewModel.PauseButton">
+        <member name="P:ProductionCore.Interfaces.ITestGeneratorViewModel.PauseCommand">
             <summary>
-            Gets or sets the PauseButton.
+            Gets or sets the PauseCommand.
             </summary>
         </member>
-        <member name="P:ProductionCore.Interfaces.ITestGeneratorViewModel.StartButton">
+        <member name="P:ProductionCore.Interfaces.ITestGeneratorViewModel.StartCommand">
             <summary>
-            Gets or sets the StartButton.
+            Gets or sets the StartCommand.
             </summary>
         </member>
-        <member name="P:ProductionCore.Interfaces.ITestGeneratorViewModel.ThrowCardError">
+        <member name="P:ProductionCore.Interfaces.ITestGeneratorViewModel.ThrowCardErrorCommand">
             <summary>
-            Gets or sets the ThrowCardError.
+            Gets or sets the ThrowCardErrorCommand.
             </summary>
         </member>
         <member name="T:ProductionCore.Interfaces.IProdDataView">
