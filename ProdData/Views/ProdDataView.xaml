@@ -124,7 +124,7 @@
             HorizontalScrollBarVisibility="Hidden"
             IsHitTestVisible="{Binding Path=PlaybackService.PlaybackRunning, Converter={StaticResource InvertedBooleanConverter}}"
             ItemsSource="{Binding Path=PlaybackService.ProgramSteps}"
-            SelectedItem="{Binding Path=PlaybackService.CurrentCard}"
+            CurrentItem="{Binding Path=PlaybackService.CurrentCard}"
             VerticalScrollBarVisibility="Hidden">
 
             <behaviors:Interaction.Behaviors>

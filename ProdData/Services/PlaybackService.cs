@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.ObjectModel;
+    using System.Diagnostics;
     using System.IO;
     using System.Windows.Media.Imaging;
     using Newtonsoft.Json;
@@ -338,6 +339,7 @@
             PauseCard();
             PlayAvailable = true;
             AllowProgramChange = true;
+            PlaybackRunning = false;
         }
 
         /// <inheritdoc/>
@@ -348,11 +350,7 @@
                 return;
             }
 
-            if (PlaybackRunning == false)
-            {
-                CycleTime?.Start();
-            }
-
+            CycleTime?.Start();
             AllowProgramChange = false;
             PlaybackRunning = true;
             if (CurrentCard!.StepModalData != null && CurrentCard!.StepModalData!.IsError == false && _modalService.ModalActive == false)
@@ -373,6 +371,7 @@
             }
 
             AllowProgramChange = false;
+            Debug.WriteLine(CurrentCard!.StepTitle + "  " + CurrentCard!.CurrentSubStep + "/" + CurrentCard!.SubStepCount);
             CurrentCard!.StartCard();
         }
 
