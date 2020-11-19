@@ -28,9 +28,9 @@
         {
             _playbackService = playbackService;
             _mediationService = mediationService;
-            PlayButton = new DelegateCommand(() => PlaybackService.Play()).ObservesCanExecute(() => PlaybackService.PlayAvailable);
-            PauseButton = new DelegateCommand(() => PlaybackService.Pause()).ObservesCanExecute(() => PlaybackService.PauseAvailable);
-            OpenProgramSelect = new DelegateCommand(() => PlaybackService.RequestProgramChange()).ObservesCanExecute(() => PlaybackService.AllowProgramChange);
+            PlayCommand = new DelegateCommand(Play).ObservesCanExecute(() => PlaybackService.PlayAvailable);
+            PauseCommand = new DelegateCommand(Pause).ObservesCanExecute(() => PlaybackService.PauseAvailable);
+            ProgramSelectCommand = new DelegateCommand(ProgramSelect).ObservesCanExecute(() => PlaybackService.AllowProgramChange);
         }
 
         /// <inheritdoc/>
@@ -52,12 +52,36 @@
         }
 
         /// <inheritdoc/>
-        public DelegateCommand OpenProgramSelect { get; set; }
+        public DelegateCommand ProgramSelectCommand { get; set; }
 
         /// <inheritdoc/>
-        public DelegateCommand PauseButton { get; set; }
+        public DelegateCommand PauseCommand { get; set; }
 
         /// <inheritdoc/>
-        public DelegateCommand PlayButton { get; set; }
+        public DelegateCommand PlayCommand { get; set; }
+
+        /// <summary>
+        /// The ProgramSelectCommand Method call.
+        /// </summary>
+        private void ProgramSelect()
+        {
+            PlaybackService.RequestProgramChange();
+        }
+
+        /// <summary>
+        /// The PauseCommand Method call.
+        /// </summary>
+        private void Pause()
+        {
+            PlaybackService.Pause();
+        }
+
+        /// <summary>
+        /// The PlayCommand Method call.
+        /// </summary>
+        private void Play()
+        {
+            PlaybackService.Play();
+        }
     }
 }

@@ -18,18 +18,18 @@
         public IMediationService MediationService { get; }
 
         /// <summary>
-        /// Gets or sets the OpenProgramSelect.
+        /// Gets or sets the ProgramSelectCommand.
         /// </summary>
-        public DelegateCommand OpenProgramSelect { get; set; }
+        public DelegateCommand ProgramSelectCommand { get; set; }
 
         /// <summary>
-        /// Gets or sets the PauseButton.
+        /// Gets or sets the PauseCommand.
         /// </summary>
-        public DelegateCommand PauseButton { get; set; }
+        public DelegateCommand PauseCommand { get; set; }
 
         /// <summary>
-        /// Gets or sets the PlayButton.
+        /// Gets or sets the PlayCommand.
         /// </summary>
-        public DelegateCommand PlayButton { get; set; }
+        public DelegateCommand PlayCommand { get; set; }
     }
 }

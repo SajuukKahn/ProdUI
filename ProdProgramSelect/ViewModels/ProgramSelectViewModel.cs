@@ -26,8 +26,8 @@
         {
             _programDataService = programDataService;
             _mediationService = mediationService;
-            ConfirmButton = new DelegateCommand(ConfirmProgramChange).ObservesCanExecute(() => ProgramDataService.CanConfirm);
-            CancelButton = new DelegateCommand(CancelProgramChange);
+            ConfirmCommand = new DelegateCommand(Confirm).ObservesCanExecute(() => ProgramDataService.CanConfirm);
+            CancelCommand = new DelegateCommand(Cancel);
         }
 
         /// <inheritdoc/>
@@ -49,15 +49,15 @@
         }
 
         /// <inheritdoc/>
-        public DelegateCommand ConfirmButton { get; set; }
+        public DelegateCommand ConfirmCommand { get; set; }
 
         /// <inheritdoc/>
-        public DelegateCommand CancelButton { get; set; }
+        public DelegateCommand CancelCommand { get; set; }
 
         /// <summary>
         /// The CancelProgramChange.
         /// </summary>
-        private void CancelProgramChange()
+        private void Cancel()
         {
             CleanInstance();
         }
@@ -73,7 +73,7 @@
         /// <summary>
         /// The ConfirmProgramChange.
         /// </summary>
-        private void ConfirmProgramChange()
+        private void Confirm()
         {
             ProgramDataService.SetSelectedProgramAsCurrent();
             CleanInstance();

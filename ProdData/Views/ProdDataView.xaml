@@ -52,7 +52,7 @@
 
                         <Button
                             MaxWidth="140"
-                            Command="{Binding Path=OpenProgramSelect}"
+                            Command="{Binding Path=ProgramSelectCommand}"
                             Content="{Binding Path=MediationService.CurrentProgram.ProgramName, FallbackValue=------------------------}" />
 
                         <telerik:Label Content="Cycle Count:" />
@@ -83,20 +83,20 @@
 
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                     <telerik:RadPathButton
-                        x:Name="PlayButton"
+                        x:Name="PlayCommand"
                         Width="65"
                         Height="65"
-                        Command="{Binding Path=PlayButton}"
+                        Command="{Binding Path=PlayCommand}"
                         PathGeometry="{telerik:RadGlyph Type=None,
                                                         Glyph={StaticResource GlyphPlay},
                                                         Size=24}"
                         Visibility="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
                     <telerik:RadPathButton
-                        x:Name="PauseButton"
+                        x:Name="PauseCommand"
                         Width="65"
                         Height="65"
-                        Command="{Binding Path=PauseButton}"
+                        Command="{Binding Path=PauseCommand}"
                         PathGeometry="{telerik:RadGlyph Type=Path,
                                                         Glyph={StaticResource GlyphPause},
                                                         Size=24}"

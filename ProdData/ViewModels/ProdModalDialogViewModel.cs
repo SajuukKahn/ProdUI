@@ -3,6 +3,7 @@
     using Prism.Commands;
     using Prism.Mvvm;
     using ProductionCore.Interfaces;
+    using System;
 
     /// <inheritdoc/>
     public class ProdModalDialogViewModel : BindableBase, IProdModalDialogViewModel
@@ -12,6 +13,8 @@
         /// </summary>
         private readonly IModalService _modalService;
 
+        private readonly IPlaybackService _playbackService;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ProdModalDialogViewModel"/> class.
         /// </summary>
@@ -20,30 +23,15 @@
         public ProdModalDialogViewModel(IModalService modalService, IPlaybackService playbackService)
         {
             _modalService = modalService;
+            _playbackService = playbackService;
 
-            Abort = new DelegateCommand(() =>
-            {
-                playbackService.Abort();
-                ModalService.CloseModal();
-            }).ObservesCanExecute(() => ModalService.ActiveModalData!.CanAbort);
+            AbortCommand = new DelegateCommand(Abort).ObservesCanExecute(() => ModalService.ActiveModalData!.CanAbort);
 
-            Continue = new DelegateCommand(() =>
-            {
-                playbackService.Play();
-                ModalService.CloseModal();
-            }).ObservesCanExecute(() => ModalService.ActiveModalData!.CanContinue);
+            ContinueCommand = new DelegateCommand(Continue).ObservesCanExecute(() => ModalService.ActiveModalData!.CanContinue);
 
-            Retry = new DelegateCommand(() =>
-            {
-                playbackService.RetryCard();
-                ModalService.CloseModal();
-            }).ObservesCanExecute(() => ModalService.ActiveModalData!.CanRetry);
+            RetryCommand = new DelegateCommand(Retry).ObservesCanExecute(() => ModalService.ActiveModalData!.CanRetry);
 
-            Custom = new DelegateCommand(() =>
-            {
-                playbackService.Abort();
-                ModalService.CloseModal();
-            }).ObservesCanExecute(() => ModalService.ActiveModalData!.CanCustom);
+            CustomCommand = new DelegateCommand(Custom).ObservesCanExecute(() => ModalService.ActiveModalData!.CanCustom);
         }
 
         /// <inheritdoc/>
@@ -56,15 +44,51 @@
         }
 
         /// <inheritdoc/>
-        public DelegateCommand Abort { get; set; }
+        public DelegateCommand AbortCommand { get; set; }
 
         /// <inheritdoc/>
-        public DelegateCommand Continue { get; set; }
+        public DelegateCommand ContinueCommand { get; set; }
 
         /// <inheritdoc/>
-        public DelegateCommand Custom { get; set; }
+        public DelegateCommand CustomCommand { get; set; }
 
         /// <inheritdoc/>
-        public DelegateCommand Retry { get; set; }
+        public DelegateCommand RetryCommand { get; set; }
+
+        /// <summary>
+        /// The CustomCommand Method.
+        /// </summary>
+        private void Custom()
+        {
+            //// Requires some method?
+            ModalService.CloseModal();
+        }
+
+        /// <summary>
+        /// The RetryCommand Method.
+        /// </summary>
+        private void Retry()
+        {
+            _playbackService.RetryCard();
+            ModalService.CloseModal();
+        }
+
+        /// <summary>
+        /// The ContinueCommand Method.
+        /// </summary>
+        private void Continue()
+        {
+            _playbackService.Play();
+            _modalService.CloseModal();
+        }
+
+        /// <summary>
+        /// The AbortCommand Method.
+        /// </summary>
+        private void Abort()
+        {
+            _playbackService.Abort();
+            _modalService.CloseModal();
+        }
     }
 }

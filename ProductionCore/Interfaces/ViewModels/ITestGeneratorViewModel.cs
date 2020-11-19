@@ -13,23 +13,23 @@
         public IPlaybackService PlaybackService { get; }
 
         /// <summary>
-        /// Gets or sets the ChangeProcessImage.
+        /// Gets or sets the ChangeProcessImageCommand.
         /// </summary>
-        public DelegateCommand ChangeProcessImage { get; set; }
+        public DelegateCommand ChangeProcessImageCommand { get; set; }
 
         /// <summary>
-        /// Gets or sets the PauseButton.
+        /// Gets or sets the PauseCommand.
         /// </summary>
-        public DelegateCommand PauseButton { get; set; }
+        public DelegateCommand PauseCommand { get; set; }
 
         /// <summary>
-        /// Gets or sets the StartButton.
+        /// Gets or sets the StartCommand.
         /// </summary>
-        public DelegateCommand StartButton { get; set; }
+        public DelegateCommand StartCommand { get; set; }
 
         /// <summary>
-        /// Gets or sets the ThrowCardError.
+        /// Gets or sets the ThrowCardErrorCommand.
         /// </summary>
-        public DelegateCommand ThrowCardError { get; set; }
+        public DelegateCommand ThrowCardErrorCommand { get; set; }
     }
 }

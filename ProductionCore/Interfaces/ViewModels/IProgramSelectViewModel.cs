@@ -18,13 +18,13 @@
         public IMediationService MediationService { get; }
 
         /// <summary>
-        /// Gets or sets the ConfirmButton.
+        /// Gets or sets the ConfirmCommand.
         /// </summary>
-        public DelegateCommand ConfirmButton { get; set; }
+        public DelegateCommand ConfirmCommand { get; set; }
 
         /// <summary>
-        /// Gets or sets the CancelButton.
+        /// Gets or sets the CancelCommand.
         /// </summary>
-        public DelegateCommand CancelButton { get; set; }
+        public DelegateCommand CancelCommand { get; set; }
     }
 }

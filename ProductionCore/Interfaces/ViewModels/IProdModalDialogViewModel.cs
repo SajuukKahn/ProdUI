@@ -15,21 +15,21 @@
         /// <summary>
         /// Gets or sets the Abort.
         /// </summary>
-        public DelegateCommand Abort { get; set; }
+        public DelegateCommand AbortCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the Continue.
         /// </summary>
-        public DelegateCommand Continue { get; set; }
+        public DelegateCommand ContinueCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the Custom.
         /// </summary>
-        public DelegateCommand Custom { get; set; }
+        public DelegateCommand CustomCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the Retry.
         /// </summary>
-        public DelegateCommand Retry { get; set; }
+        public DelegateCommand RetryCommand { get; set; }
     }
 }
